@@ -1,0 +1,417 @@
+<footer class="gv-footer" aria-label="Site footer">
+  <div class="gv-footer-inner">
+
+    {%- comment -%} Brand column {%- endcomment -%}
+    <div class="gv-footer-brand">
+      {%- if section.settings.logo != blank -%}
+        <a href="{{ routes.root_url }}" class="gv-footer-logo-link" aria-label="{{ shop.name }}">
+          {{
+            section.settings.logo
+            | image_url: width: 280
+            | image_tag:
+              loading: 'lazy',
+              class: 'gv-footer-logo',
+              alt: section.settings.logo.alt | default: shop.name | escape,
+              width: 140,
+              height: 40
+          }}
+        </a>
+      {%- else -%}
+        <a href="{{ routes.root_url }}" class="gv-footer-wordmark">{{ shop.name }}</a>
+      {%- endif -%}
+
+      {%- if section.settings.tagline != blank -%}
+        <p class="gv-footer-tagline">{{ section.settings.tagline }}</p>
+      {%- endif -%}
+
+      <div class="gv-footer-social" aria-label="Social media links">
+        {%- if section.settings.instagram_url != blank -%}
+          <a href="{{ section.settings.instagram_url }}" class="gv-footer-social-link" target="_blank" rel="noopener" aria-label="Instagram">
+            {% render 'gv-icon', icon: 'instagram', size: 20 %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.tiktok_url != blank -%}
+          <a href="{{ section.settings.tiktok_url }}" class="gv-footer-social-link" target="_blank" rel="noopener" aria-label="TikTok">
+            {% render 'gv-icon', icon: 'tiktok', size: 20 %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.youtube_url != blank -%}
+          <a href="{{ section.settings.youtube_url }}" class="gv-footer-social-link" target="_blank" rel="noopener" aria-label="YouTube">
+            {% render 'gv-icon', icon: 'youtube', size: 20 %}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.pinterest_url != blank -%}
+          <a href="{{ section.settings.pinterest_url }}" class="gv-footer-social-link" target="_blank" rel="noopener" aria-label="Pinterest">
+            {% render 'gv-icon', icon: 'pinterest', size: 20 %}
+          </a>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} Nav columns {%- endcomment -%}
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'nav_column' -%}
+        <nav class="gv-footer-nav" aria-label="{{ block.settings.title | escape }}" {{ block.shopify_attributes }}>
+          <h3 class="gv-footer-nav-title">{{ block.settings.title }}</h3>
+          <ul class="gv-footer-nav-list" role="list">
+            {%- for i in (1..6) -%}
+              {%- assign label_key = 'link_' | append: i | append: '_label' -%}
+              {%- assign url_key   = 'link_' | append: i | append: '_url'   -%}
+              {%- assign link_label = block.settings[label_key] -%}
+              {%- assign link_url   = block.settings[url_key]   -%}
+              {%- if link_label != blank -%}
+                <li>
+                  <a href="{{ link_url | default: '#' }}" class="gv-footer-nav-link">{{ link_label }}</a>
+                </li>
+              {%- endif -%}
+            {%- endfor -%}
+          </ul>
+        </nav>
+      {%- endif -%}
+    {%- endfor -%}
+
+  </div>
+
+  {%- comment -%} Bottom bar {%- endcomment -%}
+  <div class="gv-footer-bottom">
+    <div class="gv-footer-bottom-inner">
+      <p class="gv-footer-copy">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}.
+        {%- if section.settings.tagline_bottom != blank -%}
+          {{ section.settings.tagline_bottom }}
+        {%- endif -%}
+      </p>
+      <ul class="gv-footer-legal" role="list">
+        {%- for policy in shop.enabled_policies -%}
+          <li><a href="{{ policy.url }}" class="gv-footer-legal-link">{{ policy.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+{% stylesheet %}
+  .gv-footer {
+    background: var(--berry-dark);
+    color: rgba(255,255,255,0.7);
+    padding-top: 80px;
+  }
+
+  .gv-footer-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px 64px;
+    display: grid;
+    grid-template-columns: 1.8fr repeat(3, 1fr);
+    gap: 48px;
+    align-items: start;
+  }
+
+  /* Brand column */
+  .gv-footer-logo-link { display: inline-block; margin-bottom: 20px; }
+  .gv-footer-logo { display: block; max-height: 40px; width: auto; }
+
+  .gv-footer-wordmark {
+    display: inline-block;
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 300;
+    color: #fff;
+    text-decoration: none;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .gv-footer-tagline {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.65;
+    color: rgba(255,255,255,0.5);
+    margin-bottom: 28px;
+    max-width: 260px;
+  }
+
+  .gv-footer-social {
+    display: flex;
+    gap: 12px;
+  }
+
+  .gv-footer-social-link {
+    width: 40px; height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+  }
+  .gv-footer-social-link:hover {
+    background: var(--coral-pulse);
+    color: #fff;
+    border-color: var(--coral-pulse);
+  }
+
+  /* Nav columns */
+  .gv-footer-nav-title {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 20px;
+  }
+
+  .gv-footer-nav-list {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .gv-footer-nav-link {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .gv-footer-nav-link:hover { color: #fff; }
+
+  /* Bottom bar */
+  .gv-footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .gv-footer-bottom-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .gv-footer-copy {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  .gv-footer-legal {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .gv-footer-legal-link {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .gv-footer-legal-link:hover { color: rgba(255,255,255,0.7); }
+
+  /* Responsive */
+  @media (max-width: 1000px) {
+    .gv-footer-inner {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+    .gv-footer-brand { grid-column: 1 / -1; }
+  }
+
+  @media (max-width: 600px) {
+    .gv-footer-inner {
+      grid-template-columns: 1fr 1fr;
+      padding: 0 20px 48px;
+    }
+    .gv-footer-bottom-inner { padding: 20px; flex-direction: column; align-items: flex-start; }
+  }
+
+  @media (max-width: 400px) {
+    .gv-footer-inner { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Footer",
+  "tag": "footer",
+  "class": "glowve-footer-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Brand"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Recommended: white version, max height 40px. If left blank, shop name is shown."
+    },
+    {
+      "type": "text",
+      "id": "tagline",
+      "label": "Tagline",
+      "default": "Science-backed skincare for South Asian skin. Built with radical transparency."
+    },
+    {
+      "type": "text",
+      "id": "tagline_bottom",
+      "label": "Bottom bar suffix (optional)",
+      "info": "Added after copyright year and shop name. E.g. \"All rights reserved.\""
+    },
+    {
+      "type": "header",
+      "content": "Social links"
+    },
+    {
+      "type": "url",
+      "id": "instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "url",
+      "id": "tiktok_url",
+      "label": "TikTok URL"
+    },
+    {
+      "type": "url",
+      "id": "youtube_url",
+      "label": "YouTube URL"
+    },
+    {
+      "type": "url",
+      "id": "pinterest_url",
+      "label": "Pinterest URL"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_column",
+      "name": "Navigation Column",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Column title",
+          "default": "Shop"
+        },
+        {
+          "type": "text",
+          "id": "link_1_label",
+          "label": "Link 1 label",
+          "default": "Bestsellers"
+        },
+        {
+          "type": "url",
+          "id": "link_1_url",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_2_label",
+          "label": "Link 2 label"
+        },
+        {
+          "type": "url",
+          "id": "link_2_url",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_3_label",
+          "label": "Link 3 label"
+        },
+        {
+          "type": "url",
+          "id": "link_3_url",
+          "label": "Link 3 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_4_label",
+          "label": "Link 4 label"
+        },
+        {
+          "type": "url",
+          "id": "link_4_url",
+          "label": "Link 4 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_5_label",
+          "label": "Link 5 label"
+        },
+        {
+          "type": "url",
+          "id": "link_5_url",
+          "label": "Link 5 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_6_label",
+          "label": "Link 6 label"
+        },
+        {
+          "type": "url",
+          "id": "link_6_url",
+          "label": "Link 6 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Footer",
+      "blocks": [
+        {
+          "type": "nav_column",
+          "settings": {
+            "title": "Shop",
+            "link_1_label": "Bestsellers",
+            "link_2_label": "Brightening",
+            "link_3_label": "Barrier Repair",
+            "link_4_label": "Sun Protection",
+            "link_5_label": "All Products",
+            "link_6_label": "Bundles"
+          }
+        },
+        {
+          "type": "nav_column",
+          "settings": {
+            "title": "Learn",
+            "link_1_label": "Ingredient Directory",
+            "link_2_label": "Skin Quiz",
+            "link_3_label": "Blog",
+            "link_4_label": "About Glowve",
+            "link_5_label": "Clinical Studies"
+          }
+        },
+        {
+          "type": "nav_column",
+          "settings": {
+            "title": "Help",
+            "link_1_label": "FAQ",
+            "link_2_label": "Contact Us",
+            "link_3_label": "Shipping Info",
+            "link_4_label": "Returns",
+            "link_5_label": "Track Order"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

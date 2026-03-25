@@ -3,7 +3,7 @@
     {%- for i in (1..2) -%}
       {%- for block in section.blocks -%}
         <span class="gv-announcement-item" {{ block.shopify_attributes }}>
-          <span class="gv-announcement-dot">✦</span>
+          <span class="gv-announcement-dot" aria-hidden="true">{% render 'gv-icon', icon: 'diamond', size: 8 %}</span>
           {{ block.settings.text }}
         </span>
       {%- endfor -%}

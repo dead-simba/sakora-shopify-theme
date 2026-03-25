@@ -1,13 +1,34 @@
 {% comment %}
   Glowve — Global head assets
-  Loads Google Fonts and the Glowve design token CSS.
-  Rendered once in layout/theme.liquid <head>.
+  Font faces are served via Shopify CDN using the font_face filter.
+  Fallback to system fonts when no font is selected in Theme Settings.
 {% endcomment %}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap"
-  rel="stylesheet"
->
+{%- liquid
+  assign gv_heading = settings.gv_heading_font
+  assign gv_body    = settings.gv_body_font
+-%}
+
+{%- if gv_heading != blank -%}
+  {{ gv_heading | font_face: font_display: 'swap' }}
+{%- endif -%}
+
+{%- if gv_body != blank -%}
+  {{ gv_body | font_face: font_display: 'swap' }}
+{%- endif -%}
+
 {{ 'glowve-base.css' | asset_url | stylesheet_tag }}
+
+<style>
+  :root {
+    {%- if gv_heading != blank -%}
+      --font-serif: {{ gv_heading.family | json }}, Georgia, serif;
+    {%- endif -%}
+    {%- if gv_body != blank -%}
+      --font-sans: {{ gv_body.family | json }}, system-ui, sans-serif;
+    {%- endif -%}
+    --gv-heading-weight: {{ settings.gv_heading_weight | default: '300' }};
+    --gv-hero-headline-size: {{ settings.gv_hero_headline_size | default: 82 }}px;
+    --gv-section-title-size: {{ settings.gv_section_title_size | default: 52 }}px;
+  }
+</style>

@@ -27,13 +27,13 @@
                   class="gv-ugc-img"
                 >
               {%- else -%}
-                <div class="gv-ugc-placeholder gv-ugc-placeholder--{{ forloop.index | modulo: 7 | plus: 1 }}">
-                  {{ block.settings.emoji }}
-                </div>
+                <div class="gv-ugc-placeholder gv-ugc-placeholder--{{ forloop.index | modulo: 7 | plus: 1 }}" aria-hidden="true"></div>
               {%- endif -%}
 
               <div class="gv-ugc-overlay">
-                <div class="gv-ugc-stars">★★★★★</div>
+                <div class="gv-ugc-stars" aria-label="5 stars" role="img">
+                  {%- for i in (1..5) -%}{% render 'gv-icon', icon: 'star', size: 10 %}{%- endfor -%}
+                </div>
                 <div class="gv-ugc-handle">{{ block.settings.handle }}</div>
               </div>
             </div>
@@ -82,10 +82,6 @@
   /* Placeholder gradients (no real image yet) */
   .gv-ugc-placeholder {
     width: 100%; height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
     transition: transform 0.4s;
   }
   .gv-ugc-cell:hover .gv-ugc-placeholder { transform: scale(1.05); }
@@ -110,8 +106,9 @@
 
   .gv-ugc-stars {
     color: var(--mango-zest);
-    font-size: 11px;
-    margin-bottom: 2px;
+    display: flex;
+    gap: 1px;
+    margin-bottom: 4px;
   }
   .gv-ugc-handle {
     font-family: var(--font-sans);
@@ -169,13 +166,8 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Photo (optional)"
-        },
-        {
-          "type": "text",
-          "id": "emoji",
-          "label": "Placeholder emoji",
-          "default": "🧴"
+          "label": "Photo (optional)",
+          "info": "Upload a customer or lifestyle photo. If left blank, a gradient placeholder is shown."
         },
         {
           "type": "text",
@@ -190,13 +182,13 @@
     {
       "name": "Glowve UGC Grid",
       "blocks": [
-        { "type": "photo", "settings": { "emoji": "🧴", "handle": "@nida.skincare" } },
-        { "type": "photo", "settings": { "emoji": "🌿", "handle": "@sanabeauty.pk" } },
-        { "type": "photo", "settings": { "emoji": "✨", "handle": "@zara.glow" } },
-        { "type": "photo", "settings": { "emoji": "⚗️", "handle": "@ayesha.skin" } },
-        { "type": "photo", "settings": { "emoji": "💜", "handle": "@maha.glows" } },
-        { "type": "photo", "settings": { "emoji": "🛡️", "handle": "@hira.routine" } },
-        { "type": "photo", "settings": { "emoji": "🌸", "handle": "@amna.beauty" } }
+        { "type": "photo", "settings": { "handle": "@nida.skincare" } },
+        { "type": "photo", "settings": { "handle": "@sanabeauty.pk" } },
+        { "type": "photo", "settings": { "handle": "@zara.glow" } },
+        { "type": "photo", "settings": { "handle": "@ayesha.skin" } },
+        { "type": "photo", "settings": { "handle": "@maha.glows" } },
+        { "type": "photo", "settings": { "handle": "@hira.routine" } },
+        { "type": "photo", "settings": { "handle": "@amna.beauty" } }
       ]
     }
   ]

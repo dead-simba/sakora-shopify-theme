@@ -3,7 +3,9 @@
     {%- for i in (1..2) -%}
       {%- for block in section.blocks -%}
         <div class="gv-proof-item" {{ block.shopify_attributes }}>
-          <span class="gv-proof-stars">★★★★★</span>
+          <span class="gv-proof-stars" aria-label="5 stars" role="img">
+            {%- for i in (1..5) -%}{% render 'gv-icon', icon: 'star', size: 11 %}{%- endfor -%}
+          </span>
           <span class="gv-proof-text">{{ block.settings.review }}</span>
         </div>
         <div class="gv-proof-sep" aria-hidden="true"></div>
@@ -46,6 +48,8 @@
   .gv-proof-stars {
     color: var(--mango-zest);
     flex-shrink: 0;
+    display: flex;
+    gap: 1px;
   }
 
   .gv-proof-sep {

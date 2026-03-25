@@ -11,8 +11,18 @@
         {%- for block in section.blocks -%}
           {%- if block.type == 'promise' -%}
             <div class="gv-promise-card" {{ block.shopify_attributes }}>
-              <div class="gv-promise-icon gv-promise-icon--{{ forloop.index }}">
-                {{ block.settings.icon }}
+              <div class="gv-promise-icon gv-promise-icon--{{ forloop.index }}" aria-hidden="true">
+                {%- case block.settings.icon -%}
+                  {%- when 'science' -%}{% render 'gv-icon', icon: 'science', size: 28 %}
+                  {%- when 'list' -%}{% render 'gv-icon', icon: 'list', size: 28 %}
+                  {%- when 'leaf' -%}{% render 'gv-icon', icon: 'leaf', size: 28 %}
+                  {%- when 'sparkle' -%}{% render 'gv-icon', icon: 'sparkle', size: 28 %}
+                  {%- when 'shield' -%}{% render 'gv-icon', icon: 'shield', size: 28 %}
+                  {%- when 'dropper' -%}{% render 'gv-icon', icon: 'dropper', size: 28 %}
+                  {%- when 'sun' -%}{% render 'gv-icon', icon: 'sun', size: 28 %}
+                  {%- when 'star' -%}{% render 'gv-icon', icon: 'star', size: 28 %}
+                  {%- else -%}{% render 'gv-icon', icon: 'sparkle', size: 28 %}
+                {%- endcase -%}
               </div>
               <div class="gv-promise-title">{{ block.settings.title }}</div>
               <p class="gv-promise-desc">{{ block.settings.description }}</p>
@@ -54,9 +64,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 28px;
     margin: 0 auto 20px;
-    line-height: 1;
   }
   .gv-promise-icon--1 { background: linear-gradient(135deg, #FFF3D6, #FFC85C); }
   .gv-promise-icon--2 { background: linear-gradient(135deg, #FFE0E8, #FF8FA3); }
@@ -112,10 +120,20 @@
       "name": "Promise",
       "settings": [
         {
-          "type": "text",
+          "type": "select",
           "id": "icon",
           "label": "Icon",
-          "default": "🔬"
+          "options": [
+            { "value": "science", "label": "Science (flask)" },
+            { "value": "list", "label": "Transparency (list)" },
+            { "value": "leaf", "label": "Natural (leaf)" },
+            { "value": "sparkle", "label": "Joyful (sparkle)" },
+            { "value": "shield", "label": "Safe (shield)" },
+            { "value": "dropper", "label": "Hydration (dropper)" },
+            { "value": "sun", "label": "SPF (sun)" },
+            { "value": "star", "label": "Star" }
+          ],
+          "default": "science"
         },
         {
           "type": "text",
@@ -136,10 +154,10 @@
     {
       "name": "Glowve Promise",
       "blocks": [
-        { "type": "promise", "settings": { "icon": "🔬", "title": "Study-Backed", "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy." } },
-        { "type": "promise", "settings": { "icon": "📋", "title": "Fully Transparent", "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list." } },
-        { "type": "promise", "settings": { "icon": "🌿", "title": "Skin-Safe Always", "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate." } },
-        { "type": "promise", "settings": { "icon": "✨", "title": "Joyful to Use", "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual." } }
+        { "type": "promise", "settings": { "icon": "science", "title": "Study-Backed", "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy." } },
+        { "type": "promise", "settings": { "icon": "list", "title": "Fully Transparent", "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list." } },
+        { "type": "promise", "settings": { "icon": "leaf", "title": "Skin-Safe Always", "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate." } },
+        { "type": "promise", "settings": { "icon": "sparkle", "title": "Joyful to Use", "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual." } }
       ]
     }
   ]

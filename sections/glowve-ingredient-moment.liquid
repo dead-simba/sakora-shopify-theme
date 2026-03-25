@@ -1,17 +1,59 @@
-<div class="gv-ingredient-moment">
-  <div class="gv-ingredient-moment-inner">
+<section class="gv-ing-moment" aria-labelledby="gv-ing-moment-title">
+  <div class="gv-ing-moment-inner">
 
-    <div class="gv-ing-visual" aria-hidden="true">
-      <div class="gv-ing-emoji">{{ section.settings.icon }}</div>
+    {%- comment -%} LEFT: Visual {%- endcomment -%}
+    <div class="gv-ing-visual">
+      {%- if section.settings.image != blank -%}
+        <div class="gv-ing-image-wrap">
+          {{
+            section.settings.image
+            | image_url: width: 800
+            | image_tag:
+              loading: 'lazy',
+              class: 'gv-ing-image',
+              alt: section.settings.image.alt | default: section.settings.ingredient_name | escape,
+              widths: '400, 600, 800',
+              sizes: '(max-width: 768px) 100vw, 45vw'
+          }}
+          {%- if section.settings.product_image != blank -%}
+            <div class="gv-ing-product-float">
+              {{
+                section.settings.product_image
+                | image_url: width: 280
+                | image_tag:
+                  loading: 'lazy',
+                  class: 'gv-ing-product-img',
+                  alt: section.settings.product_image.alt | default: 'Featured product' | escape,
+                  width: 140,
+                  height: 140
+              }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        <div class="gv-ing-image-placeholder">
+          <div class="gv-ing-placeholder-inner">
+            {% render 'gv-icon', icon: 'science', size: 80, class: 'gv-ing-placeholder-icon' %}
+          </div>
+        </div>
+      {%- endif -%}
+
       <div class="gv-ing-stat">
         <div class="gv-ing-stat-num">{{ section.settings.stat_number }}</div>
         <div class="gv-ing-stat-text">{{ section.settings.stat_text }}</div>
       </div>
     </div>
 
+    {%- comment -%} RIGHT: Text {%- endcomment -%}
     <div class="gv-ing-text">
       <div class="gv-section-label gv-section-label--light">{{ section.settings.label }}</div>
-      <h2 class="gv-ing-title">{{ section.settings.title }}</h2>
+
+      <h2 id="gv-ing-moment-title" class="gv-ing-title">{{ section.settings.title }}</h2>
+
+      {%- if section.settings.ingredient_name != blank -%}
+        <p class="gv-ing-name-tag">{{ section.settings.ingredient_name }}</p>
+      {%- endif -%}
+
       <p class="gv-ing-desc">{{ section.settings.description }}</p>
 
       {%- if section.blocks.size > 0 -%}
@@ -27,31 +69,32 @@
       {%- if section.settings.cta_label != blank -%}
         <a href="{{ section.settings.cta_url }}" class="gv-btn-ghost">
           {{ section.settings.cta_label }}
+          {% render 'gv-icon', icon: 'arrow-right', size: 14 %}
         </a>
       {%- endif -%}
     </div>
 
   </div>
-</div>
+</section>
 
 {% stylesheet %}
-  .gv-ingredient-moment {
+  .gv-ing-moment {
     background: var(--berry-dark);
     padding: 120px 0;
     position: relative;
     overflow: hidden;
   }
-  .gv-ingredient-moment::before {
+  .gv-ing-moment::before {
     content: '';
     position: absolute;
     width: 600px; height: 600px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(244,132,95,0.15), transparent);
+    background: radial-gradient(circle, rgba(244,132,95,0.12), transparent);
     top: -200px; right: -100px;
     pointer-events: none;
   }
 
-  .gv-ingredient-moment-inner {
+  .gv-ing-moment-inner {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 40px;
@@ -61,29 +104,70 @@
     align-items: center;
   }
 
-  /* Visual */
+  /* ---- Visual ---- */
   .gv-ing-visual { position: relative; }
 
-  .gv-ing-emoji {
-    font-size: 180px;
-    line-height: 1;
-    filter: drop-shadow(0 30px 60px rgba(0,0,0,0.3));
-    animation: gv-float 4s ease-in-out infinite;
+  .gv-ing-image-wrap {
+    position: relative;
+    border-radius: 24px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
   }
-  @keyframes gv-float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-16px); }
+  .gv-ing-image {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .gv-ing-image-wrap:hover .gv-ing-image { transform: scale(1.03); }
+
+  /* Floating product card over image */
+  .gv-ing-product-float {
+    position: absolute;
+    bottom: -20px; right: -20px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 16px;
+    box-shadow: 0 20px 48px rgba(45,27,53,0.2);
+    width: 140px;
+  }
+  .gv-ing-product-img {
+    width: 100%; aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
   }
 
+  /* Placeholder when no image */
+  .gv-ing-image-placeholder {
+    aspect-ratio: 4 / 5;
+    border-radius: 24px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gv-ing-placeholder-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%; height: 100%;
+    color: rgba(255,255,255,0.15);
+  }
+
+  /* Stat badge */
   .gv-ing-stat {
     position: absolute;
-    bottom: 0; right: 0;
+    bottom: -8px; left: -16px;
     background: var(--coral-pulse);
     color: #fff;
     padding: 20px 24px;
     border-radius: 16px;
     font-family: var(--font-sans);
     min-width: 140px;
+    box-shadow: 0 12px 32px rgba(244,132,95,0.4);
   }
   .gv-ing-stat-num {
     font-size: 36px;
@@ -93,57 +177,76 @@
   }
   .gv-ing-stat-text { font-size: 12px; opacity: 0.9; line-height: 1.4; }
 
-  /* Text */
+  /* ---- Text ---- */
   .gv-section-label--light {
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.45);
     margin-bottom: 16px;
   }
-  .gv-section-label--light::before { background: rgba(255,255,255,0.3); }
+  .gv-section-label--light::before { background: rgba(255,255,255,0.25); }
 
   .gv-ing-title {
     font-family: var(--font-serif);
-    font-size: 54px;
-    font-weight: 300;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: var(--gv-heading-weight);
     color: #fff;
     line-height: 1.1;
-    margin-bottom: 24px;
+    margin-bottom: 12px;
     letter-spacing: -0.01em;
   }
   .gv-ing-title em { font-style: italic; color: var(--coral-pulse); }
+
+  .gv-ing-name-tag {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mango-zest);
+    margin-bottom: 20px;
+  }
 
   .gv-ing-desc {
     font-family: var(--font-sans);
     font-size: 16px;
     color: rgba(255,255,255,0.65);
     line-height: 1.75;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
   }
 
   .gv-ing-pills {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     margin-bottom: 36px;
   }
   .gv-ing-pill {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
     color: #fff;
     font-family: var(--font-mono);
     font-size: 11px;
-    padding: 8px 16px;
+    padding: 7px 14px;
     border-radius: 100px;
     letter-spacing: 0.04em;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .gv-btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
 
   @media (max-width: 900px) {
-    .gv-ingredient-moment-inner { grid-template-columns: 1fr; gap: 48px; }
-    .gv-ing-emoji { font-size: 120px; }
-    .gv-ing-title { font-size: 40px; }
+    .gv-ing-moment-inner {
+      grid-template-columns: 1fr;
+      gap: 60px;
+    }
+    .gv-ing-image-wrap { aspect-ratio: 3 / 2; }
+    .gv-ing-stat { bottom: -16px; left: 0; }
   }
   @media (max-width: 768px) {
-    .gv-ingredient-moment { padding: 70px 0; }
-    .gv-ingredient-moment-inner { padding: 0 20px; }
+    .gv-ing-moment { padding: 70px 0; }
+    .gv-ing-moment-inner { padding: 0 20px; }
+    .gv-ing-product-float { width: 110px; right: -8px; }
   }
 {% endstylesheet %}
 
@@ -154,16 +257,30 @@
   "class": "glowve-ingredient-moment-wrapper",
   "settings": [
     {
+      "type": "header",
+      "content": "Visual"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Ingredient / lifestyle image",
+      "info": "Recommended: portrait orientation, 800×1000px. Shows on the left side."
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image",
+      "label": "Product image (optional float)",
+      "info": "Appears as a floating card over the bottom-right of the main image."
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
       "type": "text",
       "id": "label",
       "label": "Section label",
       "default": "Ingredient Spotlight"
-    },
-    {
-      "type": "text",
-      "id": "icon",
-      "label": "Icon / emoji",
-      "default": "⚗️"
     },
     {
       "type": "richtext",
@@ -172,10 +289,16 @@
       "default": "<p>Alpha Arbutin.<br>PIH's <em>real</em> match.</p>"
     },
     {
+      "type": "text",
+      "id": "ingredient_name",
+      "label": "Ingredient name tag",
+      "default": "Alpha-Arbutin 2% · Ethyl Ascorbic Acid"
+    },
+    {
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Post-inflammatory hyperpigmentation sits longer on South Asian skin. Alpha Arbutin at 2% competitively inhibits tyrosinase — the enzyme that produces melanin — at the source. 10x more potent than beta-arbutin, with a strong safety record."
+      "default": "Post-inflammatory hyperpigmentation sits longer on South Asian skin. Alpha Arbutin at 2% competitively inhibits tyrosinase — the enzyme that produces melanin — at the source. 10x more potent than beta-arbutin, with a strong safety record. No irritation. Just results."
     },
     {
       "type": "text",
@@ -209,7 +332,7 @@
         {
           "type": "text",
           "id": "text",
-          "label": "Pill text",
+          "label": "Text",
           "default": "Alpha-Arbutin 2%"
         }
       ]

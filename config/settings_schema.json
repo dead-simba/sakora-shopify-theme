@@ -8,6 +8,58 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Glowve Typography",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Controls heading fonts across all Glowve sections."
+      },
+      {
+        "type": "font_picker",
+        "id": "gv_heading_font",
+        "label": "Heading font (serif)",
+        "default": "cormorant_garamond_n3"
+      },
+      {
+        "type": "font_picker",
+        "id": "gv_body_font",
+        "label": "Body font (sans-serif)",
+        "default": "dm_sans_n4"
+      },
+      {
+        "type": "select",
+        "id": "gv_heading_weight",
+        "label": "Heading weight",
+        "options": [
+          { "value": "300", "label": "Light (300)" },
+          { "value": "400", "label": "Regular (400)" },
+          { "value": "600", "label": "Semi-bold (600)" }
+        ],
+        "default": "300"
+      },
+      {
+        "type": "range",
+        "id": "gv_hero_headline_size",
+        "label": "Hero headline size (desktop)",
+        "min": 48,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "default": 82
+      },
+      {
+        "type": "range",
+        "id": "gv_section_title_size",
+        "label": "Section title size (desktop)",
+        "min": 32,
+        "max": 72,
+        "step": 2,
+        "unit": "px",
+        "default": 52
+      }
+    ]
+  },
+  {
     "name": "t:names.logo_and_favicon",
     "settings": [
       {

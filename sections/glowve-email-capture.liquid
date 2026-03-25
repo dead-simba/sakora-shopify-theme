@@ -1,7 +1,9 @@
 <section class="gv-email-capture">
   <div class="gv-email-inner">
 
-    <div class="gv-email-emoji" aria-hidden="true">{{ section.settings.emoji }}</div>
+    <div class="gv-email-icon" aria-hidden="true">
+      {% render 'gv-icon', icon: 'leaf', size: 40 %}
+    </div>
 
     <h2 class="gv-email-title">{{ section.settings.title }}</h2>
     <p class="gv-email-desc">{{ section.settings.description }}</p>
@@ -46,11 +48,15 @@
     padding: 0 40px;
   }
 
-  .gv-email-emoji {
-    font-size: 48px;
-    margin-bottom: 24px;
-    line-height: 1;
-    display: block;
+  .gv-email-icon {
+    width: 64px; height: 64px;
+    background: var(--coral-pulse);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    color: #fff;
   }
 
   .gv-email-title {
@@ -145,12 +151,6 @@
   "tag": "section",
   "class": "glowve-email-capture-wrapper",
   "settings": [
-    {
-      "type": "text",
-      "id": "emoji",
-      "label": "Emoji",
-      "default": "🌿"
-    },
     {
       "type": "richtext",
       "id": "title",
