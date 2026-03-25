@@ -1,18 +1,54 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "glowve_announcement": {
       "type": "glowve-announcement-bar",
       "blocks": {
-        "msg_1": { "type": "message", "settings": { "text": "Free delivery on orders above PKR 2,500" } },
-        "msg_2": { "type": "message", "settings": { "text": "Ingredient transparency: we show you every %" } },
-        "msg_3": { "type": "message", "settings": { "text": "Dermatologist tested. Always." } },
-        "msg_4": { "type": "message", "settings": { "text": "Formulated for Pakistan's UV index and climate" } }
+        "msg_1": {
+          "type": "message",
+          "settings": {
+            "text": "Free delivery on orders above PKR 2,500"
+          }
+        },
+        "msg_2": {
+          "type": "message",
+          "settings": {
+            "text": "Ingredient transparency: we show you every %"
+          }
+        },
+        "msg_3": {
+          "type": "message",
+          "settings": {
+            "text": "Dermatologist tested. Always."
+          }
+        },
+        "msg_4": {
+          "type": "message",
+          "settings": {
+            "text": "Formulated for Pakistan's UV index and climate"
+          }
+        }
       },
-      "block_order": ["msg_1", "msg_2", "msg_3", "msg_4"],
-      "name": "Glowve Announcement Bar"
+      "block_order": [
+        "msg_1",
+        "msg_2",
+        "msg_3",
+        "msg_4"
+      ],
+      "name": "Glowve Announcement Bar",
+      "settings": {}
     },
     "glowve_hero": {
       "type": "glowve-hero",
+      "name": "Glowve Hero",
       "settings": {
         "eyebrow": "Glow your way.",
         "headline": "<p>Skin that <em>glows,</em><br>from ingredients<br>that earn it.</p>",
@@ -31,48 +67,130 @@
         "stack_tag_2": "Triple Ceramide · Matrixyl 3000™",
         "stack_name_3": "Matte UV Defence SPF 50+",
         "stack_tag_3": "SPF 50+ PA++++ · Niacinamide"
-      },
-      "name": "Glowve Hero"
+      }
     },
     "glowve_social_proof": {
       "type": "glowve-social-proof",
       "blocks": {
-        "rev_1": { "type": "review", "settings": { "review": "\"My PIH is visibly lighter after 6 weeks\" — Nida, Lahore" } },
-        "rev_2": { "type": "review", "settings": { "review": "\"Finally a brand that shows ingredient %s\" — Sana, Karachi" } },
-        "rev_3": { "type": "review", "settings": { "review": "\"The SPF has zero white cast — I wear it every day\" — Zara, Islamabad" } },
-        "rev_4": { "type": "review", "settings": { "review": "\"My skin barrier is actually healed\" — Ayesha, Lahore" } }
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "review": "\"My PIH is visibly lighter after 6 weeks\" — Nida, Lahore"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "review": "\"Finally a brand that shows ingredient %s\" — Sana, Karachi"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "review": "\"The SPF has zero white cast — I wear it every day\" — Zara, Islamabad"
+          }
+        },
+        "rev_4": {
+          "type": "review",
+          "settings": {
+            "review": "\"My skin barrier is actually healed\" — Ayesha, Lahore"
+          }
+        }
       },
-      "block_order": ["rev_1", "rev_2", "rev_3", "rev_4"],
-      "name": "Glowve Social Proof Ticker"
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3",
+        "rev_4"
+      ],
+      "name": "Glowve Social Proof Ticker",
+      "settings": {}
     },
     "glowve_bestsellers": {
       "type": "glowve-bestsellers",
       "blocks": {
-        "tab_all": { "type": "tab", "settings": { "label": "All" } },
-        "tab_serums": { "type": "tab", "settings": { "label": "Serums" } },
-        "tab_moisturisers": { "type": "tab", "settings": { "label": "Moisturisers" } },
-        "tab_spf": { "type": "tab", "settings": { "label": "SPF" } }
+        "tab_all": {
+          "type": "tab",
+          "settings": {
+            "label": "All"
+          }
+        },
+        "tab_serums": {
+          "type": "tab",
+          "settings": {
+            "label": "Serums"
+          }
+        },
+        "tab_moisturisers": {
+          "type": "tab",
+          "settings": {
+            "label": "Moisturisers"
+          }
+        },
+        "tab_spf": {
+          "type": "tab",
+          "settings": {
+            "label": "SPF"
+          }
+        }
       },
-      "block_order": ["tab_all", "tab_serums", "tab_moisturisers", "tab_spf"],
+      "block_order": [
+        "tab_all",
+        "tab_serums",
+        "tab_moisturisers",
+        "tab_spf"
+      ],
+      "name": "Glowve Bestsellers",
       "settings": {
         "label": "Community Favourites",
         "title": "Our <em>bestsellers</em>",
         "products_to_show": 3,
         "view_all_url": "/collections/all",
         "show_tabs": true
-      },
-      "name": "Glowve Bestsellers"
+      }
     },
     "glowve_ingredient_moment": {
       "type": "glowve-ingredient-moment",
       "blocks": {
-        "pill_1": { "type": "pill", "settings": { "text": "Alpha-Arbutin 2%" } },
-        "pill_2": { "type": "pill", "settings": { "text": "Tyrosinase Inhibitor" } },
-        "pill_3": { "type": "pill", "settings": { "text": "Ethyl Ascorbic Acid" } },
-        "pill_4": { "type": "pill", "settings": { "text": "Tranexamic Acid" } },
-        "pill_5": { "type": "pill", "settings": { "text": "EU Safety Approved" } }
+        "pill_1": {
+          "type": "pill",
+          "settings": {
+            "text": "Alpha-Arbutin 2%"
+          }
+        },
+        "pill_2": {
+          "type": "pill",
+          "settings": {
+            "text": "Tyrosinase Inhibitor"
+          }
+        },
+        "pill_3": {
+          "type": "pill",
+          "settings": {
+            "text": "Ethyl Ascorbic Acid"
+          }
+        },
+        "pill_4": {
+          "type": "pill",
+          "settings": {
+            "text": "Tranexamic Acid"
+          }
+        },
+        "pill_5": {
+          "type": "pill",
+          "settings": {
+            "text": "EU Safety Approved"
+          }
+        }
       },
-      "block_order": ["pill_1", "pill_2", "pill_3", "pill_4", "pill_5"],
+      "block_order": [
+        "pill_1",
+        "pill_2",
+        "pill_3",
+        "pill_4",
+        "pill_5"
+      ],
+      "name": "Glowve Ingredient Moment",
       "settings": {
         "label": "Ingredient Spotlight",
         "icon": "⚗️",
@@ -82,63 +200,195 @@
         "stat_text": "noticed brighter skin within 4 weeks",
         "cta_label": "Explore Ingredient Directory",
         "cta_url": "/pages/ingredients"
-      },
-      "name": "Glowve Ingredient Moment"
+      }
     },
     "glowve_shop_concern": {
       "type": "glowve-shop-concern",
       "blocks": {
-        "concern_1": { "type": "concern", "settings": { "icon": "✨", "name": "Brightening", "description": "Dark spots · PIH · Uneven tone", "link": "/collections/brightening" } },
-        "concern_2": { "type": "concern", "settings": { "icon": "🛡️", "name": "Barrier Repair", "description": "Dryness · Sensitivity · Redness", "link": "/collections/barrier-repair" } },
-        "concern_3": { "type": "concern", "settings": { "icon": "☀️", "name": "Sun Protection", "description": "Pakistan UV index · Matte finish", "link": "/collections/spf" } }
+        "concern_1": {
+          "type": "concern",
+          "settings": {
+            "icon": "✨",
+            "name": "Brightening",
+            "description": "Dark spots · PIH · Uneven tone",
+            "link": "/collections/brightening"
+          }
+        },
+        "concern_2": {
+          "type": "concern",
+          "settings": {
+            "icon": "🛡️",
+            "name": "Barrier Repair",
+            "description": "Dryness · Sensitivity · Redness",
+            "link": "/collections/barrier-repair"
+          }
+        },
+        "concern_3": {
+          "type": "concern",
+          "settings": {
+            "icon": "☀️",
+            "name": "Sun Protection",
+            "description": "Pakistan UV index · Matte finish",
+            "link": "/collections/spf"
+          }
+        }
       },
-      "block_order": ["concern_1", "concern_2", "concern_3"],
+      "block_order": [
+        "concern_1",
+        "concern_2",
+        "concern_3"
+      ],
+      "name": "Glowve Shop by Concern",
       "settings": {
         "label": "Personalised for You",
         "title": "Shop by <em>concern</em>"
-      },
-      "name": "Glowve Shop by Concern"
+      }
     },
     "glowve_ing_directory": {
       "type": "glowve-ingredient-directory",
       "blocks": {
-        "ing_1": { "type": "ingredient", "settings": { "icon": "🍋", "name": "Vitamin C", "function": "Brightening · Antioxidant" } },
-        "ing_2": { "type": "ingredient", "settings": { "icon": "🍉", "name": "Watermelon", "function": "Hydration · Soothing" } },
-        "ing_3": { "type": "ingredient", "settings": { "icon": "⚗️", "name": "Niacinamide", "function": "Pores · Tone evening" } },
-        "ing_4": { "type": "ingredient", "settings": { "icon": "🫧", "name": "Hyaluronic Acid", "function": "Deep hydration" } },
-        "ing_5": { "type": "ingredient", "settings": { "icon": "🛡️", "name": "Ceramides", "function": "Barrier repair" } },
-        "ing_6": { "type": "ingredient", "settings": { "icon": "🌿", "name": "Retinol", "function": "Renewal · Anti-ageing" } },
-        "ing_7": { "type": "ingredient", "settings": { "icon": "☀️", "name": "Zinc Oxide", "function": "Sun protection" } },
-        "ing_8": { "type": "ingredient", "settings": { "icon": "🌱", "name": "Centella", "function": "Calming · Healing" } },
-        "ing_more": { "type": "more", "settings": { "count": "40" } }
+        "ing_1": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🍋",
+            "name": "Vitamin C",
+            "function": "Brightening · Antioxidant"
+          }
+        },
+        "ing_2": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🍉",
+            "name": "Watermelon",
+            "function": "Hydration · Soothing"
+          }
+        },
+        "ing_3": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "⚗️",
+            "name": "Niacinamide",
+            "function": "Pores · Tone evening"
+          }
+        },
+        "ing_4": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🫧",
+            "name": "Hyaluronic Acid",
+            "function": "Deep hydration"
+          }
+        },
+        "ing_5": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🛡️",
+            "name": "Ceramides",
+            "function": "Barrier repair"
+          }
+        },
+        "ing_6": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🌿",
+            "name": "Retinol",
+            "function": "Renewal · Anti-ageing"
+          }
+        },
+        "ing_7": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "☀️",
+            "name": "Zinc Oxide",
+            "function": "Sun protection"
+          }
+        },
+        "ing_8": {
+          "type": "ingredient",
+          "settings": {
+            "icon": "🌱",
+            "name": "Centella",
+            "function": "Calming · Healing"
+          }
+        },
+        "ing_more": {
+          "type": "more",
+          "settings": {
+            "count": "40"
+          }
+        }
       },
-      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4", "ing_5", "ing_6", "ing_7", "ing_8", "ing_more"],
+      "block_order": [
+        "ing_1",
+        "ing_2",
+        "ing_3",
+        "ing_4",
+        "ing_5",
+        "ing_6",
+        "ing_7",
+        "ing_8",
+        "ing_more"
+      ],
+      "name": "Glowve Ingredient Directory",
       "settings": {
         "label": "Radical Transparency",
         "title": "<p>Know every<br><em>ingredient</em><br>we use.</p>",
         "description": "Every ingredient. Every concentration. Every product it's in. No hidden \"complexes,\" no marketing names. Browse our complete ingredient directory — searchable, filterable, and linked to real studies.",
         "cta_label": "Explore Directory",
         "cta_url": "/pages/ingredients"
-      },
-      "name": "Glowve Ingredient Directory"
+      }
     },
     "glowve_promise": {
       "type": "glowve-promise",
       "blocks": {
-        "p1": { "type": "promise", "settings": { "icon": "🔬", "title": "Study-Backed", "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy." } },
-        "p2": { "type": "promise", "settings": { "icon": "📋", "title": "Fully Transparent", "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list." } },
-        "p3": { "type": "promise", "settings": { "icon": "🌿", "title": "Skin-Safe Always", "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate." } },
-        "p4": { "type": "promise", "settings": { "icon": "✨", "title": "Joyful to Use", "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual." } }
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "icon": "🔬",
+            "title": "Study-Backed",
+            "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy."
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "icon": "📋",
+            "title": "Fully Transparent",
+            "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list."
+          }
+        },
+        "p3": {
+          "type": "promise",
+          "settings": {
+            "icon": "🌿",
+            "title": "Skin-Safe Always",
+            "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate."
+          }
+        },
+        "p4": {
+          "type": "promise",
+          "settings": {
+            "icon": "✨",
+            "title": "Joyful to Use",
+            "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual."
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "name": "Glowve Promise",
       "settings": {
         "label": "What we stand for",
         "title": "The <em>Glowve</em> promise"
-      },
-      "name": "Glowve Promise"
+      }
     },
     "glowve_bundle": {
       "type": "glowve-bundle",
+      "name": "Glowve Bundle",
       "settings": {
         "label": "The Complete Protocol",
         "title": "<p>Three products. <em>One routine.</em></p>",
@@ -158,63 +408,172 @@
         "cta_label": "Add Bundle to Bag",
         "cta_url": "/collections/all",
         "note": "Free delivery across Pakistan · 7-day returns"
-      },
-      "name": "Glowve Bundle"
+      }
     },
     "glowve_routine": {
       "type": "glowve-routine-builder",
       "blocks": {
-        "step_1": { "type": "step", "settings": { "title": "Tell us your skin type", "description": "Dry, oily, combination, sensitive" } },
-        "step_2": { "type": "step", "settings": { "title": "Pick your concern", "description": "Dullness, dryness, acne, ageing" } },
-        "step_3": { "type": "step", "settings": { "title": "Get your routine", "description": "AM + PM, step by step" } }
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "title": "Tell us your skin type",
+            "description": "Dry, oily, combination, sensitive"
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "title": "Pick your concern",
+            "description": "Dullness, dryness, acne, ageing"
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "title": "Get your routine",
+            "description": "AM + PM, step by step"
+          }
+        }
       },
-      "block_order": ["step_1", "step_2", "step_3"],
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3"
+      ],
+      "name": "Glowve Routine Builder",
       "settings": {
         "eyebrow": "✦ Personalised Skincare",
         "title": "<p>Not sure where<br>to <em>start?</em></p>",
         "description": "Answer 5 quick questions and we'll build a custom routine for your skin type, concerns, and budget. No fluff — just the products that will actually work for you.",
         "cta_label": "Take the Skin Quiz",
         "cta_url": "/pages/skin-quiz"
-      },
-      "name": "Glowve Routine Builder"
+      }
     },
     "glowve_ugc": {
       "type": "glowve-ugc",
       "blocks": {
-        "ugc_1": { "type": "photo", "settings": { "emoji": "🧴", "handle": "@nida.skincare" } },
-        "ugc_2": { "type": "photo", "settings": { "emoji": "🌿", "handle": "@sanabeauty.pk" } },
-        "ugc_3": { "type": "photo", "settings": { "emoji": "✨", "handle": "@zara.glow" } },
-        "ugc_4": { "type": "photo", "settings": { "emoji": "⚗️", "handle": "@ayesha.skin" } },
-        "ugc_5": { "type": "photo", "settings": { "emoji": "💜", "handle": "@maha.glows" } },
-        "ugc_6": { "type": "photo", "settings": { "emoji": "🛡️", "handle": "@hira.routine" } },
-        "ugc_7": { "type": "photo", "settings": { "emoji": "🌸", "handle": "@amna.beauty" } }
+        "ugc_1": {
+          "type": "photo",
+          "settings": {
+            "emoji": "🧴",
+            "handle": "@nida.skincare"
+          }
+        },
+        "ugc_2": {
+          "type": "photo",
+          "settings": {
+            "emoji": "🌿",
+            "handle": "@sanabeauty.pk"
+          }
+        },
+        "ugc_3": {
+          "type": "photo",
+          "settings": {
+            "emoji": "✨",
+            "handle": "@zara.glow"
+          }
+        },
+        "ugc_4": {
+          "type": "photo",
+          "settings": {
+            "emoji": "⚗️",
+            "handle": "@ayesha.skin"
+          }
+        },
+        "ugc_5": {
+          "type": "photo",
+          "settings": {
+            "emoji": "💜",
+            "handle": "@maha.glows"
+          }
+        },
+        "ugc_6": {
+          "type": "photo",
+          "settings": {
+            "emoji": "🛡️",
+            "handle": "@hira.routine"
+          }
+        },
+        "ugc_7": {
+          "type": "photo",
+          "settings": {
+            "emoji": "🌸",
+            "handle": "@amna.beauty"
+          }
+        }
       },
-      "block_order": ["ugc_1", "ugc_2", "ugc_3", "ugc_4", "ugc_5", "ugc_6", "ugc_7"],
+      "block_order": [
+        "ugc_1",
+        "ugc_2",
+        "ugc_3",
+        "ugc_4",
+        "ugc_5",
+        "ugc_6",
+        "ugc_7"
+      ],
+      "name": "Glowve UGC Grid",
       "settings": {
         "label": "Real People, Real Skin",
         "title": "Glowve <em>in the wild</em>",
         "social_handle": "@glowve.pk"
-      },
-      "name": "Glowve UGC Grid"
+      }
     },
     "glowve_press": {
       "type": "glowve-press-strip",
       "blocks": {
-        "press_1": { "type": "logo", "settings": { "name": "Dawn" } },
-        "press_2": { "type": "logo", "settings": { "name": "Vogue Pakistan" } },
-        "press_3": { "type": "logo", "settings": { "name": "Instep" } },
-        "press_4": { "type": "logo", "settings": { "name": "She" } },
-        "press_5": { "type": "logo", "settings": { "name": "Cosmopolitan PK" } },
-        "press_6": { "type": "logo", "settings": { "name": "Aurora" } }
+        "press_1": {
+          "type": "logo",
+          "settings": {
+            "name": "Dawn"
+          }
+        },
+        "press_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Vogue Pakistan"
+          }
+        },
+        "press_3": {
+          "type": "logo",
+          "settings": {
+            "name": "Instep"
+          }
+        },
+        "press_4": {
+          "type": "logo",
+          "settings": {
+            "name": "She"
+          }
+        },
+        "press_5": {
+          "type": "logo",
+          "settings": {
+            "name": "Cosmopolitan PK"
+          }
+        },
+        "press_6": {
+          "type": "logo",
+          "settings": {
+            "name": "Aurora"
+          }
+        }
       },
-      "block_order": ["press_1", "press_2", "press_3", "press_4", "press_5", "press_6"],
+      "block_order": [
+        "press_1",
+        "press_2",
+        "press_3",
+        "press_4",
+        "press_5",
+        "press_6"
+      ],
+      "name": "Glowve Press Strip",
       "settings": {
         "label": "As seen in"
-      },
-      "name": "Glowve Press Strip"
+      }
     },
     "glowve_email": {
       "type": "glowve-email-capture",
+      "name": "Glowve Email Capture",
       "settings": {
         "emoji": "🌿",
         "title": "<p>Get <em>10% off</em><br>your first order.</p>",
@@ -223,8 +582,7 @@
         "cta_label": "Subscribe",
         "success_message": "You're in! Check your inbox for your 10% off code.",
         "fine_print": "No spam. Unsubscribe any time. We take your privacy seriously."
-      },
-      "name": "Glowve Email Capture"
+      }
     }
   },
   "order": [
