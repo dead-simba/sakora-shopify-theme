@@ -51,7 +51,7 @@
       "name": "Glowve Hero",
       "settings": {
         "eyebrow": "Glow your way.",
-        "headline": "<p>Skin that <em>glows,</em><br>from ingredients<br>that earn it.</p>",
+        "headline": "<p>Skin that <em>glows,</em><br/>from ingredients<br/>that earn it.</p>",
         "subline": "Every formula starts with one question: does this ingredient actually work? No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
         "cta_primary_label": "Shop Bestsellers",
         "cta_primary_url": "/collections/all",
@@ -60,11 +60,14 @@
         "trust_rating": "4.8 stars",
         "trust_reviews": "across 1,200+ verified reviews",
         "trust_badge": "Made for Pakistan. Dermatologist tested.",
+        "hero_product_1": "",
         "stack_name_1": "2% Alpha Arbutin + Vitamin C",
         "stack_tag_1": "Alpha Arbutin · Ethyl Ascorbic Acid",
         "stack_badge_1": "Bestseller",
+        "hero_product_2": "",
         "stack_name_2": "Barrier Renew Moisturizer",
         "stack_tag_2": "Triple Ceramide · Matrixyl 3000™",
+        "hero_product_3": "",
         "stack_name_3": "Matte UV Defence SPF 50+",
         "stack_tag_3": "SPF 50+ PA++++ · Niacinamide"
       }
@@ -143,7 +146,8 @@
       "name": "Glowve Bestsellers",
       "settings": {
         "label": "Community Favourites",
-        "title": "Our <em>bestsellers</em>",
+        "title": "Our bestsellers",
+        "collection": "",
         "products_to_show": 3,
         "view_all_url": "/collections/all",
         "show_tabs": true
@@ -193,8 +197,8 @@
       "name": "Glowve Ingredient Moment",
       "settings": {
         "label": "Ingredient Spotlight",
-        "icon": "⚗️",
-        "title": "<p>Alpha Arbutin.<br>PIH's <em>real</em> match.</p>",
+        "title": "<p>Alpha Arbutin.<br/>PIH's <em>real</em> match.</p>",
+        "ingredient_name": "Alpha-Arbutin 2% · Ethyl Ascorbic Acid",
         "description": "Post-inflammatory hyperpigmentation sits longer on South Asian skin. Alpha Arbutin at 2% competitively inhibits tyrosinase — the enzyme that produces melanin — at the source. 10x more potent than beta-arbutin, with a strong safety record. No irritation. Just results.",
         "stat_number": "92%",
         "stat_text": "noticed brighter skin within 4 weeks",
@@ -241,7 +245,7 @@
       "name": "Glowve Shop by Concern",
       "settings": {
         "label": "Personalised for You",
-        "title": "Shop by <em>concern</em>"
+        "title": "Shop by concern"
       }
     },
     "glowve_ing_directory": {
@@ -250,7 +254,6 @@
         "ing_1": {
           "type": "ingredient",
           "settings": {
-            "icon": "🍋",
             "name": "Vitamin C",
             "function": "Brightening · Antioxidant"
           }
@@ -258,7 +261,6 @@
         "ing_2": {
           "type": "ingredient",
           "settings": {
-            "icon": "🍉",
             "name": "Watermelon",
             "function": "Hydration · Soothing"
           }
@@ -266,7 +268,6 @@
         "ing_3": {
           "type": "ingredient",
           "settings": {
-            "icon": "⚗️",
             "name": "Niacinamide",
             "function": "Pores · Tone evening"
           }
@@ -274,7 +275,6 @@
         "ing_4": {
           "type": "ingredient",
           "settings": {
-            "icon": "🫧",
             "name": "Hyaluronic Acid",
             "function": "Deep hydration"
           }
@@ -282,7 +282,6 @@
         "ing_5": {
           "type": "ingredient",
           "settings": {
-            "icon": "🛡️",
             "name": "Ceramides",
             "function": "Barrier repair"
           }
@@ -290,7 +289,6 @@
         "ing_6": {
           "type": "ingredient",
           "settings": {
-            "icon": "🌿",
             "name": "Retinol",
             "function": "Renewal · Anti-ageing"
           }
@@ -298,7 +296,6 @@
         "ing_7": {
           "type": "ingredient",
           "settings": {
-            "icon": "☀️",
             "name": "Zinc Oxide",
             "function": "Sun protection"
           }
@@ -306,7 +303,6 @@
         "ing_8": {
           "type": "ingredient",
           "settings": {
-            "icon": "🌱",
             "name": "Centella",
             "function": "Calming · Healing"
           }
@@ -393,12 +389,15 @@
         "label": "The Complete Protocol",
         "title": "<p>Three products. <em>One routine.</em></p>",
         "subtitle": "The serum brightens. The moisturizer rebuilds. The SPF protects. Together, they cover every step of a complete skincare protocol.",
+        "product_1": "",
         "name_1": "Alpha Arbutin Serum",
         "price_1": "PKR 1,400",
         "step_1": "Step 1 · PM",
+        "product_2": "",
         "name_2": "Barrier Renew Moisturizer",
         "price_2": "PKR 1,999",
         "step_2": "Step 2 · AM + PM",
+        "product_3": "",
         "name_3": "Matte UV Defence SPF 50+",
         "price_3": "PKR 1,600",
         "step_3": "Step 3 · AM Only",
@@ -455,49 +454,42 @@
         "ugc_1": {
           "type": "photo",
           "settings": {
-            "emoji": "🧴",
             "handle": "@nida.skincare"
           }
         },
         "ugc_2": {
           "type": "photo",
           "settings": {
-            "emoji": "🌿",
             "handle": "@sanabeauty.pk"
           }
         },
         "ugc_3": {
           "type": "photo",
           "settings": {
-            "emoji": "✨",
             "handle": "@zara.glow"
           }
         },
         "ugc_4": {
           "type": "photo",
           "settings": {
-            "emoji": "⚗️",
             "handle": "@ayesha.skin"
           }
         },
         "ugc_5": {
           "type": "photo",
           "settings": {
-            "emoji": "💜",
             "handle": "@maha.glows"
           }
         },
         "ugc_6": {
           "type": "photo",
           "settings": {
-            "emoji": "🛡️",
             "handle": "@hira.routine"
           }
         },
         "ugc_7": {
           "type": "photo",
           "settings": {
-            "emoji": "🌸",
             "handle": "@amna.beauty"
           }
         }
@@ -515,68 +507,15 @@
       "settings": {
         "label": "Real People, Real Skin",
         "title": "Glowve <em>in the wild</em>",
-        "social_handle": "@glowve.pk"
-      }
-    },
-    "glowve_press": {
-      "type": "glowve-press-strip",
-      "blocks": {
-        "press_1": {
-          "type": "logo",
-          "settings": {
-            "name": "Dawn"
-          }
-        },
-        "press_2": {
-          "type": "logo",
-          "settings": {
-            "name": "Vogue Pakistan"
-          }
-        },
-        "press_3": {
-          "type": "logo",
-          "settings": {
-            "name": "Instep"
-          }
-        },
-        "press_4": {
-          "type": "logo",
-          "settings": {
-            "name": "She"
-          }
-        },
-        "press_5": {
-          "type": "logo",
-          "settings": {
-            "name": "Cosmopolitan PK"
-          }
-        },
-        "press_6": {
-          "type": "logo",
-          "settings": {
-            "name": "Aurora"
-          }
-        }
-      },
-      "block_order": [
-        "press_1",
-        "press_2",
-        "press_3",
-        "press_4",
-        "press_5",
-        "press_6"
-      ],
-      "name": "Glowve Press Strip",
-      "settings": {
-        "label": "As seen in"
+        "social_handle": "@glowve.pk",
+        "social_url": ""
       }
     },
     "glowve_email": {
       "type": "glowve-email-capture",
       "name": "Glowve Email Capture",
       "settings": {
-        "emoji": "🌿",
-        "title": "<p>Get <em>10% off</em><br>your first order.</p>",
+        "title": "<p>Get <em>10% off</em><br/>your first order.</p>",
         "description": "Plus: early access to new launches, ingredient deep-dives, and honest skincare advice — straight to your inbox.",
         "placeholder": "your@email.com",
         "cta_label": "Subscribe",
@@ -597,7 +536,6 @@
     "glowve_bundle",
     "glowve_routine",
     "glowve_ugc",
-    "glowve_press",
     "glowve_email"
   ]
 }
