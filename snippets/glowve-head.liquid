@@ -23,12 +23,12 @@
   :root {
     {%- if gv_heading != blank -%}
       --font-serif: {{ gv_heading.family | json }}, Georgia, serif;
+      --gv-heading-weight: {{ gv_heading.weight }};
     {%- endif -%}
     {%- if gv_body != blank -%}
       --font-sans: {{ gv_body.family | json }}, system-ui, sans-serif;
     {%- endif -%}
-    --gv-heading-weight: {{ settings.gv_heading_weight | default: '300' }};
-    --gv-hero-headline-size: {{ settings.gv_hero_headline_size | default: 82 }}px;
+    --gv-hero-headline-size: {{ settings.gv_hero_headline_size | default: 80 }}px;
     --gv-section-title-size: {{ settings.gv_section_title_size | default: 52 }}px;
   }
 </style>
