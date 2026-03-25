@@ -9,12 +9,11 @@
   assign gv_body    = settings.gv_body_font
 -%}
 
-{%- if gv_heading != blank -%}
-  {{ gv_heading | font_face: font_display: 'swap' }}
-{%- endif -%}
-
-{%- if gv_body != blank -%}
-  {{ gv_body | font_face: font_display: 'swap' }}
+{%- if gv_heading != blank or gv_body != blank -%}
+  <style>
+    {%- if gv_heading != blank -%}{{ gv_heading | font_face: font_display: 'swap' }}{%- endif -%}
+    {%- if gv_body != blank -%}{{ gv_body | font_face: font_display: 'swap' }}{%- endif -%}
+  </style>
 {%- endif -%}
 
 {{ 'glowve-base.css' | asset_url | stylesheet_tag }}

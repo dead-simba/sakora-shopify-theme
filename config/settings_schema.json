@@ -21,12 +21,14 @@
       {
         "type": "font_picker",
         "id": "gv_heading_font",
-        "label": "Heading font"
+        "label": "Heading font",
+        "default": "playfair_display_n4"
       },
       {
         "type": "font_picker",
         "id": "gv_body_font",
-        "label": "Body font"
+        "label": "Body font",
+        "default": "open_sans_n4"
       },
       {
         "type": "range",
