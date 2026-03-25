@@ -1,0 +1,147 @@
+/* ============================================================
+   GLOWVE DESIGN SYSTEM — BASE TOKENS & SHARED UTILITIES
+   Loaded globally via snippets/glowve-head.liquid
+============================================================ */
+
+:root {
+  /* Color palette */
+  --cream-glow: #FFF9F4;
+  --coral-pulse: #F4845F;
+  --coral-dark: #d96b45;
+  --mango-zest: #FFB347;
+  --berry-dark: #2D1B35;
+  --warm-espresso: #1E120A;
+  --citrus-burst: #FFC85C;
+  --watermelon-blush: #FF8FA3;
+  --pearl-glow: #E8D5C4;
+  --golden-hour: #FFD580;
+  --sage-calm: #A8C5A0;
+  --plum-dusk: #9B72AA;
+  --off-white: #FFFAF6;
+  --warm-gray: #E8E0D8;
+  --mid-gray: #9A9189;
+
+  /* Typography */
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+/* ============================================================
+   SHARED BUTTON STYLES
+============================================================ */
+.gv-btn-primary {
+  background: var(--coral-pulse);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  display: inline-block;
+  text-decoration: none;
+}
+.gv-btn-primary:hover { background: var(--coral-dark); transform: scale(1.02); }
+
+.gv-btn-secondary {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--warm-espresso);
+  border-bottom: 1px solid var(--warm-espresso);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+.gv-btn-secondary:hover { color: var(--coral-pulse); border-color: var(--coral-pulse); }
+
+.gv-btn-ghost {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 32px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-block;
+  text-decoration: none;
+}
+.gv-btn-ghost:hover { background: #fff; color: var(--berry-dark); }
+
+/* ============================================================
+   SHARED SECTION TYPOGRAPHY
+============================================================ */
+.gv-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--coral-pulse);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.gv-section-label::before {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--coral-pulse);
+}
+
+.gv-section-title {
+  font-family: var(--font-serif);
+  font-size: 52px;
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--berry-dark);
+  letter-spacing: -0.01em;
+}
+.gv-section-title em { font-style: italic; }
+
+.gv-section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 52px;
+}
+
+.gv-view-all {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--warm-espresso);
+  border-bottom: 1px solid var(--warm-espresso);
+  padding-bottom: 2px;
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s;
+  text-decoration: none;
+}
+.gv-view-all:hover { color: var(--coral-pulse); border-color: var(--coral-pulse); }
+
+/* ============================================================
+   SHARED LAYOUT
+============================================================ */
+.gv-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .gv-container { padding: 0 20px; }
+  .gv-section-title { font-size: 36px; }
+  .gv-section-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+}

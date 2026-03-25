@@ -1,0 +1,380 @@
+{%- liquid
+  assign bs_collection = collections[section.settings.collection]
+  assign bs_limit = section.settings.products_to_show | default: 3
+-%}
+
+<section class="gv-bestsellers">
+  <div class="gv-container">
+
+    <div class="gv-section-header">
+      <div>
+        <div class="gv-section-label">{{ section.settings.label }}</div>
+        <h2 class="gv-section-title">{{ section.settings.title }}</h2>
+      </div>
+      {%- if section.settings.view_all_url != blank -%}
+        <a href="{{ section.settings.view_all_url }}" class="gv-view-all">View all products →</a>
+      {%- endif -%}
+    </div>
+
+    {%- comment -%} Filter tabs (visual only — full JS filtering can be added later) {%- endcomment -%}
+    {%- if section.settings.show_tabs -%}
+      <div class="gv-bs-tabs" role="tablist">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tab' -%}
+            <button
+              class="gv-bs-tab{% if forloop.first %} gv-bs-tab--active{% endif %}"
+              data-tab="{{ block.settings.label | handle }}"
+              role="tab"
+              {{ block.shopify_attributes }}
+            >{{ block.settings.label }}</button>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if bs_collection != empty and bs_collection != blank -%}
+      <div class="gv-products-grid">
+        {%- for product in bs_collection.products limit: bs_limit -%}
+          {%- liquid
+            assign ingredient_tag = product.metafields.custom.ingredient_tag.value
+            assign concern = product.metafields.custom.concern.value
+            if ingredient_tag == blank
+              assign ingredient_tag = product.product_type
+            endif
+          -%}
+          <a href="{{ product.url }}" class="gv-product-card" aria-label="{{ product.title | escape }}">
+            <div class="gv-product-image">
+              {%- if product.featured_image -%}
+                <img
+                  src="{{ product.featured_image | image_url: width: 600 }}"
+                  alt="{{ product.featured_image.alt | default: product.title | escape }}"
+                  width="600"
+                  height="600"
+                  loading="lazy"
+                >
+              {%- else -%}
+                <div class="gv-product-no-img"></div>
+              {%- endif -%}
+
+              {%- for tag in product.tags -%}
+                {%- if tag == 'Bestseller' -%}
+                  <span class="gv-product-badge">Bestseller</span>
+                {%- elsif tag == 'New' -%}
+                  <span class="gv-product-badge gv-product-badge--new">New</span>
+                {%- elsif tag == 'Sale' -%}
+                  <span class="gv-product-badge gv-product-badge--sale">Sale</span>
+                {%- endif -%}
+              {%- endfor -%}
+            </div>
+
+            <div class="gv-product-info">
+              {%- if ingredient_tag != blank -%}
+                <div class="gv-product-ingredient">{{ ingredient_tag }}</div>
+              {%- endif -%}
+
+              <div class="gv-product-name">{{ product.title }}</div>
+
+              {%- if concern != blank -%}
+                <div class="gv-product-concern">{{ concern }}</div>
+              {%- endif -%}
+
+              <div class="gv-product-footer">
+                <div class="gv-product-price">
+                  {%- if product.compare_at_price > product.price -%}
+                    <span>{{ product.price | money }}</span>
+                    <del>{{ product.compare_at_price | money }}</del>
+                  {%- else -%}
+                    {{ product.price | money }}
+                  {%- endif -%}
+                </div>
+                <button
+                  class="gv-btn-atc"
+                  data-product-id="{{ product.variants.first.id }}"
+                  aria-label="Add {{ product.title | escape }} to bag"
+                  onclick="glowveAddToCart(event, {{ product.variants.first.id }})"
+                >Add to Bag</button>
+              </div>
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="gv-bs-empty">Select a collection in the Theme Editor to display products here.</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-bestsellers {
+    background: var(--cream-glow);
+    padding: 100px 0;
+  }
+
+  /* Tabs */
+  .gv-bs-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .gv-bs-tab {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: 1.5px solid var(--warm-gray);
+    background: transparent;
+    color: var(--mid-gray);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gv-bs-tab--active,
+  .gv-bs-tab:hover {
+    background: var(--berry-dark);
+    border-color: var(--berry-dark);
+    color: #fff;
+  }
+
+  /* Grid */
+  .gv-products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  /* Card */
+  .gv-product-card {
+    background: var(--off-white);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .gv-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px rgba(45,27,53,0.10);
+  }
+
+  .gv-product-image {
+    width: 100%;
+    aspect-ratio: 1;
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-gray);
+  }
+  .gv-product-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s;
+  }
+  .gv-product-card:hover .gv-product-image img { transform: scale(1.05); }
+  .gv-product-no-img {
+    width: 100%; height: 100%;
+    background: linear-gradient(135deg, var(--pearl-glow), var(--warm-gray));
+  }
+
+  .gv-product-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--coral-pulse);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+  .gv-product-badge--new { background: var(--berry-dark); }
+  .gv-product-badge--sale { background: var(--sage-calm); color: var(--warm-espresso); }
+
+  .gv-product-info { padding: 18px 18px 20px; }
+
+  .gv-product-ingredient {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--coral-pulse);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .gv-product-name {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--warm-espresso);
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+
+  .gv-product-concern {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-bottom: 14px;
+  }
+
+  .gv-product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .gv-product-price {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--warm-espresso);
+  }
+  .gv-product-price del {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--mid-gray);
+    margin-left: 4px;
+  }
+
+  .gv-btn-atc {
+    background: var(--coral-pulse);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 9px 18px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .gv-btn-atc:hover { background: var(--coral-dark); transform: scale(1.04); }
+  .gv-btn-atc.gv-loading { opacity: 0.7; cursor: wait; }
+
+  .gv-bs-empty {
+    font-family: var(--font-sans);
+    color: var(--mid-gray);
+    text-align: center;
+    padding: 40px 0;
+  }
+
+  @media (max-width: 900px) {
+    .gv-products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 568px) {
+    .gv-bestsellers { padding: 70px 0; }
+    .gv-products-grid { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  function glowveAddToCart(event, variantId) {
+    event.preventDefault();
+    event.stopPropagation();
+    const btn = event.currentTarget;
+    if (btn.classList.contains('gv-loading')) return;
+    btn.classList.add('gv-loading');
+    const originalText = btn.textContent;
+    btn.textContent = '...';
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1 })
+    })
+    .then(r => r.json())
+    .then(() => {
+      btn.textContent = '✓ Added';
+      // Trigger Shopify cart update event for drawer/mini-cart
+      document.dispatchEvent(new CustomEvent('cart:updated'));
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.remove('gv-loading');
+      }, 1800);
+    })
+    .catch(() => {
+      btn.textContent = 'Error';
+      btn.classList.remove('gv-loading');
+      setTimeout(() => { btn.textContent = originalText; }, 1500);
+    });
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Glowve Bestsellers",
+  "tag": "section",
+  "class": "glowve-bestsellers-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Community Favourites"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "Our <em>bestsellers</em>"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 8,
+      "step": 1,
+      "label": "Products to show",
+      "default": 3
+    },
+    {
+      "type": "url",
+      "id": "view_all_url",
+      "label": "View all link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_tabs",
+      "label": "Show filter tabs",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tab",
+      "name": "Filter Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Tab label",
+          "default": "All"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Bestsellers",
+      "blocks": [
+        { "type": "tab", "settings": { "label": "All" } },
+        { "type": "tab", "settings": { "label": "Serums" } },
+        { "type": "tab", "settings": { "label": "Moisturisers" } },
+        { "type": "tab", "settings": { "label": "SPF" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

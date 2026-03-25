@@ -1,288 +1,245 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "glowve_announcement": {
+      "type": "glowve-announcement-bar",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
-          "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground-heading)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
-          "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-secondary",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
-        }
+        "msg_1": { "type": "message", "settings": { "text": "Free delivery on orders above PKR 2,500" } },
+        "msg_2": { "type": "message", "settings": { "text": "Ingredient transparency: we show you every %" } },
+        "msg_3": { "type": "message", "settings": { "text": "Dermatologist tested. Always." } },
+        "msg_4": { "type": "message", "settings": { "text": "Formulated for Pakistan's UV index and climate" } }
       },
-      "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
-      ],
-      "name": "t:names.hero",
-      "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-6",
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
-      }
+      "block_order": ["msg_1", "msg_2", "msg_3", "msg_4"],
+      "name": "Glowve Announcement Bar"
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
-      "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
-          "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "link",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
-        },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
-          "settings": {
-            "product_card_gap": 4,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
-        }
-      },
-      "name": "t:names.featured_collection",
+    "glowve_hero": {
+      "type": "glowve-hero",
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "color_scheme": "scheme-1",
-        "padding-block-start": 48,
-        "padding-block-end": 48
-      }
+        "eyebrow": "Glow your way.",
+        "headline": "<p>Skin that <em>glows,</em><br>from ingredients<br>that earn it.</p>",
+        "subline": "Every formula starts with one question: does this ingredient actually work? No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
+        "cta_primary_label": "Shop Bestsellers",
+        "cta_primary_url": "/collections/all",
+        "cta_secondary_label": "Build My Routine",
+        "cta_secondary_url": "/pages/skin-quiz",
+        "trust_rating": "4.8 stars",
+        "trust_reviews": "across 1,200+ verified reviews",
+        "trust_badge": "Made for Pakistan. Dermatologist tested.",
+        "stack_name_1": "2% Alpha Arbutin + Vitamin C",
+        "stack_tag_1": "Alpha Arbutin · Ethyl Ascorbic Acid",
+        "stack_badge_1": "Bestseller",
+        "stack_name_2": "Barrier Renew Moisturizer",
+        "stack_tag_2": "Triple Ceramide · Matrixyl 3000™",
+        "stack_name_3": "Matte UV Defence SPF 50+",
+        "stack_tag_3": "SPF 50+ PA++++ · Niacinamide"
+      },
+      "name": "Glowve Hero"
+    },
+    "glowve_social_proof": {
+      "type": "glowve-social-proof",
+      "blocks": {
+        "rev_1": { "type": "review", "settings": { "review": "\"My PIH is visibly lighter after 6 weeks\" — Nida, Lahore" } },
+        "rev_2": { "type": "review", "settings": { "review": "\"Finally a brand that shows ingredient %s\" — Sana, Karachi" } },
+        "rev_3": { "type": "review", "settings": { "review": "\"The SPF has zero white cast — I wear it every day\" — Zara, Islamabad" } },
+        "rev_4": { "type": "review", "settings": { "review": "\"My skin barrier is actually healed\" — Ayesha, Lahore" } }
+      },
+      "block_order": ["rev_1", "rev_2", "rev_3", "rev_4"],
+      "name": "Glowve Social Proof Ticker"
+    },
+    "glowve_bestsellers": {
+      "type": "glowve-bestsellers",
+      "blocks": {
+        "tab_all": { "type": "tab", "settings": { "label": "All" } },
+        "tab_serums": { "type": "tab", "settings": { "label": "Serums" } },
+        "tab_moisturisers": { "type": "tab", "settings": { "label": "Moisturisers" } },
+        "tab_spf": { "type": "tab", "settings": { "label": "SPF" } }
+      },
+      "block_order": ["tab_all", "tab_serums", "tab_moisturisers", "tab_spf"],
+      "settings": {
+        "label": "Community Favourites",
+        "title": "Our <em>bestsellers</em>",
+        "products_to_show": 3,
+        "view_all_url": "/collections/all",
+        "show_tabs": true
+      },
+      "name": "Glowve Bestsellers"
+    },
+    "glowve_ingredient_moment": {
+      "type": "glowve-ingredient-moment",
+      "blocks": {
+        "pill_1": { "type": "pill", "settings": { "text": "Alpha-Arbutin 2%" } },
+        "pill_2": { "type": "pill", "settings": { "text": "Tyrosinase Inhibitor" } },
+        "pill_3": { "type": "pill", "settings": { "text": "Ethyl Ascorbic Acid" } },
+        "pill_4": { "type": "pill", "settings": { "text": "Tranexamic Acid" } },
+        "pill_5": { "type": "pill", "settings": { "text": "EU Safety Approved" } }
+      },
+      "block_order": ["pill_1", "pill_2", "pill_3", "pill_4", "pill_5"],
+      "settings": {
+        "label": "Ingredient Spotlight",
+        "icon": "⚗️",
+        "title": "<p>Alpha Arbutin.<br>PIH's <em>real</em> match.</p>",
+        "description": "Post-inflammatory hyperpigmentation sits longer on South Asian skin. Alpha Arbutin at 2% competitively inhibits tyrosinase — the enzyme that produces melanin — at the source. 10x more potent than beta-arbutin, with a strong safety record. No irritation. Just results.",
+        "stat_number": "92%",
+        "stat_text": "noticed brighter skin within 4 weeks",
+        "cta_label": "Explore Ingredient Directory",
+        "cta_url": "/pages/ingredients"
+      },
+      "name": "Glowve Ingredient Moment"
+    },
+    "glowve_shop_concern": {
+      "type": "glowve-shop-concern",
+      "blocks": {
+        "concern_1": { "type": "concern", "settings": { "icon": "✨", "name": "Brightening", "description": "Dark spots · PIH · Uneven tone", "link": "/collections/brightening" } },
+        "concern_2": { "type": "concern", "settings": { "icon": "🛡️", "name": "Barrier Repair", "description": "Dryness · Sensitivity · Redness", "link": "/collections/barrier-repair" } },
+        "concern_3": { "type": "concern", "settings": { "icon": "☀️", "name": "Sun Protection", "description": "Pakistan UV index · Matte finish", "link": "/collections/spf" } }
+      },
+      "block_order": ["concern_1", "concern_2", "concern_3"],
+      "settings": {
+        "label": "Personalised for You",
+        "title": "Shop by <em>concern</em>"
+      },
+      "name": "Glowve Shop by Concern"
+    },
+    "glowve_ing_directory": {
+      "type": "glowve-ingredient-directory",
+      "blocks": {
+        "ing_1": { "type": "ingredient", "settings": { "icon": "🍋", "name": "Vitamin C", "function": "Brightening · Antioxidant" } },
+        "ing_2": { "type": "ingredient", "settings": { "icon": "🍉", "name": "Watermelon", "function": "Hydration · Soothing" } },
+        "ing_3": { "type": "ingredient", "settings": { "icon": "⚗️", "name": "Niacinamide", "function": "Pores · Tone evening" } },
+        "ing_4": { "type": "ingredient", "settings": { "icon": "🫧", "name": "Hyaluronic Acid", "function": "Deep hydration" } },
+        "ing_5": { "type": "ingredient", "settings": { "icon": "🛡️", "name": "Ceramides", "function": "Barrier repair" } },
+        "ing_6": { "type": "ingredient", "settings": { "icon": "🌿", "name": "Retinol", "function": "Renewal · Anti-ageing" } },
+        "ing_7": { "type": "ingredient", "settings": { "icon": "☀️", "name": "Zinc Oxide", "function": "Sun protection" } },
+        "ing_8": { "type": "ingredient", "settings": { "icon": "🌱", "name": "Centella", "function": "Calming · Healing" } },
+        "ing_more": { "type": "more", "settings": { "count": "40" } }
+      },
+      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4", "ing_5", "ing_6", "ing_7", "ing_8", "ing_more"],
+      "settings": {
+        "label": "Radical Transparency",
+        "title": "<p>Know every<br><em>ingredient</em><br>we use.</p>",
+        "description": "Every ingredient. Every concentration. Every product it's in. No hidden \"complexes,\" no marketing names. Browse our complete ingredient directory — searchable, filterable, and linked to real studies.",
+        "cta_label": "Explore Directory",
+        "cta_url": "/pages/ingredients"
+      },
+      "name": "Glowve Ingredient Directory"
+    },
+    "glowve_promise": {
+      "type": "glowve-promise",
+      "blocks": {
+        "p1": { "type": "promise", "settings": { "icon": "🔬", "title": "Study-Backed", "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy." } },
+        "p2": { "type": "promise", "settings": { "icon": "📋", "title": "Fully Transparent", "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list." } },
+        "p3": { "type": "promise", "settings": { "icon": "🌿", "title": "Skin-Safe Always", "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate." } },
+        "p4": { "type": "promise", "settings": { "icon": "✨", "title": "Joyful to Use", "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual." } }
+      },
+      "block_order": ["p1", "p2", "p3", "p4"],
+      "settings": {
+        "label": "What we stand for",
+        "title": "The <em>Glowve</em> promise"
+      },
+      "name": "Glowve Promise"
+    },
+    "glowve_bundle": {
+      "type": "glowve-bundle",
+      "settings": {
+        "label": "The Complete Protocol",
+        "title": "<p>Three products. <em>One routine.</em></p>",
+        "subtitle": "The serum brightens. The moisturizer rebuilds. The SPF protects. Together, they cover every step of a complete skincare protocol.",
+        "name_1": "Alpha Arbutin Serum",
+        "price_1": "PKR 1,400",
+        "step_1": "Step 1 · PM",
+        "name_2": "Barrier Renew Moisturizer",
+        "price_2": "PKR 1,999",
+        "step_2": "Step 2 · AM + PM",
+        "name_3": "Matte UV Defence SPF 50+",
+        "price_3": "PKR 1,600",
+        "step_3": "Step 3 · AM Only",
+        "bundle_price": "PKR 3,999",
+        "original_price": "PKR 4,999",
+        "saving_text": "Save PKR 1,000 vs buying separately · Free delivery included",
+        "cta_label": "Add Bundle to Bag",
+        "cta_url": "/collections/all",
+        "note": "Free delivery across Pakistan · 7-day returns"
+      },
+      "name": "Glowve Bundle"
+    },
+    "glowve_routine": {
+      "type": "glowve-routine-builder",
+      "blocks": {
+        "step_1": { "type": "step", "settings": { "title": "Tell us your skin type", "description": "Dry, oily, combination, sensitive" } },
+        "step_2": { "type": "step", "settings": { "title": "Pick your concern", "description": "Dullness, dryness, acne, ageing" } },
+        "step_3": { "type": "step", "settings": { "title": "Get your routine", "description": "AM + PM, step by step" } }
+      },
+      "block_order": ["step_1", "step_2", "step_3"],
+      "settings": {
+        "eyebrow": "✦ Personalised Skincare",
+        "title": "<p>Not sure where<br>to <em>start?</em></p>",
+        "description": "Answer 5 quick questions and we'll build a custom routine for your skin type, concerns, and budget. No fluff — just the products that will actually work for you.",
+        "cta_label": "Take the Skin Quiz",
+        "cta_url": "/pages/skin-quiz"
+      },
+      "name": "Glowve Routine Builder"
+    },
+    "glowve_ugc": {
+      "type": "glowve-ugc",
+      "blocks": {
+        "ugc_1": { "type": "photo", "settings": { "emoji": "🧴", "handle": "@nida.skincare" } },
+        "ugc_2": { "type": "photo", "settings": { "emoji": "🌿", "handle": "@sanabeauty.pk" } },
+        "ugc_3": { "type": "photo", "settings": { "emoji": "✨", "handle": "@zara.glow" } },
+        "ugc_4": { "type": "photo", "settings": { "emoji": "⚗️", "handle": "@ayesha.skin" } },
+        "ugc_5": { "type": "photo", "settings": { "emoji": "💜", "handle": "@maha.glows" } },
+        "ugc_6": { "type": "photo", "settings": { "emoji": "🛡️", "handle": "@hira.routine" } },
+        "ugc_7": { "type": "photo", "settings": { "emoji": "🌸", "handle": "@amna.beauty" } }
+      },
+      "block_order": ["ugc_1", "ugc_2", "ugc_3", "ugc_4", "ugc_5", "ugc_6", "ugc_7"],
+      "settings": {
+        "label": "Real People, Real Skin",
+        "title": "Glowve <em>in the wild</em>",
+        "social_handle": "@glowve.pk"
+      },
+      "name": "Glowve UGC Grid"
+    },
+    "glowve_press": {
+      "type": "glowve-press-strip",
+      "blocks": {
+        "press_1": { "type": "logo", "settings": { "name": "Dawn" } },
+        "press_2": { "type": "logo", "settings": { "name": "Vogue Pakistan" } },
+        "press_3": { "type": "logo", "settings": { "name": "Instep" } },
+        "press_4": { "type": "logo", "settings": { "name": "She" } },
+        "press_5": { "type": "logo", "settings": { "name": "Cosmopolitan PK" } },
+        "press_6": { "type": "logo", "settings": { "name": "Aurora" } }
+      },
+      "block_order": ["press_1", "press_2", "press_3", "press_4", "press_5", "press_6"],
+      "settings": {
+        "label": "As seen in"
+      },
+      "name": "Glowve Press Strip"
+    },
+    "glowve_email": {
+      "type": "glowve-email-capture",
+      "settings": {
+        "emoji": "🌿",
+        "title": "<p>Get <em>10% off</em><br>your first order.</p>",
+        "description": "Plus: early access to new launches, ingredient deep-dives, and honest skincare advice — straight to your inbox.",
+        "placeholder": "your@email.com",
+        "cta_label": "Subscribe",
+        "success_message": "You're in! Check your inbox for your 10% off code.",
+        "fine_print": "No spam. Unsubscribe any time. We take your privacy seriously."
+      },
+      "name": "Glowve Email Capture"
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "glowve_announcement",
+    "glowve_hero",
+    "glowve_social_proof",
+    "glowve_bestsellers",
+    "glowve_ingredient_moment",
+    "glowve_shop_concern",
+    "glowve_ing_directory",
+    "glowve_promise",
+    "glowve_bundle",
+    "glowve_routine",
+    "glowve_ugc",
+    "glowve_press",
+    "glowve_email"
   ]
 }

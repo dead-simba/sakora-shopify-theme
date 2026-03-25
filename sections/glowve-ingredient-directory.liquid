@@ -1,0 +1,212 @@
+<section class="gv-ing-dir">
+  <div class="gv-ing-dir-inner">
+
+    <div class="gv-ing-dir-text">
+      <div class="gv-section-label">{{ section.settings.label }}</div>
+      <h2 class="gv-section-title">{{ section.settings.title }}</h2>
+      <p class="gv-ing-dir-desc">{{ section.settings.description }}</p>
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="gv-btn-primary">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+    </div>
+
+    <div class="gv-ing-dir-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'ingredient' -%}
+          <div class="gv-dir-card" {{ block.shopify_attributes }}>
+            <div class="gv-dir-icon">{{ block.settings.icon }}</div>
+            <div class="gv-dir-name">{{ block.settings.name }}</div>
+            <div class="gv-dir-function">{{ block.settings.function }}</div>
+          </div>
+        {%- elsif block.type == 'more' -%}
+          <div class="gv-dir-card gv-dir-card--more" {{ block.shopify_attributes }}>
+            <div class="gv-dir-more-plus">+</div>
+            <div class="gv-dir-function">{{ block.settings.count }} more<br>ingredients</div>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ing-dir {
+    background: var(--off-white);
+    padding: 100px 0;
+  }
+
+  .gv-ing-dir-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .gv-ing-dir-text .gv-section-title { margin-bottom: 20px; }
+
+  .gv-ing-dir-desc {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    color: var(--mid-gray);
+    line-height: 1.75;
+    margin-bottom: 36px;
+  }
+
+  .gv-ing-dir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .gv-dir-card {
+    background: #fff;
+    border: 1.5px solid var(--warm-gray);
+    border-radius: 14px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .gv-dir-card:hover {
+    border-color: var(--coral-pulse);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(244,132,95,0.10);
+  }
+  .gv-dir-card--more {
+    border-style: dashed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: default;
+  }
+  .gv-dir-card--more:hover { transform: none; box-shadow: none; }
+
+  .gv-dir-icon { font-size: 24px; margin-bottom: 8px; line-height: 1; }
+  .gv-dir-more-plus { font-size: 20px; color: var(--mid-gray); }
+
+  .gv-dir-name {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--coral-pulse);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .gv-dir-function {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    text-align: left;
+  }
+  .gv-dir-card--more .gv-dir-function { text-align: center; }
+
+  @media (max-width: 900px) {
+    .gv-ing-dir-inner { grid-template-columns: 1fr; gap: 48px; }
+  }
+  @media (max-width: 768px) {
+    .gv-ing-dir { padding: 70px 0; }
+    .gv-ing-dir-inner { padding: 0 20px; }
+    .gv-ing-dir-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Ingredient Directory",
+  "tag": "section",
+  "class": "glowve-ing-dir-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Radical Transparency"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>Know every<br><em>ingredient</em><br>we use.</p>"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every ingredient. Every concentration. Every product it's in. No hidden complexes, no marketing names. Browse our complete ingredient directory — searchable, filterable, and linked to real studies."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Explore Directory"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "🍋"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Vitamin C"
+        },
+        {
+          "type": "text",
+          "id": "function",
+          "label": "Function",
+          "default": "Brightening · Antioxidant"
+        }
+      ]
+    },
+    {
+      "type": "more",
+      "name": "More ingredients pill",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "count",
+          "label": "Count",
+          "default": "40"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Ingredient Directory",
+      "blocks": [
+        { "type": "ingredient", "settings": { "icon": "🍋", "name": "Vitamin C", "function": "Brightening · Antioxidant" } },
+        { "type": "ingredient", "settings": { "icon": "🍉", "name": "Watermelon", "function": "Hydration · Soothing" } },
+        { "type": "ingredient", "settings": { "icon": "⚗️", "name": "Niacinamide", "function": "Pores · Tone evening" } },
+        { "type": "ingredient", "settings": { "icon": "🫧", "name": "Hyaluronic Acid", "function": "Deep hydration" } },
+        { "type": "ingredient", "settings": { "icon": "🛡️", "name": "Ceramides", "function": "Barrier repair" } },
+        { "type": "ingredient", "settings": { "icon": "🌿", "name": "Retinol", "function": "Renewal · Anti-ageing" } },
+        { "type": "ingredient", "settings": { "icon": "☀️", "name": "Zinc Oxide", "function": "Sun protection" } },
+        { "type": "ingredient", "settings": { "icon": "🌱", "name": "Centella", "function": "Calming · Healing" } },
+        { "type": "more", "settings": { "count": "40" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

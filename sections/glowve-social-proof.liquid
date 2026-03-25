@@ -1,0 +1,96 @@
+<div class="gv-proof-ticker" aria-label="Customer reviews">
+  <div class="gv-proof-track">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <div class="gv-proof-item" {{ block.shopify_attributes }}>
+          <span class="gv-proof-stars">★★★★★</span>
+          <span class="gv-proof-text">{{ block.settings.review }}</span>
+        </div>
+        <div class="gv-proof-sep" aria-hidden="true"></div>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .gv-proof-ticker {
+    background: var(--berry-dark);
+    padding: 14px 0;
+    overflow: hidden;
+  }
+
+  .gv-proof-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: max-content;
+    animation: gv-proof-scroll 30s linear infinite;
+  }
+
+  .gv-proof-ticker:hover .gv-proof-track {
+    animation-play-state: paused;
+  }
+
+  .gv-proof-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 40px;
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+
+  .gv-proof-stars {
+    color: var(--mango-zest);
+    flex-shrink: 0;
+  }
+
+  .gv-proof-sep {
+    width: 5px; height: 5px;
+    background: var(--coral-pulse);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  @keyframes gv-proof-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Social Proof Ticker",
+  "tag": "div",
+  "class": "glowve-social-proof-wrapper",
+  "max_blocks": 10,
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "review",
+          "label": "Review text",
+          "default": "\"My PIH is visibly lighter after 6 weeks\" — Nida, Lahore"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Social Proof Ticker",
+      "blocks": [
+        { "type": "review", "settings": { "review": "\"My PIH is visibly lighter after 6 weeks\" — Nida, Lahore" } },
+        { "type": "review", "settings": { "review": "\"Finally a brand that shows ingredient %s\" — Sana, Karachi" } },
+        { "type": "review", "settings": { "review": "\"The SPF has zero white cast — I wear it every day\" — Zara, Islamabad" } },
+        { "type": "review", "settings": { "review": "\"My skin barrier is actually healed\" — Ayesha, Lahore" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,154 @@
+<div class="gv-press-strip">
+  <div class="gv-press-inner">
+    <div class="gv-press-label">{{ section.settings.label }}</div>
+    <div class="gv-press-logos">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'logo' -%}
+          {%- if block.settings.link != blank -%}
+            <a href="{{ block.settings.link }}" class="gv-press-logo" target="_blank" rel="noopener" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: height: 36 }}"
+                  alt="{{ block.settings.name | escape }}"
+                  height="36"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ block.settings.name }}
+              {%- endif -%}
+            </a>
+          {%- else -%}
+            <span class="gv-press-logo" {{ block.shopify_attributes }}>
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: height: 36 }}"
+                  alt="{{ block.settings.name | escape }}"
+                  height="36"
+                  loading="lazy"
+                >
+              {%- else -%}
+                {{ block.settings.name }}
+              {%- endif -%}
+            </span>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .gv-press-strip {
+    background: var(--cream-glow);
+    padding: 60px 0;
+    border-top: 1px solid var(--warm-gray);
+    border-bottom: 1px solid var(--warm-gray);
+  }
+
+  .gv-press-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .gv-press-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .gv-press-logos {
+    display: flex;
+    gap: 48px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .gv-press-logo {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--warm-gray);
+    letter-spacing: -0.02em;
+    transition: color 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .gv-press-logo img {
+    filter: grayscale(1) opacity(0.4);
+    transition: filter 0.2s;
+    max-height: 36px;
+    width: auto;
+  }
+  .gv-press-logo:hover { color: var(--mid-gray); }
+  .gv-press-logo:hover img { filter: grayscale(0) opacity(1); }
+
+  @media (max-width: 768px) {
+    .gv-press-inner { padding: 0 20px; gap: 24px; }
+    .gv-press-logos { gap: 28px; }
+    .gv-press-logo { font-size: 16px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Press Strip",
+  "tag": "div",
+  "class": "glowve-press-strip-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "As seen in"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "logo",
+      "name": "Press Logo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Publication name",
+          "default": "Dawn"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Logo image (optional)"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Article link (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Press Strip",
+      "blocks": [
+        { "type": "logo", "settings": { "name": "Dawn" } },
+        { "type": "logo", "settings": { "name": "Vogue Pakistan" } },
+        { "type": "logo", "settings": { "name": "Instep" } },
+        { "type": "logo", "settings": { "name": "She" } },
+        { "type": "logo", "settings": { "name": "Cosmopolitan PK" } },
+        { "type": "logo", "settings": { "name": "Aurora" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

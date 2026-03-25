@@ -1,0 +1,147 @@
+<section class="gv-promise">
+  <div class="gv-container">
+
+    <div class="gv-promise-header">
+      <div class="gv-section-label gv-section-label--center">{{ section.settings.label }}</div>
+      <h2 class="gv-section-title">{{ section.settings.title }}</h2>
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="gv-promise-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'promise' -%}
+            <div class="gv-promise-card" {{ block.shopify_attributes }}>
+              <div class="gv-promise-icon gv-promise-icon--{{ forloop.index }}">
+                {{ block.settings.icon }}
+              </div>
+              <div class="gv-promise-title">{{ block.settings.title }}</div>
+              <p class="gv-promise-desc">{{ block.settings.description }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-promise {
+    background: linear-gradient(135deg, var(--pearl-glow) 0%, #F5EBE0 100%);
+    padding: 100px 0;
+  }
+
+  .gv-promise-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+  .gv-section-label--center {
+    justify-content: center;
+  }
+  .gv-section-label--center::before { display: none; }
+
+  .gv-promise-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+
+  .gv-promise-card { text-align: center; }
+
+  .gv-promise-icon {
+    width: 64px; height: 64px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 20px;
+    line-height: 1;
+  }
+  .gv-promise-icon--1 { background: linear-gradient(135deg, #FFF3D6, #FFC85C); }
+  .gv-promise-icon--2 { background: linear-gradient(135deg, #FFE0E8, #FF8FA3); }
+  .gv-promise-icon--3 { background: linear-gradient(135deg, #E8F5E4, #A8C5A0); }
+  .gv-promise-icon--4 { background: linear-gradient(135deg, #F0EBF8, #9B72AA); }
+
+  .gv-promise-title {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--berry-dark);
+    margin-bottom: 10px;
+  }
+
+  .gv-promise-desc {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--mid-gray);
+    line-height: 1.65;
+  }
+
+  @media (max-width: 900px) {
+    .gv-promise-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 568px) {
+    .gv-promise { padding: 70px 0; }
+    .gv-promise-grid { grid-template-columns: 1fr; gap: 32px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Promise",
+  "tag": "section",
+  "class": "glowve-promise-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "What we stand for"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "The <em>Glowve</em> promise"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "promise",
+      "name": "Promise",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon",
+          "default": "🔬"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Study-Backed"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Every active ingredient we use is supported by published clinical research."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Promise",
+      "blocks": [
+        { "type": "promise", "settings": { "icon": "🔬", "title": "Study-Backed", "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy." } },
+        { "type": "promise", "settings": { "icon": "📋", "title": "Fully Transparent", "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list." } },
+        { "type": "promise", "settings": { "icon": "🌿", "title": "Skin-Safe Always", "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate." } },
+        { "type": "promise", "settings": { "icon": "✨", "title": "Joyful to Use", "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

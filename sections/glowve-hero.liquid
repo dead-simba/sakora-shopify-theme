@@ -1,0 +1,489 @@
+{%- liquid
+  assign hero_product_1 = all_products[section.settings.hero_product_1]
+  assign hero_product_2 = all_products[section.settings.hero_product_2]
+  assign hero_product_3 = all_products[section.settings.hero_product_3]
+-%}
+
+<section class="gv-hero">
+
+  {%- comment -%} LEFT: Copy {%- endcomment -%}
+  <div class="gv-hero-left">
+    <div class="gv-hero-eyebrow">{{ section.settings.eyebrow }}</div>
+
+    <h1 class="gv-hero-headline">{{ section.settings.headline }}</h1>
+
+    <p class="gv-hero-subline">{{ section.settings.subline }}</p>
+
+    <div class="gv-hero-ctas">
+      {%- if section.settings.cta_primary_label != blank -%}
+        <a href="{{ section.settings.cta_primary_url }}" class="gv-btn-primary">
+          {{ section.settings.cta_primary_label }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.cta_secondary_label != blank -%}
+        <a href="{{ section.settings.cta_secondary_url }}" class="gv-btn-secondary">
+          {{ section.settings.cta_secondary_label }} →
+        </a>
+      {%- endif -%}
+    </div>
+
+    <div class="gv-hero-trust">
+      <div class="gv-hero-stars">★★★★★</div>
+      <p class="gv-hero-trust-text">
+        <strong>{{ section.settings.trust_rating }}</strong> {{ section.settings.trust_reviews }}
+      </p>
+      <div class="gv-hero-trust-divider"></div>
+      <p class="gv-hero-trust-text">{{ section.settings.trust_badge }}</p>
+    </div>
+  </div>
+
+  {%- comment -%} RIGHT: Product stack {%- endcomment -%}
+  <div class="gv-hero-right">
+    <div class="gv-hero-orbs" aria-hidden="true">
+      <div class="gv-orb gv-orb-1"></div>
+      <div class="gv-orb gv-orb-2"></div>
+      <div class="gv-orb gv-orb-3"></div>
+    </div>
+
+    <div class="gv-hero-stack">
+
+      {%- comment -%} Card 1 — largest, badge {%- endcomment -%}
+      <div class="gv-stack-card gv-stack-card--1">
+        <span class="gv-stack-badge">{{ section.settings.stack_badge_1 }}</span>
+        {%- if hero_product_1.featured_image -%}
+          <img
+            src="{{ hero_product_1.featured_image | image_url: width: 260 }}"
+            alt="{{ hero_product_1.title | escape }}"
+            width="260"
+            height="260"
+            loading="eager"
+            class="gv-stack-img"
+          >
+        {%- else -%}
+          <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--1"></div>
+        {%- endif -%}
+        <div class="gv-stack-name">
+          {%- if hero_product_1 != empty -%}
+            {{ hero_product_1.title }}
+          {%- else -%}
+            {{ section.settings.stack_name_1 }}
+          {%- endif -%}
+        </div>
+        <div class="gv-stack-tag">{{ section.settings.stack_tag_1 }}</div>
+      </div>
+
+      {%- comment -%} Card 2 — offset right {%- endcomment -%}
+      <div class="gv-stack-card gv-stack-card--2">
+        {%- if hero_product_2.featured_image -%}
+          <img
+            src="{{ hero_product_2.featured_image | image_url: width: 220 }}"
+            alt="{{ hero_product_2.title | escape }}"
+            width="220"
+            height="220"
+            loading="eager"
+            class="gv-stack-img"
+          >
+        {%- else -%}
+          <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--2"></div>
+        {%- endif -%}
+        <div class="gv-stack-name">
+          {%- if hero_product_2 != empty -%}
+            {{ hero_product_2.title }}
+          {%- else -%}
+            {{ section.settings.stack_name_2 }}
+          {%- endif -%}
+        </div>
+        <div class="gv-stack-tag">{{ section.settings.stack_tag_2 }}</div>
+      </div>
+
+      {%- comment -%} Card 3 — offset left {%- endcomment -%}
+      <div class="gv-stack-card gv-stack-card--3">
+        {%- if hero_product_3.featured_image -%}
+          <img
+            src="{{ hero_product_3.featured_image | image_url: width: 190 }}"
+            alt="{{ hero_product_3.title | escape }}"
+            width="190"
+            height="190"
+            loading="lazy"
+            class="gv-stack-img"
+          >
+        {%- else -%}
+          <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--3"></div>
+        {%- endif -%}
+        <div class="gv-stack-name">
+          {%- if hero_product_3 != empty -%}
+            {{ hero_product_3.title }}
+          {%- else -%}
+            {{ section.settings.stack_name_3 }}
+          {%- endif -%}
+        </div>
+        <div class="gv-stack-tag">{{ section.settings.stack_tag_3 }}</div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+{% stylesheet %}
+  .gv-hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    background: var(--cream-glow);
+  }
+
+  /* ---- Left ---- */
+  .gv-hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+  }
+
+  .gv-hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--coral-pulse);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .gv-hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--coral-pulse);
+  }
+
+  .gv-hero-headline {
+    font-family: var(--font-serif);
+    font-size: 82px;
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--berry-dark);
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .gv-hero-headline em { font-style: italic; color: var(--coral-pulse); }
+
+  .gv-hero-subline {
+    font-family: var(--font-sans);
+    font-size: 17px;
+    color: var(--mid-gray);
+    line-height: 1.7;
+    max-width: 420px;
+    margin-bottom: 44px;
+  }
+
+  .gv-hero-ctas {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .gv-hero-trust {
+    margin-top: 52px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 32px;
+    border-top: 1px solid var(--warm-gray);
+    flex-wrap: wrap;
+  }
+  .gv-hero-stars { color: var(--mango-zest); font-size: 14px; letter-spacing: 1px; }
+  .gv-hero-trust-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--mid-gray);
+  }
+  .gv-hero-trust-text strong { color: var(--warm-espresso); font-weight: 600; }
+  .gv-hero-trust-divider {
+    width: 1px; height: 32px;
+    background: var(--warm-gray);
+  }
+
+  /* ---- Right ---- */
+  .gv-hero-right {
+    position: relative;
+    background: linear-gradient(135deg, #FFE8D6 0%, #FFD4BE 40%, #FFBBA0 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gv-hero-orbs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+  .gv-orb {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.25;
+  }
+  .gv-orb-1 {
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, #FF8FA3, #FF6B8A);
+    top: -80px; right: -80px;
+  }
+  .gv-orb-2 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, #FFC85C, #FFB347);
+    bottom: 60px; left: 40px;
+  }
+  .gv-orb-3 {
+    width: 120px; height: 120px;
+    background: radial-gradient(circle, #A8C5A0, #7DAF73);
+    top: 30%; right: 10%;
+    opacity: 0.3;
+  }
+
+  /* ---- Product stack ---- */
+  .gv-hero-stack {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .gv-stack-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 20px;
+    position: relative;
+  }
+  .gv-stack-card--1 {
+    width: 200px;
+    box-shadow: 0 20px 60px rgba(45,27,53,0.14);
+  }
+  .gv-stack-card--2 {
+    width: 180px;
+    margin-top: -16px;
+    margin-left: 80px;
+    box-shadow: 0 20px 60px rgba(45,27,53,0.10);
+  }
+  .gv-stack-card--3 {
+    width: 160px;
+    margin-top: -16px;
+    margin-left: -60px;
+    box-shadow: 0 20px 60px rgba(45,27,53,0.08);
+  }
+
+  .gv-stack-badge {
+    position: absolute;
+    top: -10px; right: -10px;
+    background: var(--coral-pulse);
+    color: #fff;
+    font-family: var(--font-sans);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .gv-stack-img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .gv-stack-placeholder {
+    background: linear-gradient(135deg, #FFF3D6, #F4845F44);
+    margin-bottom: 12px;
+  }
+  .gv-stack-placeholder--2 { background: linear-gradient(135deg, #F0EBF8, #9B72AA44); }
+  .gv-stack-placeholder--3 { background: linear-gradient(135deg, #FFF8D6, #FFB34744); }
+
+  .gv-stack-name {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--warm-espresso);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .gv-stack-tag {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    color: var(--coral-pulse);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ---- Mobile ---- */
+  @media (max-width: 768px) {
+    .gv-hero { grid-template-columns: 1fr; min-height: auto; }
+    .gv-hero-right { height: 380px; }
+    .gv-hero-left { padding: 60px 24px; }
+    .gv-hero-headline { font-size: 52px; }
+    .gv-hero-trust-divider { display: none; }
+    .gv-hero-stack { transform: scale(0.85); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Hero",
+  "tag": "div",
+  "class": "glowve-hero-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Copy"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow text",
+      "default": "Glow your way."
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>Skin that <em>glows,</em><br>from ingredients<br>that earn it.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subline",
+      "label": "Sub-headline",
+      "default": "Every formula starts with one question: does this ingredient actually work? No fluff, no filler. Just real actives at real concentrations — made for Pakistan."
+    },
+    {
+      "type": "header",
+      "content": "CTAs"
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primary CTA label",
+      "default": "Shop Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Secondary CTA label",
+      "default": "Build My Routine"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "Secondary CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Trust bar"
+    },
+    {
+      "type": "text",
+      "id": "trust_rating",
+      "label": "Rating",
+      "default": "4.8 stars"
+    },
+    {
+      "type": "text",
+      "id": "trust_reviews",
+      "label": "Review count text",
+      "default": "across 1,200+ verified reviews"
+    },
+    {
+      "type": "text",
+      "id": "trust_badge",
+      "label": "Trust badge text",
+      "default": "Made for Pakistan. Dermatologist tested."
+    },
+    {
+      "type": "header",
+      "content": "Product Stack — Card 1"
+    },
+    {
+      "type": "product",
+      "id": "hero_product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "stack_name_1",
+      "label": "Fallback name",
+      "default": "2% Alpha Arbutin + Vitamin C"
+    },
+    {
+      "type": "text",
+      "id": "stack_tag_1",
+      "label": "Ingredient tag",
+      "default": "Alpha Arbutin · Ethyl Ascorbic Acid"
+    },
+    {
+      "type": "text",
+      "id": "stack_badge_1",
+      "label": "Badge text",
+      "default": "Bestseller"
+    },
+    {
+      "type": "header",
+      "content": "Product Stack — Card 2"
+    },
+    {
+      "type": "product",
+      "id": "hero_product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "stack_name_2",
+      "label": "Fallback name",
+      "default": "Barrier Renew Moisturizer"
+    },
+    {
+      "type": "text",
+      "id": "stack_tag_2",
+      "label": "Ingredient tag",
+      "default": "Triple Ceramide · Matrixyl 3000™"
+    },
+    {
+      "type": "header",
+      "content": "Product Stack — Card 3"
+    },
+    {
+      "type": "product",
+      "id": "hero_product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "stack_name_3",
+      "label": "Fallback name",
+      "default": "Matte UV Defence SPF 50+"
+    },
+    {
+      "type": "text",
+      "id": "stack_tag_3",
+      "label": "Ingredient tag",
+      "default": "SPF 50+ PA++++ · Niacinamide"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Hero"
+    }
+  ]
+}
+{% endschema %}

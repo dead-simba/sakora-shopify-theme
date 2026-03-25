@@ -1,0 +1,89 @@
+<div class="gv-announcement-bar">
+  <div class="gv-announcement-track" aria-label="Announcements">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <span class="gv-announcement-item" {{ block.shopify_attributes }}>
+          <span class="gv-announcement-dot">✦</span>
+          {{ block.settings.text }}
+        </span>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .gv-announcement-bar {
+    background: var(--berry-dark);
+    color: #fff;
+    padding: 10px 0;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .gv-announcement-track {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: gv-ticker 28s linear infinite;
+    width: max-content;
+  }
+
+  .gv-announcement-bar:hover .gv-announcement-track {
+    animation-play-state: paused;
+  }
+
+  .gv-announcement-item {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    padding: 0 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .gv-announcement-dot {
+    color: var(--coral-pulse);
+    font-size: 10px;
+  }
+
+  @keyframes gv-ticker {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Announcement Bar",
+  "tag": "div",
+  "class": "glowve-announcement-bar-wrapper",
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Message",
+          "default": "Free delivery on orders above PKR 2,500"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Announcement Bar",
+      "blocks": [
+        { "type": "message", "settings": { "text": "Free delivery on orders above PKR 2,500" } },
+        { "type": "message", "settings": { "text": "Ingredient transparency: we show you every %" } },
+        { "type": "message", "settings": { "text": "Dermatologist tested. Always." } },
+        { "type": "message", "settings": { "text": "Formulated for Pakistan's UV index and climate" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
