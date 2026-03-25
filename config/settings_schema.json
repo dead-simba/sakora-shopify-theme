@@ -16,19 +16,17 @@
       },
       {
         "type": "paragraph",
-        "content": "Pick a font AND weight variant from the dropdown — e.g. 'Cormorant Garamond Light' for 300, 'Regular' for 400, 'SemiBold' for 600. The weight you choose here is applied to all headings automatically."
+        "content": "Pick a font AND weight variant — e.g. 'Cormorant Garamond Light' for weight 300, 'Regular' for 400, 'SemiBold' for 600. The weight you choose is applied to all headings automatically. Until a font is selected, the theme uses its built-in CSS font stack."
       },
       {
         "type": "font_picker",
         "id": "gv_heading_font",
-        "label": "Heading font",
-        "default": "cormorant_garamond_n4"
+        "label": "Heading font"
       },
       {
         "type": "font_picker",
         "id": "gv_body_font",
-        "label": "Body font",
-        "default": "dm_sans_n4"
+        "label": "Body font"
       },
       {
         "type": "range",
