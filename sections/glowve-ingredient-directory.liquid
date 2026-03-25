@@ -19,17 +19,8 @@
           <div class="gv-dir-card" role="listitem" {{ block.shopify_attributes }}>
             <div class="gv-dir-thumb">
               {%- if block.settings.image != blank -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 120
-                  | image_tag:
-                    loading: 'lazy',
-                    class: 'gv-dir-img',
-                    alt: block.settings.image.alt | default: block.settings.name | escape,
-                    width: 60,
-                    height: 60,
-                    sizes: '60px'
-                }}
+                {%- assign dir_img_alt = block.settings.image.alt | default: block.settings.name | escape -%}
+                {{ block.settings.image | image_url: width: 120 | image_tag: loading: 'lazy', class: 'gv-dir-img', alt: dir_img_alt, width: 60, height: 60, sizes: '60px' }}
               {%- else -%}
                 <div class="gv-dir-initial gv-dir-initial--{{ forloop.index | modulo: 6 | plus: 1 }}">
                   {{ block.settings.name | slice: 0, 2 | upcase }}

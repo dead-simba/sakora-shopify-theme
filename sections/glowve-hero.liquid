@@ -58,17 +58,8 @@
     </div>
 
     {%- if has_image -%}
-      {{
-        section.settings.hero_image
-        | image_url: width: 1200
-        | image_tag:
-          loading: 'eager',
-          fetchpriority: 'high',
-          class: 'gv-hero-image',
-          alt: section.settings.hero_image.alt | default: section.settings.eyebrow | escape,
-          widths: '600, 800, 1000, 1200',
-          sizes: '(max-width: 768px) 100vw, 50vw'
-      }}
+      {%- assign hero_img_alt = section.settings.hero_image.alt | default: section.settings.eyebrow | escape -%}
+      {{ section.settings.hero_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-image', alt: hero_img_alt, widths: '600, 800, 1000, 1200', sizes: '(max-width: 768px) 100vw, 50vw' }}
     {%- else -%}
       <div class="gv-hero-stack" aria-hidden="true">
 

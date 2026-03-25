@@ -18,7 +18,7 @@
         "type": "font_picker",
         "id": "gv_heading_font",
         "label": "Heading font (serif)",
-        "default": "cormorant_garamond_n3"
+        "default": "cormorant_garamond_n4"
       },
       {
         "type": "font_picker",
@@ -45,7 +45,7 @@
         "max": 120,
         "step": 4,
         "unit": "px",
-        "default": 82
+        "default": 80
       },
       {
         "type": "range",

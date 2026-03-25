@@ -5,28 +5,12 @@
     <div class="gv-ing-visual">
       {%- if section.settings.image != blank -%}
         <div class="gv-ing-image-wrap">
-          {{
-            section.settings.image
-            | image_url: width: 800
-            | image_tag:
-              loading: 'lazy',
-              class: 'gv-ing-image',
-              alt: section.settings.image.alt | default: section.settings.ingredient_name | escape,
-              widths: '400, 600, 800',
-              sizes: '(max-width: 768px) 100vw, 45vw'
-          }}
+          {%- assign ing_img_alt = section.settings.image.alt | default: section.settings.ingredient_name | escape -%}
+          {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', class: 'gv-ing-image', alt: ing_img_alt, widths: '400, 600, 800', sizes: '(max-width: 768px) 100vw, 45vw' }}
           {%- if section.settings.product_image != blank -%}
             <div class="gv-ing-product-float">
-              {{
-                section.settings.product_image
-                | image_url: width: 280
-                | image_tag:
-                  loading: 'lazy',
-                  class: 'gv-ing-product-img',
-                  alt: section.settings.product_image.alt | default: 'Featured product' | escape,
-                  width: 140,
-                  height: 140
-              }}
+              {%- assign product_img_alt = section.settings.product_image.alt | default: 'Featured product' | escape -%}
+              {{ section.settings.product_image | image_url: width: 280 | image_tag: loading: 'lazy', class: 'gv-ing-product-img', alt: product_img_alt, width: 140, height: 140 }}
             </div>
           {%- endif -%}
         </div>

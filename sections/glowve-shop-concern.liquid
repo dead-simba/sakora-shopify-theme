@@ -19,17 +19,8 @@
           >
             <div class="gv-concern-circle">
               {%- if block.settings.image != blank -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 300
-                  | image_tag:
-                    loading: 'lazy',
-                    class: 'gv-concern-img',
-                    alt: block.settings.image.alt | default: block.settings.name | escape,
-                    width: 150,
-                    height: 150,
-                    sizes: '150px'
-                }}
+                {%- assign concern_img_alt = block.settings.image.alt | default: block.settings.name | escape -%}
+                {{ block.settings.image | image_url: width: 300 | image_tag: loading: 'lazy', class: 'gv-concern-img', alt: concern_img_alt, width: 150, height: 150, sizes: '150px' }}
               {%- else -%}
                 <div class="gv-concern-icon-wrap gv-concern-icon-wrap--{{ forloop.index | modulo: 5 | plus: 1 }}">
                   {%- case block.settings.icon -%}
