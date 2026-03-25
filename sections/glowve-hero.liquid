@@ -66,16 +66,8 @@
         <div class="gv-stack-card gv-stack-card--1">
           <span class="gv-stack-badge">{{ section.settings.stack_badge_1 }}</span>
           {%- if hero_product_1.featured_image -%}
-            {{
-              hero_product_1.featured_image
-              | image_url: width: 280
-              | image_tag:
-                loading: 'eager',
-                class: 'gv-stack-img',
-                alt: hero_product_1.featured_image.alt | default: hero_product_1.title | escape,
-                width: 280,
-                height: 280
-            }}
+            {%- assign p1_alt = hero_product_1.featured_image.alt | default: hero_product_1.title | escape -%}
+            {{ hero_product_1.featured_image | image_url: width: 280 | image_tag: loading: 'eager', class: 'gv-stack-img', alt: p1_alt, width: 280, height: 280 }}
           {%- else -%}
             <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--1"></div>
           {%- endif -%}
@@ -85,16 +77,8 @@
 
         <div class="gv-stack-card gv-stack-card--2">
           {%- if hero_product_2.featured_image -%}
-            {{
-              hero_product_2.featured_image
-              | image_url: width: 240
-              | image_tag:
-                loading: 'eager',
-                class: 'gv-stack-img',
-                alt: hero_product_2.featured_image.alt | default: hero_product_2.title | escape,
-                width: 240,
-                height: 240
-            }}
+            {%- assign p2_alt = hero_product_2.featured_image.alt | default: hero_product_2.title | escape -%}
+            {{ hero_product_2.featured_image | image_url: width: 240 | image_tag: loading: 'eager', class: 'gv-stack-img', alt: p2_alt, width: 240, height: 240 }}
           {%- else -%}
             <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--2"></div>
           {%- endif -%}
@@ -104,16 +88,8 @@
 
         <div class="gv-stack-card gv-stack-card--3">
           {%- if hero_product_3.featured_image -%}
-            {{
-              hero_product_3.featured_image
-              | image_url: width: 200
-              | image_tag:
-                loading: 'lazy',
-                class: 'gv-stack-img',
-                alt: hero_product_3.featured_image.alt | default: hero_product_3.title | escape,
-                width: 200,
-                height: 200
-            }}
+            {%- assign p3_alt = hero_product_3.featured_image.alt | default: hero_product_3.title | escape -%}
+            {{ hero_product_3.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gv-stack-img', alt: p3_alt, width: 200, height: 200 }}
           {%- else -%}
             <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--3"></div>
           {%- endif -%}

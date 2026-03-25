@@ -18,13 +18,13 @@
         "type": "font_picker",
         "id": "gv_heading_font",
         "label": "Heading font (serif)",
-        "default": "cormorant_garamond_n4"
+        "default": "playfair_display_n4"
       },
       {
         "type": "font_picker",
         "id": "gv_body_font",
         "label": "Body font (sans-serif)",
-        "default": "dm_sans_n4"
+        "default": "open_sans_n4"
       },
       {
         "type": "select",
