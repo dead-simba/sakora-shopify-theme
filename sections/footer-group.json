@@ -1,50 +1,111 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
-    "glowve_footer": {
+    "glowve_footer_AAqgMT": {
       "type": "glowve-footer",
       "blocks": {
-        "col_shop": {
+        "nav_column_LUyPtw": {
           "type": "nav_column",
           "settings": {
             "title": "Shop",
             "link_1_label": "Bestsellers",
+            "link_1_url": "",
             "link_2_label": "Brightening",
+            "link_2_url": "",
             "link_3_label": "Barrier Repair",
+            "link_3_url": "",
             "link_4_label": "Sun Protection",
+            "link_4_url": "",
             "link_5_label": "All Products",
-            "link_6_label": "Bundles"
+            "link_5_url": "",
+            "link_6_label": "Bundles",
+            "link_6_url": ""
           }
         },
-        "col_learn": {
+        "nav_column_xFtVxr": {
+          "type": "nav_column",
+          "settings": {
+            "title": "Shop",
+            "link_1_label": "Bestsellers",
+            "link_1_url": "",
+            "link_2_label": "",
+            "link_2_url": "",
+            "link_3_label": "",
+            "link_3_url": "",
+            "link_4_label": "",
+            "link_4_url": "",
+            "link_5_label": "",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": ""
+          }
+        },
+        "nav_column_Jz3c7c": {
           "type": "nav_column",
           "settings": {
             "title": "Learn",
             "link_1_label": "Ingredient Directory",
+            "link_1_url": "",
             "link_2_label": "Skin Quiz",
+            "link_2_url": "",
             "link_3_label": "Blog",
+            "link_3_url": "",
             "link_4_label": "About Glowve",
-            "link_5_label": "Clinical Studies"
+            "link_4_url": "",
+            "link_5_label": "Clinical Studies",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": ""
           }
         },
-        "col_help": {
+        "nav_column_WE9ag6": {
           "type": "nav_column",
           "settings": {
             "title": "Help",
             "link_1_label": "FAQ",
+            "link_1_url": "",
             "link_2_label": "Contact Us",
+            "link_2_url": "",
             "link_3_label": "Shipping Info",
+            "link_3_url": "",
             "link_4_label": "Returns",
-            "link_5_label": "Track Order"
+            "link_4_url": "",
+            "link_5_label": "Track Order",
+            "link_5_url": "",
+            "link_6_label": "",
+            "link_6_url": ""
           }
         }
       },
-      "block_order": ["col_shop", "col_learn", "col_help"],
+      "block_order": [
+        "nav_column_LUyPtw",
+        "nav_column_xFtVxr",
+        "nav_column_Jz3c7c",
+        "nav_column_WE9ag6"
+      ],
+      "name": "Glowve Footer",
       "settings": {
-        "tagline": "Science-backed skincare for South Asian skin. Built with radical transparency."
+        "logo": "shopify://shop_images/glowve_Logo_dark.png",
+        "tagline": "Science-backed skincare for South Asian skin. Built with radical transparency.",
+        "tagline_bottom": "",
+        "instagram_url": "",
+        "tiktok_url": "",
+        "youtube_url": "",
+        "pinterest_url": ""
       }
     }
   },
-  "order": ["glowve_footer"]
+  "order": [
+    "glowve_footer_AAqgMT"
+  ]
 }
