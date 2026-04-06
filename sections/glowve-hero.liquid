@@ -14,7 +14,13 @@
       {%- for block in slide_blocks -%}
         <div class="gv-hero-slide{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-bg-img', widths: '800, 1200, 1600, 2000', sizes: '100vw' }}
+            <picture>
+              {%- if block.settings.mobile_image != blank -%}
+                <source media="(max-width: 768px)" srcset="{{ block.settings.mobile_image | image_url: width: 800 }} 800w, {{ block.settings.mobile_image | image_url: width: 1200 }} 1200w" sizes="100vw">
+              {%- endif -%}
+              <source media="(min-width: 769px)" srcset="{{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1600 }} 1600w, {{ block.settings.image | image_url: width: 2000 }} 2000w" sizes="100vw">
+              {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-bg-img' }}
+            </picture>
           {%- else -%}
             <div class="gv-hero-bg-placeholder gv-hero-bg-placeholder--{{ forloop.index }}"></div>
           {%- endif -%}
@@ -140,6 +146,7 @@
   .gv-hero-slide.active { opacity: 1; position: relative; pointer-events: auto; }
 
   .gv-hero-bg-img { width: 100%; min-height: 560px; object-fit: cover; object-position: center top; display: block; }
+  @media (max-width: 768px) { .gv-hero-bg-img { object-position: center center; } }
   .gv-hero-bg-placeholder { position: absolute; inset: 0; min-height: 560px; }
   .gv-hero-bg-placeholder--1 { background: linear-gradient(135deg, var(--accent-peach), #FFD4BE); }
   .gv-hero-bg-placeholder--2 { background: linear-gradient(135deg, var(--accent-mint), #B8E8D4); }
@@ -189,13 +196,13 @@
 
   /* Mobile — card drops below image, full width */
   @media (max-width: 768px) {
-    .gv-hero-slides, .gv-hero-bg-img, .gv-hero-bg-placeholder { min-height: 300px; }
+    .gv-hero-slides, .gv-hero-bg-img, .gv-hero-bg-placeholder { min-height: 400px; }
     .gv-hero-cards { position: relative; bottom: auto; left: auto; width: 100%; }
     .gv-hero-card { border-radius: 0; box-shadow: none; border-top: 3px solid var(--coral-pulse); padding: 24px 20px; backdrop-filter: none; -webkit-backdrop-filter: none; }
     .gv-hero-headline { font-size: 28px !important; letter-spacing: 0 !important; }
     .gv-hero-subline { font-size: 14px; }
     .gv-hero-arrow { display: none; }
-    .gv-hero-dots { position: absolute; top: 270px; right: 12px; bottom: auto; }
+    .gv-hero-dots { position: absolute; top: 370px; right: 12px; bottom: auto; }
     .gv-hero-ctas { gap: 12px; }
     .gv-hero-trust { flex-wrap: wrap; gap: 6px; }
   }
@@ -296,8 +303,14 @@
         {
           "type": "image_picker",
           "id": "image",
-          "label": "Slide image",
+          "label": "Desktop image",
           "info": "Recommended: 2000x900px landscape."
+        },
+        {
+          "type": "image_picker",
+          "id": "mobile_image",
+          "label": "Mobile image",
+          "info": "Recommended: 800x1000px portrait. Falls back to desktop image if not set."
         },
         {
           "type": "text",
