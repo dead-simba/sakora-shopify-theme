@@ -1,5 +1,5 @@
 {%- liquid
-  assign has_image   = false
+  assign has_image = false
   if section.settings.hero_image != blank
     assign has_image = true
   endif
@@ -8,18 +8,70 @@
   assign hero_product_3 = all_products[section.settings.hero_product_3]
 -%}
 
-<section
-  class="gv-hero{% if has_image %} gv-hero--has-image{% endif %}"
-  aria-label="{{ section.settings.eyebrow | escape }}"
->
+<section class="gv-hero" aria-label="{{ section.settings.eyebrow | escape }}">
 
-  {%- comment -%} LEFT: Copy {%- endcomment -%}
-  <div class="gv-hero-left">
-    <p class="gv-hero-eyebrow">{{ section.settings.eyebrow }}</p>
+  {%- comment -%} — HERO BANNER IMAGE — {%- endcomment -%}
+  <div class="gv-hero-banner">
+    {%- if has_image -%}
+      {%- assign img_alt = section.settings.hero_image.alt | default: section.settings.eyebrow | escape -%}
+      {{ section.settings.hero_image | image_url: width: 2000 | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        class: 'gv-hero-bg-img',
+        alt: img_alt,
+        widths: '800, 1200, 1600, 2000',
+        sizes: '100vw'
+      }}
+    {%- else -%}
+      <div class="gv-hero-bg-placeholder"></div>
+    {%- endif -%}
+
+    {%- comment -%} — PRODUCT STACK (shown in placeholder mode only) — {%- endcomment -%}
+    {%- unless has_image -%}
+      <div class="gv-hero-stack" aria-hidden="true">
+        <div class="gv-stack-card gv-stack-card--1">
+          <span class="gv-stack-badge">{{ section.settings.stack_badge_1 }}</span>
+          {%- if hero_product_1.featured_image -%}
+            {{ hero_product_1.featured_image | image_url: width: 280 | image_tag: loading: 'eager', class: 'gv-stack-img', alt: hero_product_1.title | escape, width: 280, height: 280 }}
+          {%- else -%}
+            <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--1"></div>
+          {%- endif -%}
+          <p class="gv-stack-name">{{ hero_product_1.title | default: section.settings.stack_name_1 }}</p>
+          <p class="gv-stack-tag">{{ section.settings.stack_tag_1 }}</p>
+        </div>
+        <div class="gv-stack-card gv-stack-card--2">
+          {%- if hero_product_2.featured_image -%}
+            {{ hero_product_2.featured_image | image_url: width: 240 | image_tag: loading: 'eager', class: 'gv-stack-img', alt: hero_product_2.title | escape, width: 240, height: 240 }}
+          {%- else -%}
+            <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--2"></div>
+          {%- endif -%}
+          <p class="gv-stack-name">{{ hero_product_2.title | default: section.settings.stack_name_2 }}</p>
+          <p class="gv-stack-tag">{{ section.settings.stack_tag_2 }}</p>
+        </div>
+        <div class="gv-stack-card gv-stack-card--3">
+          {%- if hero_product_3.featured_image -%}
+            {{ hero_product_3.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gv-stack-img', alt: hero_product_3.title | escape, width: 200, height: 200 }}
+          {%- else -%}
+            <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--3"></div>
+          {%- endif -%}
+          <p class="gv-stack-name">{{ hero_product_3.title | default: section.settings.stack_name_3 }}</p>
+          <p class="gv-stack-tag">{{ section.settings.stack_tag_3 }}</p>
+        </div>
+      </div>
+    {%- endunless -%}
+  </div>
+
+  {%- comment -%} — FLOATING COPY CARD — {%- endcomment -%}
+  <div class="gv-hero-card">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="gv-hero-eyebrow">{{ section.settings.eyebrow }}</p>
+    {%- endif -%}
 
     <h1 class="gv-hero-headline">{{ section.settings.headline }}</h1>
 
-    <p class="gv-hero-subline">{{ section.settings.subline }}</p>
+    {%- if section.settings.subline != blank -%}
+      <p class="gv-hero-subline">{{ section.settings.subline }}</p>
+    {%- endif -%}
 
     <div class="gv-hero-ctas">
       {%- if section.settings.cta_primary_label != blank -%}
@@ -30,73 +82,18 @@
       {%- if section.settings.cta_secondary_label != blank -%}
         <a href="{{ section.settings.cta_secondary_url }}" class="gv-btn-secondary">
           {{ section.settings.cta_secondary_label }}
-          {% render 'gv-icon', icon: 'arrow-right', size: 14 %}
         </a>
       {%- endif -%}
     </div>
 
-    <div class="gv-hero-trust">
-      <div class="gv-hero-stars" aria-label="5 out of 5 stars">
-        {%- for i in (1..5) -%}
-          {% render 'gv-icon', icon: 'star', size: 14, class: 'gv-star-icon' %}
-        {%- endfor -%}
-      </div>
-      <p class="gv-hero-trust-text">
-        <strong>{{ section.settings.trust_rating }}</strong> {{ section.settings.trust_reviews }}
-      </p>
-      <div class="gv-hero-trust-divider" aria-hidden="true"></div>
-      <p class="gv-hero-trust-text">{{ section.settings.trust_badge }}</p>
-    </div>
-  </div>
-
-  {%- comment -%} RIGHT: Image or product stack {%- endcomment -%}
-  <div class="gv-hero-right">
-    <div class="gv-hero-orbs" aria-hidden="true">
-      <div class="gv-orb gv-orb-1"></div>
-      <div class="gv-orb gv-orb-2"></div>
-      <div class="gv-orb gv-orb-3"></div>
-    </div>
-
-    {%- if has_image -%}
-      {%- assign hero_img_alt = section.settings.hero_image.alt | default: section.settings.eyebrow | escape -%}
-      {{ section.settings.hero_image | image_url: width: 1200 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-image', alt: hero_img_alt, widths: '600, 800, 1000, 1200', sizes: '(max-width: 768px) 100vw, 50vw' }}
-    {%- else -%}
-      <div class="gv-hero-stack" aria-hidden="true">
-
-        <div class="gv-stack-card gv-stack-card--1">
-          <span class="gv-stack-badge">{{ section.settings.stack_badge_1 }}</span>
-          {%- if hero_product_1.featured_image -%}
-            {%- assign p1_alt = hero_product_1.featured_image.alt | default: hero_product_1.title | escape -%}
-            {{ hero_product_1.featured_image | image_url: width: 280 | image_tag: loading: 'eager', class: 'gv-stack-img', alt: p1_alt, width: 280, height: 280 }}
-          {%- else -%}
-            <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--1"></div>
-          {%- endif -%}
-          <p class="gv-stack-name">{{ hero_product_1.title | default: section.settings.stack_name_1 }}</p>
-          <p class="gv-stack-tag">{{ section.settings.stack_tag_1 }}</p>
+    {%- if section.settings.trust_rating != blank -%}
+      <div class="gv-hero-trust">
+        <div class="gv-hero-stars" aria-label="5 stars">
+          {%- for i in (1..5) -%}★{%- endfor -%}
         </div>
-
-        <div class="gv-stack-card gv-stack-card--2">
-          {%- if hero_product_2.featured_image -%}
-            {%- assign p2_alt = hero_product_2.featured_image.alt | default: hero_product_2.title | escape -%}
-            {{ hero_product_2.featured_image | image_url: width: 240 | image_tag: loading: 'eager', class: 'gv-stack-img', alt: p2_alt, width: 240, height: 240 }}
-          {%- else -%}
-            <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--2"></div>
-          {%- endif -%}
-          <p class="gv-stack-name">{{ hero_product_2.title | default: section.settings.stack_name_2 }}</p>
-          <p class="gv-stack-tag">{{ section.settings.stack_tag_2 }}</p>
-        </div>
-
-        <div class="gv-stack-card gv-stack-card--3">
-          {%- if hero_product_3.featured_image -%}
-            {%- assign p3_alt = hero_product_3.featured_image.alt | default: hero_product_3.title | escape -%}
-            {{ hero_product_3.featured_image | image_url: width: 200 | image_tag: loading: 'lazy', class: 'gv-stack-img', alt: p3_alt, width: 200, height: 200 }}
-          {%- else -%}
-            <div class="gv-stack-img gv-stack-placeholder gv-stack-placeholder--3"></div>
-          {%- endif -%}
-          <p class="gv-stack-name">{{ hero_product_3.title | default: section.settings.stack_name_3 }}</p>
-          <p class="gv-stack-tag">{{ section.settings.stack_tag_3 }}</p>
-        </div>
-
+        <p class="gv-hero-trust-text">
+          <strong>{{ section.settings.trust_rating }}</strong> {{ section.settings.trust_reviews }}
+        </p>
       </div>
     {%- endif -%}
   </div>
@@ -104,122 +101,122 @@
 </section>
 
 {% stylesheet %}
+  /* ---- Hero wrapper ---- */
   .gv-hero {
-    min-height: 92vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    overflow: hidden;
-    background: var(--cream-glow);
-  }
-
-  /* ---- Left ---- */
-  .gv-hero-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 60px 80px 80px;
-  }
-
-  .gv-hero-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--coral-pulse);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .gv-hero-eyebrow::before {
-    content: '';
-    display: block;
-    width: 32px;
-    height: 1px;
-    background: var(--coral-pulse);
-  }
-
-  .gv-hero-headline {
-    font-family: var(--font-serif);
-    font-size: var(--gv-hero-headline-size);
-    font-weight: var(--gv-heading-weight);
-    line-height: 1.05;
-    color: var(--berry-dark);
-    letter-spacing: -0.02em;
-    margin-bottom: 28px;
-  }
-  .gv-hero-headline em { font-style: italic; color: var(--coral-pulse); }
-
-  .gv-hero-subline {
-    font-family: var(--font-sans);
-    font-size: 17px;
-    color: var(--mid-gray);
-    line-height: 1.7;
-    max-width: 420px;
-    margin-bottom: 44px;
-  }
-
-  .gv-hero-ctas {
-    display: flex;
-    gap: 24px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .gv-btn-secondary { display: flex; align-items: center; gap: 6px; }
-
-  .gv-hero-trust {
-    margin-top: 52px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding-top: 32px;
-    border-top: 1px solid var(--warm-gray);
-    flex-wrap: wrap;
-  }
-  .gv-hero-stars {
-    display: flex;
-    gap: 2px;
-    color: var(--mango-zest);
-  }
-  .gv-star-icon { color: var(--mango-zest); }
-  .gv-hero-trust-text {
-    font-family: var(--font-sans);
-    font-size: 13px;
-    color: var(--mid-gray);
-  }
-  .gv-hero-trust-text strong { color: var(--warm-espresso); font-weight: 600; }
-  .gv-hero-trust-divider { width: 1px; height: 32px; background: var(--warm-gray); flex-shrink: 0; }
-
-  /* ---- Right ---- */
-  .gv-hero-right {
     position: relative;
-    background: linear-gradient(135deg, #FFE8D6 0%, #FFD4BE 40%, #FFBBA0 100%);
+    background: var(--cream-glow);
     overflow: hidden;
+  }
+
+  /* ---- Banner image ---- */
+  .gv-hero-banner {
+    width: 100%;
+    min-height: 560px;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  /* Hero image mode */
-  .gv-hero-image {
-    position: absolute;
-    inset: 0;
+  .gv-hero-bg-img {
     width: 100%;
     height: 100%;
+    min-height: 560px;
     object-fit: cover;
     object-position: center top;
     display: block;
   }
 
-  /* Orbs (decorative, hidden behind image) */
-  .gv-hero-orbs { position: absolute; inset: 0; overflow: hidden; pointer-events: none; z-index: 1; }
-  .gv-hero--has-image .gv-hero-orbs { display: none; }
-  .gv-orb { position: absolute; border-radius: 50%; opacity: 0.25; }
-  .gv-orb-1 { width: 380px; height: 380px; background: radial-gradient(circle, #FF8FA3, #FF6B8A); top: -80px; right: -80px; }
-  .gv-orb-2 { width: 200px; height: 200px; background: radial-gradient(circle, #FFC85C, #FFB347); bottom: 60px; left: 40px; }
-  .gv-orb-3 { width: 120px; height: 120px; background: radial-gradient(circle, #A8C5A0, #7DAF73); top: 30%; right: 10%; opacity: 0.3; }
+  /* Fallback gradient when no image is set */
+  .gv-hero-bg-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--accent-peach) 0%, var(--accent-mint) 100%);
+  }
 
-  /* ---- Product stack ---- */
+  /* ---- Floating copy card ---- */
+  .gv-hero-card {
+    position: absolute;
+    bottom: 8%;
+    left: 4%;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 36px 44px;
+    border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.10);
+    max-width: 460px;
+    z-index: 10;
+  }
+
+  .gv-hero-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--coral-pulse);
+    margin-bottom: 14px;
+  }
+
+  .gv-hero-headline {
+    font-family: var(--font-sans);
+    font-size: var(--gv-hero-headline-size);
+    font-weight: 600;
+    line-height: 1.1;
+    color: var(--berry-dark);
+    letter-spacing: 0;
+    margin-bottom: 14px;
+  }
+
+  .gv-hero-headline em {
+    font-style: normal !important;
+    color: var(--coral-pulse) !important;
+  }
+
+  .gv-hero-subline {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    color: var(--mid-gray);
+    line-height: 1.65;
+    margin-bottom: 28px;
+  }
+
+  .gv-hero-ctas {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .gv-hero-trust {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid var(--warm-gray);
+    flex-wrap: wrap;
+  }
+
+  .gv-hero-stars {
+    color: var(--mango-zest);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .gv-hero-trust-text {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: var(--mid-gray);
+  }
+
+  .gv-hero-trust-text strong {
+    color: var(--warm-espresso);
+    font-weight: 600;
+  }
+
+  /* ---- Product stack (no-image fallback) ---- */
   .gv-hero-stack {
     position: relative;
     z-index: 2;
@@ -230,13 +227,14 @@
 
   .gv-stack-card {
     background: #fff;
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 20px;
     position: relative;
+    border: 1px solid var(--warm-gray);
   }
-  .gv-stack-card--1 { width: 200px; box-shadow: 0 20px 60px rgba(45,27,53,0.14); }
-  .gv-stack-card--2 { width: 180px; margin-top: -16px; margin-left: 80px; box-shadow: 0 20px 60px rgba(45,27,53,0.10); }
-  .gv-stack-card--3 { width: 160px; margin-top: -16px; margin-left: -60px; box-shadow: 0 20px 60px rgba(45,27,53,0.08); }
+  .gv-stack-card--1 { width: 200px; box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+  .gv-stack-card--2 { width: 180px; margin-top: -14px; margin-left: 80px; box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
+  .gv-stack-card--3 { width: 160px; margin-top: -14px; margin-left: -60px; box-shadow: 0 8px 24px rgba(0,0,0,0.05); }
 
   .gv-stack-badge {
     position: absolute;
@@ -246,7 +244,7 @@
     font-family: var(--font-sans);
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
     padding: 4px 10px;
     border-radius: 100px;
@@ -255,13 +253,13 @@
   .gv-stack-img {
     width: 100%; aspect-ratio: 1;
     object-fit: contain;
-    border-radius: 12px;
+    border-radius: 10px;
     display: block;
     margin-bottom: 12px;
   }
-  .gv-stack-placeholder { background: linear-gradient(135deg, #FFF3D6, #F4845F44); }
-  .gv-stack-placeholder--2 { background: linear-gradient(135deg, #F0EBF8, #9B72AA44); }
-  .gv-stack-placeholder--3 { background: linear-gradient(135deg, #FFF8D6, #FFB34744); }
+  .gv-stack-placeholder   { background: linear-gradient(135deg, #FFF3D6, #FFD58044); }
+  .gv-stack-placeholder--2 { background: linear-gradient(135deg, #FFE0E8, #FF8FA344); }
+  .gv-stack-placeholder--3 { background: linear-gradient(135deg, #E8F5E4, #A8C5A044); }
 
   .gv-stack-name {
     font-family: var(--font-sans);
@@ -271,46 +269,28 @@
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
   .gv-stack-tag {
-    font-family: var(--font-mono);
+    font-family: var(--font-sans);
     font-size: 9px;
     color: var(--coral-pulse);
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   }
 
   /* ---- Mobile ---- */
   @media (max-width: 768px) {
-    .gv-hero { grid-template-columns: 1fr; min-height: auto; }
-
-    /* Image mode mobile: full-bleed image behind text */
-    .gv-hero--has-image {
+    .gv-hero-banner { min-height: 380px; }
+    .gv-hero-bg-img { min-height: 380px; }
+    .gv-hero-card {
       position: relative;
-      min-height: 100svh;
+      bottom: auto;
+      left: auto;
+      max-width: 100%;
+      border-radius: 0;
+      box-shadow: none;
+      border-top: 1px solid var(--warm-gray);
+      padding: 32px 20px;
     }
-    .gv-hero--has-image .gv-hero-right {
-      position: absolute;
-      inset: 0;
-      z-index: 0;
-    }
-    .gv-hero--has-image .gv-hero-left {
-      position: relative;
-      z-index: 1;
-      padding: 120px 24px 60px;
-      background: linear-gradient(
-        to bottom,
-        rgba(255,249,244,0.92) 0%,
-        rgba(255,249,244,0.75) 60%,
-        rgba(255,249,244,0.4) 100%
-      );
-      min-height: 100svh;
-    }
-
-    /* Stack mode mobile: image above, text below */
-    .gv-hero:not(.gv-hero--has-image) .gv-hero-right { height: 340px; }
-    .gv-hero:not(.gv-hero--has-image) .gv-hero-left { padding: 48px 24px; }
-
-    .gv-hero-headline { font-size: clamp(40px, 10vw, 64px); }
-    .gv-hero-trust-divider { display: none; }
+    .gv-hero-headline { font-size: clamp(28px, 8vw, 44px); }
     .gv-hero-stack { transform: scale(0.82); transform-origin: center top; }
   }
 {% endstylesheet %}
@@ -323,13 +303,13 @@
   "settings": [
     {
       "type": "header",
-      "content": "Hero Image (optional)"
+      "content": "Hero Image"
     },
     {
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero image",
-      "info": "Recommended: 1400×900px or taller. When set, replaces the product stack."
+      "info": "Recommended: 2000×900px, landscape. Fills full width; copy card floats over it bottom-left."
     },
     {
       "type": "header",
@@ -344,14 +324,14 @@
     {
       "type": "richtext",
       "id": "headline",
-      "label": "Headline (supports <em> for italic colour)",
-      "default": "<p>Skin that <em>glows,</em><br>from ingredients<br>that earn it.</p>"
+      "label": "Headline (wrap in <em> for pink highlight)",
+      "default": "<p>Skin that <em>glows,</em><br>from ingredients that earn it.</p>"
     },
     {
       "type": "text",
       "id": "subline",
       "label": "Sub-headline",
-      "default": "Every formula starts with one question: does this ingredient actually work? No fluff, no filler. Just real actives at real concentrations — made for Pakistan."
+      "default": "No fluff, no filler. Just real actives at real concentrations — made for Pakistan."
     },
     {
       "type": "header",
@@ -403,7 +383,7 @@
     },
     {
       "type": "header",
-      "content": "Product Stack — Card 1 (shown when no hero image)"
+      "content": "Product Stack (shown when no hero image is set)"
     },
     {
       "type": "product",
@@ -429,10 +409,6 @@
       "default": "Bestseller"
     },
     {
-      "type": "header",
-      "content": "Product Stack — Card 2"
-    },
-    {
       "type": "product",
       "id": "hero_product_2",
       "label": "Product 2"
@@ -448,10 +424,6 @@
       "id": "stack_tag_2",
       "label": "Ingredient tag",
       "default": "Triple Ceramide · Matrixyl 3000™"
-    },
-    {
-      "type": "header",
-      "content": "Product Stack — Card 3"
     },
     {
       "type": "product",

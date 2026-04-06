@@ -72,6 +72,55 @@
         "stack_tag_3": "SPF 50+ PA++++ · Niacinamide"
       }
     },
+    "glowve_category_bubbles": {
+      "type": "glowve-category-bubbles",
+      "blocks": {
+        "bubble_spf": {
+          "type": "bubble",
+          "settings": {
+            "label": "Sunscreens",
+            "link": "/collections/spf",
+            "emoji": "☀️",
+            "bg_color": "var(--accent-yellow)"
+          }
+        },
+        "bubble_serums": {
+          "type": "bubble",
+          "settings": {
+            "label": "Serums",
+            "link": "/collections/brightening",
+            "emoji": "💧",
+            "bg_color": "var(--accent-peach)"
+          }
+        },
+        "bubble_moisturizer": {
+          "type": "bubble",
+          "settings": {
+            "label": "Moisturizer",
+            "link": "/collections/barrier-repair",
+            "emoji": "🌿",
+            "bg_color": "var(--accent-mint)"
+          }
+        },
+        "bubble_new": {
+          "type": "bubble",
+          "settings": {
+            "label": "New Arrivals",
+            "link": "/collections/all",
+            "emoji": "✨",
+            "bg_color": "#FFD4E8"
+          }
+        }
+      },
+      "block_order": [
+        "bubble_spf",
+        "bubble_serums",
+        "bubble_moisturizer",
+        "bubble_new"
+      ],
+      "name": "Glowve Category Bubbles",
+      "settings": {}
+    },
     "glowve_social_proof": {
       "type": "glowve-social-proof",
       "blocks": {
@@ -527,6 +576,7 @@
   "order": [
     "glowve_announcement",
     "glowve_hero",
+    "glowve_category_bubbles",
     "glowve_social_proof",
     "glowve_bestsellers",
     "glowve_ingredient_moment",

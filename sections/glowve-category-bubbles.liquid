@@ -1,0 +1,191 @@
+<div class="gv-bubbles">
+  <div class="gv-bubbles-inner">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'bubble' -%}
+        <a
+          href="{{ block.settings.link | default: '#' }}"
+          class="gv-bubble-item"
+          aria-label="{{ block.settings.label | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="gv-bubble-circle" style="background: {{ block.settings.bg_color | default: 'var(--accent-peach)' }};">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 160 | image_tag:
+                loading: 'lazy',
+                alt: block.settings.label | escape,
+                class: 'gv-bubble-img',
+                width: 80,
+                height: 80
+              }}
+            {%- elsif block.settings.emoji != blank -%}
+              <span class="gv-bubble-emoji" aria-hidden="true">{{ block.settings.emoji }}</span>
+            {%- endif -%}
+          </div>
+          <span class="gv-bubble-label">{{ block.settings.label }}</span>
+        </a>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .gv-bubbles {
+    background: var(--cream-glow);
+    padding: 36px 0 48px;
+    border-bottom: 1px solid var(--warm-gray);
+  }
+
+  .gv-bubbles-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .gv-bubbles-inner::-webkit-scrollbar { display: none; }
+
+  .gv-bubble-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  .gv-bubble-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .gv-bubble-item:hover .gv-bubble-circle {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(255,77,141,0.18);
+  }
+
+  .gv-bubble-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gv-bubble-emoji {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .gv-bubble-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--warm-espresso);
+    white-space: nowrap;
+  }
+
+  @media (max-width: 768px) {
+    .gv-bubbles-inner { padding: 0 20px; gap: 24px; justify-content: flex-start; }
+    .gv-bubbles { padding: 28px 0 36px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Glowve Category Bubbles",
+  "tag": "div",
+  "class": "glowve-category-bubbles-wrapper",
+  "max_blocks": 8,
+  "blocks": [
+    {
+      "type": "bubble",
+      "name": "Category Bubble",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Serums"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Bubble image",
+          "info": "80×80px recommended. Overrides the emoji if set."
+        },
+        {
+          "type": "text",
+          "id": "emoji",
+          "label": "Emoji (shown if no image)",
+          "default": "✨"
+        },
+        {
+          "type": "text",
+          "id": "bg_color",
+          "label": "Background colour (hex or CSS var)",
+          "default": "var(--accent-peach)",
+          "info": "Examples: #FFF8D6, var(--accent-mint), var(--accent-yellow)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Category Bubbles",
+      "blocks": [
+        {
+          "type": "bubble",
+          "settings": {
+            "label": "Sunscreens",
+            "link": "/collections/spf",
+            "emoji": "☀️",
+            "bg_color": "var(--accent-yellow)"
+          }
+        },
+        {
+          "type": "bubble",
+          "settings": {
+            "label": "Serums",
+            "link": "/collections/brightening",
+            "emoji": "💧",
+            "bg_color": "var(--accent-peach)"
+          }
+        },
+        {
+          "type": "bubble",
+          "settings": {
+            "label": "Moisturizer",
+            "link": "/collections/barrier-repair",
+            "emoji": "🌿",
+            "bg_color": "var(--accent-mint)"
+          }
+        },
+        {
+          "type": "bubble",
+          "settings": {
+            "label": "New Arrivals",
+            "link": "/collections/all",
+            "emoji": "✨",
+            "bg_color": "#FFD4E8"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
