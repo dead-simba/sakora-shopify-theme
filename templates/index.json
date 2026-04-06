@@ -9,43 +9,6 @@
  */
 {
   "sections": {
-    "glowve_announcement": {
-      "type": "glowve-announcement-bar",
-      "blocks": {
-        "msg_1": {
-          "type": "message",
-          "settings": {
-            "text": "Free delivery on orders above PKR 2,500"
-          }
-        },
-        "msg_2": {
-          "type": "message",
-          "settings": {
-            "text": "Ingredient transparency: we show you every %"
-          }
-        },
-        "msg_3": {
-          "type": "message",
-          "settings": {
-            "text": "Dermatologist tested. Always."
-          }
-        },
-        "msg_4": {
-          "type": "message",
-          "settings": {
-            "text": "Formulated for Pakistan's UV index and climate"
-          }
-        }
-      },
-      "block_order": [
-        "msg_1",
-        "msg_2",
-        "msg_3",
-        "msg_4"
-      ],
-      "name": "Glowve Announcement Bar",
-      "settings": {}
-    },
     "glowve_hero": {
       "type": "glowve-hero",
       "blocks": {
@@ -617,7 +580,6 @@
     }
   },
   "order": [
-    "glowve_announcement",
     "glowve_hero",
     "glowve_category_bubbles",
     "glowve_social_proof",

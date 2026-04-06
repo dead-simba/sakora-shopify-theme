@@ -11,35 +11,42 @@
   "type": "header",
   "name": "t:names.header",
   "sections": {
-    "header_announcements_9jGBFp": {
-      "type": "header-announcements",
+    "glowve_announcement_bar_amtwqn": {
+      "type": "glowve-announcement-bar",
       "blocks": {
-        "announcement_BxgCk9": {
-          "type": "_announcement",
+        "message_MBgLXr": {
+          "type": "message",
           "settings": {
-            "text": "Welcome to our store",
-            "link": "",
-            "font": "var(--font-subheading--family)",
-            "font_size": "0.75rem",
-            "weight": "",
-            "letter_spacing": "normal",
-            "case": "none"
-          },
-          "blocks": {}
+            "text": "Free delivery on orders above PKR 2,500"
+          }
+        },
+        "message_MD43tp": {
+          "type": "message",
+          "settings": {
+            "text": "Ingredient transparency: we show you every %"
+          }
+        },
+        "message_KfpQPW": {
+          "type": "message",
+          "settings": {
+            "text": "Dermatologist tested. Always."
+          }
+        },
+        "message_WkVfRk": {
+          "type": "message",
+          "settings": {
+            "text": "Formulated for Pakistan's UV index and climate"
+          }
         }
       },
       "block_order": [
-        "announcement_BxgCk9"
+        "message_MBgLXr",
+        "message_MD43tp",
+        "message_KfpQPW",
+        "message_WkVfRk"
       ],
-      "name": "t:names.announcement_bar",
-      "settings": {
-        "speed": 5,
-        "section_width": "page-width",
-        "color_scheme": "scheme-1",
-        "divider_width": 1,
-        "padding-block-start": 15,
-        "padding-block-end": 15
-      }
+      "name": "Glowve Announcement Bar",
+      "settings": {}
     },
     "header_section": {
       "type": "header",
@@ -117,7 +124,7 @@
     }
   },
   "order": [
-    "header_announcements_9jGBFp",
+    "glowve_announcement_bar_amtwqn",
     "header_section"
   ]
 }
