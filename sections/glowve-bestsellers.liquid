@@ -155,7 +155,8 @@
     cursor: pointer;
     text-decoration: none;
     color: inherit;
-    display: block;
+    display: flex;
+    flex-direction: column;
   }
   .gv-product-card:hover {
     transform: translateY(-6px);
@@ -197,7 +198,8 @@
   .gv-product-badge--new { background: var(--berry-dark); }
   .gv-product-badge--sale { background: var(--sage-calm); color: var(--warm-espresso); }
 
-  .gv-product-info { padding: 18px 18px 20px; }
+  .gv-product-info { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+  .gv-product-footer { margin-top: auto; }
 
   .gv-product-ingredient {
     font-family: var(--font-mono);
@@ -295,7 +297,7 @@
     .then(() => {
       btn.textContent = '✓ Added';
       // Trigger Shopify cart update event for drawer/mini-cart
-      document.dispatchEvent(new CustomEvent('cart:updated'));
+      document.dispatchEvent(new CustomEvent('cart:update'));
       setTimeout(() => {
         btn.textContent = originalText;
         btn.classList.remove('gv-loading');
