@@ -20,6 +20,12 @@
             "text": "Free delivery on orders above PKR 2,500"
           }
         },
+        "message_gwNFfX": {
+          "type": "message",
+          "settings": {
+            "text": "Free delivery on orders above PKR 2,500"
+          }
+        },
         "message_MD43tp": {
           "type": "message",
           "settings": {
@@ -41,6 +47,7 @@
       },
       "block_order": [
         "message_MBgLXr",
+        "message_gwNFfX",
         "message_MD43tp",
         "message_KfpQPW",
         "message_WkVfRk"
