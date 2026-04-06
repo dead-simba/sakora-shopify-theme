@@ -146,23 +146,24 @@
   .gv-hero-bg-placeholder--3 { background: linear-gradient(135deg, var(--accent-yellow), #FFE08A); }
 
   /* Cards */
-  .gv-hero-cards { position: absolute; bottom: 8%; left: 4%; z-index: 10; width: min(460px, 90vw); }
+  .gv-hero-cards { position: absolute; bottom: 8%; left: 4%; z-index: 10; width: min(420px, 42vw); }
   .gv-hero-card {
     display: none;
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    padding: 36px 44px;
-    border-radius: 24px;
+    padding: 28px 32px;
+    border-radius: 20px;
     box-shadow: 0 12px 40px rgba(0,0,0,0.10);
   }
   .gv-hero-card.active { display: block; animation: gv-card-in 0.5s ease; }
   @keyframes gv-card-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-  .gv-hero-eyebrow { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-pulse); margin-bottom: 14px; }
-  .gv-hero-headline { font-family: var(--font-sans); font-size: var(--gv-hero-headline-size); font-weight: 600; line-height: 1.1; color: var(--berry-dark); margin-bottom: 14px; }
+  .gv-hero-eyebrow { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-pulse); margin-bottom: 10px; }
+  /* Override Horizon's h1 size — card headline is intentionally smaller */
+  .gv-hero-headline { font-family: var(--font-sans) !important; font-size: 38px !important; font-weight: 700 !important; line-height: 1.1 !important; color: var(--berry-dark) !important; margin-bottom: 12px !important; letter-spacing: -0.01em !important; }
   .gv-hero-headline em { font-style: normal !important; color: var(--coral-pulse) !important; }
-  .gv-hero-subline { font-family: var(--font-sans); font-size: 15px; color: var(--mid-gray); line-height: 1.65; margin-bottom: 28px; }
+  .gv-hero-subline { font-family: var(--font-sans); font-size: 14px; color: var(--mid-gray); line-height: 1.6; margin-bottom: 22px; }
   .gv-hero-ctas { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
   .gv-hero-trust { display: flex; align-items: center; gap: 10px; padding-top: 20px; border-top: 1px solid var(--warm-gray); }
   .gv-hero-stars { color: var(--coral-pulse); font-size: 13px; }
@@ -180,14 +181,23 @@
   .gv-hero-arrow--prev { left: 20px; }
   .gv-hero-arrow--next { right: 20px; }
 
-  /* Mobile */
+  /* Tablet — narrow the card a bit */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    .gv-hero-cards { width: min(380px, 48vw); }
+    .gv-hero-headline { font-size: 32px !important; }
+  }
+
+  /* Mobile — card drops below image, full width */
   @media (max-width: 768px) {
-    .gv-hero-slides, .gv-hero-bg-img, .gv-hero-bg-placeholder { min-height: 360px; }
+    .gv-hero-slides, .gv-hero-bg-img, .gv-hero-bg-placeholder { min-height: 300px; }
     .gv-hero-cards { position: relative; bottom: auto; left: auto; width: 100%; }
-    .gv-hero-card { border-radius: 0; box-shadow: none; border-top: 1px solid var(--warm-gray); padding: 28px 20px; backdrop-filter: none; }
-    .gv-hero-headline { font-size: clamp(26px, 7vw, 40px); }
+    .gv-hero-card { border-radius: 0; box-shadow: none; border-top: 3px solid var(--coral-pulse); padding: 24px 20px; backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .gv-hero-headline { font-size: 28px !important; letter-spacing: 0 !important; }
+    .gv-hero-subline { font-size: 14px; }
     .gv-hero-arrow { display: none; }
-    .gv-hero-dots { bottom: auto; top: 340px; right: 12px; }
+    .gv-hero-dots { position: absolute; top: 270px; right: 12px; bottom: auto; }
+    .gv-hero-ctas { gap: 12px; }
+    .gv-hero-trust { flex-wrap: wrap; gap: 6px; }
   }
 {% endstylesheet %}
 
