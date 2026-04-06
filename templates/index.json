@@ -195,7 +195,7 @@
       "settings": {
         "label": "Community Favourites",
         "title": "Our bestsellers",
-        "collection": "",
+        "collection": "frontpage",
         "products_to_show": 3,
         "view_all_url": "/collections/all",
         "show_tabs": true
