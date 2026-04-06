@@ -48,28 +48,51 @@
     },
     "glowve_hero": {
       "type": "glowve-hero",
-      "name": "Glowve Hero",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Glow your way.",
+            "headline": "<p>Skin that <em>glows,</em><br>from ingredients that earn it.</p>",
+            "subline": "No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
+            "cta_primary_label": "Shop Bestsellers",
+            "cta_primary_url": "/collections/all",
+            "cta_secondary_label": "Build My Routine",
+            "cta_secondary_url": "/pages/skin-quiz"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "New drop.",
+            "headline": "<p>SPF that <em>disappears.</em><br>Skin that doesn't.</p>",
+            "subline": "Matte UV Defence SPF 50+ — zero white cast, formulated for Pakistan's UV index.",
+            "cta_primary_label": "Shop SPF",
+            "cta_primary_url": "/collections/spf",
+            "cta_secondary_label": "See ingredients",
+            "cta_secondary_url": "/pages/ingredients"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "Barrier repair.",
+            "headline": "<p>Rebuild. <em>Restore.</em><br>Repeat.</p>",
+            "subline": "Triple ceramide complex + Matrixyl 3000™ — the moisturizer your skin was waiting for.",
+            "cta_primary_label": "Shop Moisturizers",
+            "cta_primary_url": "/collections/barrier-repair",
+            "cta_secondary_label": "Learn more",
+            "cta_secondary_url": "/pages/ingredients"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3"],
+      "name": "Glowve Hero Slider",
       "settings": {
-        "eyebrow": "Glow your way.",
-        "headline": "<p>Skin that <em>glows,</em><br/>from ingredients<br/>that earn it.</p>",
-        "subline": "Every formula starts with one question: does this ingredient actually work? No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
-        "cta_primary_label": "Shop Bestsellers",
-        "cta_primary_url": "/collections/all",
-        "cta_secondary_label": "Build My Routine",
-        "cta_secondary_url": "/pages/skin-quiz",
+        "autoplay": true,
+        "autoplay_speed": 5,
         "trust_rating": "4.8 stars",
-        "trust_reviews": "across 1,200+ verified reviews",
-        "trust_badge": "Made for Pakistan. Dermatologist tested.",
-        "hero_product_1": "",
-        "stack_name_1": "2% Alpha Arbutin + Vitamin C",
-        "stack_tag_1": "Alpha Arbutin · Ethyl Ascorbic Acid",
-        "stack_badge_1": "Bestseller",
-        "hero_product_2": "",
-        "stack_name_2": "Barrier Renew Moisturizer",
-        "stack_tag_2": "Triple Ceramide · Matrixyl 3000™",
-        "hero_product_3": "",
-        "stack_name_3": "Matte UV Defence SPF 50+",
-        "stack_tag_3": "SPF 50+ PA++++ · Niacinamide"
+        "trust_reviews": "across 1,200+ verified reviews"
       }
     },
     "glowve_category_bubbles": {
