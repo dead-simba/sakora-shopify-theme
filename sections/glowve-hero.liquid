@@ -1,407 +1,199 @@
-{%- assign slide_count = section.blocks | where: 'type', 'slide' | size -%}
+{%- assign slide_blocks = section.blocks | where: 'type', 'slide' -%}
+{%- assign slide_count = slide_blocks | size -%}
 
 <section
   class="gv-hero"
-  id="gv-hero-{{ section.id }}"
-  aria-label="Hero banner"
   data-autoplay="{{ section.settings.autoplay }}"
-  data-speed="{{ section.settings.autoplay_speed | default: 5000 }}"
+  data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
+  aria-label="Hero banner"
 >
 
-  {%- comment -%} — SLIDE IMAGES — {%- endcomment -%}
-  <div class="gv-hero-slides" aria-live="off">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'slide' -%}
-        <div
-          class="gv-hero-slide{% if forloop.first %} gv-hero-slide--active{% endif %}"
-          aria-hidden="{% if forloop.first %}false{% else %}true{% endif %}"
-          {{ block.shopify_attributes }}
-        >
+  {%- comment -%} SLIDE IMAGES {%- endcomment -%}
+  <div class="gv-hero-slides">
+    {%- if slide_count > 0 -%}
+      {%- for block in slide_blocks -%}
+        <div class="gv-hero-slide{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
           {%- if block.settings.image != blank -%}
-            {{ block.settings.image | image_url: width: 2000 | image_tag:
-              loading: 'eager',
-              fetchpriority: 'high',
-              class: 'gv-hero-bg-img',
-              alt: block.settings.image.alt,
-              widths: '800, 1200, 1600, 2000',
-              sizes: '100vw'
-            }}
+            {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-bg-img', widths: '800, 1200, 1600, 2000', sizes: '100vw' }}
           {%- else -%}
             <div class="gv-hero-bg-placeholder gv-hero-bg-placeholder--{{ forloop.index }}"></div>
           {%- endif -%}
         </div>
-      {%- endif -%}
-    {%- endfor -%}
-
-    {%- if slide_count == 0 -%}
-      <div class="gv-hero-slide gv-hero-slide--active">
-        <div class="gv-hero-bg-placeholder"></div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="gv-hero-slide active">
+        <div class="gv-hero-bg-placeholder gv-hero-bg-placeholder--1"></div>
       </div>
     {%- endif -%}
   </div>
 
-  {%- comment -%} — FLOATING COPY CARDS (one per slide, crossfade in sync) — {%- endcomment -%}
+  {%- comment -%} FLOATING COPY CARDS — one per slide {%- endcomment -%}
   <div class="gv-hero-cards">
-    {%- for block in section.blocks -%}
-      {%- if block.type == 'slide' -%}
-        <div class="gv-hero-card{% if forloop.first %} gv-hero-card--active{% endif %}">
+    {%- if slide_count > 0 -%}
+      {%- for block in slide_blocks -%}
+        <div class="gv-hero-card{% if forloop.first %} active{% endif %}">
           {%- if block.settings.eyebrow != blank -%}
             <p class="gv-hero-eyebrow">{{ block.settings.eyebrow }}</p>
           {%- endif -%}
-
           <h1 class="gv-hero-headline">{{ block.settings.headline }}</h1>
-
           {%- if block.settings.subline != blank -%}
             <p class="gv-hero-subline">{{ block.settings.subline }}</p>
           {%- endif -%}
-
           <div class="gv-hero-ctas">
             {%- if block.settings.cta_primary_label != blank -%}
-              <a href="{{ block.settings.cta_primary_url }}" class="gv-btn-primary">
-                {{ block.settings.cta_primary_label }}
-              </a>
+              <a href="{{ block.settings.cta_primary_url }}" class="gv-btn-primary">{{ block.settings.cta_primary_label }}</a>
             {%- endif -%}
             {%- if block.settings.cta_secondary_label != blank -%}
-              <a href="{{ block.settings.cta_secondary_url }}" class="gv-btn-secondary">
-                {{ block.settings.cta_secondary_label }}
-              </a>
+              <a href="{{ block.settings.cta_secondary_url }}" class="gv-btn-secondary">{{ block.settings.cta_secondary_label }}</a>
             {%- endif -%}
           </div>
-
           {%- if section.settings.trust_rating != blank -%}
             <div class="gv-hero-trust">
-              <div class="gv-hero-stars" aria-label="5 stars">★★★★★</div>
-              <p class="gv-hero-trust-text">
-                <strong>{{ section.settings.trust_rating }}</strong> {{ section.settings.trust_reviews }}
-              </p>
+              <span class="gv-hero-stars">★★★★★</span>
+              <p class="gv-hero-trust-text"><strong>{{ section.settings.trust_rating }}</strong> {{ section.settings.trust_reviews }}</p>
             </div>
           {%- endif -%}
         </div>
-      {%- endif -%}
-    {%- endfor -%}
-
-    {%- if slide_count == 0 -%}
-      <div class="gv-hero-card gv-hero-card--active">
-        <p class="gv-hero-eyebrow">Glow your way.</p>
-        <h1 class="gv-hero-headline">Skin that <em>glows,</em><br>from ingredients that earn it.</h1>
-        <p class="gv-hero-subline">No fluff, no filler. Just real actives at real concentrations — made for Pakistan.</p>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="gv-hero-card active">
+        <p class="gv-hero-eyebrow">{{ section.settings.eyebrow }}</p>
+        <h1 class="gv-hero-headline">{{ section.settings.headline }}</h1>
+        <p class="gv-hero-subline">{{ section.settings.subline }}</p>
         <div class="gv-hero-ctas">
-          <a href="/collections/all" class="gv-btn-primary">Shop Bestsellers</a>
+          <a href="{{ section.settings.cta_primary_url }}" class="gv-btn-primary">{{ section.settings.cta_primary_label }}</a>
+          <a href="{{ section.settings.cta_secondary_url }}" class="gv-btn-secondary">{{ section.settings.cta_secondary_label }}</a>
         </div>
       </div>
     {%- endif -%}
   </div>
 
-  {%- comment -%} — DOT NAVIGATION — {%- endcomment -%}
+  {%- comment -%} DOTS + ARROWS (only when 2+ slides) {%- endcomment -%}
   {%- if slide_count > 1 -%}
-    <div class="gv-hero-dots" role="tablist" aria-label="Slide navigation">
-      {%- for block in section.blocks -%}
-        {%- if block.type == 'slide' -%}
-          <button
-            class="gv-hero-dot{% if forloop.first %} gv-hero-dot--active{% endif %}"
-            data-index="{{ forloop.index0 }}"
-            role="tab"
-            aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
-            aria-label="Go to slide {{ forloop.index }}"
-          ></button>
-        {%- endif -%}
+    <div class="gv-hero-dots">
+      {%- for block in slide_blocks -%}
+        <button class="gv-hero-dot{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
       {%- endfor -%}
     </div>
-  {%- endif -%}
-
-  {%- comment -%} — PREV / NEXT ARROWS — {%- endcomment -%}
-  {%- if slide_count > 1 -%}
-    <button class="gv-hero-arrow gv-hero-arrow--prev" aria-label="Previous slide">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    <button class="gv-hero-arrow gv-hero-arrow--prev" aria-label="Previous">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
     </button>
-    <button class="gv-hero-arrow gv-hero-arrow--next" aria-label="Next slide">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    <button class="gv-hero-arrow gv-hero-arrow--next" aria-label="Next">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
     </button>
   {%- endif -%}
 
 </section>
 
+<script>
+(function() {
+  var wrap = document.currentScript.closest('.glowve-hero-wrapper').querySelector('.gv-hero');
+  if (!wrap) return;
+  var slides  = wrap.querySelectorAll('.gv-hero-slide');
+  var cards   = wrap.querySelectorAll('.gv-hero-card');
+  var dots    = wrap.querySelectorAll('.gv-hero-dot');
+  var total   = slides.length;
+  if (total < 2) return;
+  var cur = 0, timer = null;
+  var doAutoplay = wrap.dataset.autoplay === 'true';
+  var speed = parseInt(wrap.dataset.speed) || 5000;
+
+  function go(n) {
+    slides[cur].classList.remove('active');
+    cards[cur].classList.remove('active');
+    if (dots[cur]) dots[cur].classList.remove('active');
+    cur = (n + total) % total;
+    slides[cur].classList.add('active');
+    cards[cur].classList.add('active');
+    if (dots[cur]) dots[cur].classList.add('active');
+  }
+  function tick() { go(cur + 1); }
+  function start() { if (doAutoplay) timer = setInterval(tick, speed); }
+  function reset() { clearInterval(timer); start(); }
+
+  dots.forEach(function(d) { d.addEventListener('click', function() { go(+this.dataset.index); reset(); }); });
+  var prev = wrap.querySelector('.gv-hero-arrow--prev');
+  var next = wrap.querySelector('.gv-hero-arrow--next');
+  if (prev) prev.addEventListener('click', function() { go(cur - 1); reset(); });
+  if (next) next.addEventListener('click', function() { go(cur + 1); reset(); });
+  wrap.addEventListener('mouseenter', function() { clearInterval(timer); });
+  wrap.addEventListener('mouseleave', start);
+  var tx = 0;
+  wrap.addEventListener('touchstart', function(e) { tx = e.touches[0].clientX; }, { passive: true });
+  wrap.addEventListener('touchend', function(e) {
+    var d = tx - e.changedTouches[0].clientX;
+    if (Math.abs(d) > 50) { go(d > 0 ? cur + 1 : cur - 1); reset(); }
+  });
+  start();
+})();
+</script>
+
 {% stylesheet %}
-  /* ---- Wrapper ---- */
-  .gv-hero {
-    position: relative;
-    background: var(--cream-glow);
-    overflow: hidden;
-    user-select: none;
-  }
+  .gv-hero { position: relative; background: var(--cream-glow); overflow: hidden; }
 
-  /* ---- Slide images (crossfade stack) ---- */
-  .gv-hero-slides {
-    position: relative;
-    width: 100%;
-    min-height: 560px;
-  }
-
+  /* Slides */
+  .gv-hero-slides { position: relative; min-height: 560px; }
   .gv-hero-slide {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    transition: opacity 0.8s ease;
-    pointer-events: none;
+    position: absolute; inset: 0;
+    opacity: 0; transition: opacity 0.8s ease; pointer-events: none;
   }
-  .gv-hero-slide--active {
-    opacity: 1;
-    position: relative;
-    pointer-events: auto;
-  }
+  .gv-hero-slide.active { opacity: 1; position: relative; pointer-events: auto; }
 
-  .gv-hero-bg-img {
-    width: 100%;
-    height: 100%;
-    min-height: 560px;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-  }
+  .gv-hero-bg-img { width: 100%; min-height: 560px; object-fit: cover; object-position: center top; display: block; }
+  .gv-hero-bg-placeholder { position: absolute; inset: 0; min-height: 560px; }
+  .gv-hero-bg-placeholder--1 { background: linear-gradient(135deg, var(--accent-peach), #FFD4BE); }
+  .gv-hero-bg-placeholder--2 { background: linear-gradient(135deg, var(--accent-mint), #B8E8D4); }
+  .gv-hero-bg-placeholder--3 { background: linear-gradient(135deg, var(--accent-yellow), #FFE08A); }
 
-  .gv-hero-bg-placeholder {
-    position: absolute;
-    inset: 0;
-    min-height: 560px;
-  }
-  .gv-hero-bg-placeholder--1 { background: linear-gradient(135deg, var(--accent-peach) 0%, #FFD4BE 100%); }
-  .gv-hero-bg-placeholder--2 { background: linear-gradient(135deg, var(--accent-mint) 0%, #B8E8D4 100%); }
-  .gv-hero-bg-placeholder--3 { background: linear-gradient(135deg, var(--accent-yellow) 0%, #FFE08A 100%); }
-  .gv-hero-bg-placeholder     { background: linear-gradient(135deg, var(--accent-peach) 0%, var(--accent-mint) 100%); }
-
-  /* ---- Floating copy cards ---- */
-  .gv-hero-cards {
-    position: absolute;
-    bottom: 8%;
-    left: 4%;
-    z-index: 10;
-    width: min(460px, 90vw);
-  }
-
+  /* Cards */
+  .gv-hero-cards { position: absolute; bottom: 8%; left: 4%; z-index: 10; width: min(460px, 90vw); }
   .gv-hero-card {
-    position: absolute;
-    inset: 0;
+    display: none;
     background: rgba(255,255,255,0.97);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     padding: 36px 44px;
     border-radius: 24px;
     box-shadow: 0 12px 40px rgba(0,0,0,0.10);
-    opacity: 0;
-    transform: translateY(10px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-    pointer-events: none;
-    /* make sure each card is tall enough for its content */
-    position: relative;
-    display: none;
   }
-  .gv-hero-card--active {
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-    display: block;
-  }
+  .gv-hero-card.active { display: block; animation: gv-card-in 0.5s ease; }
+  @keyframes gv-card-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-  .gv-hero-eyebrow {
-    font-family: var(--font-sans);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--coral-pulse);
-    margin-bottom: 14px;
-  }
-
-  .gv-hero-headline {
-    font-family: var(--font-sans);
-    font-size: var(--gv-hero-headline-size);
-    font-weight: 600;
-    line-height: 1.1;
-    color: var(--berry-dark);
-    letter-spacing: 0;
-    margin-bottom: 14px;
-  }
+  .gv-hero-eyebrow { font-family: var(--font-sans); font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--coral-pulse); margin-bottom: 14px; }
+  .gv-hero-headline { font-family: var(--font-sans); font-size: var(--gv-hero-headline-size); font-weight: 600; line-height: 1.1; color: var(--berry-dark); margin-bottom: 14px; }
   .gv-hero-headline em { font-style: normal !important; color: var(--coral-pulse) !important; }
-
-  .gv-hero-subline {
-    font-family: var(--font-sans);
-    font-size: 15px;
-    color: var(--mid-gray);
-    line-height: 1.65;
-    margin-bottom: 28px;
-  }
-
-  .gv-hero-ctas {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .gv-hero-trust {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-top: 20px;
-    border-top: 1px solid var(--warm-gray);
-    flex-wrap: wrap;
-  }
-  .gv-hero-stars { color: var(--coral-pulse); font-size: 13px; letter-spacing: 1px; }
+  .gv-hero-subline { font-family: var(--font-sans); font-size: 15px; color: var(--mid-gray); line-height: 1.65; margin-bottom: 28px; }
+  .gv-hero-ctas { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; margin-bottom: 24px; }
+  .gv-hero-trust { display: flex; align-items: center; gap: 10px; padding-top: 20px; border-top: 1px solid var(--warm-gray); }
+  .gv-hero-stars { color: var(--coral-pulse); font-size: 13px; }
   .gv-hero-trust-text { font-family: var(--font-sans); font-size: 13px; color: var(--mid-gray); }
   .gv-hero-trust-text strong { color: var(--warm-espresso); font-weight: 600; }
 
-  /* ---- Dot navigation ---- */
-  .gv-hero-dots {
-    position: absolute;
-    bottom: 20px;
-    right: 28px;
-    display: flex;
-    gap: 8px;
-    z-index: 20;
-  }
+  /* Dots */
+  .gv-hero-dots { position: absolute; bottom: 20px; right: 24px; display: flex; gap: 8px; z-index: 20; }
+  .gv-hero-dot { width: 8px; height: 8px; border-radius: 50%; border: none; background: rgba(255,255,255,0.5); cursor: pointer; padding: 0; transition: background 0.3s, transform 0.3s; }
+  .gv-hero-dot.active { background: var(--coral-pulse); transform: scale(1.3); }
 
-  .gv-hero-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    border: none;
-    background: rgba(255,255,255,0.5);
-    cursor: pointer;
-    padding: 0;
-    transition: background 0.3s, transform 0.3s;
-  }
-  .gv-hero-dot--active {
-    background: var(--coral-pulse);
-    transform: scale(1.3);
-  }
-
-  /* ---- Arrow buttons ---- */
-  .gv-hero-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 20;
-    background: rgba(255,255,255,0.9);
-    border: none;
-    border-radius: 50%;
-    width: 44px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    color: var(--berry-dark);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
-    transition: background 0.2s, transform 0.2s;
-  }
-  .gv-hero-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.06); }
+  /* Arrows */
+  .gv-hero-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 20; background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer; color: var(--berry-dark); box-shadow: 0 4px 16px rgba(0,0,0,0.12); transition: background 0.2s; }
+  .gv-hero-arrow:hover { background: #fff; }
   .gv-hero-arrow--prev { left: 20px; }
   .gv-hero-arrow--next { right: 20px; }
 
-  /* ---- Mobile ---- */
+  /* Mobile */
   @media (max-width: 768px) {
-    .gv-hero-slides { min-height: 360px; }
-    .gv-hero-slide { min-height: 360px; }
-    .gv-hero-bg-img { min-height: 360px; }
-    .gv-hero-bg-placeholder { min-height: 360px; }
-    .gv-hero-cards {
-      position: relative;
-      bottom: auto;
-      left: auto;
-      width: 100%;
-    }
-    .gv-hero-card {
-      border-radius: 0;
-      box-shadow: none;
-      border-top: 1px solid var(--warm-gray);
-      padding: 28px 20px;
-    }
+    .gv-hero-slides, .gv-hero-bg-img, .gv-hero-bg-placeholder { min-height: 360px; }
+    .gv-hero-cards { position: relative; bottom: auto; left: auto; width: 100%; }
+    .gv-hero-card { border-radius: 0; box-shadow: none; border-top: 1px solid var(--warm-gray); padding: 28px 20px; backdrop-filter: none; }
     .gv-hero-headline { font-size: clamp(26px, 7vw, 40px); }
     .gv-hero-arrow { display: none; }
-    .gv-hero-dots { right: 12px; bottom: auto; top: 340px; }
+    .gv-hero-dots { bottom: auto; top: 340px; right: 12px; }
   }
 {% endstylesheet %}
 
-{% javascript %}
-  (function() {
-    var section = document.getElementById('gv-hero-{{ section.id }}');
-    if (!section) return;
-
-    var slides     = Array.from(section.querySelectorAll('.gv-hero-slide'));
-    var cards      = Array.from(section.querySelectorAll('.gv-hero-card'));
-    var dots       = Array.from(section.querySelectorAll('.gv-hero-dot'));
-    var prevBtn    = section.querySelector('.gv-hero-arrow--prev');
-    var nextBtn    = section.querySelector('.gv-hero-arrow--next');
-    var total      = slides.length;
-    var current    = 0;
-    var autoplay   = section.dataset.autoplay === 'true';
-    var speed      = parseInt(section.dataset.speed) || 5000;
-    var timer      = null;
-
-    if (total <= 1) return;
-
-    function goTo(index) {
-      slides[current].classList.remove('gv-hero-slide--active');
-      slides[current].setAttribute('aria-hidden', 'true');
-      cards[current].classList.remove('gv-hero-card--active');
-      if (dots[current]) {
-        dots[current].classList.remove('gv-hero-dot--active');
-        dots[current].setAttribute('aria-selected', 'false');
-      }
-
-      current = (index + total) % total;
-
-      slides[current].classList.add('gv-hero-slide--active');
-      slides[current].setAttribute('aria-hidden', 'false');
-      cards[current].classList.add('gv-hero-card--active');
-      if (dots[current]) {
-        dots[current].classList.add('gv-hero-dot--active');
-        dots[current].setAttribute('aria-selected', 'true');
-      }
-    }
-
-    function startTimer() {
-      if (!autoplay) return;
-      timer = setInterval(function() { goTo(current + 1); }, speed);
-    }
-
-    function resetTimer() {
-      clearInterval(timer);
-      startTimer();
-    }
-
-    /* Dot clicks */
-    dots.forEach(function(dot) {
-      dot.addEventListener('click', function() {
-        goTo(parseInt(this.dataset.index));
-        resetTimer();
-      });
-    });
-
-    /* Arrow clicks */
-    if (prevBtn) prevBtn.addEventListener('click', function() { goTo(current - 1); resetTimer(); });
-    if (nextBtn) nextBtn.addEventListener('click', function() { goTo(current + 1); resetTimer(); });
-
-    /* Pause on hover */
-    section.addEventListener('mouseenter', function() { clearInterval(timer); });
-    section.addEventListener('mouseleave', startTimer);
-
-    /* Touch swipe */
-    var touchStartX = 0;
-    section.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
-    section.addEventListener('touchend', function(e) {
-      var diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) { goTo(diff > 0 ? current + 1 : current - 1); resetTimer(); }
-    });
-
-    startTimer();
-  })();
-{% endjavascript %}
-
 {% schema %}
 {
-  "name": "Glowve Hero Slider",
+  "name": "Glowve Hero",
   "tag": "div",
   "class": "glowve-hero-wrapper",
   "max_blocks": 6,
@@ -423,23 +215,66 @@
       "min": 3,
       "max": 10,
       "step": 1,
-      "default": 5,
-      "unit": "s"
+      "default": 5
     },
     {
       "type": "header",
-      "content": "Trust bar (shown on every slide)"
+      "content": "Fallback copy (shown when no slide blocks are added)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Glow your way."
+    },
+    {
+      "type": "richtext",
+      "id": "headline",
+      "label": "Headline",
+      "default": "<p>Skin that <em>glows,</em><br>from ingredients that earn it.</p>"
+    },
+    {
+      "type": "text",
+      "id": "subline",
+      "label": "Sub-headline",
+      "default": "No fluff, no filler. Just real actives at real concentrations — made for Pakistan."
+    },
+    {
+      "type": "text",
+      "id": "cta_primary_label",
+      "label": "Primary CTA label",
+      "default": "Shop Bestsellers"
+    },
+    {
+      "type": "url",
+      "id": "cta_primary_url",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Secondary CTA label",
+      "default": "Build My Routine"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "Secondary CTA link"
+    },
+    {
+      "type": "header",
+      "content": "Trust bar"
     },
     {
       "type": "text",
       "id": "trust_rating",
-      "label": "Rating text",
+      "label": "Rating",
       "default": "4.8 stars"
     },
     {
       "type": "text",
       "id": "trust_reviews",
-      "label": "Review count text",
+      "label": "Review count",
       "default": "across 1,200+ verified reviews"
     }
   ],
@@ -452,7 +287,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Slide image",
-          "info": "Recommended: 2000×900px landscape."
+          "info": "Recommended: 2000x900px landscape."
         },
         {
           "type": "text",
@@ -463,7 +298,7 @@
         {
           "type": "richtext",
           "id": "headline",
-          "label": "Headline (use <em> for pink highlight)",
+          "label": "Headline",
           "default": "<p>Skin that <em>glows,</em><br>from ingredients that earn it.</p>"
         },
         {
@@ -497,42 +332,6 @@
       ]
     }
   ],
-  "presets": [
-    {
-      "name": "Glowve Hero Slider",
-      "blocks": [
-        {
-          "type": "slide",
-          "settings": {
-            "eyebrow": "Glow your way.",
-            "headline": "<p>Skin that <em>glows,</em><br>from ingredients that earn it.</p>",
-            "subline": "No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
-            "cta_primary_label": "Shop Bestsellers",
-            "cta_secondary_label": "Build My Routine"
-          }
-        },
-        {
-          "type": "slide",
-          "settings": {
-            "eyebrow": "New drop.",
-            "headline": "<p>SPF that <em>disappears.</em><br>Skin that doesn't.</p>",
-            "subline": "Matte UV Defence SPF 50+ — zero white cast, formulated for Pakistan's UV index.",
-            "cta_primary_label": "Shop SPF",
-            "cta_secondary_label": "See ingredients"
-          }
-        },
-        {
-          "type": "slide",
-          "settings": {
-            "eyebrow": "Barrier repair.",
-            "headline": "<p>Rebuild. <em>Restore.</em><br>Repeat.</p>",
-            "subline": "Triple ceramide complex + Matrixyl 3000™ — the moisturizer your skin was waiting for.",
-            "cta_primary_label": "Shop Moisturizers",
-            "cta_secondary_label": "Learn more"
-          }
-        }
-      ]
-    }
-  ]
+  "presets": [{ "name": "Glowve Hero" }]
 }
 {% endschema %}

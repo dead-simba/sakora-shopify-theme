@@ -87,7 +87,7 @@
         }
       },
       "block_order": ["slide_1", "slide_2", "slide_3"],
-      "name": "Glowve Hero Slider",
+      "name": "Glowve Hero",
       "settings": {
         "autoplay": true,
         "autoplay_speed": 5,
