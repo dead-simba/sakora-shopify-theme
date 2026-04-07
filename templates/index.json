@@ -335,33 +335,33 @@
         "p1": {
           "type": "promise",
           "settings": {
-            "icon": "science",
-            "title": "Study-Backed",
-            "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy."
+            "icon": "leaf",
+            "title": "100% Cruelty Free",
+            "description": "No animal testing. Ever. Every Glowve product is certified cruelty-free and kind to every living thing."
           }
         },
         "p2": {
           "type": "promise",
           "settings": {
-            "icon": "list",
-            "title": "Fully Transparent",
-            "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list."
+            "icon": "shield",
+            "title": "No Nasty Chemicals",
+            "description": "No parabens, no sulphates, no hidden fillers. Clean ingredients you can actually read and trust."
           }
         },
         "p3": {
           "type": "promise",
           "settings": {
-            "icon": "shield",
-            "title": "Skin-Safe Always",
-            "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate."
+            "icon": "sun",
+            "title": "Made for Pakistan",
+            "description": "Formulated for Pakistan's UV index, humidity, and South Asian skin — not adapted from foreign markets."
           }
         },
         "p4": {
           "type": "promise",
           "settings": {
-            "icon": "sparkle",
-            "title": "Joyful to Use",
-            "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual."
+            "icon": "science",
+            "title": "Study-Backed",
+            "description": "Every active ingredient is supported by published clinical research. We link to studies, not marketing copy."
           }
         }
       },
