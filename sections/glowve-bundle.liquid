@@ -33,7 +33,7 @@
         </div>
         <div class="gv-bundle-step" style="color: var(--coral-pulse);">{{ section.settings.step_1 }}</div>
         <div class="gv-bundle-product-name">
-          {%- if bundle_product_1 != empty -%}{{ bundle_product_1.title }}{%- else -%}{{ section.settings.name_1 }}{%- endif -%}
+          {%- if section.settings.name_1 != blank -%}{{ section.settings.name_1 }}{%- elsif bundle_product_1 != empty -%}{{ bundle_product_1.title }}{%- endif -%}
         </div>
         <div class="gv-bundle-product-price">
           {%- if bundle_product_1 != empty -%}
@@ -62,7 +62,7 @@
         </div>
         <div class="gv-bundle-step" style="color: var(--plum-dusk);">{{ section.settings.step_2 }}</div>
         <div class="gv-bundle-product-name">
-          {%- if bundle_product_2 != empty -%}{{ bundle_product_2.title }}{%- else -%}{{ section.settings.name_2 }}{%- endif -%}
+          {%- if section.settings.name_2 != blank -%}{{ section.settings.name_2 }}{%- elsif bundle_product_2 != empty -%}{{ bundle_product_2.title }}{%- endif -%}
         </div>
         <div class="gv-bundle-product-price">
           {%- if bundle_product_2 != empty -%}
@@ -91,7 +91,7 @@
         </div>
         <div class="gv-bundle-step" style="color: var(--mango-zest);">{{ section.settings.step_3 }}</div>
         <div class="gv-bundle-product-name">
-          {%- if bundle_product_3 != empty -%}{{ bundle_product_3.title }}{%- else -%}{{ section.settings.name_3 }}{%- endif -%}
+          {%- if section.settings.name_3 != blank -%}{{ section.settings.name_3 }}{%- elsif bundle_product_3 != empty -%}{{ bundle_product_3.title }}{%- endif -%}
         </div>
         <div class="gv-bundle-product-price">
           {%- if bundle_product_3 != empty -%}
@@ -201,22 +201,24 @@
 
   .gv-bundle-step {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 11px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
   }
   .gv-bundle-product-name {
-    font-family: var(--font-sans);
-    font-size: 14px;
+    font-family: var(--font-serif);
+    font-size: 18px;
     color: #fff;
-    font-weight: 500;
-    margin-bottom: 2px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    margin-bottom: 4px;
   }
   .gv-bundle-product-price {
     font-family: var(--font-sans);
-    font-size: 13px;
-    color: rgba(255,255,255,0.4);
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
   }
 
   .gv-bundle-plus {
@@ -304,7 +306,7 @@
     {
       "type": "text",
       "id": "name_1",
-      "label": "Fallback name",
+      "label": "Display name (overrides product title)",
       "default": "Alpha Arbutin Serum"
     },
     {
@@ -331,7 +333,7 @@
     {
       "type": "text",
       "id": "name_2",
-      "label": "Fallback name",
+      "label": "Display name (overrides product title)",
       "default": "Barrier Renew Moisturizer"
     },
     {
@@ -358,7 +360,7 @@
     {
       "type": "text",
       "id": "name_3",
-      "label": "Fallback name",
+      "label": "Display name (overrides product title)",
       "default": "Matte UV Defence SPF 50+"
     },
     {
