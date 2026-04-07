@@ -200,13 +200,27 @@
     },
     "pdp_protocol": {
       "type": "glowve-pdp-protocol-picker",
-      "blocks": {
-        "opt_1": { "type": "variant_option", "settings": { "subtitle": "Try it out.", "free_shipping": false, "badge_text": "" } },
-        "opt_2": { "type": "variant_option", "settings": { "subtitle": "2 Month Supply", "free_shipping": true, "badge_text": "Most Popular (Save 15%)", "badge_color": "gold" } },
-        "opt_3": { "type": "variant_option", "settings": { "subtitle": "Never run out.", "free_shipping": true, "badge_text": "Best Value (Save 20%)", "badge_color": "coral" } }
-      },
-      "block_order": ["opt_1", "opt_2", "opt_3"],
-      "settings": { "label": "Select Your Protocol" }
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "title": "Select Your Protocol",
+        "opt1_title": "1 Bottle",
+        "opt1_subtitle": "Try it out.",
+        "opt1_badge": "",
+        "opt1_badge_color": "gold",
+        "opt2_product": "",
+        "opt2_title": "2 Bottles (2 Month Supply)",
+        "opt2_subtitle": "",
+        "opt2_free_shipping": true,
+        "opt2_badge": "Most Popular (Save 15%)",
+        "opt2_badge_color": "gold",
+        "opt3_product": "",
+        "opt3_title": "3 Bottles (3 Month Supply)",
+        "opt3_subtitle": "",
+        "opt3_free_shipping": true,
+        "opt3_badge": "Best Value (Save 20%)",
+        "opt3_badge_color": "coral"
+      }
     },
     "pdp_scripts": {
       "type": "glowve-pdp-scripts",
