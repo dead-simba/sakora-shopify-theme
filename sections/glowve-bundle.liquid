@@ -2,6 +2,7 @@
   assign bundle_product_1 = all_products[section.settings.product_1]
   assign bundle_product_2 = all_products[section.settings.product_2]
   assign bundle_product_3 = all_products[section.settings.product_3]
+  assign bundle_product    = all_products[section.settings.bundle_product]
 -%}
 
 <section class="gv-bundle" id="bundle">
@@ -114,9 +115,7 @@
         <button
           class="gv-btn-primary gv-btn-primary--lg"
           onclick="glowveAddBundle(event, this)"
-          data-v1="{{ bundle_product_1.first_available_variant.id }}"
-          data-v2="{{ bundle_product_2.first_available_variant.id }}"
-          data-v3="{{ bundle_product_3.first_available_variant.id }}"
+          data-variant="{{ bundle_product.first_available_variant.id }}"
           data-label="{{ section.settings.cta_label | escape }}"
         >
           {{ section.settings.cta_label }}
@@ -131,13 +130,8 @@
 <script>
   window.glowveAddBundle = function(event, btn) {
     event.preventDefault();
-    var v1 = btn.dataset.v1;
-    var v2 = btn.dataset.v2;
-    var v3 = btn.dataset.v3;
-    var items = [v1, v2, v3].filter(Boolean).map(function(id) {
-      return { id: parseInt(id), quantity: 1 };
-    });
-    if (items.length === 0) return;
+    var variantId = parseInt(btn.dataset.variant);
+    if (!variantId) return;
 
     btn.disabled = true;
     btn.textContent = 'Adding…';
@@ -150,7 +144,7 @@
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ items: items, sections: sectionIds.join(',') })
+      body: JSON.stringify({ id: variantId, quantity: 1, sections: sectionIds.join(',') })
     })
     .then(function(r) { return r.json(); })
     .then(function(response) {
@@ -346,7 +340,17 @@
     },
     {
       "type": "header",
-      "content": "Product 1"
+      "content": "Bundle Product (for Add to Cart)"
+    },
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Glowve Bundle product",
+      "info": "The actual bundle product customers add to cart"
+    },
+    {
+      "type": "header",
+      "content": "Product 1 (display only)"
     },
     {
       "type": "product",
