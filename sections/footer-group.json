@@ -17,19 +17,22 @@
         "col_shop": {
           "type": "nav_column",
           "settings": {
-            "title": "Shop"
+            "title": "Shop",
+            "menu": "footer"
           }
         },
         "col_learn": {
           "type": "nav_column",
           "settings": {
-            "title": "Learn"
+            "title": "Learn",
+            "menu": "footer"
           }
         },
         "col_help": {
           "type": "nav_column",
           "settings": {
-            "title": "Help"
+            "title": "Help",
+            "menu": "footer"
           }
         }
       },
@@ -40,8 +43,9 @@
       ],
       "name": "Glowve Footer",
       "settings": {
-        "logo": "shopify://shop_images/glowve_Logo_dark.png",
+        "logo": "shopify://shop_images/glowve_Logo_dark_2.png",
         "tagline": "Glow your way. Ingredient-first skincare for Pakistan.",
+        "bottom_note": "Made for Pakistan.",
         "instagram_url": "",
         "tiktok_url": "",
         "youtube_url": "",
