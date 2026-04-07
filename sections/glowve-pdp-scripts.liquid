@@ -1,0 +1,151 @@
+{% comment %}
+  Glowve PDP — Social proof widget + free shipping tracker
+  No visible content — only styles and JS.
+{% endcomment %}
+
+{% stylesheet %}
+  /* ── Social proof ── */
+  .gv-sp {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    background: var(--off-white);
+    border: 1px solid var(--warm-gray);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .gv-sp-mid { color: var(--warm-gray); }
+  .gv-sp-n { font-weight: 600; color: var(--warm-espresso); }
+  .gv-sp svg { vertical-align: middle; margin-right: 2px; }
+
+  /* ── Shipping tracker ── */
+  .gv-ship {
+    font-family: var(--font-sans);
+  }
+  .gv-ship-bar {
+    height: 5px;
+    background: var(--warm-gray);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 7px;
+  }
+  .gv-ship-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #66BB6A, #2E7D32);
+    border-radius: 100px;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    width: 0%;
+  }
+  .gv-ship-msg {
+    font-size: 12px;
+    color: var(--mid-gray);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .gv-ship-msg strong { color: var(--warm-espresso); }
+  .gv-ship-msg.gv-ship-done { color: #2E7D32; font-weight: 600; }
+
+  /* ── Payment chips ── */
+  .gv-pays {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .gv-pay {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--mid-gray);
+    background: white;
+    border: 1px solid var(--warm-gray);
+    border-radius: 6px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+{% endstylesheet %}
+
+<script>
+  // ── Social proof ──
+  (function () {
+    function initSocialProof() {
+      document.querySelectorAll('[data-social-proof]').forEach(function (el) {
+        var wEl = el.querySelector('[data-w]');
+        var bEl = el.querySelector('[data-b]');
+        var watchers = Math.floor(Math.random() * 14) + 8;   // 8–21
+        var bought   = Math.floor(Math.random() * 27) + 12;  // 12–38
+        if (wEl) wEl.textContent = watchers;
+        if (bEl) bEl.textContent = bought;
+        setInterval(function () {
+          watchers = Math.max(5, watchers + (Math.random() > 0.45 ? 1 : -1));
+          if (wEl) wEl.textContent = watchers;
+        }, 9500);
+      });
+    }
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', initSocialProof)
+      : initSocialProof();
+  })();
+
+  // ── Free shipping tracker ──
+  (function () {
+    var THRESHOLD = {{ section.settings.threshold }};
+
+    function updateTracker() {
+      var fills = document.querySelectorAll('[data-ship-fill]');
+      var msgs  = document.querySelectorAll('[data-ship-msg]');
+      if (!fills.length && !msgs.length) return;
+
+      fetch('/cart.js')
+        .then(function (r) { return r.json(); })
+        .then(function (cart) {
+          var total = cart.total_price / 100;
+          var pct   = Math.min(100, (total / THRESHOLD) * 100);
+          var rem   = Math.ceil(THRESHOLD - total);
+
+          fills.forEach(function (f) {
+            f.style.width = pct.toFixed(1) + '%';
+          });
+
+          msgs.forEach(function (m) {
+            if (rem <= 0) {
+              m.textContent = '🎉 You qualify for free delivery!';
+              m.classList.add('gv-ship-done');
+            } else {
+              m.innerHTML = 'Add <strong>PKR\u00A0' + rem.toLocaleString() + '</strong> more for free delivery';
+              m.classList.remove('gv-ship-done');
+            }
+          });
+        })
+        .catch(function () {});
+    }
+
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', updateTracker)
+      : updateTracker();
+
+    document.addEventListener('cart:update', updateTracker);
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "PDP Scripts",
+  "tag": "div",
+  "class": "gv-pdp-scripts",
+  "settings": [
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "Free shipping threshold (PKR)",
+      "default": 2500,
+      "info": "Customers get free delivery when their cart reaches this amount."
+    }
+  ],
+  "presets": [
+    { "name": "PDP Scripts" }
+  ]
+}
+{% endschema %}

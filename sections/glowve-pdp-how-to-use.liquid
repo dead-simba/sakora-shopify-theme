@@ -1,0 +1,272 @@
+<section class="gv-pdp-htu">
+  <div class="gv-pdp-inner">
+
+    <div class="gv-pdp-section-head">
+      {%- if section.settings.label != blank -%}
+        <div class="gv-section-label gv-section-label--light">{{ section.settings.label }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="gv-pdp-section-title gv-pdp-section-title--light">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- assign am_blocks = section.blocks | where: 'type', 'step' | where: 'settings.routine', 'am' -%}
+    {%- assign pm_blocks = section.blocks | where: 'type', 'step' | where: 'settings.routine', 'pm' -%}
+    {%- assign has_tabs = false -%}
+    {%- if am_blocks.size > 0 and pm_blocks.size > 0 -%}{%- assign has_tabs = true -%}{%- endif -%}
+
+    {%- if has_tabs -%}
+      <div class="gv-htu-tabs">
+        <button class="gv-htu-tab gv-htu-tab--active" data-tab="am">☀️ Morning</button>
+        <button class="gv-htu-tab" data-tab="pm">🌙 Evening</button>
+      </div>
+    {%- endif -%}
+
+    <div class="gv-htu-panel" data-panel="am">
+      <div class="gv-htu-steps">
+        {%- for block in am_blocks -%}
+          <div class="gv-htu-step{% if block.settings.is_current %} gv-htu-step--current{% endif %}" {{ block.shopify_attributes }}>
+            <div class="gv-htu-step-icon">{{ block.settings.icon }}</div>
+            <div class="gv-htu-step-num">Step {{ forloop.index }}</div>
+            <div class="gv-htu-step-label">{{ block.settings.label }}</div>
+            {%- if block.settings.note != blank -%}
+              <div class="gv-htu-step-note">{{ block.settings.note }}</div>
+            {%- endif -%}
+          </div>
+          {%- unless forloop.last -%}
+            <div class="gv-htu-arrow" aria-hidden="true">→</div>
+          {%- endunless -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+    {%- if pm_blocks.size > 0 -%}
+      <div class="gv-htu-panel gv-htu-panel--hidden" data-panel="pm">
+        <div class="gv-htu-steps">
+          {%- for block in pm_blocks -%}
+            <div class="gv-htu-step{% if block.settings.is_current %} gv-htu-step--current{% endif %}" {{ block.shopify_attributes }}>
+              <div class="gv-htu-step-icon">{{ block.settings.icon }}</div>
+              <div class="gv-htu-step-num">Step {{ forloop.index }}</div>
+              <div class="gv-htu-step-label">{{ block.settings.label }}</div>
+              {%- if block.settings.note != blank -%}
+                <div class="gv-htu-step-note">{{ block.settings.note }}</div>
+              {%- endif -%}
+            </div>
+            {%- unless forloop.last -%}
+              <div class="gv-htu-arrow" aria-hidden="true">→</div>
+            {%- endunless -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.tip != blank -%}
+      <div class="gv-htu-tip">
+        <span class="gv-htu-tip-icon">💡</span>
+        {{ section.settings.tip }}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    var htuSections = document.querySelectorAll('.gv-pdp-htu');
+    htuSections.forEach(function (section) {
+      var tabs   = section.querySelectorAll('.gv-htu-tab');
+      var panels = section.querySelectorAll('.gv-htu-panel');
+      tabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          var target = this.dataset.tab;
+          tabs.forEach(function (t) { t.classList.remove('gv-htu-tab--active'); });
+          panels.forEach(function (p) { p.classList.add('gv-htu-panel--hidden'); });
+          this.classList.add('gv-htu-tab--active');
+          var panel = section.querySelector('[data-panel="' + target + '"]');
+          if (panel) panel.classList.remove('gv-htu-panel--hidden');
+        });
+      });
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .gv-pdp-htu {
+    background: var(--berry-dark);
+    padding: 80px 0;
+  }
+
+  .gv-pdp-section-title--light {
+    color: white;
+  }
+  .gv-section-label--light {
+    color: rgba(255,255,255,0.5) !important;
+  }
+  .gv-section-label--light::before {
+    background: rgba(255,255,255,0.3) !important;
+  }
+
+  /* Tabs */
+  .gv-htu-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 32px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 100px;
+    padding: 4px;
+    width: fit-content;
+  }
+
+  .gv-htu-tab {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+    background: none;
+    border: none;
+    border-radius: 100px;
+    padding: 8px 20px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .gv-htu-tab--active {
+    background: white;
+    color: var(--berry-dark);
+    font-weight: 600;
+  }
+
+  /* Steps */
+  .gv-htu-steps {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .gv-htu-arrow {
+    font-size: 18px;
+    color: rgba(255,255,255,0.25);
+    flex-shrink: 0;
+  }
+
+  .gv-htu-step {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 20px 18px;
+    min-width: 130px;
+    max-width: 160px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .gv-htu-step--current {
+    background: var(--coral-pulse);
+    border-color: var(--coral-pulse);
+  }
+
+  .gv-htu-step-icon {
+    font-size: 28px;
+    line-height: 1;
+  }
+
+  .gv-htu-step-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.4);
+  }
+  .gv-htu-step--current .gv-htu-step-num {
+    color: rgba(255,255,255,0.7);
+  }
+
+  .gv-htu-step-label {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+  }
+
+  .gv-htu-step-note {
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.4;
+  }
+  .gv-htu-step--current .gv-htu-step-note {
+    color: rgba(255,255,255,0.8);
+  }
+
+  .gv-htu-panel--hidden { display: none; }
+
+  /* Tip box */
+  .gv-htu-tip {
+    margin-top: 32px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.6;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    max-width: 640px;
+  }
+
+  .gv-htu-tip-icon { flex-shrink: 0; }
+
+  @media (max-width: 768px) {
+    .gv-pdp-htu { padding: 60px 0; }
+    .gv-htu-steps { gap: 6px; }
+    .gv-htu-step { min-width: 110px; padding: 16px 14px; }
+    .gv-htu-arrow { font-size: 14px; }
+  }
+  @media (max-width: 480px) {
+    .gv-htu-steps { flex-direction: column; align-items: stretch; }
+    .gv-htu-arrow { transform: rotate(90deg); align-self: center; }
+    .gv-htu-step { max-width: 100%; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP How to Use",
+  "tag": "section",
+  "class": "glowve-pdp-htu-wrapper",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section label", "default": "How to Use" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Your daily routine." },
+    { "type": "textarea", "id": "tip", "label": "Tip / note", "info": "Optional tip shown below steps." }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Routine Step",
+      "settings": [
+        {
+          "type": "select",
+          "id": "routine",
+          "label": "Routine",
+          "options": [
+            { "value": "am", "label": "Morning (AM)" },
+            { "value": "pm", "label": "Evening (PM)" }
+          ],
+          "default": "am"
+        },
+        { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "🧴" },
+        { "type": "text", "id": "label", "label": "Step label", "default": "Cleanser" },
+        { "type": "text", "id": "note", "label": "Step note", "info": "Short note, e.g. 'Gentle, pH-balanced'" },
+        { "type": "checkbox", "id": "is_current", "label": "Highlight as this product", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "PDP How to Use" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,361 @@
+{%- liquid
+  assign first_variant = product.selected_or_first_available_variant
+-%}
+
+<div class="gv-protocol-section" data-protocol-picker>
+
+  {%- if section.settings.label != blank -%}
+    <p class="gv-protocol-label">{{ section.settings.label }}</p>
+  {%- endif -%}
+
+  <div class="gv-protocol-options" role="radiogroup">
+    {%- for variant in product.variants -%}
+      {%- assign block = section.blocks[forloop.index0] -%}
+      {%- assign subtitle    = block.settings.subtitle -%}
+      {%- assign badge_text  = block.settings.badge_text -%}
+      {%- assign badge_color = block.settings.badge_color | default: 'gold' -%}
+      {%- assign free_ship   = block.settings.free_shipping -%}
+      {%- assign is_selected = false -%}
+      {%- if variant.id == first_variant.id -%}{%- assign is_selected = true -%}{%- endif -%}
+
+      <label
+        class="gv-protocol-opt{% if is_selected %} gv-protocol-opt--active{% endif %}{% unless variant.available %} gv-protocol-opt--sold-out{% endunless %}"
+        data-variant-id="{{ variant.id }}"
+        {% if block != blank %}{{ block.shopify_attributes }}{% endif %}
+      >
+        <input
+          type="radio"
+          name="gv-protocol"
+          value="{{ variant.id }}"
+          class="gv-protocol-radio"
+          {% if is_selected %}checked{% endif %}
+          {% unless variant.available %}disabled{% endunless %}
+        >
+
+        <div class="gv-protocol-content">
+          <div class="gv-protocol-left">
+            <div class="gv-protocol-dot">
+              <div class="gv-protocol-dot-inner"></div>
+            </div>
+            <div class="gv-protocol-info">
+              <span class="gv-protocol-title">{{ variant.title }}</span>
+              {%- if free_ship -%}
+                <span class="gv-protocol-sub gv-protocol-sub--ship">Free Shipping Unlocked</span>
+              {%- elsif subtitle != blank -%}
+                <span class="gv-protocol-sub">{{ subtitle }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+
+          <div class="gv-protocol-right">
+            <span class="gv-protocol-price">{{ variant.price | money }}</span>
+            {%- if variant.compare_at_price > variant.price -%}
+              <span class="gv-protocol-compare">{{ variant.compare_at_price | money }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+
+        {%- if badge_text != blank -%}
+          <div class="gv-protocol-badge gv-protocol-badge--{{ badge_color }}">{{ badge_text }}</div>
+        {%- endif -%}
+
+        {%- unless variant.available -%}
+          <div class="gv-protocol-badge gv-protocol-badge--gray">Sold Out</div>
+        {%- endunless -%}
+      </label>
+    {%- endfor -%}
+  </div>
+
+</div>
+
+<script>
+  (function() {
+    function initProtocolPicker() {
+      var picker = document.querySelector('[data-protocol-picker]');
+      if (!picker) return;
+
+      // ── Inject into the right column (after buy buttons) ──
+      var buyButtons = document.querySelector('buy-buttons, [data-type="buy-buttons"]');
+      var productDetails = document.querySelector('._product-details, product-info, .product-details');
+
+      // Try to find a good injection point in the sticky details panel
+      var stickyDetails = document.querySelector('.product-information__details, .sticky-details, [class*="product-details"]');
+
+      // Find variant picker to replace
+      var variantPickerEl = document.querySelector('variant-picker, .variant-picker');
+
+      if (variantPickerEl) {
+        variantPickerEl.parentNode.insertBefore(picker, variantPickerEl);
+        variantPickerEl.style.display = 'none';
+      } else if (buyButtons) {
+        buyButtons.parentNode.insertBefore(picker, buyButtons);
+      }
+
+      // ── Sync with Shopify's native variant selector ──
+      var nativeSelect = document.querySelector('select[name="id"], input[name="id"]');
+
+      picker.querySelectorAll('.gv-protocol-radio').forEach(function(radio) {
+        radio.addEventListener('change', function() {
+          // Update active state
+          picker.querySelectorAll('.gv-protocol-opt').forEach(function(opt) {
+            opt.classList.remove('gv-protocol-opt--active');
+          });
+          this.closest('.gv-protocol-opt').classList.add('gv-protocol-opt--active');
+
+          // Sync native selector
+          if (nativeSelect) {
+            nativeSelect.value = this.value;
+            nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+
+          // Also dispatch input event (some themes listen for this)
+          if (nativeSelect) {
+            nativeSelect.dispatchEvent(new Event('input', { bubbles: true }));
+          }
+        });
+      });
+
+      // Set initial native value
+      var checkedRadio = picker.querySelector('.gv-protocol-radio:checked');
+      if (checkedRadio && nativeSelect) {
+        nativeSelect.value = checkedRadio.value;
+        nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initProtocolPicker);
+    } else {
+      initProtocolPicker();
+    }
+  })();
+</script>
+
+{% stylesheet %}
+  .gv-protocol-section {
+    font-family: var(--font-sans);
+  }
+
+  .gv-protocol-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--mid-gray);
+    margin-bottom: 10px;
+  }
+
+  .gv-protocol-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gv-protocol-opt {
+    position: relative;
+    display: block;
+    border: 1.5px solid var(--warm-gray);
+    border-radius: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    background: white;
+    overflow: hidden;
+  }
+  .gv-protocol-opt:hover {
+    border-color: var(--mango-zest);
+  }
+  .gv-protocol-opt--active {
+    border-color: var(--mango-zest);
+    background: #FFFBF0;
+  }
+  .gv-protocol-opt--sold-out {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .gv-protocol-radio {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .gv-protocol-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .gv-protocol-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  /* Custom radio dot */
+  .gv-protocol-dot {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--warm-gray);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.2s;
+  }
+  .gv-protocol-opt--active .gv-protocol-dot {
+    border-color: var(--mango-zest);
+  }
+  .gv-protocol-dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--mango-zest);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .gv-protocol-opt--active .gv-protocol-dot-inner {
+    opacity: 1;
+  }
+
+  .gv-protocol-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .gv-protocol-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--warm-espresso);
+    line-height: 1.3;
+  }
+
+  .gv-protocol-sub {
+    font-size: 12px;
+    color: var(--mid-gray);
+    line-height: 1.3;
+  }
+  .gv-protocol-sub--ship {
+    color: #2E7D32;
+    font-weight: 500;
+  }
+
+  .gv-protocol-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+    flex-shrink: 0;
+  }
+
+  .gv-protocol-price {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--warm-espresso);
+  }
+
+  .gv-protocol-compare {
+    font-size: 12px;
+    color: var(--mid-gray);
+    text-decoration: line-through;
+  }
+
+  /* Badge */
+  .gv-protocol-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 0 10px 0 10px;
+    line-height: 1;
+  }
+  .gv-protocol-badge--gold {
+    background: var(--mango-zest);
+    color: white;
+  }
+  .gv-protocol-badge--coral {
+    background: var(--coral-pulse);
+    color: white;
+  }
+  .gv-protocol-badge--green {
+    background: #2E7D32;
+    color: white;
+  }
+  .gv-protocol-badge--gray {
+    background: var(--mid-gray);
+    color: white;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Protocol Picker",
+  "tag": "div",
+  "class": "glowve-protocol-picker-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Select Your Protocol"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "variant_option",
+      "name": "Variant Option",
+      "settings": [
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtitle",
+          "info": "Shown below the variant title. E.g. 'Try it out.' or 'Never run out.'"
+        },
+        {
+          "type": "checkbox",
+          "id": "free_shipping",
+          "label": "Show 'Free Shipping Unlocked'",
+          "default": false
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge text",
+          "info": "E.g. 'Most Popular (Save 15%)'. Leave blank for no badge."
+        },
+        {
+          "type": "select",
+          "id": "badge_color",
+          "label": "Badge colour",
+          "options": [
+            { "value": "gold",  "label": "Gold" },
+            { "value": "coral", "label": "Coral" },
+            { "value": "green", "label": "Green" },
+            { "value": "gray",  "label": "Gray" }
+          ],
+          "default": "gold"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Protocol Picker",
+      "blocks": [
+        { "type": "variant_option", "settings": { "subtitle": "Try it out.", "free_shipping": false, "badge_text": "" } },
+        { "type": "variant_option", "settings": { "subtitle": "2 Month Supply", "free_shipping": true, "badge_text": "Most Popular (Save 15%)", "badge_color": "gold" } },
+        { "type": "variant_option", "settings": { "subtitle": "Never run out.", "free_shipping": true, "badge_text": "Best Value (Save 20%)", "badge_color": "coral" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

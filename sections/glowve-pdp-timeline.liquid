@@ -1,0 +1,155 @@
+<section class="gv-pdp-timeline">
+  <div class="gv-pdp-inner">
+
+    <div class="gv-pdp-section-head">
+      {%- if section.settings.label != blank -%}
+        <div class="gv-section-label">{{ section.settings.label }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="gv-pdp-section-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="gv-timeline-track">
+        <div class="gv-timeline-line" aria-hidden="true"></div>
+        {%- for block in section.blocks -%}
+          <div class="gv-timeline-card" {{ block.shopify_attributes }}>
+            <div class="gv-timeline-dot"></div>
+            <div class="gv-timeline-period">{{ block.settings.period }}</div>
+            <div class="gv-timeline-title">{{ block.settings.title }}</div>
+            <div class="gv-timeline-body">{{ block.settings.body }}</div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.note != blank -%}
+      <p class="gv-timeline-note">{{ section.settings.note }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-pdp-timeline {
+    background: var(--off-white);
+    padding: 80px 0;
+  }
+
+  .gv-timeline-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .gv-timeline-line {
+    position: absolute;
+    top: 18px;
+    left: calc(12.5% - 1px);
+    right: calc(12.5% - 1px);
+    height: 2px;
+    background: linear-gradient(90deg, var(--coral-pulse), var(--mango-zest));
+    z-index: 0;
+  }
+
+  .gv-timeline-card {
+    position: relative;
+    z-index: 1;
+    background: white;
+    border: 1px solid var(--warm-gray);
+    border-radius: 16px;
+    padding: 48px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .gv-timeline-dot {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--coral-pulse);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--coral-pulse);
+  }
+
+  .gv-timeline-period {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--coral-pulse);
+    text-transform: uppercase;
+  }
+
+  .gv-timeline-title {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--berry-dark);
+    line-height: 1.3;
+  }
+
+  .gv-timeline-body {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    line-height: 1.6;
+  }
+
+  .gv-timeline-note {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-top: 24px;
+    padding: 14px 18px;
+    background: white;
+    border: 1px solid var(--warm-gray);
+    border-radius: 10px;
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  @media (max-width: 900px) {
+    .gv-timeline-track { grid-template-columns: repeat(2, 1fr); }
+    .gv-timeline-line { display: none; }
+    .gv-timeline-dot { display: none; }
+    .gv-timeline-card { padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    .gv-timeline-track { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Timeline",
+  "tag": "section",
+  "class": "glowve-pdp-timeline-wrapper",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section label", "default": "What to Expect" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Results over time." },
+    { "type": "textarea", "id": "note", "label": "Footer note", "info": "Optional note shown below the timeline." }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Timeline Milestone",
+      "limit": 4,
+      "settings": [
+        { "type": "text", "id": "period", "label": "Time period", "default": "Week 1–2" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Smoother texture" },
+        { "type": "textarea", "id": "body", "label": "Description", "default": "Skin feels more hydrated. Surface texture starts to even out." }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "PDP Timeline" }
+  ]
+}
+{% endschema %}

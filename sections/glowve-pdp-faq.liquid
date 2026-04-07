@@ -1,0 +1,140 @@
+<section class="gv-pdp-faq">
+  <div class="gv-pdp-inner gv-pdp-faq-inner">
+
+    <div class="gv-pdp-section-head">
+      {%- if section.settings.label != blank -%}
+        <div class="gv-section-label">{{ section.settings.label }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="gv-pdp-section-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="gv-faq-list">
+        {%- for block in section.blocks -%}
+          <div class="gv-faq-item" {{ block.shopify_attributes }}>
+            <button
+              class="gv-faq-q"
+              aria-expanded="false"
+              onclick="var item=this.closest('.gv-faq-item'); var open=this.getAttribute('aria-expanded')==='true'; item.classList.toggle('open',!open); this.setAttribute('aria-expanded',String(!open));"
+            >
+              <span>{{ block.settings.question }}</span>
+              <svg class="gv-faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="gv-faq-a" hidden>
+              <div class="gv-faq-a-inner">{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  // Progressive enhancement — remove hidden and use CSS height animation
+  (function () {
+    document.querySelectorAll('.gv-faq-a').forEach(function (el) {
+      el.removeAttribute('hidden');
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .gv-pdp-faq {
+    background: white;
+    padding: 80px 0;
+  }
+
+  .gv-pdp-faq-inner {
+    max-width: 760px;
+  }
+
+  .gv-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid var(--warm-gray);
+  }
+
+  .gv-faq-item {
+    border-bottom: 1px solid var(--warm-gray);
+  }
+
+  .gv-faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--berry-dark);
+    text-align: left;
+    line-height: 1.4;
+    transition: color 0.2s;
+  }
+  .gv-faq-q:hover { color: var(--coral-pulse); }
+  .gv-faq-item.open .gv-faq-q { color: var(--coral-pulse); }
+
+  .gv-faq-icon {
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+  .gv-faq-item.open .gv-faq-icon { transform: rotate(180deg); }
+
+  .gv-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .gv-faq-item.open .gv-faq-a {
+    max-height: 600px;
+  }
+
+  .gv-faq-a-inner {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--mid-gray);
+    line-height: 1.75;
+    padding-bottom: 20px;
+  }
+  .gv-faq-a-inner strong { color: var(--warm-espresso); }
+  .gv-faq-a-inner a { color: var(--coral-pulse); text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    .gv-pdp-faq { padding: 60px 0; }
+    .gv-faq-q { font-size: 14px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP FAQ",
+  "tag": "section",
+  "class": "glowve-pdp-faq-wrapper",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section label", "default": "FAQ" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Questions answered." }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Can I use this with retinol?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes — but introduce them on alternate nights until your skin adjusts.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "PDP FAQ" }
+  ]
+}
+{% endschema %}
