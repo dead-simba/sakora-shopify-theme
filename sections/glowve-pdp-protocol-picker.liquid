@@ -1,133 +1,181 @@
 {%- liquid
-  assign first_variant = product.selected_or_first_available_variant
+  assign opt2_prod = all_products[section.settings.opt2_product]
+  assign opt3_prod = all_products[section.settings.opt3_product]
 -%}
 
 <div class="gv-protocol-section" data-protocol-picker>
 
-  {%- if section.settings.label != blank -%}
-    <p class="gv-protocol-label">{{ section.settings.label }}</p>
+  {%- if section.settings.title != blank -%}
+    <p class="gv-protocol-label">{{ section.settings.title }}</p>
   {%- endif -%}
 
-  <div class="gv-protocol-options" role="radiogroup">
-    {%- for variant in product.variants -%}
-      {%- assign block = section.blocks[forloop.index0] -%}
-      {%- assign subtitle    = block.settings.subtitle -%}
-      {%- assign badge_text  = block.settings.badge_text -%}
-      {%- assign badge_color = block.settings.badge_color | default: 'gold' -%}
-      {%- assign free_ship   = block.settings.free_shipping -%}
-      {%- assign is_selected = false -%}
-      {%- if variant.id == first_variant.id -%}{%- assign is_selected = true -%}{%- endif -%}
+  <div class="gv-protocol-options" role="radiogroup" aria-label="{{ section.settings.title }}">
 
-      <label
-        class="gv-protocol-opt{% if is_selected %} gv-protocol-opt--active{% endif %}{% unless variant.available %} gv-protocol-opt--sold-out{% endunless %}"
-        data-variant-id="{{ variant.id }}"
-        {% if block != blank %}{{ block.shopify_attributes }}{% endif %}
+    {%- comment -%} Option 1 — always the current product {%- endcomment -%}
+    <label class="gv-protocol-opt gv-protocol-opt--active"
+      data-variant-id="{{ product.first_available_variant.id }}"
+    >
+      <input
+        type="radio"
+        name="gv-protocol"
+        class="gv-protocol-radio"
+        value="{{ product.first_available_variant.id }}"
+        checked
+      >
+      <div class="gv-protocol-content">
+        <div class="gv-protocol-left">
+          <div class="gv-protocol-dot"><div class="gv-protocol-dot-inner"></div></div>
+          <div class="gv-protocol-info">
+            <span class="gv-protocol-title">{{ section.settings.opt1_title }}</span>
+            {%- if section.settings.opt1_subtitle != blank -%}
+              <span class="gv-protocol-sub">{{ section.settings.opt1_subtitle }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+        <div class="gv-protocol-right">
+          <span class="gv-protocol-price">{{ product.price | money }}</span>
+          {%- if product.compare_at_price > product.price -%}
+            <span class="gv-protocol-compare">{{ product.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if section.settings.opt1_badge != blank -%}
+        <div class="gv-protocol-badge gv-protocol-badge--{{ section.settings.opt1_badge_color }}">
+          {{ section.settings.opt1_badge }}
+        </div>
+      {%- endif -%}
+    </label>
+
+    {%- comment -%} Option 2 — bundle product {%- endcomment -%}
+    {%- if opt2_prod != empty -%}
+      {%- assign opt2_variant = opt2_prod.first_available_variant -%}
+      <label class="gv-protocol-opt"
+        data-variant-id="{{ opt2_variant.id }}"
       >
         <input
           type="radio"
           name="gv-protocol"
-          value="{{ variant.id }}"
           class="gv-protocol-radio"
-          {% if is_selected %}checked{% endif %}
-          {% unless variant.available %}disabled{% endunless %}
+          value="{{ opt2_variant.id }}"
+          {%- unless opt2_variant.available %} disabled{%- endunless -%}
         >
-
         <div class="gv-protocol-content">
           <div class="gv-protocol-left">
-            <div class="gv-protocol-dot">
-              <div class="gv-protocol-dot-inner"></div>
-            </div>
+            <div class="gv-protocol-dot"><div class="gv-protocol-dot-inner"></div></div>
             <div class="gv-protocol-info">
-              <span class="gv-protocol-title">{{ variant.title }}</span>
-              {%- if free_ship -%}
+              <span class="gv-protocol-title">{{ section.settings.opt2_title }}</span>
+              {%- if section.settings.opt2_free_shipping -%}
                 <span class="gv-protocol-sub gv-protocol-sub--ship">Free Shipping Unlocked</span>
-              {%- elsif subtitle != blank -%}
-                <span class="gv-protocol-sub">{{ subtitle }}</span>
+              {%- elsif section.settings.opt2_subtitle != blank -%}
+                <span class="gv-protocol-sub">{{ section.settings.opt2_subtitle }}</span>
               {%- endif -%}
             </div>
           </div>
-
           <div class="gv-protocol-right">
-            <span class="gv-protocol-price">{{ variant.price | money }}</span>
-            {%- if variant.compare_at_price > variant.price -%}
-              <span class="gv-protocol-compare">{{ variant.compare_at_price | money }}</span>
+            <span class="gv-protocol-price">{{ opt2_prod.price | money }}</span>
+            {%- if opt2_prod.compare_at_price > opt2_prod.price -%}
+              <span class="gv-protocol-compare">{{ opt2_prod.compare_at_price | money }}</span>
             {%- endif -%}
           </div>
         </div>
-
-        {%- if badge_text != blank -%}
-          <div class="gv-protocol-badge gv-protocol-badge--{{ badge_color }}">{{ badge_text }}</div>
+        {%- if section.settings.opt2_badge != blank -%}
+          <div class="gv-protocol-badge gv-protocol-badge--{{ section.settings.opt2_badge_color | default: 'gold' }}">
+            {{ section.settings.opt2_badge }}
+          </div>
         {%- endif -%}
-
-        {%- unless variant.available -%}
-          <div class="gv-protocol-badge gv-protocol-badge--gray">Sold Out</div>
-        {%- endunless -%}
       </label>
-    {%- endfor -%}
-  </div>
+    {%- endif -%}
 
+    {%- comment -%} Option 3 — bundle product {%- endcomment -%}
+    {%- if opt3_prod != empty -%}
+      {%- assign opt3_variant = opt3_prod.first_available_variant -%}
+      <label class="gv-protocol-opt"
+        data-variant-id="{{ opt3_variant.id }}"
+      >
+        <input
+          type="radio"
+          name="gv-protocol"
+          class="gv-protocol-radio"
+          value="{{ opt3_variant.id }}"
+          {%- unless opt3_variant.available %} disabled{%- endunless -%}
+        >
+        <div class="gv-protocol-content">
+          <div class="gv-protocol-left">
+            <div class="gv-protocol-dot"><div class="gv-protocol-dot-inner"></div></div>
+            <div class="gv-protocol-info">
+              <span class="gv-protocol-title">{{ section.settings.opt3_title }}</span>
+              {%- if section.settings.opt3_free_shipping -%}
+                <span class="gv-protocol-sub gv-protocol-sub--ship">Free Shipping Unlocked</span>
+              {%- elsif section.settings.opt3_subtitle != blank -%}
+                <span class="gv-protocol-sub">{{ section.settings.opt3_subtitle }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="gv-protocol-right">
+            <span class="gv-protocol-price">{{ opt3_prod.price | money }}</span>
+            {%- if opt3_prod.compare_at_price > opt3_prod.price -%}
+              <span class="gv-protocol-compare">{{ opt3_prod.compare_at_price | money }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- if section.settings.opt3_badge != blank -%}
+          <div class="gv-protocol-badge gv-protocol-badge--{{ section.settings.opt3_badge_color | default: 'coral' }}">
+            {{ section.settings.opt3_badge }}
+          </div>
+        {%- endif -%}
+      </label>
+    {%- endif -%}
+
+  </div>
 </div>
 
 <script>
-  (function() {
+  (function () {
     function initProtocolPicker() {
       var picker = document.querySelector('[data-protocol-picker]');
       if (!picker) return;
 
-      // ── Inject into the right column (after buy buttons) ──
-      var buyButtons = document.querySelector('buy-buttons, [data-type="buy-buttons"]');
-      var productDetails = document.querySelector('._product-details, product-info, .product-details');
-
-      // Try to find a good injection point in the sticky details panel
-      var stickyDetails = document.querySelector('.product-information__details, .sticky-details, [class*="product-details"]');
-
-      // Find variant picker to replace
-      var variantPickerEl = document.querySelector('variant-picker, .variant-picker');
-
-      if (variantPickerEl) {
-        variantPickerEl.parentNode.insertBefore(picker, variantPickerEl);
-        variantPickerEl.style.display = 'none';
-      } else if (buyButtons) {
+      // Move picker into the product details column, before buy buttons
+      var buyButtons = document.querySelector('buy-buttons');
+      if (buyButtons) {
         buyButtons.parentNode.insertBefore(picker, buyButtons);
       }
 
-      // ── Sync with Shopify's native variant selector ──
-      var nativeSelect = document.querySelector('select[name="id"], input[name="id"]');
+      // Hide native variant picker — protocol picker replaces it
+      var nativePicker = document.querySelector('variant-picker');
+      if (nativePicker) nativePicker.style.display = 'none';
 
-      picker.querySelectorAll('.gv-protocol-radio').forEach(function(radio) {
-        radio.addEventListener('change', function() {
+      // The native hidden input that holds the variant ID for the form
+      var nativeInput = document.querySelector('input[name="id"], select[name="id"]');
+
+      // Set initial value
+      var checkedRadio = picker.querySelector('.gv-protocol-radio:checked');
+      if (checkedRadio && nativeInput) {
+        nativeInput.value = checkedRadio.value;
+      }
+
+      // Listen for selection changes
+      picker.querySelectorAll('.gv-protocol-radio').forEach(function (radio) {
+        radio.addEventListener('change', function () {
           // Update active state
-          picker.querySelectorAll('.gv-protocol-opt').forEach(function(opt) {
+          picker.querySelectorAll('.gv-protocol-opt').forEach(function (opt) {
             opt.classList.remove('gv-protocol-opt--active');
           });
           this.closest('.gv-protocol-opt').classList.add('gv-protocol-opt--active');
 
-          // Sync native selector
-          if (nativeSelect) {
-            nativeSelect.value = this.value;
-            nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
-          }
-
-          // Also dispatch input event (some themes listen for this)
-          if (nativeSelect) {
-            nativeSelect.dispatchEvent(new Event('input', { bubbles: true }));
+          // Swap variant ID in the product form — cart doesn't care which
+          // product the variant belongs to, only the variant ID matters
+          if (nativeInput) {
+            nativeInput.value = this.value;
+            nativeInput.dispatchEvent(new Event('change', { bubbles: true }));
           }
         });
       });
-
-      // Set initial native value
-      var checkedRadio = picker.querySelector('.gv-protocol-radio:checked');
-      if (checkedRadio && nativeSelect) {
-        nativeSelect.value = checkedRadio.value;
-        nativeSelect.dispatchEvent(new Event('change', { bubbles: true }));
-      }
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initProtocolPicker);
-    } else {
-      initProtocolPicker();
-    }
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', initProtocolPicker)
+      : initProtocolPicker();
   })();
 </script>
 
@@ -162,16 +210,10 @@
     background: white;
     overflow: hidden;
   }
-  .gv-protocol-opt:hover {
-    border-color: var(--mango-zest);
-  }
+  .gv-protocol-opt:hover { border-color: var(--mango-zest); }
   .gv-protocol-opt--active {
     border-color: var(--mango-zest);
     background: #FFFBF0;
-  }
-  .gv-protocol-opt--sold-out {
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 
   .gv-protocol-radio {
@@ -195,7 +237,6 @@
     min-width: 0;
   }
 
-  /* Custom radio dot */
   .gv-protocol-dot {
     width: 18px;
     height: 18px;
@@ -207,9 +248,8 @@
     justify-content: center;
     transition: border-color 0.2s;
   }
-  .gv-protocol-opt--active .gv-protocol-dot {
-    border-color: var(--mango-zest);
-  }
+  .gv-protocol-opt--active .gv-protocol-dot { border-color: var(--mango-zest); }
+
   .gv-protocol-dot-inner {
     width: 8px;
     height: 8px;
@@ -218,9 +258,7 @@
     opacity: 0;
     transition: opacity 0.2s;
   }
-  .gv-protocol-opt--active .gv-protocol-dot-inner {
-    opacity: 1;
-  }
+  .gv-protocol-opt--active .gv-protocol-dot-inner { opacity: 1; }
 
   .gv-protocol-info {
     display: flex;
@@ -238,7 +276,6 @@
   .gv-protocol-sub {
     font-size: 12px;
     color: var(--mid-gray);
-    line-height: 1.3;
   }
   .gv-protocol-sub--ship {
     color: #2E7D32;
@@ -265,7 +302,6 @@
     text-decoration: line-through;
   }
 
-  /* Badge */
   .gv-protocol-badge {
     position: absolute;
     top: 0;
@@ -278,22 +314,9 @@
     border-radius: 0 10px 0 10px;
     line-height: 1;
   }
-  .gv-protocol-badge--gold {
-    background: var(--mango-zest);
-    color: white;
-  }
-  .gv-protocol-badge--coral {
-    background: var(--coral-pulse);
-    color: white;
-  }
-  .gv-protocol-badge--green {
-    background: #2E7D32;
-    color: white;
-  }
-  .gv-protocol-badge--gray {
-    background: var(--mid-gray);
-    color: white;
-  }
+  .gv-protocol-badge--gold   { background: var(--mango-zest); color: white; }
+  .gv-protocol-badge--coral  { background: var(--coral-pulse); color: white; }
+  .gv-protocol-badge--green  { background: #2E7D32; color: white; }
 {% endstylesheet %}
 
 {% schema %}
@@ -304,58 +327,71 @@
   "settings": [
     {
       "type": "text",
-      "id": "label",
-      "label": "Section label",
+      "id": "title",
+      "label": "Label",
       "default": "Select Your Protocol"
-    }
-  ],
-  "blocks": [
+    },
     {
-      "type": "variant_option",
-      "name": "Variant Option",
-      "settings": [
-        {
-          "type": "text",
-          "id": "subtitle",
-          "label": "Subtitle",
-          "info": "Shown below the variant title. E.g. 'Try it out.' or 'Never run out.'"
-        },
-        {
-          "type": "checkbox",
-          "id": "free_shipping",
-          "label": "Show 'Free Shipping Unlocked'",
-          "default": false
-        },
-        {
-          "type": "text",
-          "id": "badge_text",
-          "label": "Badge text",
-          "info": "E.g. 'Most Popular (Save 15%)'. Leave blank for no badge."
-        },
-        {
-          "type": "select",
-          "id": "badge_color",
-          "label": "Badge colour",
-          "options": [
-            { "value": "gold",  "label": "Gold" },
-            { "value": "coral", "label": "Coral" },
-            { "value": "green", "label": "Green" },
-            { "value": "gray",  "label": "Gray" }
-          ],
-          "default": "gold"
-        }
-      ]
+      "type": "header",
+      "content": "Option 1 — Single (current product)"
+    },
+    { "type": "text", "id": "opt1_title", "label": "Title", "default": "1 Bottle" },
+    { "type": "text", "id": "opt1_subtitle", "label": "Subtitle", "default": "Try it out." },
+    { "type": "text", "id": "opt1_badge", "label": "Badge text", "info": "Leave blank for no badge." },
+    {
+      "type": "select",
+      "id": "opt1_badge_color",
+      "label": "Badge colour",
+      "options": [
+        { "value": "gold", "label": "Gold" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "gold"
+    },
+    {
+      "type": "header",
+      "content": "Option 2 — 2-bottle bundle"
+    },
+    { "type": "product", "id": "opt2_product", "label": "Bundle product", "info": "Select the 2-bottle bundle product created via your Bundle app." },
+    { "type": "text", "id": "opt2_title", "label": "Title", "default": "2 Bottles (2 Month Supply)" },
+    { "type": "text", "id": "opt2_subtitle", "label": "Subtitle", "info": "Ignored if 'Free Shipping' is checked." },
+    { "type": "checkbox", "id": "opt2_free_shipping", "label": "Show 'Free Shipping Unlocked'", "default": true },
+    { "type": "text", "id": "opt2_badge", "label": "Badge text", "default": "Most Popular (Save 15%)" },
+    {
+      "type": "select",
+      "id": "opt2_badge_color",
+      "label": "Badge colour",
+      "options": [
+        { "value": "gold", "label": "Gold" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "gold"
+    },
+    {
+      "type": "header",
+      "content": "Option 3 — 3-bottle bundle"
+    },
+    { "type": "product", "id": "opt3_product", "label": "Bundle product", "info": "Select the 3-bottle bundle product created via your Bundle app." },
+    { "type": "text", "id": "opt3_title", "label": "Title", "default": "3 Bottles (Save 20%)" },
+    { "type": "text", "id": "opt3_subtitle", "label": "Subtitle", "default": "Never run out." },
+    { "type": "checkbox", "id": "opt3_free_shipping", "label": "Show 'Free Shipping Unlocked'", "default": true },
+    { "type": "text", "id": "opt3_badge", "label": "Badge text", "default": "Best Value (Save 20%)" },
+    {
+      "type": "select",
+      "id": "opt3_badge_color",
+      "label": "Badge colour",
+      "options": [
+        { "value": "gold", "label": "Gold" },
+        { "value": "coral", "label": "Coral" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "coral"
     }
   ],
   "presets": [
-    {
-      "name": "Protocol Picker",
-      "blocks": [
-        { "type": "variant_option", "settings": { "subtitle": "Try it out.", "free_shipping": false, "badge_text": "" } },
-        { "type": "variant_option", "settings": { "subtitle": "2 Month Supply", "free_shipping": true, "badge_text": "Most Popular (Save 15%)", "badge_color": "gold" } },
-        { "type": "variant_option", "settings": { "subtitle": "Never run out.", "free_shipping": true, "badge_text": "Best Value (Save 20%)", "badge_color": "coral" } }
-      ]
-    }
+    { "name": "Protocol Picker" }
   ]
 }
 {% endschema %}

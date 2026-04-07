@@ -1,0 +1,640 @@
+{
+  "name": "Soft Reset — Moisturiser",
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": true,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+            "thumbnail_position": "right",
+            "thumbnail_width": 44,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "product-details": {
+          "type": "_product-details",
+          "static": true,
+          "settings": {
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 20,
+            "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 24,
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "group_header": {
+              "type": "group",
+              "name": "Header",
+              "settings": {
+                "content_direction": "column",
+                "vertical_on_mobile": true,
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "gap": 8,
+                "width": "fill",
+                "height": "fit",
+                "inherit_color_scheme": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "text_title": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<h1>{{ closest.product.title }}</h1>",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "color": "var(--color-foreground)",
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                },
+                "price_main": {
+                  "type": "price",
+                  "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
+                    "type_preset": "paragraph",
+                    "padding-block-start": 4,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
+                }
+              },
+              "block_order": ["text_title", "price_main"]
+            },
+            "divider_main": {
+              "type": "_divider",
+              "name": "Divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "variant_picker_main": {
+              "type": "variant-picker",
+              "settings": {
+                "variant_style": "buttons",
+                "show_swatches": false,
+                "alignment": "left",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "buy_buttons_main": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": { "style_class": "button" },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
+            "text_description": {
+              "type": "text",
+              "name": "Product description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "type_preset": "rte",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "group_header",
+            "divider_main",
+            "variant_picker_main",
+            "buy_buttons_main",
+            "text_description"
+          ]
+        }
+      },
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": false,
+        "limit_details_width": false,
+        "gap": 48,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "pdp_protocol": {
+      "type": "glowve-pdp-protocol-picker",
+      "settings": {
+        "title": "Select Your Protocol",
+        "opt1_title": "1 Bottle",
+        "opt1_subtitle": "Try it out.",
+        "opt1_badge": "",
+        "opt1_badge_color": "gold",
+        "opt2_product": "",
+        "opt2_title": "2 Bottles (2 Month Supply)",
+        "opt2_subtitle": "",
+        "opt2_free_shipping": true,
+        "opt2_badge": "Most Popular (Save 15%)",
+        "opt2_badge_color": "gold",
+        "opt3_product": "",
+        "opt3_title": "3 Bottles (3 Month Supply)",
+        "opt3_subtitle": "",
+        "opt3_free_shipping": true,
+        "opt3_badge": "Best Value (Save 20%)",
+        "opt3_badge_color": "coral"
+      },
+      "blocks": {},
+      "block_order": []
+    },
+    "pdp_scripts": {
+      "type": "glowve-pdp-scripts",
+      "settings": {
+        "threshold": 2500
+      }
+    },
+    "pdp_science": {
+      "type": "glowve-pdp-science",
+      "settings": {
+        "label": "The Science",
+        "title": "How your barrier breaks. How we fix it.",
+        "subtitle": "Most moisturisers sit on top. Soft Reset rebuilds from within."
+      },
+      "blocks": {
+        "sci_pathways": {
+          "type": "pathway_card",
+          "settings": {
+            "card_1_title": "Ceramide Depletion",
+            "card_1_body": "Daily stressors — sun, pollution, harsh cleansers — strip the ceramides that hold your barrier together.",
+            "card_1_ingredient": "Triple Ceramides",
+            "card_2_title": "Water Loss Spirals",
+            "card_2_body": "A compromised barrier lets water evaporate faster than it can be replaced. Skin feels tight and looks dull.",
+            "card_2_ingredient": "Sodium Hyaluronate",
+            "card_3_title": "Inflammation Builds",
+            "card_3_body": "Low-grade inflammation from barrier damage speeds up ageing and makes skin reactive to products it once tolerated.",
+            "card_3_ingredient": "Niacinamide 5%",
+            "card_4_title": "Peptide Signalling",
+            "card_4_body": "Matrixyl 3000 signals skin to produce more collagen and elastin — structural proteins that firm and plump from within.",
+            "card_4_ingredient": "Matrixyl 3000",
+            "card_5_title": "Seal Without Clogging",
+            "card_5_body": "Olivem 1000 mimics skin's own lipid structure, locking in moisture without occluding pores or sitting greasy.",
+            "card_5_ingredient": "Olivem 1000"
+          }
+        },
+        "sci_stat": {
+          "type": "stat",
+          "settings": {
+            "number": "45%",
+            "label": "reduction in wrinkle area in 8 weeks, in a double-blind clinical study.",
+            "source": "Sederma Clinical Study on Matrixyl 3000, 2009"
+          }
+        }
+      },
+      "block_order": ["sci_pathways", "sci_stat"]
+    },
+    "pdp_ingredients": {
+      "type": "glowve-pdp-ingredients",
+      "settings": {
+        "label": "What's Inside",
+        "title": "Every ingredient. Every reason.",
+        "subtitle": "No fillers. No proprietary blends.",
+        "inci_title": "Full Ingredient List",
+        "inci_full": "Aqua (Water), Cetearyl Olivate, Sorbitan Olivate, <span class='active-ing'>Ceramide NP</span>, <span class='active-ing'>Ceramide AP</span>, <span class='active-ing'>Ceramide EOP</span>, Phytosphingosine, Cholesterol, <span class='active-ing'>Palmitoyl Tripeptide-1</span>, <span class='active-ing'>Palmitoyl Tetrapeptide-7</span>, <span class='active-ing'>Niacinamide</span>, <span class='active-ing'>Sodium Hyaluronate</span>, Glycerin, Pentylene Glycol, Sodium PCA, Carbomer, Sodium Hydroxide, <span class='active-ing'>Tocopherol</span>, Ethylhexylglycerin, Phenoxyethanol."
+      },
+      "blocks": {
+        "ing_ceramides": {
+          "type": "ingredient",
+          "settings": {
+            "badge": "Barrier",
+            "name": "Triple Ceramides",
+            "benefit": "Rebuilds the lipid matrix that holds skin cells together and seals in moisture."
+          }
+        },
+        "ing_matrixyl": {
+          "type": "ingredient",
+          "settings": {
+            "badge": "Anti-Aging",
+            "name": "Matrixyl 3000",
+            "benefit": "Clinically proven to reduce wrinkle area by 45% in 8 weeks via collagen signalling."
+          }
+        },
+        "ing_niacinamide": {
+          "type": "ingredient",
+          "settings": {
+            "badge": "Multi-Tasker",
+            "name": "Niacinamide 5%",
+            "benefit": "Minimises pores, calms redness, evens skin tone, and reduces sebum production."
+          }
+        },
+        "ing_olivem": {
+          "type": "ingredient",
+          "settings": {
+            "badge": "Base",
+            "name": "Olivem 1000",
+            "benefit": "Skin-identical emulsifier that carries actives deep without clogging pores or sitting greasy."
+          }
+        },
+        "ing_ha": {
+          "type": "ingredient",
+          "settings": {
+            "badge": "Hydration",
+            "name": "Sodium Hyaluronate",
+            "benefit": "Low-molecular HA that penetrates deeper layers and holds 1000× its weight in water."
+          }
+        },
+        "ing_vite": {
+          "type": "ingredient",
+          "settings": {
+            "badge": "Antioxidant",
+            "name": "Tocopherol (Vit E)",
+            "benefit": "Neutralises free radicals and extends the efficacy of ceramides and peptides."
+          }
+        }
+      },
+      "block_order": [
+        "ing_ceramides",
+        "ing_matrixyl",
+        "ing_niacinamide",
+        "ing_olivem",
+        "ing_ha",
+        "ing_vite"
+      ]
+    },
+    "pdp_how_to_use": {
+      "type": "glowve-pdp-how-to-use",
+      "settings": {
+        "label": "How to Use",
+        "title": "Your barrier repair routine.",
+        "tip": "In dry weather, layer Soft Reset under Daylite for all-day protection. Your barrier loses more moisture in cold, dry conditions — use a slightly more generous amount at night."
+      },
+      "blocks": {
+        "am_1_cleanser": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "icon": "🧼",
+            "label": "Cleanser",
+            "note": "Gentle, pH-balanced",
+            "is_current": false
+          }
+        },
+        "am_2_toner": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "icon": "💧",
+            "label": "Toner or Essence",
+            "note": "Optional",
+            "is_current": false
+          }
+        },
+        "am_3_serum": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "icon": "✨",
+            "label": "Fade Theory Serum",
+            "note": "Wait 60s to absorb",
+            "is_current": false
+          }
+        },
+        "am_4_moisturiser": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "icon": "🧴",
+            "label": "Soft Reset",
+            "note": "Pea-sized amount, press in",
+            "is_current": true
+          }
+        },
+        "am_5_spf": {
+          "type": "step",
+          "settings": {
+            "routine": "am",
+            "icon": "☀️",
+            "label": "Daylite SPF",
+            "note": "Last step, always",
+            "is_current": false
+          }
+        },
+        "pm_1_cleanse": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "icon": "🧼",
+            "label": "Double Cleanse",
+            "note": "Oil cleanser first, then gel",
+            "is_current": false
+          }
+        },
+        "pm_2_active": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "icon": "💊",
+            "label": "Active Treatment",
+            "note": "Retinol, AHA, or acid",
+            "is_current": false
+          }
+        },
+        "pm_3_moisturiser": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "icon": "🧴",
+            "label": "Soft Reset",
+            "note": "Use generously at night",
+            "is_current": true
+          }
+        },
+        "pm_4_oil": {
+          "type": "step",
+          "settings": {
+            "routine": "pm",
+            "icon": "💆",
+            "label": "Face Oil",
+            "note": "Optional — seals in moisture",
+            "is_current": false
+          }
+        }
+      },
+      "block_order": [
+        "am_1_cleanser",
+        "am_2_toner",
+        "am_3_serum",
+        "am_4_moisturiser",
+        "am_5_spf",
+        "pm_1_cleanse",
+        "pm_2_active",
+        "pm_3_moisturiser",
+        "pm_4_oil"
+      ]
+    },
+    "pdp_timeline": {
+      "type": "glowve-pdp-timeline",
+      "settings": {
+        "label": "What to Expect",
+        "title": "Results over time.",
+        "note": "Individual results vary. Consistent daily use for 8–12 weeks gives the most reliable outcome. A compromised barrier took time to break down — give it time to rebuild."
+      },
+      "blocks": {
+        "tl_1": {
+          "type": "milestone",
+          "settings": {
+            "period": "Day 1–3",
+            "title": "Immediate comfort",
+            "body": "Skin feels less tight and more supple on first application. Redness and reactivity begin to settle."
+          }
+        },
+        "tl_2": {
+          "type": "milestone",
+          "settings": {
+            "period": "Week 1–2",
+            "title": "Hydration holds",
+            "body": "Moisture levels stabilise between washes. You stop reaching for multiple products throughout the day."
+          }
+        },
+        "tl_3": {
+          "type": "milestone",
+          "settings": {
+            "period": "Week 4–8",
+            "title": "Barrier independence",
+            "body": "Skin becomes less reactive to weather, diet, and product changes. The barrier is actively rebuilding."
+          }
+        },
+        "tl_4": {
+          "type": "milestone",
+          "settings": {
+            "period": "Week 8–12",
+            "title": "Structural change",
+            "body": "Fine lines soften. Pores look smaller. Skin texture evens out as peptide signals compound over time."
+          }
+        }
+      },
+      "block_order": ["tl_1", "tl_2", "tl_3", "tl_4"]
+    },
+    "pdp_faq": {
+      "type": "glowve-pdp-faq",
+      "settings": {
+        "label": "FAQ",
+        "title": "Questions answered."
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "item",
+          "settings": {
+            "question": "What is barrier damage — and do I have it?",
+            "answer": "<p>Your skin barrier is a protective layer of ceramides and lipids that keeps moisture in and irritants out. When it's damaged, skin feels tight after washing, looks dull, and becomes reactive to products it previously tolerated. <strong>Common triggers</strong>: over-cleansing, harsh actives, prolonged sun exposure, pollution, and dry weather.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "item",
+          "settings": {
+            "question": "Can I use Soft Reset with retinol or acids?",
+            "answer": "<p>Yes — Soft Reset was formulated with this in mind. Apply your active (retinol, AHA, BHA) first, wait 60 seconds for it to absorb, then layer Soft Reset on top. It won't dilute your actives; it helps your skin tolerate them better and reduces the irritation that causes people to quit actives prematurely.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "item",
+          "settings": {
+            "question": "Is Soft Reset suitable for oily or acne-prone skin?",
+            "answer": "<p>Yes. Olivem 1000 is non-comedogenic and Niacinamide 5% actively reduces oiliness and visible pore size. <strong>Oily skin can have a damaged barrier too</strong> — it's often overlooked because people assume sebum production equals healthy skin. A damaged, oily barrier is a real and common condition.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "item",
+          "settings": {
+            "question": "How is Soft Reset different from other moisturisers?",
+            "answer": "<p>Most moisturisers are occlusive films — they slow water loss but don't repair the barrier itself. Soft Reset contains <strong>ceramides identical to those found in human skin</strong>, plus Matrixyl 3000 for structural collagen support. It's designed to repair, not just cover over the problem.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "item",
+          "settings": {
+            "question": "Does it work in Pakistan's climate?",
+            "answer": "<p>Yes — it was formulated with the Pakistani climate in mind. The ceramide complex is protective in dry winters, and the non-greasy Olivem 1000 base keeps it comfortable in humid summers. <strong>For peak winter dryness</strong>, use a slightly more generous amount and consider layering a face oil at night to seal it in.</p>"
+          }
+        },
+        "faq_6": {
+          "type": "item",
+          "settings": {
+            "question": "How long does one jar last?",
+            "answer": "<p>With once-daily use (pea-sized amount), one 50ml jar lasts approximately 2–3 months. For twice-daily use, expect around 6–8 weeks. The <strong>2-bottle protocol</strong> is designed around one complete barrier repair cycle — enough time to see structural change.</p>"
+          }
+        }
+      },
+      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6"]
+    },
+    "pdp_upsell": {
+      "type": "glowve-pdp-upsell",
+      "settings": {
+        "label": "Complete the Routine",
+        "title": "Works better together.",
+        "subtitle": "Soft Reset rebuilds the barrier. Fade Theory targets pigmentation. Daylite protects everything you've built.",
+        "product_1": "",
+        "product_1_tag": "Step 1 · Serum",
+        "product_1_why": "Targeting pigmentation while the barrier is rebuilding produces faster, more stable results.",
+        "product_2": "",
+        "product_2_tag": "Step 3 · SPF",
+        "product_2_why": "No barrier work survives unprotected UV exposure. Daylite locks in everything.",
+        "bundle_title": "Save with the full protocol",
+        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
+        "bundle_price": "PKR 3,999",
+        "bundle_original": "PKR 4,999",
+        "bundle_url": "/products/glowve-bundle"
+      }
+    },
+    "pdp_recs": {
+      "type": "product-recommendations",
+      "blocks": {
+        "text_recs_header": {
+          "type": "text",
+          "name": "Header",
+          "settings": {
+            "text": "<h3>You may also like</h3>",
+            "type_preset": "h4",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "Product card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 8,
+            "inherit_color_scheme": true,
+            "border": "none",
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery": {
+              "type": "_product-card-gallery",
+              "settings": { "image_ratio": "adapt", "border": "none", "border_radius": 0 },
+              "blocks": {}
+            },
+            "product_title": {
+              "type": "product-title",
+              "settings": { "type_preset": "rte", "font": "var(--font-body--family)", "font_size": "1rem" },
+              "blocks": {}
+            },
+            "price_card": {
+              "type": "price",
+              "settings": { "show_sale_price_first": true, "type_preset": "h6", "font_size": "1rem" },
+              "blocks": {}
+            }
+          },
+          "block_order": ["product_card_gallery", "product_title", "price_card"]
+        }
+      },
+      "block_order": ["text_recs_header"],
+      "settings": {
+        "product": "{{ closest.product }}",
+        "recommendation_type": "related",
+        "layout_type": "grid",
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "section_width": "page-width",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    }
+  },
+  "order": [
+    "main",
+    "pdp_protocol",
+    "pdp_scripts",
+    "pdp_science",
+    "pdp_ingredients",
+    "pdp_how_to_use",
+    "pdp_timeline",
+    "pdp_faq",
+    "pdp_upsell",
+    "pdp_recs"
+  ]
+}
