@@ -68,14 +68,61 @@
 {% endstylesheet %}
 
 <script>
-  // ── Social proof ──
   (function () {
+    var THRESHOLD = {{ section.settings.threshold }};
+
+    // ── Inject widgets into product details panel ──
+    function injectWidgets() {
+      var buyButtons = document.querySelector('buy-buttons');
+      if (!buyButtons) return;
+      var parent = buyButtons.parentNode;
+
+      // Social proof — inject BEFORE buy buttons
+      if (!document.querySelector('[data-social-proof]')) {
+        var sp = document.createElement('div');
+        sp.className = 'gv-sp';
+        sp.setAttribute('data-social-proof', '');
+        sp.innerHTML =
+          '<span class="gv-sp-watchers">' +
+            '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>' +
+            '\u2009<span class="gv-sp-n" data-w>11</span> viewing now' +
+          '</span>' +
+          '<span class="gv-sp-mid"> \u00B7 </span>' +
+          '<span>\uD83D\uDD25\u2009<span class="gv-sp-n" data-b>23</span> bought today</span>';
+        parent.insertBefore(sp, buyButtons);
+      }
+
+      // Shipping tracker — inject AFTER buy buttons
+      if (!document.querySelector('[data-ship-fill]')) {
+        var ship = document.createElement('div');
+        ship.className = 'gv-ship';
+        ship.innerHTML =
+          '<div class="gv-ship-bar"><div class="gv-ship-fill" data-ship-fill style="width:0%"></div></div>' +
+          '<p class="gv-ship-msg" data-ship-msg>Checking free delivery status\u2026</p>';
+        buyButtons.after(ship);
+
+        // Payment chips — inject after shipping tracker
+        var pays = document.createElement('div');
+        pays.className = 'gv-pays';
+        pays.innerHTML =
+          '<span class="gv-pay">\uD83D\uDCB3 Card</span>' +
+          '<span class="gv-pay">Easypaisa</span>' +
+          '<span class="gv-pay">JazzCash</span>' +
+          '<span class="gv-pay">Cash on Delivery</span>';
+        ship.after(pays);
+      }
+
+      initSocialProof();
+      updateTracker();
+    }
+
+    // ── Social proof ──
     function initSocialProof() {
       document.querySelectorAll('[data-social-proof]').forEach(function (el) {
         var wEl = el.querySelector('[data-w]');
         var bEl = el.querySelector('[data-b]');
-        var watchers = Math.floor(Math.random() * 14) + 8;   // 8–21
-        var bought   = Math.floor(Math.random() * 27) + 12;  // 12–38
+        var watchers = Math.floor(Math.random() * 14) + 8;
+        var bought   = Math.floor(Math.random() * 27) + 12;
         if (wEl) wEl.textContent = watchers;
         if (bEl) bEl.textContent = bought;
         setInterval(function () {
@@ -84,19 +131,12 @@
         }, 9500);
       });
     }
-    document.readyState === 'loading'
-      ? document.addEventListener('DOMContentLoaded', initSocialProof)
-      : initSocialProof();
-  })();
 
-  // ── Free shipping tracker ──
-  (function () {
-    var THRESHOLD = {{ section.settings.threshold }};
-
+    // ── Shipping tracker ──
     function updateTracker() {
       var fills = document.querySelectorAll('[data-ship-fill]');
       var msgs  = document.querySelectorAll('[data-ship-msg]');
-      if (!fills.length && !msgs.length) return;
+      if (!fills.length) return;
 
       fetch('/cart.js')
         .then(function (r) { return r.json(); })
@@ -104,14 +144,10 @@
           var total = cart.total_price / 100;
           var pct   = Math.min(100, (total / THRESHOLD) * 100);
           var rem   = Math.ceil(THRESHOLD - total);
-
-          fills.forEach(function (f) {
-            f.style.width = pct.toFixed(1) + '%';
-          });
-
+          fills.forEach(function (f) { f.style.width = pct.toFixed(1) + '%'; });
           msgs.forEach(function (m) {
             if (rem <= 0) {
-              m.textContent = '🎉 You qualify for free delivery!';
+              m.textContent = '\uD83C\uDF89 You qualify for free delivery!';
               m.classList.add('gv-ship-done');
             } else {
               m.innerHTML = 'Add <strong>PKR\u00A0' + rem.toLocaleString() + '</strong> more for free delivery';
@@ -123,8 +159,8 @@
     }
 
     document.readyState === 'loading'
-      ? document.addEventListener('DOMContentLoaded', updateTracker)
-      : updateTracker();
+      ? document.addEventListener('DOMContentLoaded', injectWidgets)
+      : injectWidgets();
 
     document.addEventListener('cart:update', updateTracker);
   })();

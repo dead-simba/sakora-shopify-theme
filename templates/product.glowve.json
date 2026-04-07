@@ -106,18 +106,6 @@
               },
               "block_order": ["text_title", "price_main"]
             },
-            "text_social_proof": {
-              "type": "text",
-              "name": "Social proof",
-              "settings": {
-                "text": "<div class=\"gv-sp\" data-social-proof><span class=\"gv-sp-watchers\"><svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\"><circle cx=\"12\" cy=\"12\" r=\"3\"/><path d=\"M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z\"/></svg>&thinsp;<span class=\"gv-sp-n\" data-w>11</span> viewing now</span><span class=\"gv-sp-mid\"> · </span><span class=\"gv-sp-bought\">🔥&thinsp;<span class=\"gv-sp-n\" data-b>23</span> bought today</span></div>",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "divider_main": {
               "type": "_divider",
               "name": "Divider",
@@ -176,30 +164,6 @@
               },
               "block_order": []
             },
-            "text_shipping": {
-              "type": "text",
-              "name": "Shipping tracker",
-              "settings": {
-                "text": "<div class=\"gv-ship\"><div class=\"gv-ship-bar\"><div class=\"gv-ship-fill\" data-ship-fill style=\"width:0%\"></div></div><p class=\"gv-ship-msg\" data-ship-msg>Checking free delivery status…</p></div>",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "text_payment": {
-              "type": "text",
-              "name": "Payment methods",
-              "settings": {
-                "text": "<div class=\"gv-pays\"><span class=\"gv-pay\">💳 Card</span><span class=\"gv-pay\">Easypaisa</span><span class=\"gv-pay\">JazzCash</span><span class=\"gv-pay\">Cash on Delivery</span></div>",
-                "padding-block-start": 0,
-                "padding-block-end": 4,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
             "text_description": {
               "type": "text",
               "name": "Product description",
@@ -216,12 +180,9 @@
           },
           "block_order": [
             "group_header",
-            "text_social_proof",
             "divider_main",
             "variant_picker_main",
             "buy_buttons_main",
-            "text_shipping",
-            "text_payment",
             "text_description"
           ]
         }
