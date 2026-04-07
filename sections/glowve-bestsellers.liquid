@@ -278,8 +278,8 @@
   }
 {% endstylesheet %}
 
-{% javascript %}
-  function glowveAddToCart(event, variantId) {
+<script>
+  window.glowveAddToCart = function(event, variantId) {
     event.preventDefault();
     event.stopPropagation();
     const btn = event.currentTarget;
@@ -296,7 +296,6 @@
     .then(r => r.json())
     .then(() => {
       btn.textContent = '✓ Added';
-      // Trigger Shopify cart update event for drawer/mini-cart
       document.dispatchEvent(new CustomEvent('cart:update'));
       setTimeout(() => {
         btn.textContent = originalText;
@@ -308,8 +307,8 @@
       btn.classList.remove('gv-loading');
       setTimeout(() => { btn.textContent = originalText; }, 1500);
     });
-  }
-{% endjavascript %}
+  };
+</script>
 
 {% schema %}
 {
