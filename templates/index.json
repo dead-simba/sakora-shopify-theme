@@ -406,6 +406,7 @@
         "label": "The Complete Protocol",
         "title": "<p>Three products. <em>One routine.</em></p>",
         "subtitle": "The serum brightens. The moisturizer rebuilds. The SPF protects. Together, they cover every step of a complete skincare protocol.",
+        "bundle_product": "complete-glow-bundle",
         "product_1": "fade-theory",
         "name_1": "Fade Theory Serum",
         "price_1": "PKR 1,400",
@@ -520,71 +521,13 @@
         "ugc_6",
         "ugc_7"
       ],
+      "disabled": true,
       "name": "Glowve UGC Grid",
       "settings": {
         "label": "Real People, Real Skin",
-        "title": "Glowve <em>in the wild</em>",
+        "title": "Glowve in the wild",
         "social_handle": "@glowve.pk",
         "social_url": ""
-      }
-    },
-    "glowve_press_strip": {
-      "type": "glowve-press-strip",
-      "blocks": {
-        "logo_1": {
-          "type": "logo",
-          "settings": {
-            "name": "Dawn",
-            "link": ""
-          }
-        },
-        "logo_2": {
-          "type": "logo",
-          "settings": {
-            "name": "Vogue Pakistan",
-            "link": ""
-          }
-        },
-        "logo_3": {
-          "type": "logo",
-          "settings": {
-            "name": "Instep",
-            "link": ""
-          }
-        },
-        "logo_4": {
-          "type": "logo",
-          "settings": {
-            "name": "She",
-            "link": ""
-          }
-        },
-        "logo_5": {
-          "type": "logo",
-          "settings": {
-            "name": "Cosmopolitan PK",
-            "link": ""
-          }
-        },
-        "logo_6": {
-          "type": "logo",
-          "settings": {
-            "name": "Aurora",
-            "link": ""
-          }
-        }
-      },
-      "block_order": [
-        "logo_1",
-        "logo_2",
-        "logo_3",
-        "logo_4",
-        "logo_5",
-        "logo_6"
-      ],
-      "name": "Glowve Press Strip",
-      "settings": {
-        "label": "As seen in"
       }
     },
     "glowve_email": {
@@ -611,7 +554,6 @@
     "glowve_bundle",
     "glowve_routine",
     "glowve_ugc",
-    "glowve_press_strip",
     "glowve_email"
   ]
 }
