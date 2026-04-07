@@ -297,87 +297,106 @@
     "glowve_ing_directory": {
       "type": "glowve-ingredient-directory",
       "blocks": {
-        "ing_1": {
-          "type": "ingredient",
+        "chip_a3VFBC": {
+          "type": "chip",
           "settings": {
-            "name": "Vitamin C",
-            "function": "Brightening · Antioxidant"
+            "name": "Niacinamide"
           }
         },
-        "ing_2": {
-          "type": "ingredient",
+        "chip_YwHxgq": {
+          "type": "chip",
           "settings": {
-            "name": "Watermelon",
-            "function": "Hydration · Soothing"
+            "name": "Tranexamic Acid"
           }
         },
-        "ing_3": {
-          "type": "ingredient",
+        "chip_rANX3k": {
+          "type": "chip",
           "settings": {
-            "name": "Niacinamide",
-            "function": "Pores · Tone evening"
+            "name": "Hyaluronic Acid"
           }
         },
-        "ing_4": {
-          "type": "ingredient",
+        "chip_mciqPJ": {
+          "type": "chip",
           "settings": {
-            "name": "Hyaluronic Acid",
-            "function": "Deep hydration"
+            "name": "Panthenol B5"
           }
         },
-        "ing_5": {
-          "type": "ingredient",
+        "chip_9DwXQV": {
+          "type": "chip",
           "settings": {
-            "name": "Ceramides",
-            "function": "Barrier repair"
+            "name": "Zinc PCA"
           }
         },
-        "ing_6": {
-          "type": "ingredient",
+        "chip_D6Ryng": {
+          "type": "chip",
           "settings": {
-            "name": "Retinol",
-            "function": "Renewal · Anti-ageing"
+            "name": "Licorice Extract"
           }
         },
-        "ing_7": {
-          "type": "ingredient",
+        "chip_983Paz": {
+          "type": "chip",
           "settings": {
-            "name": "Zinc Oxide",
-            "function": "Sun protection"
+            "name": "Matrixyl Peptides"
           }
         },
-        "ing_8": {
-          "type": "ingredient",
+        "chip_RTMKcj": {
+          "type": "chip",
           "settings": {
-            "name": "Centella",
-            "function": "Calming · Healing"
+            "name": "Tocopherol"
           }
         },
-        "ing_more": {
-          "type": "more",
+        "star_card_xYFG4J": {
+          "type": "star_card",
           "settings": {
-            "count": "40"
+            "image": "shopify://shop_images/Alpha_Arbutin.webp",
+            "color": "peach",
+            "product_tag": "Fade Theory",
+            "name": "Alpha-Arbutin 2%",
+            "function": "Blocks melanin production at the source. Zero irritation."
+          }
+        },
+        "star_card_6VUEK6": {
+          "type": "star_card",
+          "settings": {
+            "image": "shopify://shop_images/Caramides.webp",
+            "color": "mint",
+            "product_tag": "Soft Reset",
+            "name": "Triple Ceramide Complex",
+            "function": "NP · AP · EOP — rebuilds your barrier the way your skin does it."
+          }
+        },
+        "star_card_YWHeKc": {
+          "type": "star_card",
+          "settings": {
+            "image": "shopify://shop_images/Sunscreen.webp",
+            "color": "yellow",
+            "product_tag": "Daylite",
+            "name": "6-Filter UV System",
+            "function": "Full spectrum UVA + UVB. Built for Pakistan's UV index 10+."
           }
         }
       },
       "block_order": [
-        "ing_1",
-        "ing_2",
-        "ing_3",
-        "ing_4",
-        "ing_5",
-        "ing_6",
-        "ing_7",
-        "ing_8",
-        "ing_more"
+        "chip_a3VFBC",
+        "chip_YwHxgq",
+        "chip_rANX3k",
+        "chip_mciqPJ",
+        "chip_9DwXQV",
+        "chip_D6Ryng",
+        "chip_983Paz",
+        "chip_RTMKcj",
+        "star_card_xYFG4J",
+        "star_card_6VUEK6",
+        "star_card_YWHeKc"
       ],
       "name": "Glowve Ingredient Directory",
       "settings": {
         "label": "Radical Transparency",
-        "title": "<p>Know every<br><em>ingredient</em><br>we use.</p>",
-        "description": "Every ingredient. Every concentration. Every product it's in. No hidden \"complexes,\" no marketing names. Browse our complete ingredient directory — searchable, filterable, and linked to real studies.",
-        "cta_label": "Explore Directory",
-        "cta_url": "/pages/ingredients"
+        "title": "<p>Know every<br/><em>ingredient</em><br/>we use.</p>",
+        "description": "No hidden complexes, no marketing names. Every active, every concentration — exactly what goes on your skin and why.",
+        "cta_label": "Explore Ingredient Directory",
+        "cta_url": "/pages/ingredients",
+        "chips_label": "Also in our formulas"
       }
     },
     "glowve_bundle": {
@@ -387,15 +406,15 @@
         "label": "The Complete Protocol",
         "title": "<p>Three products. <em>One routine.</em></p>",
         "subtitle": "The serum brightens. The moisturizer rebuilds. The SPF protects. Together, they cover every step of a complete skincare protocol.",
-        "product_1": "",
+        "product_1": "fade-theory",
         "name_1": "Alpha Arbutin Serum",
         "price_1": "PKR 1,400",
         "step_1": "Step 1 · PM",
-        "product_2": "",
+        "product_2": "soft-reset-moisturizer",
         "name_2": "Barrier Renew Moisturizer",
         "price_2": "PKR 1,999",
         "step_2": "Step 2 · AM + PM",
-        "product_3": "",
+        "product_3": "daylite-spf-50-sunscreen",
         "name_3": "Matte UV Defence SPF 50+",
         "price_3": "PKR 1,600",
         "step_3": "Step 3 · AM Only",
