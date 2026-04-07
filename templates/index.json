@@ -198,7 +198,7 @@
         "collection": "frontpage",
         "products_to_show": 3,
         "view_all_url": "/collections/all",
-        "show_tabs": true
+        "show_tabs": false
       }
     },
     "glowve_promise": {
