@@ -288,15 +288,26 @@
     const originalText = btn.textContent;
     btn.textContent = '...';
 
+    // Collect section IDs from Horizon's cart-items-component so the drawer updates
+    const sectionIds = [];
+    document.querySelectorAll('cart-items-component[data-section-id]').forEach(el => {
+      sectionIds.push(el.dataset.sectionId);
+    });
+
     fetch('/cart/add.js', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ id: variantId, quantity: 1 })
+      body: JSON.stringify({ id: variantId, quantity: 1, sections: sectionIds.join(',') })
     })
     .then(r => r.json())
-    .then(() => {
+    .then(response => {
       btn.textContent = '✓ Added';
-      document.dispatchEvent(new CustomEvent('cart:update'));
+      // Dispatch with sections so Horizon's cart drawer morphs its content
+      const cartEvent = new CustomEvent('cart:update', {
+        bubbles: true,
+        detail: { data: { sections: response.sections } }
+      });
+      document.dispatchEvent(cartEvent);
       setTimeout(() => {
         btn.textContent = originalText;
         btn.classList.remove('gv-loading');
