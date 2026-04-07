@@ -559,6 +559,20 @@
         "social_url": ""
       }
     },
+    "glowve_press_strip": {
+      "type": "glowve-press-strip",
+      "blocks": {
+        "logo_1": { "type": "logo", "settings": { "name": "Dawn" } },
+        "logo_2": { "type": "logo", "settings": { "name": "Vogue Pakistan" } },
+        "logo_3": { "type": "logo", "settings": { "name": "Instep" } },
+        "logo_4": { "type": "logo", "settings": { "name": "She" } },
+        "logo_5": { "type": "logo", "settings": { "name": "Cosmopolitan PK" } },
+        "logo_6": { "type": "logo", "settings": { "name": "Aurora" } }
+      },
+      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"],
+      "name": "Glowve Press Strip",
+      "settings": {}
+    },
     "glowve_email": {
       "type": "glowve-email-capture",
       "name": "Glowve Email Capture",
@@ -577,13 +591,13 @@
     "glowve_category_bubbles",
     "glowve_social_proof",
     "glowve_bestsellers",
-    "glowve_ingredient_moment",
     "glowve_shop_concern",
     "glowve_ing_directory",
     "glowve_promise",
     "glowve_bundle",
     "glowve_routine",
     "glowve_ugc",
+    "glowve_press_strip",
     "glowve_email"
   ]
 }
