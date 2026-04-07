@@ -335,7 +335,7 @@
         "p1": {
           "type": "promise",
           "settings": {
-            "icon": "🔬",
+            "icon": "science",
             "title": "Study-Backed",
             "description": "Every active ingredient we use is supported by published clinical research. We link to studies, not marketing copy."
           }
@@ -343,7 +343,7 @@
         "p2": {
           "type": "promise",
           "settings": {
-            "icon": "📋",
+            "icon": "list",
             "title": "Fully Transparent",
             "description": "We show real concentrations. No \"proprietary blends.\" No hiding weak percentages in the bottom of the list."
           }
@@ -351,7 +351,7 @@
         "p3": {
           "type": "promise",
           "settings": {
-            "icon": "🌿",
+            "icon": "shield",
             "title": "Skin-Safe Always",
             "description": "Dermatologist tested, fragrance-free where it matters, cruelty-free. Built for Pakistani skin and climate."
           }
@@ -359,7 +359,7 @@
         "p4": {
           "type": "promise",
           "settings": {
-            "icon": "✨",
+            "icon": "sparkle",
             "title": "Joyful to Use",
             "description": "Skincare you actually look forward to. Textures, scents, and colors that make your routine feel like a ritual."
           }
