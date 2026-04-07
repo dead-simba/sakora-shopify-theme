@@ -21,30 +21,37 @@
     <div class="gv-upsell-grid">
 
       {%- for i in (1..2) -%}
-        {%- assign prod = all_products[section.settings["product_" | append: i]] -%}
-        {%- assign tag  = section.settings["product_" | append: i | append: "_tag"] -%}
-        {%- assign why  = section.settings["product_" | append: i | append: "_why"] -%}
-        {%- if prod != empty -%}
-          <a href="{{ prod.url }}" class="gv-upsell-card">
+        {%- if i == 1 -%}
+          {%- assign _prod = all_products[section.settings.product_1] -%}
+          {%- assign _tag  = section.settings.product_1_tag -%}
+          {%- assign _why  = section.settings.product_1_why -%}
+        {%- else -%}
+          {%- assign _prod = all_products[section.settings.product_2] -%}
+          {%- assign _tag  = section.settings.product_2_tag -%}
+          {%- assign _why  = section.settings.product_2_why -%}
+        {%- endif -%}
+
+        {%- if _prod != empty -%}
+          <a href="{{ _prod.url }}" class="gv-upsell-card">
             <div class="gv-upsell-card-img">
-              {%- if prod.featured_image -%}
+              {%- if _prod.featured_image -%}
                 <img
-                  src="{{ prod.featured_image | image_url: width: 300 }}"
-                  alt="{{ prod.featured_image.alt | default: prod.title | escape }}"
+                  src="{{ _prod.featured_image | image_url: width: 300 }}"
+                  alt="{{ _prod.featured_image.alt | default: _prod.title | escape }}"
                   width="150" height="150"
                   loading="lazy"
                 >
               {%- endif -%}
             </div>
             <div class="gv-upsell-card-body">
-              {%- if tag != blank -%}
-                <div class="gv-upsell-card-tag">{{ tag }}</div>
+              {%- if _tag != blank -%}
+                <div class="gv-upsell-card-tag">{{ _tag }}</div>
               {%- endif -%}
-              <div class="gv-upsell-card-name">{{ prod.title }}</div>
-              {%- if why != blank -%}
-                <div class="gv-upsell-card-why">{{ why }}</div>
+              <div class="gv-upsell-card-name">{{ _prod.title }}</div>
+              {%- if _why != blank -%}
+                <div class="gv-upsell-card-why">{{ _why }}</div>
               {%- endif -%}
-              <div class="gv-upsell-card-price">{{ prod.price | money }}</div>
+              <div class="gv-upsell-card-price">{{ _prod.price | money }}</div>
             </div>
             <div class="gv-upsell-card-arrow">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
