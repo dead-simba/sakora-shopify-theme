@@ -211,8 +211,17 @@
     "pdp_scripts": {
       "type": "glowve-pdp-scripts",
       "settings": {
-        "threshold": 2500
-      }
+        "threshold": 2500,
+        "urgency_enabled": true,
+        "urgency_text": "Order before 2pm PKT — ships today",
+        "guarantee_1": "🛡️ 30-day money-back",
+        "guarantee_2": "🚚 Free delivery above PKR 2,500",
+        "guarantee_3": "🏠 Cash on delivery",
+        "pk_callout": "",
+        "sticky_enabled": true
+      },
+      "blocks": {},
+      "block_order": []
     },
     "pdp_science": {
       "type": "glowve-pdp-science",
