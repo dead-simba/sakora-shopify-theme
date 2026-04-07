@@ -1,0 +1,61 @@
+{%- if block.settings.name != blank -%}
+  <div class="gv-ing-callout" {{ block.shopify_attributes }}>
+    {%- if block.settings.icon != blank -%}
+      <span class="gv-ing-callout-icon" aria-hidden="true">{{ block.settings.icon }}</span>
+    {%- endif -%}
+    <div class="gv-ing-callout-body">
+      <div class="gv-ing-callout-name">{{ block.settings.name }}</div>
+      {%- if block.settings.desc != blank -%}
+        <div class="gv-ing-callout-desc">{{ block.settings.desc }}</div>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .gv-ing-callout {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--off-white);
+    border-radius: 12px;
+    border-left: 3px solid var(--coral-pulse);
+  }
+  .gv-ing-callout-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    line-height: 1;
+    margin-top: 1px;
+  }
+  .gv-ing-callout-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .gv-ing-callout-name {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--coral-pulse);
+    letter-spacing: 0.02em;
+  }
+  .gv-ing-callout-desc {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    line-height: 1.5;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Ingredient Callout",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "icon", "label": "Icon (emoji)", "default": "🧬" },
+    { "type": "text", "id": "name", "label": "Ingredient name", "default": "Triple Ceramide Complex" },
+    { "type": "textarea", "id": "desc", "label": "Benefit description", "default": "The exact lipids your barrier is made of — applied directly." }
+  ]
+}
+{% endschema %}

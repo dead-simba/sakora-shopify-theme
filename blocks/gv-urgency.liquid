@@ -1,0 +1,37 @@
+{%- if block.settings.text != blank -%}
+  <div class="gv-urgency" {{ block.shopify_attributes }}>
+    🚀 {{ block.settings.text }}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .gv-urgency {
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    color: #5A3E80;
+    background: #F5F0FF;
+    border: 1px solid #C9B8F0;
+    border-radius: 100px;
+    padding: 8px 18px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    width: fit-content;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Urgency Strip",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Urgency text",
+      "default": "Order before 2pm PKT — ships today"
+    }
+  ]
+}
+{% endschema %}

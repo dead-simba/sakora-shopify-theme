@@ -1,0 +1,49 @@
+<div class="gv-sp" id="gv-sp-{{ block.id }}">
+  <span class="gv-sp-watchers">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="3"/><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/></svg>
+    &#x2009;<span class="gv-sp-w">11</span> viewing now
+  </span>
+  <span class="gv-sp-sep"> &middot; </span>
+  <span>🔥&#x2009;<span class="gv-sp-b">23</span> bought today</span>
+</div>
+
+<script>
+  (function () {
+    var el = document.getElementById('gv-sp-{{ block.id }}');
+    if (!el) return;
+    var wEl = el.querySelector('.gv-sp-w');
+    var bEl = el.querySelector('.gv-sp-b');
+    var w = Math.floor(Math.random() * 14) + 8;
+    var b = Math.floor(Math.random() * 27) + 12;
+    if (wEl) wEl.textContent = w;
+    if (bEl) bEl.textContent = b;
+    setInterval(function () {
+      w = Math.max(5, w + (Math.random() > 0.45 ? 1 : -1));
+      if (wEl) wEl.textContent = w;
+    }, 9500);
+  })();
+</script>
+
+{% stylesheet %}
+  .gv-sp {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    background: var(--off-white);
+    border: 1px solid var(--warm-gray);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .gv-sp-sep { color: var(--warm-gray); }
+  .gv-sp-w, .gv-sp-b { font-weight: 600; color: var(--warm-espresso); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Social Proof",
+  "tag": null
+}
+{% endschema %}

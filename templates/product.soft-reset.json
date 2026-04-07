@@ -164,6 +164,76 @@
               },
               "block_order": []
             },
+            "gv_social_proof": {
+              "type": "gv-social-proof",
+              "settings": {}
+            },
+            "gv_urgency": {
+              "type": "gv-urgency",
+              "settings": {
+                "text": "Order before 2pm PKT — ships today"
+              }
+            },
+            "gv_guarantee": {
+              "type": "gv-guarantee",
+              "settings": {
+                "item_1": "🛡️ 30-day money-back",
+                "item_2": "🚚 Free delivery above PKR 2,500",
+                "item_3": "🏠 Cash on delivery"
+              }
+            },
+            "gv_ship_tracker": {
+              "type": "gv-ship-tracker",
+              "settings": { "threshold": 2500 }
+            },
+            "gv_payments": {
+              "type": "gv-payment-chips",
+              "settings": {
+                "chip_1": "💳 Card",
+                "chip_2": "Easypaisa",
+                "chip_3": "JazzCash",
+                "chip_4": "🏠 Cash on Delivery"
+              }
+            },
+            "gv_ing_1": {
+              "type": "gv-ing-callout",
+              "settings": {
+                "icon": "🧬",
+                "name": "Triple Ceramide Complex",
+                "desc": "Ceramide NP, AP & EOP — the exact lipids your barrier is made of, applied directly."
+              }
+            },
+            "gv_ing_2": {
+              "type": "gv-ing-callout",
+              "settings": {
+                "icon": "🔬",
+                "name": "Matrixyl 3000™",
+                "desc": "Clinically reduces deep wrinkle area by 45% in 8 weeks — stimulates collagen production."
+              }
+            },
+            "gv_ing_3": {
+              "type": "gv-ing-callout",
+              "settings": {
+                "icon": "✨",
+                "name": "Niacinamide 5%",
+                "desc": "Boosts ceramide synthesis 4–5× from within — builds your barrier from the inside out."
+              }
+            },
+            "gv_trust": {
+              "type": "gv-trust-badges",
+              "settings": {
+                "badge_1_icon": "🧪", "badge_1_label": "Derm Tested",
+                "badge_2_icon": "🌿", "badge_2_label": "Fragrance Free",
+                "badge_3_icon": "🐰", "badge_3_label": "Cruelty Free",
+                "badge_4_icon": "🇵🇰", "badge_4_label": "Made for Pakistan"
+              }
+            },
+            "gv_pk": {
+              "type": "gv-pk-callout",
+              "settings": {
+                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
+              }
+            },
             "text_description": {
               "type": "text",
               "name": "Product description",
@@ -181,8 +251,18 @@
           "block_order": [
             "group_header",
             "divider_main",
+            "gv_social_proof",
+            "gv_urgency",
             "variant_picker_main",
             "buy_buttons_main",
+            "gv_guarantee",
+            "gv_ship_tracker",
+            "gv_payments",
+            "gv_ing_1",
+            "gv_ing_2",
+            "gv_ing_3",
+            "gv_trust",
+            "gv_pk",
             "text_description"
           ]
         }
@@ -221,62 +301,6 @@
       },
       "blocks": {},
       "block_order": []
-    },
-    "pdp_scripts": {
-      "type": "glowve-pdp-scripts",
-      "settings": {
-        "threshold": 2500,
-        "urgency_enabled": true,
-        "urgency_text": "Order before 2pm PKT — ships today",
-        "guarantee_1": "🛡️ 30-day money-back",
-        "guarantee_2": "🚚 Free delivery above PKR 2,500",
-        "guarantee_3": "🏠 Cash on delivery",
-        "pk_callout": "<strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.",
-        "sticky_enabled": true
-      },
-      "blocks": {
-        "ing_1": {
-          "type": "ingredient",
-          "settings": {
-            "icon": "🧬",
-            "name": "Triple Ceramide Complex",
-            "desc": "Ceramide NP, AP & EOP — the exact lipids your barrier is made of, applied directly."
-          }
-        },
-        "ing_2": {
-          "type": "ingredient",
-          "settings": {
-            "icon": "🔬",
-            "name": "Matrixyl 3000™",
-            "desc": "Clinically reduces deep wrinkle area by 45% in 8 weeks — stimulates collagen production."
-          }
-        },
-        "ing_3": {
-          "type": "ingredient",
-          "settings": {
-            "icon": "✨",
-            "name": "Niacinamide 5%",
-            "desc": "Boosts ceramide synthesis 4–5× from within — builds your barrier from the inside out."
-          }
-        },
-        "badge_1": {
-          "type": "trust_badge",
-          "settings": { "icon": "🧪", "label": "Derm Tested" }
-        },
-        "badge_2": {
-          "type": "trust_badge",
-          "settings": { "icon": "🌿", "label": "Fragrance Free" }
-        },
-        "badge_3": {
-          "type": "trust_badge",
-          "settings": { "icon": "🐰", "label": "Cruelty Free" }
-        },
-        "badge_4": {
-          "type": "trust_badge",
-          "settings": { "icon": "🇵🇰", "label": "Made for Pakistan" }
-        }
-      },
-      "block_order": ["ing_1", "ing_2", "ing_3", "badge_1", "badge_2", "badge_3", "badge_4"]
     },
     "pdp_science": {
       "type": "glowve-pdp-science",
@@ -678,7 +702,6 @@
   "order": [
     "main",
     "pdp_protocol",
-    "pdp_scripts",
     "pdp_science",
     "pdp_ingredients",
     "pdp_how_to_use",

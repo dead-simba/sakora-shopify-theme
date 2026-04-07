@@ -1,0 +1,79 @@
+<div class="gv-ship" id="gv-ship-{{ block.id }}" {{ block.shopify_attributes }}>
+  <div class="gv-ship-bar">
+    <div class="gv-ship-fill" style="width:0%"></div>
+  </div>
+  <p class="gv-ship-msg">Checking free delivery status…</p>
+</div>
+
+<script>
+  (function () {
+    var THRESHOLD = {{ block.settings.threshold | default: 2500 }};
+    var wrap = document.getElementById('gv-ship-{{ block.id }}');
+    if (!wrap) return;
+    var fill = wrap.querySelector('.gv-ship-fill');
+    var msg  = wrap.querySelector('.gv-ship-msg');
+
+    function update() {
+      fetch('/cart.js')
+        .then(function (r) { return r.json(); })
+        .then(function (cart) {
+          var total = cart.total_price / 100;
+          var pct   = Math.min(100, (total / THRESHOLD) * 100);
+          var rem   = Math.ceil(THRESHOLD - total);
+          if (fill) fill.style.width = pct.toFixed(1) + '%';
+          if (!msg) return;
+          if (rem <= 0) {
+            msg.textContent = '🎉 You qualify for free delivery!';
+            msg.classList.add('gv-ship-done');
+          } else {
+            msg.innerHTML = 'Add <strong>PKR\u00A0' + rem.toLocaleString() + '</strong> more for free delivery';
+            msg.classList.remove('gv-ship-done');
+          }
+        })
+        .catch(function () {});
+    }
+
+    update();
+    document.addEventListener('cart:update', update);
+  })();
+</script>
+
+{% stylesheet %}
+  .gv-ship-bar {
+    height: 5px;
+    background: var(--warm-gray);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-bottom: 7px;
+  }
+  .gv-ship-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #66BB6A, #2E7D32);
+    border-radius: 100px;
+    transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  .gv-ship-msg {
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    line-height: 1.4;
+    margin: 0;
+  }
+  .gv-ship-msg strong { color: var(--warm-espresso); }
+  .gv-ship-done { color: #2E7D32 !important; font-weight: 600; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shipping Tracker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "number",
+      "id": "threshold",
+      "label": "Free shipping threshold (PKR)",
+      "default": 2500
+    }
+  ]
+}
+{% endschema %}

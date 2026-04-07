@@ -164,6 +164,35 @@
               },
               "block_order": []
             },
+            "gv_social_proof": {
+              "type": "gv-social-proof",
+              "settings": {}
+            },
+            "gv_urgency": {
+              "type": "gv-urgency",
+              "settings": { "text": "Order before 2pm PKT — ships today" }
+            },
+            "gv_guarantee": {
+              "type": "gv-guarantee",
+              "settings": {
+                "item_1": "🛡️ 30-day money-back",
+                "item_2": "🚚 Free delivery above PKR 2,500",
+                "item_3": "🏠 Cash on delivery"
+              }
+            },
+            "gv_ship_tracker": {
+              "type": "gv-ship-tracker",
+              "settings": { "threshold": 2500 }
+            },
+            "gv_payments": {
+              "type": "gv-payment-chips",
+              "settings": {
+                "chip_1": "💳 Card",
+                "chip_2": "Easypaisa",
+                "chip_3": "JazzCash",
+                "chip_4": "🏠 Cash on Delivery"
+              }
+            },
             "text_description": {
               "type": "text",
               "name": "Product description",
@@ -181,8 +210,13 @@
           "block_order": [
             "group_header",
             "divider_main",
+            "gv_social_proof",
+            "gv_urgency",
             "variant_picker_main",
             "buy_buttons_main",
+            "gv_guarantee",
+            "gv_ship_tracker",
+            "gv_payments",
             "text_description"
           ]
         }
@@ -221,21 +255,6 @@
         "opt3_badge": "Best Value (Save 20%)",
         "opt3_badge_color": "coral"
       }
-    },
-    "pdp_scripts": {
-      "type": "glowve-pdp-scripts",
-      "settings": {
-        "threshold": 2500,
-        "urgency_enabled": true,
-        "urgency_text": "Order before 2pm PKT — ships today",
-        "guarantee_1": "🛡️ 30-day money-back",
-        "guarantee_2": "🚚 Free delivery above PKR 2,500",
-        "guarantee_3": "🏠 Cash on delivery",
-        "pk_callout": "",
-        "sticky_enabled": true
-      },
-      "blocks": {},
-      "block_order": []
     },
     "pdp_science": {
       "type": "glowve-pdp-science",
@@ -375,7 +394,6 @@
   "order": [
     "main",
     "pdp_protocol",
-    "pdp_scripts",
     "pdp_science",
     "pdp_ingredients",
     "pdp_how_to_use",

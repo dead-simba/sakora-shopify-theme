@@ -1,0 +1,45 @@
+<div class="gv-guarantee" {{ block.shopify_attributes }}>
+  {%- if block.settings.item_1 != blank -%}
+    <span>{{ block.settings.item_1 }}</span>
+  {%- endif -%}
+  {%- if block.settings.item_2 != blank -%}
+    <span>{{ block.settings.item_2 }}</span>
+  {%- endif -%}
+  {%- if block.settings.item_3 != blank -%}
+    <span>{{ block.settings.item_3 }}</span>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .gv-guarantee {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    color: var(--mid-gray);
+    background: var(--off-white);
+    border: 1px solid var(--warm-gray);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .gv-guarantee span {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Guarantee Bar",
+  "tag": null,
+  "settings": [
+    { "type": "text", "id": "item_1", "label": "Item 1", "default": "🛡️ 30-day money-back" },
+    { "type": "text", "id": "item_2", "label": "Item 2", "default": "🚚 Free delivery above PKR 2,500" },
+    { "type": "text", "id": "item_3", "label": "Item 3", "default": "🏠 Cash on delivery" }
+  ]
+}
+{% endschema %}
