@@ -111,15 +111,65 @@
       </div>
       <div class="gv-bundle-saving">{{ section.settings.saving_text }}</div>
       {%- if section.settings.cta_label != blank -%}
-        <a href="{{ section.settings.cta_url }}" class="gv-btn-primary gv-btn-primary--lg">
+        <button
+          class="gv-btn-primary gv-btn-primary--lg"
+          onclick="glowveAddBundle(event, this)"
+          data-v1="{{ bundle_product_1.first_available_variant.id }}"
+          data-v2="{{ bundle_product_2.first_available_variant.id }}"
+          data-v3="{{ bundle_product_3.first_available_variant.id }}"
+          data-label="{{ section.settings.cta_label | escape }}"
+        >
           {{ section.settings.cta_label }}
-        </a>
+        </button>
       {%- endif -%}
       <p class="gv-bundle-note">{{ section.settings.note }}</p>
     </div>
 
   </div>
 </section>
+
+<script>
+  window.glowveAddBundle = function(event, btn) {
+    event.preventDefault();
+    var v1 = btn.dataset.v1;
+    var v2 = btn.dataset.v2;
+    var v3 = btn.dataset.v3;
+    var items = [v1, v2, v3].filter(Boolean).map(function(id) {
+      return { id: parseInt(id), quantity: 1 };
+    });
+    if (items.length === 0) return;
+
+    btn.disabled = true;
+    btn.textContent = 'Adding…';
+
+    var sectionIds = [];
+    document.querySelectorAll('cart-items-component[data-section-id]').forEach(function(el) {
+      sectionIds.push(el.dataset.sectionId);
+    });
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items: items, sections: sectionIds.join(',') })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(response) {
+      document.dispatchEvent(new CustomEvent('cart:update', {
+        bubbles: true,
+        detail: { data: { sections: response.sections } }
+      }));
+      btn.textContent = 'Added to Bag ✓';
+      setTimeout(function() {
+        btn.disabled = false;
+        btn.textContent = btn.getAttribute('data-label') || 'Add Bundle to Bag';
+      }, 2500);
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Try again';
+    });
+  };
+</script>
 
 {% stylesheet %}
   .gv-bundle {
