@@ -201,59 +201,6 @@
         "show_tabs": true
       }
     },
-    "glowve_ingredient_moment": {
-      "type": "glowve-ingredient-moment",
-      "blocks": {
-        "pill_1": {
-          "type": "pill",
-          "settings": {
-            "text": "Alpha-Arbutin 2%"
-          }
-        },
-        "pill_2": {
-          "type": "pill",
-          "settings": {
-            "text": "Tyrosinase Inhibitor"
-          }
-        },
-        "pill_3": {
-          "type": "pill",
-          "settings": {
-            "text": "Ethyl Ascorbic Acid"
-          }
-        },
-        "pill_4": {
-          "type": "pill",
-          "settings": {
-            "text": "Tranexamic Acid"
-          }
-        },
-        "pill_5": {
-          "type": "pill",
-          "settings": {
-            "text": "EU Safety Approved"
-          }
-        }
-      },
-      "block_order": [
-        "pill_1",
-        "pill_2",
-        "pill_3",
-        "pill_4",
-        "pill_5"
-      ],
-      "name": "Glowve Ingredient Moment",
-      "settings": {
-        "label": "Ingredient Spotlight",
-        "title": "<p>Alpha Arbutin.<br/>PIH's <em>real</em> match.</p>",
-        "ingredient_name": "Alpha-Arbutin 2% · Ethyl Ascorbic Acid",
-        "description": "Post-inflammatory hyperpigmentation sits longer on South Asian skin. Alpha Arbutin at 2% competitively inhibits tyrosinase — the enzyme that produces melanin — at the source. 10x more potent than beta-arbutin, with a strong safety record. No irritation. Just results.",
-        "stat_number": "92%",
-        "stat_text": "noticed brighter skin within 4 weeks",
-        "cta_label": "Explore Ingredient Directory",
-        "cta_url": "/pages/ingredients"
-      }
-    },
     "glowve_shop_concern": {
       "type": "glowve-shop-concern",
       "blocks": {
