@@ -46,8 +46,8 @@
           "type": "slide",
           "name": "Barrier Repair",
           "settings": {
-            "image": "shopify://shop_images/Banner3-Horizontal.webp",
-            "mobile_image": "shopify://shop_images/Banner3-Square.webp",
+            "image": "shopify://shop_images/Banner3-Horizontal_72187c39-87b9-4b1d-806e-41950b8cec32.webp",
+            "mobile_image": "shopify://shop_images/Banner3-Square_ede8facb-0874-479e-9f10-1e57f0cbdfea.webp",
             "eyebrow": "Barrier repair.",
             "headline": "<p>Rebuild. <em>Restore.</em><br/>Repeat.</p>",
             "subline": "Triple ceramide complex + Matrixyl 3000™ — the moisturizer your skin was waiting for.",
@@ -201,12 +201,61 @@
         "show_tabs": true
       }
     },
+    "glowve_promise": {
+      "type": "glowve-promise",
+      "blocks": {
+        "p1": {
+          "type": "promise",
+          "settings": {
+            "icon": "leaf",
+            "title": "100% Cruelty Free",
+            "description": "No animal testing. Ever. Every Glowve product is certified cruelty-free and kind to every living thing."
+          }
+        },
+        "p2": {
+          "type": "promise",
+          "settings": {
+            "icon": "shield",
+            "title": "No Nasty Chemicals",
+            "description": "No parabens, no sulphates, no steroids or mercury, no hidden fillers. Clean ingredients you can actually read and trust."
+          }
+        },
+        "p3": {
+          "type": "promise",
+          "settings": {
+            "icon": "sun",
+            "title": "Made for Pakistan",
+            "description": "Formulated for Pakistan's UV index, humidity, and South Asian skin — not adapted from foreign markets."
+          }
+        },
+        "p4": {
+          "type": "promise",
+          "settings": {
+            "icon": "science",
+            "title": "Study-Backed",
+            "description": "Every active ingredient is supported by published clinical research. We link to studies, not marketing copy."
+          }
+        }
+      },
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "name": "Glowve Promise",
+      "settings": {
+        "label": "What we stand for",
+        "title": "The <em>Glowve</em> promise"
+      }
+    },
     "glowve_shop_concern": {
       "type": "glowve-shop-concern",
       "blocks": {
         "concern_1": {
           "type": "concern",
           "settings": {
+            "image": "shopify://shop_images/Fade_Theory_-_Pigmentation.webp",
             "icon": "✨",
             "name": "Brightening",
             "description": "Dark spots · PIH · Uneven tone",
@@ -216,6 +265,7 @@
         "concern_2": {
           "type": "concern",
           "settings": {
+            "image": "shopify://shop_images/Soft_Reset_-_Redness_Damaged_Barrier.webp",
             "icon": "🛡️",
             "name": "Barrier Repair",
             "description": "Dryness · Sensitivity · Redness",
@@ -225,6 +275,7 @@
         "concern_3": {
           "type": "concern",
           "settings": {
+            "image": "shopify://shop_images/Daylite_-_Sundamage.webp",
             "icon": "☀️",
             "name": "Sun Protection",
             "description": "Pakistan UV index · Matte finish",
@@ -327,54 +378,6 @@
         "description": "Every ingredient. Every concentration. Every product it's in. No hidden \"complexes,\" no marketing names. Browse our complete ingredient directory — searchable, filterable, and linked to real studies.",
         "cta_label": "Explore Directory",
         "cta_url": "/pages/ingredients"
-      }
-    },
-    "glowve_promise": {
-      "type": "glowve-promise",
-      "blocks": {
-        "p1": {
-          "type": "promise",
-          "settings": {
-            "icon": "leaf",
-            "title": "100% Cruelty Free",
-            "description": "No animal testing. Ever. Every Glowve product is certified cruelty-free and kind to every living thing."
-          }
-        },
-        "p2": {
-          "type": "promise",
-          "settings": {
-            "icon": "shield",
-            "title": "No Nasty Chemicals",
-            "description": "No parabens, no sulphates, no steroids or mercury, no hidden fillers. Clean ingredients you can actually read and trust."
-          }
-        },
-        "p3": {
-          "type": "promise",
-          "settings": {
-            "icon": "sun",
-            "title": "Made for Pakistan",
-            "description": "Formulated for Pakistan's UV index, humidity, and South Asian skin — not adapted from foreign markets."
-          }
-        },
-        "p4": {
-          "type": "promise",
-          "settings": {
-            "icon": "science",
-            "title": "Study-Backed",
-            "description": "Every active ingredient is supported by published clinical research. We link to studies, not marketing copy."
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4"
-      ],
-      "name": "Glowve Promise",
-      "settings": {
-        "label": "What we stand for",
-        "title": "The <em>Glowve</em> promise"
       }
     },
     "glowve_bundle": {
