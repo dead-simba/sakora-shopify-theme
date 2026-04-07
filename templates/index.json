@@ -345,7 +345,7 @@
           "settings": {
             "icon": "shield",
             "title": "No Nasty Chemicals",
-            "description": "No parabens, no sulphates, no hidden fillers. Clean ingredients you can actually read and trust."
+            "description": "No parabens, no sulphates, no steroids or mercury, no hidden fillers. Clean ingredients you can actually read and trust."
           }
         },
         "p3": {
@@ -509,16 +509,61 @@
     "glowve_press_strip": {
       "type": "glowve-press-strip",
       "blocks": {
-        "logo_1": { "type": "logo", "settings": { "name": "Dawn" } },
-        "logo_2": { "type": "logo", "settings": { "name": "Vogue Pakistan" } },
-        "logo_3": { "type": "logo", "settings": { "name": "Instep" } },
-        "logo_4": { "type": "logo", "settings": { "name": "She" } },
-        "logo_5": { "type": "logo", "settings": { "name": "Cosmopolitan PK" } },
-        "logo_6": { "type": "logo", "settings": { "name": "Aurora" } }
+        "logo_1": {
+          "type": "logo",
+          "settings": {
+            "name": "Dawn",
+            "link": ""
+          }
+        },
+        "logo_2": {
+          "type": "logo",
+          "settings": {
+            "name": "Vogue Pakistan",
+            "link": ""
+          }
+        },
+        "logo_3": {
+          "type": "logo",
+          "settings": {
+            "name": "Instep",
+            "link": ""
+          }
+        },
+        "logo_4": {
+          "type": "logo",
+          "settings": {
+            "name": "She",
+            "link": ""
+          }
+        },
+        "logo_5": {
+          "type": "logo",
+          "settings": {
+            "name": "Cosmopolitan PK",
+            "link": ""
+          }
+        },
+        "logo_6": {
+          "type": "logo",
+          "settings": {
+            "name": "Aurora",
+            "link": ""
+          }
+        }
       },
-      "block_order": ["logo_1", "logo_2", "logo_3", "logo_4", "logo_5", "logo_6"],
+      "block_order": [
+        "logo_1",
+        "logo_2",
+        "logo_3",
+        "logo_4",
+        "logo_5",
+        "logo_6"
+      ],
       "name": "Glowve Press Strip",
-      "settings": {}
+      "settings": {
+        "label": "As seen in"
+      }
     },
     "glowve_email": {
       "type": "glowve-email-capture",
@@ -538,9 +583,9 @@
     "glowve_category_bubbles",
     "glowve_social_proof",
     "glowve_bestsellers",
+    "glowve_promise",
     "glowve_shop_concern",
     "glowve_ing_directory",
-    "glowve_promise",
     "glowve_bundle",
     "glowve_routine",
     "glowve_ugc",
