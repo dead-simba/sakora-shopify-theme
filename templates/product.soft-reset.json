@@ -227,27 +227,21 @@
                 "opt1_title": "1 Bottle",
                 "opt1_subtitle": "Try it out.",
                 "opt1_badge": "",
+                "opt1_badge_color": "coral",
                 "opt2_product": "2x-barrier-renew",
                 "opt2_title": "2 Bottles (2 Month Supply)",
+                "opt2_subtitle": "",
                 "opt2_free_shipping": true,
                 "opt2_badge": "Most Popular (Save 15%)",
                 "opt2_badge_color": "coral",
                 "opt3_product": "3x-barrier-renew",
                 "opt3_title": "3 Bottles (3 Month Supply)",
+                "opt3_subtitle": "",
                 "opt3_free_shipping": true,
                 "opt3_badge": "Best Value (Save 20%)",
                 "opt3_badge_color": "coral"
-              }
-            },
-            "gv_social_proof": {
-              "type": "gv-social-proof",
-              "settings": {}
-            },
-            "gv_urgency": {
-              "type": "gv-urgency",
-              "settings": {
-                "text": "Order before 2pm PKT — ships today"
-              }
+              },
+              "blocks": {}
             },
             "gv_guarantee": {
               "type": "gv-guarantee",
@@ -262,40 +256,6 @@
               "type": "gv-ship-tracker",
               "settings": {
                 "threshold": 2500
-              },
-              "blocks": {}
-            },
-            "gv_ing_1": {
-              "type": "gv-ing-callout",
-              "settings": {
-                "icon": "🧬",
-                "name": "Triple Ceramide Complex",
-                "desc": "Ceramide NP, AP & EOP — the exact lipids your barrier is made of, applied directly."
-              },
-              "blocks": {}
-            },
-            "gv_ing_2": {
-              "type": "gv-ing-callout",
-              "settings": {
-                "icon": "🔬",
-                "name": "Matrixyl 3000™",
-                "desc": "Clinically reduces deep wrinkle area by 45% in 8 weeks — stimulates collagen production."
-              },
-              "blocks": {}
-            },
-            "gv_ing_3": {
-              "type": "gv-ing-callout",
-              "settings": {
-                "icon": "✨",
-                "name": "Niacinamide 5%",
-                "desc": "Boosts ceramide synthesis 4–5× from within — builds your barrier from the inside out."
-              },
-              "blocks": {}
-            },
-            "gv_pk": {
-              "type": "gv-pk-callout",
-              "settings": {
-                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
               },
               "blocks": {}
             },
@@ -324,6 +284,13 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "gv_pk": {
+              "type": "gv-pk-callout",
+              "settings": {
+                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -331,15 +298,12 @@
             "divider_main",
             "gv_social_proof",
             "gv_urgency",
-            "gv_protocol",
             "buy_buttons_main",
+            "gv_protocol",
             "gv_guarantee",
             "gv_ship_tracker",
-            "gv_ing_1",
-            "gv_ing_2",
-            "gv_ing_3",
-            "gv_pk",
-            "text_description"
+            "text_description",
+            "gv_pk"
           ]
         }
       },
