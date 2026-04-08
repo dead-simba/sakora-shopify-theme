@@ -139,32 +139,27 @@
   .gv-pp-opts {
     display: flex;
     flex-direction: column;
-    gap: 0;
-    border: 1.5px solid var(--warm-gray);
-    border-radius: 14px;
-    overflow: hidden;
+    gap: 8px;
   }
 
   .gv-pp-opt {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 12px;
     padding: 14px 16px;
     cursor: pointer;
     background: white;
-    transition: background 0.15s;
-    border-bottom: 1px solid var(--warm-gray);
+    border: 1.5px solid #E8E0DC;
+    border-radius: 12px;
+    transition: border-color 0.15s, background 0.15s;
   }
-  .gv-pp-opt:last-child { border-bottom: none; }
-  .gv-pp-opt:hover { background: #fafafa; }
+  .gv-pp-opt:hover { border-color: #d4c8c2; }
 
   .gv-pp-opt--active {
     background: #FFF5F8;
-    border-left: 3px solid var(--coral-pulse);
-    padding-left: 13px;
+    border-color: var(--coral-pulse);
+    border-width: 2px;
   }
-  /* Re-add divider for active item since border-bottom is on the element */
 
   .gv-pp-radio {
     position: absolute;
@@ -177,7 +172,7 @@
     width: 18px;
     height: 18px;
     border-radius: 50%;
-    border: 2px solid var(--warm-gray);
+    border: 2px solid #D4C8C2;
     flex-shrink: 0;
     position: relative;
     transition: border-color 0.15s;
@@ -191,15 +186,13 @@
     opacity: 0;
     transition: opacity 0.15s;
   }
-  .gv-pp-opt--active .gv-pp-dot {
-    border-color: var(--coral-pulse);
-  }
+  .gv-pp-opt--active .gv-pp-dot { border-color: var(--coral-pulse); }
   .gv-pp-opt--active .gv-pp-dot::after { opacity: 1; }
 
   .gv-pp-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 3px;
     flex: 1;
     min-width: 0;
   }
@@ -212,7 +205,7 @@
   }
 
   .gv-pp-sub {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--mid-gray);
     line-height: 1.3;
   }
@@ -221,11 +214,28 @@
     font-weight: 500;
   }
 
+  /* Badge — inline pill below title */
+  .gv-pp-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 100px;
+    line-height: 1.6;
+    white-space: nowrap;
+    margin-top: 1px;
+  }
+  .gv-pp-badge--coral { background: #FFE8F0; color: var(--coral-pulse); }
+  .gv-pp-badge--gold  { background: #FFE8F0; color: var(--coral-pulse); }
+  .gv-pp-badge--green { background: #E8F5E9; color: #2E7D32; }
+
   .gv-pp-pricing {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 1px;
+    gap: 2px;
     flex-shrink: 0;
   }
 
@@ -241,24 +251,6 @@
     color: var(--mid-gray);
     text-decoration: line-through;
   }
-
-  /* Badge — top-right corner tab */
-  .gv-pp-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 9px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 4px 10px;
-    border-radius: 0 12px 0 10px;
-    line-height: 1.2;
-    white-space: nowrap;
-  }
-  .gv-pp-badge--coral { background: var(--coral-pulse); color: white; }
-  .gv-pp-badge--gold  { background: var(--coral-pulse); color: white; }
-  .gv-pp-badge--green { background: #2E7D32; color: white; }
 {% endstylesheet %}
 
 {% schema %}
