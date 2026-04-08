@@ -1,5 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "Glowve Product",
   "sections": {
     "main": {
       "type": "product-information",
@@ -104,7 +112,10 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["text_title", "price_main"]
+              "block_order": [
+                "text_title",
+                "price_main"
+              ]
             },
             "divider_main": {
               "type": "_divider",
@@ -152,7 +163,9 @@
                 "add-to-cart": {
                   "type": "add-to-cart",
                   "static": true,
-                  "settings": { "style_class": "button" },
+                  "settings": {
+                    "style_class": "button"
+                  },
                   "blocks": {}
                 },
                 "accelerated-checkout": {
@@ -189,7 +202,9 @@
             },
             "gv_urgency": {
               "type": "gv-urgency",
-              "settings": { "text": "Order before 2pm PKT — ships today" }
+              "settings": {
+                "text": "Order before 2pm PKT — ships today"
+              }
             },
             "gv_guarantee": {
               "type": "gv-guarantee",
@@ -201,7 +216,9 @@
             },
             "gv_ship_tracker": {
               "type": "gv-ship-tracker",
-              "settings": { "threshold": 2500 }
+              "settings": {
+                "threshold": 2500
+              }
             },
             "gv_payments": {
               "type": "gv-payment-chips",
@@ -253,8 +270,6 @@
     },
     "pdp_science": {
       "type": "glowve-pdp-science",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "The Science",
         "title": "How it works.",
@@ -263,8 +278,6 @@
     },
     "pdp_ingredients": {
       "type": "glowve-pdp-ingredients",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "What's Inside",
         "title": "Every ingredient. Every reason.",
@@ -275,8 +288,6 @@
     },
     "pdp_how_to_use": {
       "type": "glowve-pdp-how-to-use",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "How to Use",
         "title": "Your daily routine.",
@@ -285,8 +296,6 @@
     },
     "pdp_timeline": {
       "type": "glowve-pdp-timeline",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "What to Expect",
         "title": "Results over time.",
@@ -295,8 +304,6 @@
     },
     "pdp_faq": {
       "type": "glowve-pdp-faq",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "FAQ",
         "title": "Questions answered."
@@ -354,24 +361,42 @@
           "blocks": {
             "product_card_gallery": {
               "type": "_product-card-gallery",
-              "settings": { "image_ratio": "adapt", "border": "none", "border_radius": 0 },
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_radius": 0
+              },
               "blocks": {}
             },
             "product_title": {
               "type": "product-title",
-              "settings": { "type_preset": "rte", "font": "var(--font-body--family)", "font_size": "1rem" },
+              "settings": {
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem"
+              },
               "blocks": {}
             },
             "price_card": {
               "type": "price",
-              "settings": { "show_sale_price_first": true, "type_preset": "h6", "font_size": "1rem" },
+              "settings": {
+                "show_sale_price_first": true,
+                "type_preset": "h6",
+                "font_size": "1rem"
+              },
               "blocks": {}
             }
           },
-          "block_order": ["product_card_gallery", "product_title", "price_card"]
+          "block_order": [
+            "product_card_gallery",
+            "product_title",
+            "price_card"
+          ]
         }
       },
-      "block_order": ["text_recs_header"],
+      "block_order": [
+        "text_recs_header"
+      ],
       "settings": {
         "product": "{{ closest.product }}",
         "recommendation_type": "related",

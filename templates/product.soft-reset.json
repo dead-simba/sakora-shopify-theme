@@ -1,5 +1,13 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "Soft Reset — Moisturiser",
   "sections": {
     "main": {
       "type": "product-information",
@@ -8,15 +16,16 @@
           "type": "_product-media-gallery",
           "static": true,
           "settings": {
-            "media_presentation": "grid",
+            "media_presentation": "carousel",
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": true,
-            "icons_style": "arrow",
-            "slideshow_controls_style": "counter",
-            "slideshow_mobile_controls_style": "dots",
-            "thumbnail_position": "right",
+            "icons_style": "chevron",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "thumbnails",
+            "thumbnail_position": "bottom",
             "thumbnail_width": 44,
+            "thumbnail_radius": 0,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
             "media_fit": "contain",
@@ -47,6 +56,8 @@
             "inherit_color_scheme": true,
             "color_scheme": "scheme-1",
             "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
             "border": "none",
             "border_width": 1,
             "border_opacity": 100,
@@ -65,10 +76,32 @@
                 "vertical_on_mobile": true,
                 "horizontal_alignment": "flex-start",
                 "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
                 "gap": 8,
                 "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
                 "height": "fit",
+                "custom_height": 100,
                 "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -79,9 +112,20 @@
                   "type": "text",
                   "settings": {
                     "text": "<h1>{{ closest.product.title }}</h1>",
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
                     "type_preset": "h3",
                     "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
                     "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
                     "padding-block-start": 0,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -96,6 +140,14 @@
                     "show_installments": false,
                     "show_tax_info": false,
                     "type_preset": "paragraph",
+                    "width": "100%",
+                    "alignment": "left",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "color": "var(--color-foreground)",
                     "padding-block-start": 4,
                     "padding-block-end": 0,
                     "padding-inline-start": 0,
@@ -104,7 +156,10 @@
                   "blocks": {}
                 }
               },
-              "block_order": ["text_title", "price_main"]
+              "block_order": [
+                "text_title",
+                "price_main"
+              ]
             },
             "divider_main": {
               "type": "_divider",
@@ -115,6 +170,18 @@
                 "width_percent": 100,
                 "padding-block-start": 0,
                 "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "gv_social_proof": {
+              "type": "gv-social-proof",
+              "settings": {},
+              "blocks": {}
+            },
+            "gv_urgency": {
+              "type": "gv-urgency",
+              "settings": {
+                "text": "Order before 2pm PKT — ships today"
               },
               "blocks": {}
             },
@@ -152,7 +219,9 @@
                 "add-to-cart": {
                   "type": "add-to-cart",
                   "static": true,
-                  "settings": { "style_class": "button" },
+                  "settings": {
+                    "style_class": "button"
+                  },
                   "blocks": {}
                 },
                 "accelerated-checkout": {
@@ -171,12 +240,12 @@
                 "opt1_title": "1 Bottle",
                 "opt1_subtitle": "Try it out.",
                 "opt1_badge": "",
-                "opt2_product": "",
+                "opt2_product": "2x-barrier-renew",
                 "opt2_title": "2 Bottles (2 Month Supply)",
                 "opt2_free_shipping": true,
                 "opt2_badge": "Most Popular (Save 15%)",
                 "opt2_badge_color": "coral",
-                "opt3_product": "",
+                "opt3_product": "3x-barrier-renew",
                 "opt3_title": "3 Bottles (3 Month Supply)",
                 "opt3_free_shipping": true,
                 "opt3_badge": "Best Value (Save 20%)",
@@ -199,20 +268,15 @@
                 "item_1": "🛡️ 30-day money-back",
                 "item_2": "🚚 Free delivery above PKR 2,500",
                 "item_3": "🏠 Cash on delivery"
-              }
+              },
+              "blocks": {}
             },
             "gv_ship_tracker": {
               "type": "gv-ship-tracker",
-              "settings": { "threshold": 2500 }
-            },
-            "gv_payments": {
-              "type": "gv-payment-chips",
               "settings": {
-                "chip_1": "💳 Card",
-                "chip_2": "Easypaisa",
-                "chip_3": "JazzCash",
-                "chip_4": "🏠 Cash on Delivery"
-              }
+                "threshold": 2500
+              },
+              "blocks": {}
             },
             "gv_ing_1": {
               "type": "gv-ing-callout",
@@ -220,7 +284,8 @@
                 "icon": "🧬",
                 "name": "Triple Ceramide Complex",
                 "desc": "Ceramide NP, AP & EOP — the exact lipids your barrier is made of, applied directly."
-              }
+              },
+              "blocks": {}
             },
             "gv_ing_2": {
               "type": "gv-ing-callout",
@@ -228,7 +293,8 @@
                 "icon": "🔬",
                 "name": "Matrixyl 3000™",
                 "desc": "Clinically reduces deep wrinkle area by 45% in 8 weeks — stimulates collagen production."
-              }
+              },
+              "blocks": {}
             },
             "gv_ing_3": {
               "type": "gv-ing-callout",
@@ -236,29 +302,35 @@
                 "icon": "✨",
                 "name": "Niacinamide 5%",
                 "desc": "Boosts ceramide synthesis 4–5× from within — builds your barrier from the inside out."
-              }
-            },
-            "gv_trust": {
-              "type": "gv-trust-badges",
-              "settings": {
-                "badge_1_icon": "🧪", "badge_1_label": "Derm Tested",
-                "badge_2_icon": "🌿", "badge_2_label": "Fragrance Free",
-                "badge_3_icon": "🐰", "badge_3_label": "Cruelty Free",
-                "badge_4_icon": "🇵🇰", "badge_4_label": "Made for Pakistan"
-              }
+              },
+              "blocks": {}
             },
             "gv_pk": {
               "type": "gv-pk-callout",
               "settings": {
                 "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
-              }
+              },
+              "blocks": {}
             },
             "text_description": {
               "type": "text",
               "name": "Product description",
               "settings": {
                 "text": "{{ closest.product.description }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
                 "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -276,11 +348,9 @@
             "buy_buttons_main",
             "gv_guarantee",
             "gv_ship_tracker",
-            "gv_payments",
             "gv_ing_1",
             "gv_ing_2",
             "gv_ing_3",
-            "gv_trust",
             "gv_pk",
             "text_description"
           ]
@@ -292,6 +362,7 @@
         "equal_columns": false,
         "limit_details_width": false,
         "gap": 48,
+        "enable_sticky_add_to_cart": true,
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0
@@ -299,11 +370,6 @@
     },
     "pdp_science": {
       "type": "glowve-pdp-science",
-      "settings": {
-        "label": "The Science",
-        "title": "How your barrier breaks. How we fix it.",
-        "subtitle": "Most moisturisers sit on top. Soft Reset rebuilds from within."
-      },
       "blocks": {
         "sci_pathways": {
           "type": "pathway_card",
@@ -334,17 +400,18 @@
           }
         }
       },
-      "block_order": ["sci_pathways", "sci_stat"]
+      "block_order": [
+        "sci_pathways",
+        "sci_stat"
+      ],
+      "settings": {
+        "label": "The Science",
+        "title": "How your barrier breaks. How we fix it.",
+        "subtitle": "Most moisturisers sit on top. Soft Reset rebuilds from within."
+      }
     },
     "pdp_ingredients": {
       "type": "glowve-pdp-ingredients",
-      "settings": {
-        "label": "What's Inside",
-        "title": "Every ingredient. Every reason.",
-        "subtitle": "No fillers. No proprietary blends.",
-        "inci_title": "Full Ingredient List",
-        "inci_full": "Aqua (Water), Cetearyl Olivate, Sorbitan Olivate, <span class='active-ing'>Ceramide NP</span>, <span class='active-ing'>Ceramide AP</span>, <span class='active-ing'>Ceramide EOP</span>, Phytosphingosine, Cholesterol, <span class='active-ing'>Palmitoyl Tripeptide-1</span>, <span class='active-ing'>Palmitoyl Tetrapeptide-7</span>, <span class='active-ing'>Niacinamide</span>, <span class='active-ing'>Sodium Hyaluronate</span>, Glycerin, Pentylene Glycol, Sodium PCA, Carbomer, Sodium Hydroxide, <span class='active-ing'>Tocopherol</span>, Ethylhexylglycerin, Phenoxyethanol."
-      },
       "blocks": {
         "ing_ceramides": {
           "type": "ingredient",
@@ -402,15 +469,17 @@
         "ing_olivem",
         "ing_ha",
         "ing_vite"
-      ]
+      ],
+      "settings": {
+        "label": "What's Inside",
+        "title": "Every ingredient. Every reason.",
+        "subtitle": "No fillers. No proprietary blends.",
+        "inci_title": "Full Ingredient List",
+        "inci_full": "Aqua (Water), Cetearyl Olivate, Sorbitan Olivate, <span class=\"active-ing\">Ceramide NP</span>, <span class=\"active-ing\">Ceramide AP</span>, <span class=\"active-ing\">Ceramide EOP</span>, Phytosphingosine, Cholesterol, <span class=\"active-ing\">Palmitoyl Tripeptide-1</span>, <span class=\"active-ing\">Palmitoyl Tetrapeptide-7</span>, <span class=\"active-ing\">Niacinamide</span>, <span class=\"active-ing\">Sodium Hyaluronate</span>, Glycerin, Pentylene Glycol, Sodium PCA, Carbomer, Sodium Hydroxide, <span class=\"active-ing\">Tocopherol</span>, Ethylhexylglycerin, Phenoxyethanol."
+      }
     },
     "pdp_how_to_use": {
       "type": "glowve-pdp-how-to-use",
-      "settings": {
-        "label": "How to Use",
-        "title": "Your barrier repair routine.",
-        "tip": "In dry weather, layer Soft Reset under Daylite for all-day protection. Your barrier loses more moisture in cold, dry conditions — use a slightly more generous amount at night."
-      },
       "blocks": {
         "am_1_cleanser": {
           "type": "step",
@@ -513,15 +582,15 @@
         "pm_2_active",
         "pm_3_moisturiser",
         "pm_4_oil"
-      ]
+      ],
+      "settings": {
+        "label": "How to Use",
+        "title": "Your barrier repair routine.",
+        "tip": "In dry weather, layer Soft Reset under Daylite for all-day protection. Your barrier loses more moisture in cold, dry conditions — use a slightly more generous amount at night."
+      }
     },
     "pdp_timeline": {
       "type": "glowve-pdp-timeline",
-      "settings": {
-        "label": "What to Expect",
-        "title": "Results over time.",
-        "note": "Individual results vary. Consistent daily use for 8–12 weeks gives the most reliable outcome. A compromised barrier took time to break down — give it time to rebuild."
-      },
       "blocks": {
         "tl_1": {
           "type": "milestone",
@@ -556,14 +625,20 @@
           }
         }
       },
-      "block_order": ["tl_1", "tl_2", "tl_3", "tl_4"]
+      "block_order": [
+        "tl_1",
+        "tl_2",
+        "tl_3",
+        "tl_4"
+      ],
+      "settings": {
+        "label": "What to Expect",
+        "title": "Results over time.",
+        "note": "Individual results vary. Consistent daily use for 8–12 weeks gives the most reliable outcome. A compromised barrier took time to break down — give it time to rebuild."
+      }
     },
     "pdp_faq": {
       "type": "glowve-pdp-faq",
-      "settings": {
-        "label": "FAQ",
-        "title": "Questions answered."
-      },
       "blocks": {
         "faq_1": {
           "type": "item",
@@ -608,7 +683,18 @@
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5", "faq_6"]
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5",
+        "faq_6"
+      ],
+      "settings": {
+        "label": "FAQ",
+        "title": "Questions answered."
+      }
     },
     "pdp_upsell": {
       "type": "glowve-pdp-upsell",
@@ -637,7 +723,20 @@
           "name": "Header",
           "settings": {
             "text": "<h3>You may also like</h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
             "type_preset": "h4",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 0,
             "padding-inline-start": 0,
@@ -652,7 +751,10 @@
           "settings": {
             "product_card_gap": 8,
             "inherit_color_scheme": true,
+            "color_scheme": "",
             "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
             "border_radius": 0,
             "padding-block-start": 0,
             "padding-block-end": 8,
@@ -662,32 +764,90 @@
           "blocks": {
             "product_card_gallery": {
               "type": "_product-card-gallery",
-              "settings": { "image_ratio": "adapt", "border": "none", "border_radius": 0 },
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
               "blocks": {}
             },
             "product_title": {
               "type": "product-title",
-              "settings": { "type_preset": "rte", "font": "var(--font-body--family)", "font_size": "1rem" },
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
               "blocks": {}
             },
             "price_card": {
               "type": "price",
-              "settings": { "show_sale_price_first": true, "type_preset": "h6", "font_size": "1rem" },
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
               "blocks": {}
             }
           },
-          "block_order": ["product_card_gallery", "product_title", "price_card"]
+          "block_order": [
+            "product_card_gallery",
+            "product_title",
+            "price_card"
+          ]
         }
       },
-      "block_order": ["text_recs_header"],
+      "block_order": [
+        "text_recs_header"
+      ],
       "settings": {
         "product": "{{ closest.product }}",
         "recommendation_type": "related",
         "layout_type": "grid",
+        "carousel_on_mobile": false,
         "max_products": 4,
         "columns": 4,
         "mobile_columns": "2",
+        "columns_gap": 16,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "none",
         "section_width": "page-width",
+        "gap": 12,
         "color_scheme": "scheme-1",
         "padding-block-start": 48,
         "padding-block-end": 48
