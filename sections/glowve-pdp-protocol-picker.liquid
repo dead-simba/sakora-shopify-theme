@@ -3,6 +3,57 @@
   assign opt3_prod = all_products[section.settings.opt3_product]
 -%}
 
+<style>
+  @media (max-width: 599px) {
+    .gv-protocol-opt {
+      padding: 10px 12px !important;
+    }
+    .gv-protocol-content {
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 4px !important;
+    }
+    .gv-protocol-left {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 10px !important;
+      width: 100% !important;
+    }
+    .gv-protocol-right {
+      display: flex !important;
+      flex-direction: row !important;
+      align-items: center !important;
+      gap: 6px !important;
+      padding-left: 28px;
+    }
+    .gv-protocol-dot {
+      width: 16px !important;
+      height: 16px !important;
+      margin-top: 2px;
+    }
+    .gv-protocol-dot-inner {
+      width: 7px !important;
+      height: 7px !important;
+    }
+    .gv-protocol-title {
+      font-size: 13px !important;
+    }
+    .gv-protocol-sub {
+      font-size: 11px !important;
+    }
+    .gv-protocol-price {
+      font-size: 14px !important;
+    }
+    .gv-protocol-compare {
+      font-size: 11px !important;
+    }
+    .gv-protocol-badge {
+      font-size: 7.5px !important;
+      padding: 2px 6px !important;
+    }
+  }
+</style>
+
 <div class="gv-protocol-section" data-protocol-picker>
 
   {%- if section.settings.title != blank -%}
@@ -318,48 +369,6 @@
   .gv-protocol-badge--coral  { background: var(--coral-pulse); color: white; }
   .gv-protocol-badge--green  { background: #2E7D32; color: white; }
 
-  /* ── Mobile layout fix ── */
-  @media (max-width: 480px) {
-    .gv-protocol-opt { padding: 12px 14px; }
-
-    .gv-protocol-content {
-      display: grid;
-      grid-template-columns: 22px 1fr auto;
-      grid-template-rows: auto auto;
-      gap: 2px 10px;
-      align-items: center;
-    }
-
-    .gv-protocol-left {
-      display: contents;
-    }
-
-    .gv-protocol-dot {
-      grid-column: 1;
-      grid-row: 1 / -1;
-      align-self: center;
-    }
-
-    .gv-protocol-info {
-      grid-column: 2;
-      grid-row: 1 / -1;
-    }
-
-    .gv-protocol-right {
-      grid-column: 3;
-      grid-row: 1 / -1;
-    }
-
-    .gv-protocol-title { font-size: 13px; }
-    .gv-protocol-sub   { font-size: 11px; }
-    .gv-protocol-price  { font-size: 14px; }
-    .gv-protocol-compare { font-size: 11px; }
-
-    .gv-protocol-badge {
-      font-size: 8px;
-      padding: 3px 8px;
-    }
-  }
 {% endstylesheet %}
 
 {% schema %}
