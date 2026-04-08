@@ -320,38 +320,41 @@
 
   @media (max-width: 599px) {
     .gv-protocol-opt {
-      padding: 10px 12px;
+      padding: 10px 12px !important;
     }
     .gv-protocol-content {
-      flex-direction: column;
-      gap: 6px;
+      flex-direction: column !important;
+      gap: 6px !important;
+      align-items: flex-start !important;
+      justify-content: flex-start !important;
     }
     .gv-protocol-left {
-      flex: 1;
-      min-width: 0;
+      flex: 1 1 100% !important;
+      min-width: 0 !important;
     }
     .gv-protocol-right {
-      padding-left: 28px;
+      padding-left: 28px !important;
+      flex: 1 1 100% !important;
     }
     .gv-protocol-dot {
-      width: 16px;
-      height: 16px;
+      width: 16px !important;
+      height: 16px !important;
     }
     .gv-protocol-dot-inner {
-      width: 7px;
-      height: 7px;
+      width: 7px !important;
+      height: 7px !important;
     }
     .gv-protocol-title {
-      font-size: 13px;
+      font-size: 13px !important;
     }
     .gv-protocol-sub {
-      font-size: 11px;
+      font-size: 11px !important;
     }
     .gv-protocol-price {
-      font-size: 13px;
+      font-size: 13px !important;
     }
     .gv-protocol-compare {
-      font-size: 11px;
+      font-size: 11px !important;
     }
   }
 {% endstylesheet %}
