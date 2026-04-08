@@ -139,11 +139,11 @@
                     "show_sale_price_first": true,
                     "show_installments": false,
                     "show_tax_info": false,
-                    "type_preset": "paragraph",
+                    "type_preset": "custom",
                     "width": "100%",
                     "alignment": "left",
-                    "font": "var(--font-body--family)",
-                    "font_size": "1rem",
+                    "font": "var(--font-subheading--family)",
+                    "font_size": "1.25rem",
                     "line_height": "normal",
                     "letter_spacing": "normal",
                     "case": "none",
@@ -161,6 +161,52 @@
                 "price_main"
               ]
             },
+            "gv_social_proof": {
+              "type": "gv-social-proof",
+              "settings": {
+                "view_min": 10,
+                "view_max": 25,
+                "buy_min": 3,
+                "buy_max": 15
+              },
+              "blocks": {}
+            },
+            "buy_buttons_main": {
+              "type": "buy-buttons",
+              "settings": {
+                "stacking": true,
+                "show_pickup_availability": false,
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {
+                "quantity": {
+                  "type": "quantity",
+                  "disabled": true,
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                },
+                "add-to-cart": {
+                  "type": "add-to-cart",
+                  "static": true,
+                  "settings": {
+                    "style_class": "button"
+                  },
+                  "blocks": {}
+                },
+                "accelerated-checkout": {
+                  "type": "accelerated-checkout",
+                  "static": true,
+                  "settings": {},
+                  "blocks": {}
+                }
+              },
+              "block_order": []
+            },
             "divider_main": {
               "type": "_divider",
               "name": "Divider",
@@ -173,15 +219,17 @@
               },
               "blocks": {}
             },
-            "gv_social_proof": {
-              "type": "gv-social-proof",
-              "settings": {},
-              "blocks": {}
-            },
             "gv_urgency": {
               "type": "gv-urgency",
               "settings": {
                 "text": "Order before 2pm PKT — ships today"
+              },
+              "blocks": {}
+            },
+            "gv_ship_tracker": {
+              "type": "gv-ship-tracker",
+              "settings": {
+                "threshold": 2500
               },
               "blocks": {}
             },
@@ -208,54 +256,12 @@
               },
               "blocks": {}
             },
-            "buy_buttons_main": {
-              "type": "buy-buttons",
-              "settings": {
-                "stacking": true,
-                "show_pickup_availability": false,
-                "gift_card_form": true,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {
-                "quantity": {
-                  "type": "quantity",
-                  "static": true,
-                  "settings": {},
-                  "blocks": {}
-                },
-                "add-to-cart": {
-                  "type": "add-to-cart",
-                  "static": true,
-                  "settings": {
-                    "style_class": "button"
-                  },
-                  "blocks": {}
-                },
-                "accelerated-checkout": {
-                  "type": "accelerated-checkout",
-                  "static": true,
-                  "settings": {},
-                  "blocks": {}
-                }
-              },
-              "block_order": []
-            },
             "gv_guarantee": {
               "type": "gv-guarantee",
               "settings": {
                 "item_1": "30-day money-back",
                 "item_2": "Free delivery above PKR 2,500",
                 "item_3": "Cash on delivery"
-              },
-              "blocks": {}
-            },
-            "gv_ship_tracker": {
-              "type": "gv-ship-tracker",
-              "settings": {
-                "threshold": 2500
               },
               "blocks": {}
             },
@@ -268,7 +274,8 @@
             },
             "gv_atc_bar": {
               "type": "gv-atc-bar",
-              "settings": {}
+              "settings": {},
+              "blocks": {}
             },
             "text_description": {
               "type": "text",
@@ -299,13 +306,13 @@
           },
           "block_order": [
             "group_header",
-            "divider_main",
             "gv_social_proof",
-            "gv_urgency",
-            "gv_protocol",
             "buy_buttons_main",
-            "gv_guarantee",
+            "divider_main",
+            "gv_urgency",
             "gv_ship_tracker",
+            "gv_protocol",
+            "gv_guarantee",
             "gv_pk",
             "gv_atc_bar",
             "text_description"
