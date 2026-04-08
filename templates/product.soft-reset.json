@@ -164,6 +164,25 @@
               },
               "block_order": []
             },
+            "gv_protocol": {
+              "type": "gv-protocol-picker",
+              "settings": {
+                "title": "Select Your Protocol",
+                "opt1_title": "1 Bottle",
+                "opt1_subtitle": "Try it out.",
+                "opt1_badge": "",
+                "opt2_product": "",
+                "opt2_title": "2 Bottles (2 Month Supply)",
+                "opt2_free_shipping": true,
+                "opt2_badge": "Most Popular (Save 15%)",
+                "opt2_badge_color": "coral",
+                "opt3_product": "",
+                "opt3_title": "3 Bottles (3 Month Supply)",
+                "opt3_free_shipping": true,
+                "opt3_badge": "Best Value (Save 20%)",
+                "opt3_badge_color": "coral"
+              }
+            },
             "gv_social_proof": {
               "type": "gv-social-proof",
               "settings": {}
@@ -253,7 +272,7 @@
             "divider_main",
             "gv_social_proof",
             "gv_urgency",
-            "variant_picker_main",
+            "gv_protocol",
             "buy_buttons_main",
             "gv_guarantee",
             "gv_ship_tracker",
@@ -277,30 +296,6 @@
         "padding-block-start": 0,
         "padding-block-end": 0
       }
-    },
-    "pdp_protocol": {
-      "type": "glowve-pdp-protocol-picker",
-      "settings": {
-        "title": "Select Your Protocol",
-        "opt1_title": "1 Bottle",
-        "opt1_subtitle": "Try it out.",
-        "opt1_badge": "",
-        "opt1_badge_color": "gold",
-        "opt2_product": "",
-        "opt2_title": "2 Bottles (2 Month Supply)",
-        "opt2_subtitle": "",
-        "opt2_free_shipping": true,
-        "opt2_badge": "Most Popular (Save 15%)",
-        "opt2_badge_color": "gold",
-        "opt3_product": "",
-        "opt3_title": "3 Bottles (3 Month Supply)",
-        "opt3_subtitle": "",
-        "opt3_free_shipping": true,
-        "opt3_badge": "Best Value (Save 20%)",
-        "opt3_badge_color": "coral"
-      },
-      "blocks": {},
-      "block_order": []
     },
     "pdp_science": {
       "type": "glowve-pdp-science",
@@ -701,7 +696,6 @@
   },
   "order": [
     "main",
-    "pdp_protocol",
     "pdp_science",
     "pdp_ingredients",
     "pdp_how_to_use",
