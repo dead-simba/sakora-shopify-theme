@@ -325,97 +325,20 @@
       }
     },
     "pdp_details": {
-      "type": "glowve-pdp-accordions",
+      "type": "glowve-accordion-details",
       "blocks": {
-        "acc_science": {
-          "type": "science",
+        "row_1": {
+          "type": "row",
           "settings": {
             "title": "Barrier repair from two directions.",
-            "card_1_title": "Ceramide Depletion",
-            "card_1_body": "Daily stressors strip the ceramides that hold your barrier together.",
-            "card_1_ingredient": "Triple Ceramides",
-            "card_2_title": "Water Loss Spirals",
-            "card_2_body": "A compromised barrier lets water evaporate faster than it can be replaced.",
-            "card_2_ingredient": "Sodium Hyaluronate",
-            "card_3_title": "Inflammation Builds",
-            "card_3_body": "Barrier damage speeds up ageing and makes skin reactive.",
-            "card_3_ingredient": "Niacinamide 5%",
-            "card_4_title": "Peptide Signalling",
-            "card_4_body": "Matrixyl 3000 signals skin to produce more collagen and elastin.",
-            "card_4_ingredient": "Matrixyl 3000",
-            "card_5_title": "Seal Without Clogging",
-            "card_5_body": "Olivem 1000 mimics skin's own lipid structure.",
-            "card_5_ingredient": "Olivem 1000"
-          }
-        },
-        "acc_ingredients": {
-          "type": "ingredients",
-          "settings": {
-            "title": "What's inside — and why.",
-            "ing_1_name": "Triple Ceramide Complex",
-            "ing_1_benefit": "Integrates directly into your barrier.",
-            "ing_2_name": "Matrixyl 3000™",
-            "ing_2_benefit": "45% reduction in wrinkle depth.",
-            "ing_3_name": "Niacinamide 5%",
-            "ing_3_benefit": "Makes your skin produce its own ceramides.",
-            "ing_4_name": "Olivem 1000™",
-            "ing_4_benefit": "Olive-derived biocompatible base.",
-            "ing_5_name": "Sodium Hyaluronate",
-            "ing_5_benefit": "Deep hydration for 24 hours.",
-            "ing_6_name": "Tocopherol",
-            "ing_6_benefit": "Protects ceramides from oxidative damage."
-          }
-        },
-        "acc_htu": {
-          "type": "how_to_use",
-          "settings": {
-            "title": "Takes 30 seconds. Works for 24 hours.",
-            "step_1_label": "Cleanser",
-            "step_1_note": "Gentle only.",
-            "step_2_label": "Serum",
-            "step_2_note": "Fade Theory (optional).",
-            "step_3_label": "Soft Reset",
-            "step_3_note": "1-2 pumps. Press in.",
-            "step_4_label": "Daylite SPF",
-            "step_4_note": "Non-negotiable protection."
-          }
-        },
-        "acc_timeline": {
-          "type": "timeline",
-          "settings": {
-            "title": "What to actually expect.",
-            "tl_1_period": "Day 1-3",
-            "tl_1_title": "Immediate comfort",
-            "tl_1_body": "Skin feels calmer and less tight within hours.",
-            "tl_2_period": "Week 1-2",
-            "tl_2_title": "Hydration holds",
-            "tl_2_body": "You stop feeling dry by 3pm. Redness reduces.",
-            "tl_3_period": "Week 4-8",
-            "tl_3_title": "Barrier independence",
-            "tl_3_body": "Skin is noticeably calmer and more resilient.",
-            "tl_4_period": "Week 8-12",
-            "tl_4_title": "Structural change",
-            "tl_4_body": "Wrinkle depth reduced. Pores look smaller."
-          }
-        },
-        "acc_inci": {
-          "type": "inci",
-          "settings": {
-            "title": "Full Ingredients List",
-            "content": "<p>Aqua (Water), Cetearyl Olivate, Sorbitan Olivate, Ceramide NP, Ceramide AP, Ceramide EOP, Phytosphingosine, Cholesterol, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Niacinamide, Sodium Hyaluronate, Glycerin, Pentylene Glycol, Sodium PCA, Carbomer, Sodium Hydroxide, Tocopherol, Ethylhexylglycerin, Phenoxyethanol.</p>"
+            "content": "<p>Content goes here.</p>"
           }
         }
       },
       "block_order": [
-        "acc_science",
-        "acc_ingredients",
-        "acc_htu",
-        "acc_timeline",
-        "acc_inci"
+        "row_1"
       ],
-      "settings": {
-        "color_scheme": "scheme-1"
-      }
+      "settings": {}
     },
     "pdp_faq": {
       "type": "glowve-pdp-faq",
