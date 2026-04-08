@@ -3,57 +3,6 @@
   assign opt3_prod = all_products[section.settings.opt3_product]
 -%}
 
-<style>
-  @media (max-width: 599px) {
-    .gv-protocol-opt {
-      padding: 10px 12px !important;
-    }
-    .gv-protocol-content {
-      display: flex !important;
-      flex-direction: column !important;
-      gap: 4px !important;
-    }
-    .gv-protocol-left {
-      display: flex !important;
-      align-items: flex-start !important;
-      gap: 10px !important;
-      width: 100% !important;
-    }
-    .gv-protocol-right {
-      display: flex !important;
-      flex-direction: row !important;
-      align-items: center !important;
-      gap: 6px !important;
-      padding-left: 28px;
-    }
-    .gv-protocol-dot {
-      width: 16px !important;
-      height: 16px !important;
-      margin-top: 2px;
-    }
-    .gv-protocol-dot-inner {
-      width: 7px !important;
-      height: 7px !important;
-    }
-    .gv-protocol-title {
-      font-size: 13px !important;
-    }
-    .gv-protocol-sub {
-      font-size: 11px !important;
-    }
-    .gv-protocol-price {
-      font-size: 14px !important;
-    }
-    .gv-protocol-compare {
-      font-size: 11px !important;
-    }
-    .gv-protocol-badge {
-      font-size: 7.5px !important;
-      padding: 2px 6px !important;
-    }
-  }
-</style>
-
 <div class="gv-protocol-section" data-protocol-picker>
 
   {%- if section.settings.title != blank -%}
@@ -369,6 +318,42 @@
   .gv-protocol-badge--coral  { background: var(--coral-pulse); color: white; }
   .gv-protocol-badge--green  { background: #2E7D32; color: white; }
 
+  @media (max-width: 599px) {
+    .gv-protocol-opt {
+      padding: 10px 12px;
+    }
+    .gv-protocol-content {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gv-protocol-left {
+      flex: 1;
+      min-width: 0;
+    }
+    .gv-protocol-right {
+      padding-left: 28px;
+    }
+    .gv-protocol-dot {
+      width: 16px;
+      height: 16px;
+    }
+    .gv-protocol-dot-inner {
+      width: 7px;
+      height: 7px;
+    }
+    .gv-protocol-title {
+      font-size: 13px;
+    }
+    .gv-protocol-sub {
+      font-size: 11px;
+    }
+    .gv-protocol-price {
+      font-size: 13px;
+    }
+    .gv-protocol-compare {
+      font-size: 11px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
