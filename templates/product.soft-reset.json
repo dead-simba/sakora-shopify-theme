@@ -331,105 +331,54 @@
         "padding-block-end": 0
       }
     },
-    "pdp_science": {
-      "type": "pdp-science-barrier",
+    "pdp_details": {
+      "type": "pdp-accordions",
       "blocks": {
-        "exo_1": {
-          "type": "exogenous_step",
+        "science": {
+          "type": "science",
           "settings": {
-            "text": "<p><strong>Triple Ceramides</strong> applied directly to skin surface</p>"
+            "title": "Barrier repair from two directions.",
+            "open": true
           }
         },
-        "exo_2": {
-          "type": "exogenous_step",
+        "ingredients": {
+          "type": "ingredients",
           "settings": {
-            "text": "<p>Ceramides integrate into the lipid bilayer between skin cells</p>"
+            "title": "What's inside — and why.",
+            "open": false
           }
         },
-        "exo_3": {
-          "type": "exogenous_step",
+        "how_to_use": {
+          "type": "how_to_use",
           "settings": {
-            "text": "<p>Barrier physically rebuilt — immediate reinforcement from outside</p>"
+            "title": "Takes 30 seconds. Works for 24 hours.",
+            "open": false
           }
         },
-        "endo_1": {
-          "type": "endogenous_step",
+        "timeline": {
+          "type": "timeline",
           "settings": {
-            "text": "<p><strong>Niacinamide 5%</strong> penetrates to the keratinocyte layer</p>"
+            "title": "What to actually expect.",
+            "open": false
           }
         },
-        "endo_2": {
-          "type": "endogenous_step",
+        "inci": {
+          "type": "inci",
           "settings": {
-            "text": "<p>Upregulates ceramide synthase enzymes 4–5× their baseline rate</p>"
-          }
-        },
-        "endo_3": {
-          "type": "endogenous_step",
-          "settings": {
-            "text": "<p>Skin begins producing its own ceramides — long-term structural repair</p>"
+            "title": "Full Ingredients List",
+            "open": false,
+            "content": "<p>Aqua, Glycerin, <strong>Cetearyl Olivate + Sorbitan Olivate (Olivem 1000™)</strong>, Caprylic/Capric Triglyceride, <strong>Niacinamide (5%)</strong>, <strong>Ceramide NP</strong>, <strong>Ceramide AP</strong>, <strong>Ceramide EOP</strong>, <strong>Cholesterol</strong>, <strong>Phytosphingosine</strong>, <strong>Palmitoyl Tripeptide-1</strong>, <strong>Palmitoyl Tetrapeptide-7 (Matrixyl 3000™)</strong>, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tocopherol, Carbomer, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>"
           }
         }
       },
-      "block_order": ["exo_1", "exo_2", "exo_3", "endo_1", "endo_2", "endo_3"],
+      "block_order": [
+        "science",
+        "ingredients",
+        "how_to_use",
+        "timeline",
+        "inci"
+      ],
       "settings": {}
-    },
-    "pdp_ingredients": {
-      "type": "pdp-ingredients-scroll",
-      "blocks": {
-        "ing_1": {"type":"ingredient", "settings":{"badge": "Barrier Builder", "name": "Triple Ceramide Complex", "benefit": "Integrates directly into your barrier. Physically seals what was cracked."}},
-        "ing_2": {"type":"ingredient", "settings":{"badge": "Collagen Signal", "name": "Matrixyl 3000™", "benefit": "45% reduction in wrinkle depth in 2 months. Clinical study, not a claim."}},
-        "ing_3": {"type":"ingredient", "settings":{"badge": "Barrier Stimulator", "name": "Niacinamide 5%", "benefit": "Makes your skin produce its own ceramides 4–5× faster. From the inside."}},
-        "ing_4": {"type":"ingredient", "settings":{"badge": "Biocompatible Base", "name": "Olivem 1000™", "benefit": "Olive-derived emulsifier that works with your skin, not against it. No film, no pilling."}},
-        "ing_5": {"type":"ingredient", "settings":{"badge": "Deep Hydrator", "name": "Sodium Hyaluronate", "benefit": "Gets deeper than standard HA. Holds moisture where it counts, 24 hours."}},
-        "ing_6": {"type":"ingredient", "settings":{"badge": "Antioxidant", "name": "Tocopherol", "benefit": "Vitamin E — protects ceramides from oxidative damage. Keeps the formula stable."}}
-      },
-      "block_order": ["ing_1", "ing_2", "ing_3", "ing_4", "ing_5", "ing_6"],
-      "settings": {}
-    },
-    "pdp_inci": {
-      "type": "pdp-inci-dropdown",
-      "blocks": {
-        "b1": {"type":"badge", "settings":{"text":"Fragrance-free"}},
-        "b2": {"type":"badge", "settings":{"text":"Paraben-free"}},
-        "b3": {"type":"badge", "settings":{"text":"Sulphate-free"}},
-        "b4": {"type":"badge", "settings":{"text":"Mineral oil-free"}},
-        "b5": {"type":"badge", "settings":{"text":"Cruelty-free"}},
-        "b6": {"type":"badge", "settings":{"text":"Made in Pakistan"}}
-      },
-      "block_order": ["b1","b2","b3","b4","b5","b6"],
-      "settings": {
-        "ingredients_html": "<p>Aqua, Glycerin, <strong>Cetearyl Olivate + Sorbitan Olivate (Olivem 1000™)</strong>, Caprylic/Capric Triglyceride, <strong>Niacinamide (5%)</strong>, <strong>Ceramide NP</strong>, <strong>Ceramide AP</strong>, <strong>Ceramide EOP</strong>, <strong>Cholesterol</strong>, <strong>Phytosphingosine</strong>, <strong>Palmitoyl Tripeptide-1</strong>, <strong>Palmitoyl Tetrapeptide-7 (Matrixyl 3000™)</strong>, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tocopherol, Carbomer, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>"
-      }
-    },
-    "pdp_routine": {
-      "type": "pdp-routine-tabs",
-      "blocks": {
-        "am_1": {"type":"routine_step_am", "settings":{"icon":"🫧", "title":"Cleanser", "note":"Gentle only. Harsh cleansers strip ceramides before you can replace them."}},
-        "am_2": {"type":"routine_step_am", "settings":{"icon":"✨", "title":"Serum", "note":"Alpha Arbutin Serum (optional). Apply first, wait 30 seconds."}},
-        "am_3": {"type":"routine_step_am", "settings":{"icon":"💧", "title":"Barrier Renew", "note":"1–2 pumps. Press into skin. Wait 60 seconds before SPF.", "is_current":true}},
-        "am_4": {"type":"routine_step_am", "settings":{"icon":"☀️", "title":"SPF — always", "note":"UV damages the barrier you just rebuilt. Non-negotiable.", "is_spf":true}},
-        "pm_1": {"type":"routine_step_pm", "settings":{"icon":"🫧", "title":"Double Cleanse", "note":"Oil cleanser to remove SPF. Water cleanser after."}},
-        "pm_2": {"type":"routine_step_pm", "settings":{"icon":"✨", "title":"Serum", "note":"Alpha Arbutin Serum. Night gets the longest repair window."}},
-        "pm_3": {"type":"routine_step_pm", "settings":{"icon":"💧", "title":"Barrier Renew", "note":"Skin repairs 10pm–2am. Matrixyl 3000™ works hardest while you sleep.", "is_current":true}}
-      },
-      "block_order": ["am_1", "am_2", "am_3", "am_4", "pm_1", "pm_2", "pm_3"],
-      "settings": {
-        "tip": "<p>💡 <strong>Pakistan winters tip:</strong> In Islamabad and upper Punjab, humidity can drop below 30% in January. Add an extra half-pump during dry months. Your barrier is working twice as hard against cold, dry air and indoor heating.</p>"
-      }
-    },
-    "pdp_timeline": {
-      "type": "pdp-timeline-cards",
-      "blocks": {
-        "tl_1": {"type": "timeline_card", "settings": {"period": "Day 1–3", "title": "Immediate comfort", "body": "Skin feels calmer and less tight within hours of first use. Ceramides start integrating into the barrier from day one. The plumpness is real, not just moisture sitting on top."}},
-        "tl_2": {"type": "timeline_card", "settings": {"period": "Week 1–2", "title": "Hydration holds longer", "body": "You stop feeling dry by 3pm. Redness reduces. Skin reacts less to hard water, wind, and temperature changes. Niacinamide starting to stimulate ceramide production internally."}},
-        "tl_3": {"type": "timeline_card", "settings": {"period": "Week 4–8", "title": "Barrier independence", "body": "Skin is noticeably calmer and more resilient. Sensitivity to active ingredients drops — you can now tolerate things that used to sting. Matrixyl 3000™ visibly firming around jaw and eyes."}},
-        "tl_4": {"type": "timeline_card", "settings": {"period": "Week 8–12", "title": "Structural change", "body": "Wrinkle depth reduced — this is the Matrixyl clinical window. Skin feels structurally different, not just soft. Most customers at this stage say they've stopped looking for a \"better\" moisturiser."}}
-      },
-      "block_order": ["tl_1", "tl_2", "tl_3", "tl_4"],
-      "settings": {
-        "note": "<p><strong>Tip for Pakistan winters:</strong> Islamabad and upper Punjab can see humidity drop below 30% in January–February. Add an extra pump at night during these months. Your barrier is working harder against cold + dry + heating.</p>"
-      }
     },
     "pdp_clinical": {
       "type": "pdp-clinical-evidence",
@@ -670,11 +619,7 @@
   },
   "order": [
     "main",
-    "pdp_science",
-    "pdp_ingredients",
-    "pdp_inci",
-    "pdp_routine",
-    "pdp_timeline",
+    "pdp_details",
     "pdp_clinical",
     "pdp_reviews",
     "pdp_faq",
