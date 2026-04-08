@@ -123,11 +123,6 @@
 </script>
 
 {% stylesheet %}
-  :root {
-    --gv-gold: #c59d5f;
-    --gv-gold-light: #FFFAF0;
-  }
-
   .gv-pp {
     font-family: var(--font-sans);
   }
@@ -161,10 +156,10 @@
   }
 
   .gv-pp-opt--active {
-    background: var(--gv-gold-light);
-    border-color: var(--gv-gold);
+    background: #FFF5F8;
+    border-color: var(--coral-pulse);
     border-width: 2.5px;
-    padding: 18.5px 22.5px; /* Adjust for border thickness */
+    padding: 18.5px 22.5px;
   }
 
   .gv-pp-radio {
@@ -183,35 +178,9 @@
     position: relative;
     transition: all 0.2s ease;
   }
-  .gv-pp-dot::after {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    border-radius: 50%;
-    background: var(--gv-gold);
-    opacity: 0;
-    transform: scale(0.5);
-    transition: all 0.2s ease;
-  }
   .gv-pp-opt--active .gv-pp-dot {
-    border-color: var(--gv-gold);
-    border-width: 5px;
-  }
-  .gv-pp-opt--active .gv-pp-dot::after {
-    opacity: 1;
-    transform: scale(1);
-    inset: 3px;
-    background: white; /* Inner dot white when active border is thick */
-  }
-  /* Alternatively, match the user's dot exactly: thick gold ring, empty center? 
-     The image shows a thick gold ring with a small dot inside sometimes. 
-     Let's match the image: thick gold ring. */
-  .gv-pp-opt--active .gv-pp-dot {
-    border-color: var(--gv-gold);
+    border-color: var(--coral-pulse);
     border-width: 6px;
-  }
-  .gv-pp-opt--active .gv-pp-dot::after {
-    display: none;
   }
 
   .gv-pp-info {
@@ -264,7 +233,7 @@
     position: absolute;
     top: -1px;
     right: 20px;
-    background: var(--gv-gold);
+    background: var(--coral-pulse);
     color: white;
     font-size: 10px;
     font-weight: 700;
@@ -275,6 +244,7 @@
     line-height: 1.2;
     z-index: 1;
   }
+  .gv-pp-badge--green { background: #108043; }
 
   @media (max-width: 599px) {
     .gv-pp-opt {
@@ -319,11 +289,10 @@
     {
       "type": "select", "id": "opt1_badge_color", "label": "Badge colour",
       "options": [
-        { "value": "gold", "label": "Gold" },
         { "value": "coral", "label": "Pink" },
         { "value": "green", "label": "Green" }
       ],
-      "default": "gold"
+      "default": "coral"
     },
     { "type": "header", "content": "Option 2 — 2-bottle bundle" },
     { "type": "product", "id": "opt2_product", "label": "Bundle product" },
@@ -334,11 +303,10 @@
     {
       "type": "select", "id": "opt2_badge_color", "label": "Badge colour",
       "options": [
-        { "value": "gold", "label": "Gold" },
         { "value": "coral", "label": "Pink" },
         { "value": "green", "label": "Green" }
       ],
-      "default": "gold"
+      "default": "coral"
     },
     { "type": "header", "content": "Option 3 — 3-bottle bundle" },
     { "type": "product", "id": "opt3_product", "label": "Bundle product" },
@@ -349,11 +317,10 @@
     {
       "type": "select", "id": "opt3_badge_color", "label": "Badge colour",
       "options": [
-        { "value": "gold", "label": "Gold" },
         { "value": "coral", "label": "Pink" },
         { "value": "green", "label": "Green" }
       ],
-      "default": "gold"
+      "default": "coral"
     }
   ]
 }
