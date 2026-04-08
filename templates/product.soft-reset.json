@@ -259,6 +259,17 @@
               },
               "blocks": {}
             },
+            "gv_pk": {
+              "type": "gv-pk-callout",
+              "settings": {
+                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
+              },
+              "blocks": {}
+            },
+            "gv_atc_bar": {
+              "type": "gv-atc-bar",
+              "settings": {}
+            },
             "text_description": {
               "type": "text",
               "name": "Product description",
@@ -284,13 +295,6 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
-            },
-            "gv_pk": {
-              "type": "gv-pk-callout",
-              "settings": {
-                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
-              },
-              "blocks": {}
             }
           },
           "block_order": [
@@ -298,12 +302,13 @@
             "divider_main",
             "gv_social_proof",
             "gv_urgency",
-            "buy_buttons_main",
             "gv_protocol",
+            "buy_buttons_main",
             "gv_guarantee",
             "gv_ship_tracker",
-            "text_description",
-            "gv_pk"
+            "gv_pk",
+            "gv_atc_bar",
+            "text_description"
           ]
         }
       },

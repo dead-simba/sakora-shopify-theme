@@ -216,6 +216,10 @@
                 "chip_4": "🏠 Cash on Delivery"
               }
             },
+            "gv_atc_bar": {
+              "type": "gv-atc-bar",
+              "settings": {}
+            },
             "text_description": {
               "type": "text",
               "name": "Product description",
@@ -240,6 +244,7 @@
             "gv_guarantee",
             "gv_ship_tracker",
             "gv_payments",
+            "gv_atc_bar",
             "text_description"
           ]
         }
