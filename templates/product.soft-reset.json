@@ -337,42 +337,55 @@
         "acc_ingredients": {
           "type": "ingredients",
           "settings": {
-            "icon": "🧪",
             "title": "What's inside — and why.",
             "open": true,
-            "subtitle": "No filler. Every active has a job, a dose, and a reason.",
+            "kicker": "Every ingredient earns its place",
+            "heading": "What's inside — and why.",
+            "subtitle": "No filler. No marketing ingredients. Every active in here has a job, a dose, and a reason.",
             "ing_1_name": "Triple Ceramide Complex",
             "ing_1_badge": "Barrier Builder",
-            "ing_1_icon": "🧬",
-            "ing_1_benefit": "Ceramide NP, AP & EOP — the exact lipids your barrier is made of, applied directly.",
+            "ing_1_benefit": "Integrates directly into your barrier. Physically seals what was cracked.",
             "ing_2_name": "Matrixyl 3000™",
             "ing_2_badge": "Collagen Signal",
-            "ing_2_icon": "🔬",
-            "ing_2_benefit": "45% reduction in deep wrinkle area in 2 months. Clinical study, not a claim.",
+            "ing_2_benefit": "45% reduction in wrinkle depth in 2 months. Clinical study, not a claim.",
             "ing_3_name": "Niacinamide 5%",
             "ing_3_badge": "Barrier Stimulator",
-            "ing_3_icon": "✨",
             "ing_3_benefit": "Makes your skin produce its own ceramides 4–5× faster. From the inside.",
             "ing_4_name": "Olivem 1000™",
             "ing_4_badge": "Biocompatible Base",
-            "ing_4_icon": "🫒",
-            "ing_4_benefit": "Olive-derived emulsifier — works with your skin, not against it. No film, no pilling.",
+            "ing_4_benefit": "Olive-derived emulsifier that works with your skin, not against it. No film, no pilling.",
             "ing_5_name": "Sodium Hyaluronate",
             "ing_5_badge": "Deep Hydrator",
-            "ing_5_icon": "💧",
-            "ing_5_benefit": "Smaller than standard HA — gets deeper, holds moisture 24 hours.",
+            "ing_5_benefit": "Gets deeper than standard HA. Holds moisture where it counts, 24 hours.",
             "ing_6_name": "Tocopherol",
             "ing_6_badge": "Antioxidant",
-            "ing_6_icon": "🌻",
             "ing_6_benefit": "Vitamin E — protects ceramides from oxidative damage. Keeps the formula stable."
+          }
+        },
+        "acc_inci": {
+          "type": "inci",
+          "settings": {
+            "title": "Full ingredients list",
+            "open": false,
+            "kicker": "Full formula",
+            "heading": "Nothing to hide.",
+            "subtitle": "Every ingredient listed in order of concentration — highest first. Actives highlighted.",
+            "clean_badge_1": "Fragrance-free",
+            "clean_badge_2": "Paraben-free",
+            "clean_badge_3": "Sulphate-free",
+            "clean_badge_4": "Mineral oil-free",
+            "clean_badge_5": "Cruelty-free",
+            "clean_badge_6": "Made in Pakistan",
+            "content": "<p>Aqua, Glycerin, <strong>Cetearyl Olivate + Sorbitan Olivate (Olivem 1000™)</strong>, Caprylic/Capric Triglyceride, <strong>Niacinamide (5%)</strong>, <strong>Ceramide NP</strong>, <strong>Ceramide AP</strong>, <strong>Ceramide EOP</strong>, <strong>Cholesterol</strong>, <strong>Phytosphingosine</strong>, <strong>Palmitoyl Tripeptide-1</strong>, <strong>Palmitoyl Tetrapeptide-7 (Matrixyl 3000™)</strong>, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tocopherol, Carbomer, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>"
           }
         },
         "acc_htu": {
           "type": "how_to_use",
           "settings": {
-            "icon": "✋",
             "title": "How to use",
             "open": false,
+            "kicker": "Your daily routine",
+            "heading": "Takes 30 seconds. Works for 24 hours.",
             "subtitle": "Soft Reset goes on after serum, before SPF. It seals everything in.",
             "step_1_label": "Cleanser",
             "step_1_icon": "🫧",
@@ -390,51 +403,38 @@
             "step_4_icon": "☀️",
             "step_4_note": "UV damages the barrier you just rebuilt. Non-negotiable.",
             "step_4_current": false,
-            "tip": "Pakistan winters tip: In Islamabad and upper Punjab, humidity can drop below 30% in January. Add an extra half-pump during dry months — your barrier is working twice as hard."
+            "tip": "💡 Pakistan winters tip: In Islamabad and upper Punjab, humidity can drop below 30% in January. Add an extra half-pump during dry months — your barrier is working twice as hard."
           }
         },
         "acc_timeline": {
           "type": "timeline",
           "settings": {
-            "icon": "📅",
             "title": "What to actually expect.",
             "open": false,
-            "subtitle": "No overnight miracles. This is what rebuilding a real skin barrier looks like.",
+            "kicker": "Real timelines",
+            "heading": "What to actually expect.",
+            "subtitle": "No overnight miracles. This is what rebuilding a real skin barrier looks like in weeks.",
             "tl_1_period": "Day 1–3",
             "tl_1_title": "Immediate comfort",
-            "tl_1_body": "Skin feels calmer and less tight. Ceramides start integrating into the barrier from day one.",
+            "tl_1_body": "Skin feels calmer and less tight within hours of first use. Ceramides start integrating into the barrier from day one. The plumpness is real, not just moisture sitting on top.",
             "tl_2_period": "Week 1–2",
             "tl_2_title": "Hydration holds longer",
-            "tl_2_body": "You stop feeling dry by 3pm. Redness reduces. Skin reacts less to hard water and temperature changes.",
+            "tl_2_body": "You stop feeling dry by 3pm. Redness reduces. Skin reacts less to hard water, wind, and temperature changes.",
             "tl_3_period": "Week 4–8",
             "tl_3_title": "Barrier independence",
-            "tl_3_body": "Skin is noticeably calmer and more resilient. You can now tolerate actives that used to sting.",
+            "tl_3_body": "Skin is noticeably calmer and more resilient. Sensitivity to active ingredients drops — you can now tolerate things that used to sting.",
             "tl_4_period": "Week 8–12",
             "tl_4_title": "Structural change",
-            "tl_4_body": "Wrinkle depth visibly reduced — the Matrixyl clinical window. Skin feels structurally different, not just soft."
-          }
-        },
-        "acc_inci": {
-          "type": "inci",
-          "settings": {
-            "icon": "🔬",
-            "title": "Full ingredients list",
-            "open": false,
-            "clean_badge_1": "Fragrance-free",
-            "clean_badge_2": "Paraben-free",
-            "clean_badge_3": "Sulphate-free",
-            "clean_badge_4": "Mineral oil-free",
-            "clean_badge_5": "Cruelty-free",
-            "clean_badge_6": "Made in Pakistan",
-            "content": "<p>Aqua, Glycerin, <strong>Cetearyl Olivate + Sorbitan Olivate (Olivem 1000™)</strong>, Caprylic/Capric Triglyceride, <strong>Niacinamide (5%)</strong>, <strong>Ceramide NP</strong>, <strong>Ceramide AP</strong>, <strong>Ceramide EOP</strong>, <strong>Cholesterol</strong>, <strong>Phytosphingosine</strong>, <strong>Palmitoyl Tripeptide-1</strong>, <strong>Palmitoyl Tetrapeptide-7 (Matrixyl 3000™)</strong>, Sodium Hyaluronate, Panthenol, Allantoin, Betaine, Tocopherol, Carbomer, Sodium Hydroxide, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>"
+            "tl_4_body": "Wrinkle depth reduced — this is the Matrixyl clinical window. Skin feels structurally different, not just soft.",
+            "tip": "Tip for Pakistan winters: Islamabad and upper Punjab can see humidity drop below 30% in January–February. Add an extra pump at night during these months."
           }
         }
       },
       "block_order": [
         "acc_ingredients",
+        "acc_inci",
         "acc_htu",
-        "acc_timeline",
-        "acc_inci"
+        "acc_timeline"
       ],
       "settings": {}
     },
