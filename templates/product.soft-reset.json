@@ -24,12 +24,12 @@
             "slideshow_controls_style": "thumbnails",
             "slideshow_mobile_controls_style": "thumbnails",
             "thumbnail_position": "bottom",
-            "thumbnail_width": 44,
-            "thumbnail_radius": 0,
+            "thumbnail_width": 68,
+            "thumbnail_radius": 12,
             "aspect_ratio": "adapt",
             "constrain_to_viewport": true,
-            "media_fit": "contain",
-            "media_radius": 0,
+            "media_fit": "cover",
+            "media_radius": 12,
             "extend_media": false,
             "zoom": true,
             "video_loop": false,
@@ -139,7 +139,7 @@
                     "show_sale_price_first": true,
                     "show_installments": false,
                     "show_tax_info": false,
-                    "type_preset": "paragraph",
+                    "type_preset": "h4",
                     "width": "100%",
                     "alignment": "left",
                     "font": "var(--font-body--family)",
@@ -161,27 +161,13 @@
                 "price_main"
               ]
             },
-            "divider_main": {
-              "type": "_divider",
-              "name": "Divider",
-              "settings": {
-                "thickness": 1,
-                "corner_radius": "square",
-                "width_percent": 100,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
             "gv_social_proof": {
               "type": "gv-social-proof",
-              "settings": {},
-              "blocks": {}
-            },
-            "gv_urgency": {
-              "type": "gv-urgency",
               "settings": {
-                "text": "Order before 2pm PKT — ships today"
+                "view_min": 10,
+                "view_max": 25,
+                "buy_min": 3,
+                "buy_max": 15
               },
               "blocks": {}
             },
@@ -220,6 +206,32 @@
               },
               "block_order": []
             },
+            "divider_main": {
+              "type": "_divider",
+              "name": "Divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "gv_urgency": {
+              "type": "gv-urgency",
+              "settings": {
+                "text": "Order before 2pm PKT — ships today"
+              },
+              "blocks": {}
+            },
+            "gv_ship_tracker": {
+              "type": "gv-ship-tracker",
+              "settings": {
+                "threshold": 2500
+              },
+              "blocks": {}
+            },
             "gv_protocol": {
               "type": "gv-protocol-picker",
               "settings": {
@@ -247,15 +259,8 @@
               "type": "gv-guarantee",
               "settings": {
                 "item_1": "🛡️ 30-day money-back",
-                "item_2": "🚚 Free delivery above PKR 2,500",
+                "item_2": "Free delivery above PKR 2,500",
                 "item_3": "🏠 Cash on delivery"
-              },
-              "blocks": {}
-            },
-            "gv_ship_tracker": {
-              "type": "gv-ship-tracker",
-              "settings": {
-                "threshold": 2500
               },
               "blocks": {}
             },
@@ -268,7 +273,8 @@
             },
             "gv_atc_bar": {
               "type": "gv-atc-bar",
-              "settings": {}
+              "settings": {},
+              "blocks": {}
             },
             "text_description": {
               "type": "text",
@@ -299,13 +305,13 @@
           },
           "block_order": [
             "group_header",
-            "divider_main",
             "gv_social_proof",
-            "gv_urgency",
-            "gv_protocol",
             "buy_buttons_main",
-            "gv_guarantee",
+            "divider_main",
+            "gv_urgency",
             "gv_ship_tracker",
+            "gv_protocol",
+            "gv_guarantee",
             "gv_pk",
             "gv_atc_bar",
             "text_description"
