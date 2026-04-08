@@ -74,9 +74,16 @@
                   {%- assign n_key   = 'ing_' | append: i | append: '_name' -%}
                   {%- assign b_key   = 'ing_' | append: i | append: '_benefit' -%}
                   {%- assign bdg_key = 'ing_' | append: i | append: '_badge' -%}
+                  {%- assign img_key = 'ing_' | append: i | append: '_image' -%}
                   {%- if block.settings[n_key] != blank -%}
                     <div class="ing-card">
-                      <div class="ing-card-img"><div style="background:var(--warm-gray);width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Image</div></div>
+                      <div class="ing-card-img">
+                        {%- if block.settings[img_key] != blank -%}
+                          {{ block.settings[img_key] | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings[n_key] }}
+                        {%- else -%}
+                          <div style="background:var(--warm-gray);width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#999;">Image</div>
+                        {%- endif -%}
+                      </div>
                       <div class="ing-card-body">
                         {%- if block.settings[bdg_key] != blank -%}<span class="ing-badge">{{ block.settings[bdg_key] }}</span>{%- endif -%}
                         <div class="ing-name-mono">{{ block.settings[n_key] }}</div>
@@ -401,26 +408,32 @@
         { "type": "text", "id": "ing_1_name", "label": "Name", "default": "Triple Ceramide Complex" },
         { "type": "text", "id": "ing_1_badge", "label": "Badge", "default": "Barrier Builder" },
         { "type": "textarea", "id": "ing_1_benefit", "label": "Benefit", "default": "Integrates directly into your barrier." },
+        { "type": "image_picker", "id": "ing_1_image", "label": "Image" },
         { "type": "header", "content": "Ingredient 2" },
         { "type": "text", "id": "ing_2_name", "label": "Name" },
         { "type": "text", "id": "ing_2_badge", "label": "Badge" },
         { "type": "textarea", "id": "ing_2_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_2_image", "label": "Image" },
         { "type": "header", "content": "Ingredient 3" },
         { "type": "text", "id": "ing_3_name", "label": "Name" },
         { "type": "text", "id": "ing_3_badge", "label": "Badge" },
         { "type": "textarea", "id": "ing_3_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_3_image", "label": "Image" },
         { "type": "header", "content": "Ingredient 4" },
         { "type": "text", "id": "ing_4_name", "label": "Name" },
         { "type": "text", "id": "ing_4_badge", "label": "Badge" },
         { "type": "textarea", "id": "ing_4_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_4_image", "label": "Image" },
         { "type": "header", "content": "Ingredient 5" },
         { "type": "text", "id": "ing_5_name", "label": "Name" },
         { "type": "text", "id": "ing_5_badge", "label": "Badge" },
         { "type": "textarea", "id": "ing_5_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_5_image", "label": "Image" },
         { "type": "header", "content": "Ingredient 6" },
         { "type": "text", "id": "ing_6_name", "label": "Name" },
         { "type": "text", "id": "ing_6_badge", "label": "Badge" },
-        { "type": "textarea", "id": "ing_6_benefit", "label": "Benefit" }
+        { "type": "textarea", "id": "ing_6_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_6_image", "label": "Image" }
       ]
     },
     {
