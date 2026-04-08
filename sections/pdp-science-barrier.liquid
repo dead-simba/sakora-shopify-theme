@@ -1,0 +1,158 @@
+<section class="science-section">
+  <div class="container">
+    {% if section.settings.label != blank %}
+      <div class="section-label">{{ section.settings.label }}</div>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <h2 class="section-title">{{ section.settings.title }}</h2>
+    {% endif %}
+    {% if section.settings.subtitle != blank %}
+      <p class="section-sub">{{ section.settings.subtitle }}</p>
+    {% endif %}
+
+    <div class="barrier-diagram">
+      <div class="barrier-col left">
+        <div class="barrier-col-label">↓ Exogenous Repair</div>
+        {% for block in section.blocks %}
+          {% if block.type == 'exogenous_step' %}
+            <div class="barrier-step">
+              <div class="barrier-step-num">{{ forloop.index }}</div>
+              <div class="barrier-step-text">{{ block.settings.text }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        <div style="margin-top:20px;background:rgba(155,114,170,0.25);border-radius:12px;padding:16px;">
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--plum-dusk);margin-bottom:6px;">RESULT</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.75);">{{ section.settings.exo_result }}</div>
+        </div>
+      </div>
+
+      <div class="barrier-arrow">⇄</div>
+
+      <div class="barrier-col right">
+        <div class="barrier-col-label">↑ Endogenous Boost</div>
+        {% assign endo_index = 0 %}
+        {% for block in section.blocks %}
+          {% if block.type == 'endogenous_step' %}
+            {% assign endo_index = endo_index | plus: 1 %}
+            <div class="barrier-step">
+              <div class="barrier-step-num">{{ endo_index }}</div>
+              <div class="barrier-step-text">{{ block.settings.text }}</div>
+            </div>
+          {% endif %}
+        {% endfor %}
+        <div style="margin-top:20px;background:rgba(155,114,170,0.25);border-radius:12px;padding:16px;">
+          <div style="font-family:var(--font-mono);font-size:11px;color:var(--plum-dusk);margin-bottom:6px;">RESULT</div>
+          <div style="font-size:13px;color:rgba(255,255,255,0.75);">{{ section.settings.endo_result }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(155,114,170,0.2);border:1px solid rgba(155,114,170,0.4);border-radius:16px;padding:28px;margin-top:32px;text-align:center;">
+      <div style="font-family:var(--font-serif);font-size:26px;color:var(--cream-glow);font-style:italic;line-height:1.4;">"{{ section.settings.quote }}"</div>
+      <div style="font-size:14px;color:rgba(255,255,255,0.55);margin-top:10px;font-family:var(--font-mono);">{{ section.settings.quote_sub }}</div>
+    </div>
+
+    <div class="science-stat">
+      <div class="science-stat-num">{{ section.settings.stat_num }}</div>
+      <div class="science-stat-label">{{ section.settings.stat_label }}</div>
+      <div class="science-stat-source">{{ section.settings.stat_source }}</div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .container{max-width:1200px;margin:0 auto;padding:0 24px;}
+  .section-label{font-family:var(--font-mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:12px;}
+  .section-title{font-family:var(--font-serif);font-size:52px;font-weight:400;line-height:1.1;color:var(--berry-dark);margin-bottom:16px;}
+  .section-sub{font-size:17px;color:var(--mid-gray);line-height:1.6;max-width:600px;}
+  
+  /* SCIENCE SECTION */
+  .science-section{background:var(--berry-dark); padding: 80px 0;}
+  .science-section .section-label{color:var(--plum-dusk, #9B72AA);}
+  .science-section .section-title{color:var(--cream-glow, #fff);}
+  .science-section .section-sub{color:var(--pearl-glow, #eee);}
+
+  .barrier-diagram{margin-top:48px;display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:stretch;}
+  .barrier-col{padding:32px;}
+  .barrier-col.left{background:rgba(155,114,170,0.15);border-radius:20px 0 0 20px;border:1px solid rgba(155,114,170,0.3);}
+  .barrier-col.right{background:rgba(155,114,170,0.15);border-radius:0 20px 20px 0;border:1px solid rgba(155,114,170,0.3);border-left:none;}
+  .barrier-col-label{font-family:var(--font-mono);font-size:11px;color:var(--plum-dusk, #9B72AA);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:20px;}
+  .barrier-arrow{display:flex;align-items:center;justify-content:center;width:60px;color:var(--plum-dusk, #9B72AA);font-size:32px;flex-shrink:0;}
+  .barrier-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;}
+  .barrier-step-num{width:28px;height:28px;border-radius:50%;background:var(--accent, #FF4D8D);color:white;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .barrier-step-text{font-size:14px;color:rgba(255,255,255,0.8);line-height:1.5;}
+  .barrier-step-text strong{color:var(--plum-dusk, #9B72AA);font-family:var(--font-mono);}
+  
+  .science-stat{background:rgba(155,114,170,0.2);border:1px solid rgba(155,114,170,0.4);border-radius:16px;padding:32px;margin-top:48px;text-align:center;}
+  .science-stat-num{font-family:var(--font-serif);font-size:72px;font-weight:300;color:var(--plum-dusk, #9B72AA);line-height:1;}
+  .science-stat-label{font-size:16px;color:rgba(255,255,255,0.7);margin-top:8px;}
+  .science-stat-source{font-size:12px;color:rgba(255,255,255,0.4);margin-top:6px;font-family:var(--font-mono);}
+  
+  @media(max-width:900px){
+    .barrier-diagram{grid-template-columns:1fr;grid-template-rows:auto auto auto;}
+    .barrier-col.left{border-radius:20px 20px 0 0;}
+    .barrier-col.right{border-radius:0 0 20px 20px;border-left:1px solid rgba(155,114,170,0.3);border-top:none;}
+    .barrier-arrow{transform:rotate(90deg);height:40px;width:100%;}
+    .section-title{font-size:38px;}
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Science Barrier",
+  "settings": [
+    {
+      "type": "text", "id": "label", "label": "Label", "default": "The science"
+    },
+    {
+      "type": "text", "id": "title", "label": "Title", "default": "Barrier repair from two directions."
+    },
+    {
+      "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Most moisturisers just sit on top. This one rebuilds your barrier from the outside in — and triggers your skin to build more from the inside out, simultaneously."
+    },
+    {
+      "type": "textarea", "id": "exo_result", "label": "Exogenous Result", "default": "Skin feels immediately softer and less reactive within 24–48 hours"
+    },
+    {
+      "type": "textarea", "id": "endo_result", "label": "Endogenous Result", "default": "Skin becomes independently stronger over weeks — not dependent on the cream"
+    },
+    {
+      "type": "text", "id": "quote", "label": "Quote", "default": "Your skin barrier — rebuilt from both directions."
+    },
+    {
+      "type": "text", "id": "quote_sub", "label": "Quote sub", "default": "Most moisturisers do one. This does both."
+    },
+    {
+      "type": "text", "id": "stat_num", "label": "Stat Number", "default": "45%"
+    },
+    {
+      "type": "text", "id": "stat_label", "label": "Stat Label", "default": "reduction in deep wrinkle area — Matrixyl 3000™ 2-month clinical study"
+    },
+    {
+      "type": "text", "id": "stat_source", "label": "Stat Source", "default": "Sederma Inc. Clinical Study · N=35 · 56 days"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "exogenous_step",
+      "name": "Exogenous Step",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Step Text" }
+      ]
+    },
+    {
+      "type": "endogenous_step",
+      "name": "Endogenous Step",
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Step Text" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Science Barrier"
+    }
+  ]
+}
+{% endschema %}

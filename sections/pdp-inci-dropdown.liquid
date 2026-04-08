@@ -1,0 +1,70 @@
+<section class="inci-section">
+  <div class="container">
+    <div class="section-label">{{ section.settings.label }}</div>
+    <h2 class="section-title inci-title">{{ section.settings.title }}</h2>
+    <p class="inci-subtitle">{{ section.settings.subtitle }}</p>
+    
+    <div class="inci-clean-badges">
+      {% for block in section.blocks %}
+        {% if block.type == 'badge' %}
+          <span class="inci-clean-badge">✓ {{ block.settings.text }}</span>
+        {% endif %}
+      {% endfor %}
+    </div>
+    
+    <button class="inci-toggle" onclick="this.nextElementSibling.classList.toggle('open'); document.getElementById('inci-arrow').innerText = this.nextElementSibling.classList.contains('open') ? '−' : '+';">
+      <span>{{ section.settings.toggle_text }}</span><span id="inci-arrow">+</span>
+    </button>
+    <div class="inci-content" id="inci-list">
+      {{ section.settings.ingredients_html }}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .inci-section{background:var(--off-white);padding:64px 0;}
+  .inci-title{font-family:var(--font-serif);font-size:40px;color:var(--berry-dark);margin-bottom:8px;font-weight:300;}
+  .inci-subtitle{font-size:15px;color:var(--mid-gray);margin-bottom:24px;line-height:1.6;}
+  .inci-clean-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+  .inci-clean-badge{background:white;border:1.5px solid var(--warm-gray);border-radius:100px;padding:6px 14px;font-size:11px;font-family:var(--font-mono);color:var(--berry-dark);letter-spacing:0.04em;}
+  .inci-toggle{background:none;border:1.5px solid var(--warm-gray);border-radius:12px;padding:16px 20px;width:100%;text-align:left;font-family:var(--font-sans);font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:var(--berry-dark);transition:border-color 0.2s;}
+  .inci-toggle:hover{border-color:var(--plum-dusk, #9B72AA);}
+  .inci-content{display:none;padding:24px;font-family:var(--font-mono);font-size:12px;color:var(--mid-gray);line-height:2.4;border:1.5px solid var(--warm-gray);border-top:none;border-radius:0 0 12px 12px;background:white;}
+  .inci-content.open{display:block;}
+  .inci-content strong, .inci-active{color:var(--plum-dusk, #9B72AA);font-weight:500;}
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP INCI Dropdown",
+  "settings": [
+    {
+      "type": "text", "id": "label", "label": "Label", "default": "Full formula"
+    },
+    {
+      "type": "text", "id": "title", "label": "Title", "default": "Nothing to hide."
+    },
+    {
+      "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "23 ingredients. Every one listed in order of concentration — highest first. Actives highlighted."
+    },
+    {
+      "type": "text", "id": "toggle_text", "label": "Dropdown Label", "default": "Expand full INCI list"
+    },
+    {
+      "type": "html", "id": "ingredients_html", "label": "Ingredients HTML list (use <strong> for actives)"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Badge Text" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "PDP INCI Dropdown" }
+  ]
+}
+{% endschema %}
