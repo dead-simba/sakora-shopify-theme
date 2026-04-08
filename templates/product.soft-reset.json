@@ -353,7 +353,7 @@
           "type": "science",
           "settings": {
             "title": "Barrier repair from two directions.",
-            "open": true,
+            "open": false,
             "exo_1": "<p><strong>Triple Ceramides</strong> applied directly</p>",
             "exo_2": "<p>Integrates into lipid bilayer</p>",
             "exo_3": "<p>Barrier physically rebuilt</p>",
