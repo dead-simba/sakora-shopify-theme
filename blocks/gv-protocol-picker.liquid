@@ -43,7 +43,7 @@
         <span class="gv-pp-info">
           <span class="gv-pp-title">{{ block.settings.opt2_title }}</span>
           {%- if block.settings.opt2_free_shipping -%}
-            <span class="gv-pp-sub gv-pp-sub--ship">✓ Free Shipping Unlocked</span>
+            <span class="gv-pp-sub gv-pp-sub--ship">Free Shipping Unlocked</span>
           {%- elsif block.settings.opt2_subtitle != blank -%}
             <span class="gv-pp-sub">{{ block.settings.opt2_subtitle }}</span>
           {%- endif -%}
@@ -70,7 +70,7 @@
         <span class="gv-pp-info">
           <span class="gv-pp-title">{{ block.settings.opt3_title }}</span>
           {%- if block.settings.opt3_free_shipping -%}
-            <span class="gv-pp-sub gv-pp-sub--ship">✓ Free Shipping Unlocked</span>
+            <span class="gv-pp-sub gv-pp-sub--ship">Free Shipping Unlocked</span>
           {%- elsif block.settings.opt3_subtitle != blank -%}
             <span class="gv-pp-sub">{{ block.settings.opt3_subtitle }}</span>
           {%- endif -%}
@@ -123,42 +123,48 @@
 </script>
 
 {% stylesheet %}
+  :root {
+    --gv-gold: #c59d5f;
+    --gv-gold-light: #FFFAF0;
+  }
+
   .gv-pp {
     font-family: var(--font-sans);
   }
 
   .gv-pp-label {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--mid-gray);
-    margin: 0 0 10px;
+    letter-spacing: 0.14em;
+    color: #1A1A1A;
+    margin: 0 0 14px;
   }
 
   .gv-pp-opts {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
   }
 
   .gv-pp-opt {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 16px;
+    gap: 16px;
+    padding: 20px 24px;
     cursor: pointer;
     background: white;
-    border: 1.5px solid #E8E0DC;
-    border-radius: 12px;
-    transition: border-color 0.15s, background 0.15s;
+    border: 1px solid #EAEAEA;
+    border-radius: 16px;
+    transition: all 0.2s ease;
   }
-  .gv-pp-opt:hover { border-color: #d4c8c2; }
 
   .gv-pp-opt--active {
-    background: #FFF5F8;
-    border-color: var(--coral-pulse);
-    border-width: 2px;
+    background: var(--gv-gold-light);
+    border-color: var(--gv-gold);
+    border-width: 2.5px;
+    padding: 18.5px 22.5px; /* Adjust for border thickness */
   }
 
   .gv-pp-radio {
@@ -169,142 +175,189 @@
 
   /* Custom radio dot */
   .gv-pp-dot {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     border-radius: 50%;
-    border: 2px solid #D4C8C2;
+    border: 1.5px solid #D1D1D1;
     flex-shrink: 0;
     position: relative;
-    transition: border-color 0.15s;
+    transition: all 0.2s ease;
   }
   .gv-pp-dot::after {
     content: '';
     position: absolute;
-    inset: 3px;
+    inset: 4px;
     border-radius: 50%;
-    background: var(--coral-pulse);
+    background: var(--gv-gold);
     opacity: 0;
-    transition: opacity 0.15s;
+    transform: scale(0.5);
+    transition: all 0.2s ease;
   }
-  .gv-pp-opt--active .gv-pp-dot { border-color: var(--coral-pulse); }
-  .gv-pp-opt--active .gv-pp-dot::after { opacity: 1; }
+  .gv-pp-opt--active .gv-pp-dot {
+    border-color: var(--gv-gold);
+    border-width: 5px;
+  }
+  .gv-pp-opt--active .gv-pp-dot::after {
+    opacity: 1;
+    transform: scale(1);
+    inset: 3px;
+    background: white; /* Inner dot white when active border is thick */
+  }
+  /* Alternatively, match the user's dot exactly: thick gold ring, empty center? 
+     The image shows a thick gold ring with a small dot inside sometimes. 
+     Let's match the image: thick gold ring. */
+  .gv-pp-opt--active .gv-pp-dot {
+    border-color: var(--gv-gold);
+    border-width: 6px;
+  }
+  .gv-pp-opt--active .gv-pp-dot::after {
+    display: none;
+  }
 
   .gv-pp-info {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
     flex: 1;
     min-width: 0;
   }
 
   .gv-pp-title {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--warm-espresso);
+    font-size: 16px;
+    font-weight: 700;
+    color: #1A1A1A;
     line-height: 1.2;
   }
 
   .gv-pp-sub {
-    font-size: 11px;
-    color: var(--mid-gray);
-    line-height: 1.3;
+    font-size: 13px;
+    color: #888;
+    line-height: 1.4;
   }
   .gv-pp-sub--ship {
-    color: #2E7D32;
-    font-weight: 500;
+    color: #108043;
+    font-weight: 600;
   }
-
-  /* Badge — inline pill below title */
-  .gv-pp-badge {
-    display: inline-block;
-    font-size: 9px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    padding: 2px 8px;
-    border-radius: 100px;
-    line-height: 1.6;
-    white-space: nowrap;
-    margin-top: 1px;
-  }
-  .gv-pp-badge--coral { background: #FFE8F0; color: var(--coral-pulse); }
-  .gv-pp-badge--gold  { background: #FFE8F0; color: var(--coral-pulse); }
-  .gv-pp-badge--green { background: #E8F5E9; color: #2E7D32; }
 
   .gv-pp-pricing {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 2px;
+    gap: 0;
     flex-shrink: 0;
   }
 
   .gv-pp-price {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
-    color: var(--warm-espresso);
+    color: #1A1A1A;
   }
-  .gv-pp-opt--active .gv-pp-price { color: var(--coral-pulse); }
 
   .gv-pp-was {
-    font-size: 11px;
-    color: var(--mid-gray);
+    font-size: 13px;
+    color: #A0A0A0;
     text-decoration: line-through;
+  }
+
+  /* Badge - Top Right Tab style */
+  .gv-pp-badge {
+    position: absolute;
+    top: -1px;
+    right: 20px;
+    background: var(--gv-gold);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 4px 12px;
+    border-radius: 0 0 8px 8px;
+    line-height: 1.2;
+    z-index: 1;
   }
 
   @media (max-width: 599px) {
     .gv-pp-opt {
-      padding: 12px;
-      align-items: flex-start;
-      gap: 10px;
+      padding: 16px;
+      gap: 12px;
     }
-    .gv-pp-dot {
-      margin-top: 4px;
+    .gv-pp-opt--active {
+      padding: 14.5px 14.5px;
     }
-    .gv-pp-info {
-      flex: 1 1 100%;
-    }
-    .gv-pp-pricing {
-      flex-direction: row;
-      align-items: baseline;
-      gap: 6px;
-      margin-top: 4px;
-    }
-    .gv-pp-price {
+    .gv-pp-title {
       font-size: 14px;
     }
-    .gv-pp-was {
-      font-size: 11px;
+    .gv-pp-sub {
+      font-size: 12px;
+    }
+    .gv-pp-price {
+      font-size: 15px;
     }
     .gv-pp-badge {
-      margin-top: 6px;
-      display: inline-block;
-      width: fit-content;
-    }
-    
-    /* Force stack info and pricing */
-    .gv-pp-opt {
-      flex-wrap: wrap;
-    }
-    .gv-pp-dot {
-      order: 1;
-    }
-    .gv-pp-info {
-      order: 2;
-      flex: 1;
-    }
-    .gv-pp-pricing {
-      order: 3;
-      margin-left: 28px; /* Width of dot + gap */
-      width: 100%;
-    }
-    .gv-pp-badge {
-      order: 4;
-      margin-left: 28px;
-      width: fit-content;
+      right: 12px;
+      font-size: 9px;
+      padding: 3px 10px;
     }
   }
 {% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Protocol Picker",
+  "tag": null,
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Label",
+      "default": "Select Your Protocol"
+    },
+    { "type": "header", "content": "Option 1 — Single bottle" },
+    { "type": "text", "id": "opt1_title", "label": "Title", "default": "1 Bottle" },
+    { "type": "text", "id": "opt1_subtitle", "label": "Subtitle", "default": "Try it out." },
+    { "type": "text", "id": "opt1_badge", "label": "Badge (leave blank for none)" },
+    {
+      "type": "select", "id": "opt1_badge_color", "label": "Badge colour",
+      "options": [
+        { "value": "gold", "label": "Gold" },
+        { "value": "coral", "label": "Pink" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "gold"
+    },
+    { "type": "header", "content": "Option 2 — 2-bottle bundle" },
+    { "type": "product", "id": "opt2_product", "label": "Bundle product" },
+    { "type": "text", "id": "opt2_title", "label": "Title", "default": "2 Bottles (2 Month Supply)" },
+    { "type": "text", "id": "opt2_subtitle", "label": "Subtitle (if no free shipping)" },
+    { "type": "checkbox", "id": "opt2_free_shipping", "label": "Show 'Free Shipping Unlocked'", "default": true },
+    { "type": "text", "id": "opt2_badge", "label": "Badge text", "default": "Most Popular (Save 15%)" },
+    {
+      "type": "select", "id": "opt2_badge_color", "label": "Badge colour",
+      "options": [
+        { "value": "gold", "label": "Gold" },
+        { "value": "coral", "label": "Pink" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "gold"
+    },
+    { "type": "header", "content": "Option 3 — 3-bottle bundle" },
+    { "type": "product", "id": "opt3_product", "label": "Bundle product" },
+    { "type": "text", "id": "opt3_title", "label": "Title", "default": "3 Bottles (3 Month Supply)" },
+    { "type": "text", "id": "opt3_subtitle", "label": "Subtitle (if no free shipping)" },
+    { "type": "checkbox", "id": "opt3_free_shipping", "label": "Show 'Free Shipping Unlocked'", "default": true },
+    { "type": "text", "id": "opt3_badge", "label": "Badge text", "default": "Best Value (Save 20%)" },
+    {
+      "type": "select", "id": "opt3_badge_color", "label": "Badge colour",
+      "options": [
+        { "value": "gold", "label": "Gold" },
+        { "value": "coral", "label": "Pink" },
+        { "value": "green", "label": "Green" }
+      ],
+      "default": "gold"
+    }
+  ]
+}
+{% endschema %}
 
 {% schema %}
 {
