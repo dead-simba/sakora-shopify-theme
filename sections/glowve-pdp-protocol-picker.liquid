@@ -320,29 +320,38 @@
 
   @media (max-width: 599px) {
     .gv-protocol-opt {
-      padding: 10px 12px !important;
+      padding: 12px !important;
     }
     .gv-protocol-content {
-      flex-direction: column !important;
-      gap: 6px !important;
+      flex-wrap: wrap !important;
       align-items: flex-start !important;
-      justify-content: flex-start !important;
+      gap: 8px !important;
     }
     .gv-protocol-left {
       flex: 1 1 100% !important;
-      min-width: 0 !important;
+      order: 1;
     }
     .gv-protocol-right {
-      padding-left: 28px !important;
+      order: 2;
       flex: 1 1 100% !important;
+      align-items: flex-start !important;
+      padding-left: 30px !important; /* Dot width + gap */
+    }
+    .gv-protocol-right {
+      flex-direction: row !important;
+      gap: 8px !important;
+      align-items: baseline !important;
+    }
+    .gv-protocol-badge {
+      position: static !important;
+      display: inline-block !important;
+      margin-left: 30px !important;
+      margin-top: 4px !important;
+      border-radius: 100px !important;
+      order: 3;
     }
     .gv-protocol-dot {
-      width: 16px !important;
-      height: 16px !important;
-    }
-    .gv-protocol-dot-inner {
-      width: 7px !important;
-      height: 7px !important;
+      margin-top: 3px !important;
     }
     .gv-protocol-title {
       font-size: 13px !important;
@@ -352,9 +361,6 @@
     }
     .gv-protocol-price {
       font-size: 13px !important;
-    }
-    .gv-protocol-compare {
-      font-size: 11px !important;
     }
   }
 {% endstylesheet %}
