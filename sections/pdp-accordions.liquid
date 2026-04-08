@@ -1,427 +1,687 @@
-<div class="gv-pdp-acc section-spacing color-{{ section.settings.color_scheme }}">
+<div class="gv-pdp-acc">
   <div class="gv-pdp-inner">
-    
     <div class="gv-acc-container">
+
       {%- for block in section.blocks -%}
-        <details class="gv-acc-row" id="gv-acc-{{ block.id }}" {{ block.shopify_attributes }} {% if block.settings.open %}open{% endif %}>
+        <details class="gv-acc-row" id="gv-acc-{{ block.id }}" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
           <summary class="gv-acc-header">
-            <span class="gv-acc-title">{{ block.settings.title }}</span>
+            <div class="gv-acc-header-left">
+              {%- if block.settings.icon != blank -%}
+                <span class="gv-acc-emoji">{{ block.settings.icon }}</span>
+              {%- endif -%}
+              <span class="gv-acc-title">{{ block.settings.title }}</span>
+            </div>
             <span class="gv-acc-icon">
-              <svg class="gv-acc-plus" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-              <svg class="gv-acc-minus" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <svg class="gv-acc-plus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              <svg class="gv-acc-minus" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </span>
           </summary>
-          
-          <div class="gv-acc-content">
-            {%- case block.type -%}
-              
-              {%- when 'science' -%}
-                <div class="gv-acc-science">
-                  {%- if block.settings.subtitle != blank -%}
-                    <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
-                  {%- endif -%}
-                  
-                  <div class="gv-sci-pathway-grid">
-                    {%- for i in (1..5) -%}
-                      {%- capture t_key -%}card_{{ i }}_title{%- endcapture -%}
-                      {%- capture b_key -%}card_{{ i }}_body{%- endcapture -%}
-                      {%- capture i_key -%}card_{{ i }}_ingredient{%- endcapture -%}
-                      
-                      {%- if block.settings[t_key] != blank -%}
-                        <div class="gv-sci-pathway">
-                          <div class="gv-sci-pathway-num">0{{ i }}</div>
-                          <div class="gv-sci-pathway-title">{{ block.settings[t_key] }}</div>
-                          <div class="gv-sci-pathway-body">{{ block.settings[b_key] }}</div>
-                          {%- if block.settings[i_key] != blank -%}
-                            <div class="gv-sci-pathway-ing">{{ block.settings[i_key] }}</div>
-                          {%- endif -%}
-                        </div>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </div>
 
-                  {%- if block.settings.stat_num != blank -%}
-                    <div class="gv-sci-stat">
-                      <div class="gv-sci-stat-num">{{ block.settings.stat_num }}</div>
-                      <div class="gv-sci-stat-label">{{ block.settings.stat_label }}</div>
-                    </div>
-                  {%- endif -%}
-                </div>
+          <div class="gv-acc-body">
+
+            {%- case block.type -%}
 
               {%- when 'ingredients' -%}
-                <div class="gv-acc-ing">
-                  {%- if block.settings.subtitle != blank -%}
-                    <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
-                  {%- endif -%}
-                  <div class="gv-ing-scroll">
-                    {%- comment -%} This block uses a collection or manual entry? Let's use metafields or a linked section. 
-                        For now, let's allow up to 6 manual ingredients for maximum control. {%- endcomment -%}
-                    {%- for i in (1..6) -%}
-                      {%- capture n_key -%}ing_{{ i }}_name{%- endcapture -%}
-                      {%- capture b_key -%}ing_{{ i }}_benefit{%- endcapture -%}
-                      {%- capture i_key -%}ing_{{ i }}_image{%- endcapture -%}
-                      
-                      {%- if block.settings[n_key] != blank -%}
-                        <div class="gv-ing-card">
-                          <div class="gv-ing-card-img">
-                            {%- if block.settings[i_key] != blank -%}
-                              {{ block.settings[i_key] | image_url: width: 300 | image_tag: loading: 'lazy' }}
-                            {%- else -%}
-                              <div class="gv-ing-card-placeholder"><span>{{ block.settings[n_key] | slice: 0, 2 | upcase }}</span></div>
-                            {%- endif -%}
-                          </div>
-                          <div class="gv-ing-card-body">
-                            <div class="gv-ing-card-name">{{ block.settings[n_key] }}</div>
-                            <div class="gv-ing-card-benefit">{{ block.settings[b_key] }}</div>
-                          </div>
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                <div class="gv-ing-track">
+                  {%- for i in (1..6) -%}
+                    {%- assign n_key = 'ing_' | append: i | append: '_name' -%}
+                    {%- assign b_key = 'ing_' | append: i | append: '_benefit' -%}
+                    {%- assign img_key = 'ing_' | append: i | append: '_image' -%}
+                    {%- assign badge_key = 'ing_' | append: i | append: '_badge' -%}
+                    {%- assign icon_key = 'ing_' | append: i | append: '_icon' -%}
+                    {%- if block.settings[n_key] != blank -%}
+                      <div class="gv-ing-card">
+                        <div class="gv-ing-card-img">
+                          {%- if block.settings[img_key] != blank -%}
+                            {{ block.settings[img_key] | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings[n_key] }}
+                          {%- elsif block.settings[icon_key] != blank -%}
+                            <div class="gv-ing-card-icon">{{ block.settings[icon_key] }}</div>
+                          {%- else -%}
+                            <div class="gv-ing-card-icon">🌿</div>
+                          {%- endif -%}
                         </div>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </div>
+                        <div class="gv-ing-card-body">
+                          {%- if block.settings[badge_key] != blank -%}
+                            <span class="gv-ing-badge">{{ block.settings[badge_key] }}</span>
+                          {%- endif -%}
+                          <div class="gv-ing-name">{{ block.settings[n_key] }}</div>
+                          {%- if block.settings[b_key] != blank -%}
+                            <p class="gv-ing-benefit">{{ block.settings[b_key] }}</p>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
+                <p class="gv-ing-hint">← Scroll to see all actives</p>
 
               {%- when 'how_to_use' -%}
-                <div class="gv-acc-htu">
-                  {%- if block.settings.subtitle != blank -%}
-                    <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
-                  {%- endif -%}
-                  
-                  <div class="gv-htu-grid">
-                    {%- for i in (1..4) -%}
-                      {%- capture l_key -%}step_{{ i }}_label{%- endcapture -%}
-                      {%- capture n_key -%}step_{{ i }}_note{%- endcapture -%}
-                      {%- capture c_key -%}step_{{ i }}_current{%- endcapture -%}
-                      
-                      {%- if block.settings[l_key] != blank -%}
-                        <div class="gv-htu-step {% if block.settings[c_key] %}gv-htu-step--current{% endif %}">
-                          <div class="gv-htu-num">{{ i }}</div>
-                          <div class="gv-htu-info">
-                            <div class="gv-htu-label">{{ block.settings[l_key] }}</div>
-                            <div class="gv-htu-note">{{ block.settings[n_key] }}</div>
-                          </div>
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                <div class="gv-htu-steps">
+                  {%- for i in (1..5) -%}
+                    {%- assign l_key = 'step_' | append: i | append: '_label' -%}
+                    {%- assign n_key = 'step_' | append: i | append: '_note' -%}
+                    {%- assign c_key = 'step_' | append: i | append: '_current' -%}
+                    {%- assign ic_key = 'step_' | append: i | append: '_icon' -%}
+                    {%- if block.settings[l_key] != blank -%}
+                      <div class="gv-htu-step{% if block.settings[c_key] %} gv-htu-step--current{% endif %}">
+                        <div class="gv-htu-bubble">
+                          {%- if block.settings[ic_key] != blank -%}
+                            {{ block.settings[ic_key] }}
+                          {%- else -%}
+                            {{ i }}
+                          {%- endif -%}
                         </div>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </div>
+                        <div class="gv-htu-info">
+                          {%- if block.settings[c_key] -%}
+                            <div class="gv-htu-this-tag">This product</div>
+                          {%- endif -%}
+                          <div class="gv-htu-label">{{ block.settings[l_key] }}</div>
+                          {%- if block.settings[n_key] != blank -%}
+                            <div class="gv-htu-note">{{ block.settings[n_key] }}</div>
+                          {%- endif -%}
+                        </div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
+                {%- if block.settings.tip != blank -%}
+                  <div class="gv-htu-tip">💡 {{ block.settings.tip }}</div>
+                {%- endif -%}
 
               {%- when 'timeline' -%}
-                <div class="gv-acc-timeline">
-                  {%- if block.settings.subtitle != blank -%}
-                    <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
-                  {%- endif -%}
-                  <div class="gv-tl-grid">
-                    {%- for i in (1..4) -%}
-                      {%- capture p_key -%}tl_{{ i }}_period{%- endcapture -%}
-                      {%- capture t_key -%}tl_{{ i }}_title{%- endcapture -%}
-                      {%- capture b_key -%}tl_{{ i }}_body{%- endcapture -%}
-                      
-                      {%- if block.settings[p_key] != blank -%}
-                        <div class="gv-tl-item">
-                          <div class="gv-tl-period">{{ block.settings[p_key] }}</div>
-                          <div class="gv-tl-title">{{ block.settings[t_key] }}</div>
-                          <p class="gv-tl-body">{{ block.settings[b_key] }}</p>
-                        </div>
-                      {%- endif -%}
-                    {%- endfor -%}
-                  </div>
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                <div class="gv-tl-grid">
+                  {%- for i in (1..4) -%}
+                    {%- assign p_key = 'tl_' | append: i | append: '_period' -%}
+                    {%- assign t_key = 'tl_' | append: i | append: '_title' -%}
+                    {%- assign b_key = 'tl_' | append: i | append: '_body' -%}
+                    {%- if block.settings[p_key] != blank -%}
+                      <div class="gv-tl-item">
+                        <div class="gv-tl-period">{{ block.settings[p_key] }}</div>
+                        <div class="gv-tl-title">{{ block.settings[t_key] }}</div>
+                        <p class="gv-tl-body">{{ block.settings[b_key] }}</p>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
 
               {%- when 'inci' -%}
-                <div class="gv-acc-inci">
-                  <div class="gv-inci-badges">
-                    <span class="gv-inci-badge">✓ Fragrance-free</span>
-                    <span class="gv-inci-badge">✓ Paraben-free</span>
-                    <span class="gv-inci-badge">✓ Sulphate-free</span>
-                    <span class="gv-inci-badge">✓ Mineral oil-free</span>
-                    <span class="gv-inci-badge">✓ Cruelty-free</span>
-                    <span class="gv-inci-badge">✓ Made in Pakistan</span>
-                  </div>
-                  <div class="gv-inci-list">
-                    {{ block.settings.content }}
-                  </div>
+                <div class="gv-inci-badges">
+                  {%- for i in (1..8) -%}
+                    {%- assign badge_key = 'clean_badge_' | append: i -%}
+                    {%- if block.settings[badge_key] != blank -%}
+                      <span class="gv-inci-badge">✓ {{ block.settings[badge_key] }}</span>
+                    {%- endif -%}
+                  {%- endfor -%}
                 </div>
+                {%- if block.settings.content != blank -%}
+                  <div class="gv-inci-list">{{ block.settings.content }}</div>
+                {%- endif -%}
+
+              {%- when 'science' -%}
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="gv-acc-sub">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                <div class="gv-sci-grid">
+                  {%- for i in (1..5) -%}
+                    {%- assign t_key = 'card_' | append: i | append: '_title' -%}
+                    {%- assign b_key = 'card_' | append: i | append: '_body' -%}
+                    {%- assign ing_key = 'card_' | append: i | append: '_ingredient' -%}
+                    {%- if block.settings[t_key] != blank -%}
+                      <div class="gv-sci-card">
+                        <div class="gv-sci-num">0{{ i }}</div>
+                        <div class="gv-sci-title">{{ block.settings[t_key] }}</div>
+                        <div class="gv-sci-body">{{ block.settings[b_key] }}</div>
+                        {%- if block.settings[ing_key] != blank -%}
+                          <div class="gv-sci-ing">{{ block.settings[ing_key] }}</div>
+                        {%- endif -%}
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                {%- if block.settings.stat_num != blank -%}
+                  <div class="gv-sci-stat">
+                    <div class="gv-sci-stat-num">{{ block.settings.stat_num }}</div>
+                    <div class="gv-sci-stat-label">{{ block.settings.stat_label }}</div>
+                  </div>
+                {%- endif -%}
 
               {%- when 'rich_text' -%}
-                <div class="gv-acc-rich-text">
-                  {{ block.settings.content }}
-                </div>
+                <div class="gv-acc-rich">{{ block.settings.content }}</div>
 
             {%- endcase -%}
+
           </div>
         </details>
       {%- endfor -%}
-    </div>
 
+    </div>
   </div>
 </div>
 
 {% stylesheet %}
+  /* ── Wrapper ── */
   .gv-pdp-acc {
-    background: white;
-    padding: 40px 0 80px;
+    background: #fff;
+    padding: 32px 0 64px;
   }
-
   .gv-pdp-inner {
-    max-width: 1200px;
+    max-width: 720px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 20px;
   }
 
+  /* ── Accordion shell ── */
   .gv-acc-container {
     display: flex;
     flex-direction: column;
-    gap: 16px;
   }
-
   .gv-acc-row {
-    border: 1px solid #EAEAEA;
-    border-radius: 16px;
-    background: #FFFFFF;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    border-bottom: 1px solid #EAEAEA;
+    background: #fff;
+  }
+  .gv-acc-row:first-child {
+    border-top: 1px solid #EAEAEA;
   }
 
-  .gv-acc-row[open] {
-    border-color: #DDD;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-  }
-
+  /* ── Summary / header ── */
   .gv-acc-header {
-    padding: 24px;
+    padding: 20px 0;
     cursor: pointer;
     list-style: none;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
     user-select: none;
   }
   .gv-acc-header::-webkit-details-marker { display: none; }
 
+  .gv-acc-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .gv-acc-emoji {
+    font-size: 20px;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
   .gv-acc-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     color: #1A1A1A;
-    letter-spacing: -0.01em;
+    line-height: 1.3;
   }
 
   .gv-acc-icon {
     color: #1A1A1A;
+    flex-shrink: 0;
+    display: flex;
+  }
+  .gv-acc-minus { display: none; }
+  .gv-acc-row[open] .gv-acc-plus { display: none; }
+  .gv-acc-row[open] .gv-acc-minus { display: flex; }
+
+  /* ── Body ── */
+  .gv-acc-body {
+    padding-bottom: 28px;
+  }
+  .gv-acc-sub {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .gv-acc-rich { font-size: 15px; color: #555; line-height: 1.7; }
+
+  /* ── Ingredient cards ── */
+  .gv-ing-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 8px;
+  }
+  .gv-ing-track::-webkit-scrollbar { display: none; }
+
+  .gv-ing-card {
+    flex: 0 0 180px;
+    background: #FAFAFA;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid #EAEAEA;
+  }
+
+  .gv-ing-card-img {
+    aspect-ratio: 1;
+    background: #F0F0F0;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-
-  .gv-acc-minus { display: none; }
-  .gv-acc-row[open] .gv-acc-plus { display: none; }
-  .gv-acc-row[open] .gv-acc-minus { display: block; }
-
-  .gv-acc-content {
-    padding: 0 24px 32px;
+  .gv-ing-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .gv-ing-card-icon {
+    font-size: 40px;
+    line-height: 1;
   }
 
-  .gv-acc-sub {
-    font-size: 15px;
+  .gv-ing-card-body {
+    padding: 14px;
+  }
+  .gv-ing-badge {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--coral-pulse);
+    background: rgba(255,77,141,0.1);
+    padding: 3px 8px;
+    border-radius: 100px;
+    margin-bottom: 7px;
+  }
+  .gv-ing-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: #1A1A1A;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+  .gv-ing-benefit {
+    font-size: 11px;
+    color: #777;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .gv-ing-hint {
+    font-size: 11px;
+    color: #AAA;
+    margin-top: 10px;
+  }
+
+  /* ── How to Use ── */
+  .gv-htu-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gv-htu-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    background: #F9F9F9;
+  }
+  .gv-htu-step--current {
+    background: #FFF5F8;
+    border: 1.5px solid var(--coral-pulse);
+  }
+  .gv-htu-bubble {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #1A1A1A;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .gv-htu-step--current .gv-htu-bubble {
+    background: var(--coral-pulse);
+  }
+  .gv-htu-this-tag {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--coral-pulse);
+    margin-bottom: 2px;
+  }
+  .gv-htu-label {
+    font-weight: 700;
+    font-size: 14px;
+    color: #1A1A1A;
+    margin-bottom: 3px;
+  }
+  .gv-htu-note {
+    font-size: 12px;
     color: #666;
+    line-height: 1.5;
+  }
+  .gv-htu-tip {
+    margin-top: 16px;
+    background: #FFFBF0;
+    border: 1px solid #FFE082;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-size: 13px;
+    color: #555;
     line-height: 1.6;
-    margin-bottom: 24px;
-    max-width: 700px;
   }
 
-  /* Science Styles */
-  .gv-sci-pathway-grid {
+  /* ── Timeline ── */
+  .gv-tl-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-    margin-bottom: 24px;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
   }
-  .gv-sci-pathway {
+  .gv-tl-item {
     background: #F9F9F9;
     border-radius: 12px;
-    padding: 20px;
+    padding: 18px 16px;
+    border-top: 3px solid var(--coral-pulse);
   }
-  .gv-sci-pathway-num { font-family: var(--font-mono); font-size: 11px; color: var(--coral-pulse); margin-bottom: 8px; }
-  .gv-sci-pathway-title { font-weight: 700; font-size: 14px; margin-bottom: 6px; }
-  .gv-sci-pathway-body { font-size: 12px; color: #666; line-height: 1.5; }
-  .gv-sci-pathway-ing { display: inline-block; margin-top: 10px; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--coral-pulse); background: rgba(255,77,141,0.1); padding: 3px 8px; border-radius: 4px; }
+  .gv-tl-period {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--coral-pulse);
+    margin-bottom: 6px;
+  }
+  .gv-tl-title {
+    font-weight: 700;
+    font-size: 14px;
+    color: #1A1A1A;
+    margin-bottom: 6px;
+  }
+  .gv-tl-body {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+  }
 
-  .gv-sci-stat { text-align: center; padding: 32px; background: #1A1A1A; color: white; border-radius: 16px; margin-top: 16px; }
-  .gv-sci-stat-num { font-size: 48px; font-weight: 300; color: var(--coral-pulse); line-height: 1; margin-bottom: 8px; }
-  .gv-sci-stat-label { font-size: 14px; opacity: 0.8; }
+  /* ── Science ── */
+  .gv-sci-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .gv-sci-card {
+    background: #F9F9F9;
+    border-radius: 12px;
+    padding: 18px 16px;
+  }
+  .gv-sci-num {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--coral-pulse);
+    margin-bottom: 8px;
+    letter-spacing: 0.06em;
+  }
+  .gv-sci-title {
+    font-weight: 700;
+    font-size: 13px;
+    color: #1A1A1A;
+    margin-bottom: 5px;
+  }
+  .gv-sci-body {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.5;
+  }
+  .gv-sci-ing {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--coral-pulse);
+    background: rgba(255,77,141,0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+  .gv-sci-stat {
+    text-align: center;
+    padding: 28px 20px;
+    background: #1A1A1A;
+    color: white;
+    border-radius: 14px;
+  }
+  .gv-sci-stat-num {
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--coral-pulse);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .gv-sci-stat-label {
+    font-size: 14px;
+    opacity: 0.75;
+  }
 
-  /* Ingredients Styles */
-  .gv-ing-scroll { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 16px; scrollbar-width: none; }
-  .gv-ing-scroll::-webkit-scrollbar { display: none; }
-  .gv-ing-card { flex: 0 0 180px; background: #F9F9F9; border-radius: 12px; overflow: hidden; }
-  .gv-ing-card-img { aspect-ratio: 1; background: #EEE; overflow: hidden; }
-  .gv-ing-card-img img { width: 100%; height: 100%; object-fit: cover; }
-  .gv-ing-card-body { padding: 12px; }
-  .gv-ing-card-name { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
-  .gv-ing-card-benefit { font-size: 11px; color: #666; line-height: 1.4; }
+  /* ── INCI ── */
+  .gv-inci-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+  }
+  .gv-inci-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: #108043;
+    background: #E3F1DF;
+    padding: 5px 12px;
+    border-radius: 100px;
+  }
+  .gv-inci-list {
+    font-size: 12px;
+    color: #888;
+    line-height: 2.2;
+  }
+  .gv-inci-list strong, .gv-inci-list b {
+    color: var(--coral-pulse);
+    font-weight: 600;
+  }
 
-  /* HTU Styles */
-  .gv-htu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .gv-htu-step { display: flex; gap: 16px; padding: 16px; border-radius: 12px; background: #F9F9F9; }
-  .gv-htu-step--current { background: #FFF5F8; border: 1px solid var(--coral-pulse); }
-  .gv-htu-num { width: 28px; height: 28px; border-radius: 50%; background: #1A1A1A; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
-  .gv-htu-step--current .gv-htu-num { background: var(--coral-pulse); }
-  .gv-htu-label { font-weight: 700; font-size: 14px; margin-bottom: 2px; }
-  .gv-htu-note { font-size: 12px; color: #666; line-height: 1.4; }
-
-  /* Timeline Styles */
-  .gv-tl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
-  .gv-tl-item { background: #F9F9F9; padding: 20px; border-radius: 12px; border-top: 3px solid var(--coral-pulse); }
-  .gv-tl-period { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--coral-pulse); margin-bottom: 8px; }
-  .gv-tl-title { font-weight: 700; font-size: 15px; margin-bottom: 6px; }
-  .gv-tl-body { font-size: 12px; color: #666; line-height: 1.5; }
-
-  /* INCI Styles */
-  .gv-inci-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; }
-  .gv-inci-badge { font-size: 11px; font-weight: 600; color: #108043; background: #E3F1DF; padding: 4px 12px; border-radius: 100px; }
-  .gv-inci-list { font-family: var(--font-mono); font-size: 12px; color: #888; line-height: 2; }
-
-  @media (max-width: 768px) {
-    .gv-htu-grid { grid-template-columns: 1fr; }
-    .gv-pdp-acc { padding: 20px 0 60px; }
-    .gv-acc-title { font-size: 16px; }
-    .gv-acc-header { padding: 20px; }
+  /* ── Mobile ── */
+  @media (max-width: 599px) {
+    .gv-pdp-acc { padding: 24px 0 48px; }
+    .gv-acc-title { font-size: 15px; }
+    .gv-acc-header { padding: 18px 0; }
+    .gv-tl-grid { grid-template-columns: 1fr; }
+    .gv-sci-grid { grid-template-columns: 1fr; }
+    .gv-ing-card { flex: 0 0 160px; }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "PDP Accordions",
-  "settings": [
-    {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "Color scheme",
-      "default": "scheme-1"
-    }
-  ],
+  "settings": [],
   "blocks": [
     {
-      "type": "science",
-      "name": "Science Accordion",
-      "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Barrier repair from two directions." },
-        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
-        { "type": "textarea", "id": "subtitle", "label": "Description", "default": "Most moisturisers just sit on top. This one rebuilds your barrier from the outside in — and triggers your skin to build more from the inside out." },
-        { "type": "header", "content": "Pathway Cards" },
-        { "type": "text", "id": "card_1_title", "label": "Card 1 Title" },
-        { "type": "textarea", "id": "card_1_body", "label": "Card 1 Body" },
-        { "type": "text", "id": "card_1_ingredient", "label": "Card 1 Ingredient" },
-        { "type": "text", "id": "card_2_title", "label": "Card 2 Title" },
-        { "type": "textarea", "id": "card_2_body", "label": "Card 2 Body" },
-        { "type": "text", "id": "card_2_ingredient", "label": "Card 2 Ingredient" },
-        { "type": "text", "id": "card_3_title", "label": "Card 3 Title" },
-        { "type": "textarea", "id": "card_3_body", "label": "Card 3 Body" },
-        { "type": "text", "id": "card_3_ingredient", "label": "Card 3 Ingredient" },
-        { "type": "text", "id": "card_4_title", "label": "Card 4 Title" },
-        { "type": "textarea", "id": "card_4_body", "label": "Card 4 Body" },
-        { "type": "text", "id": "card_4_ingredient", "label": "Card 4 Ingredient" },
-        { "type": "text", "id": "card_5_title", "label": "Card 5 Title" },
-        { "type": "textarea", "id": "card_5_body", "label": "Card 5 Body" },
-        { "type": "text", "id": "card_5_ingredient", "label": "Card 5 Ingredient" },
-        { "type": "header", "content": "Stat Callout" },
-        { "type": "text", "id": "stat_num", "label": "Stat Number", "default": "45%" },
-        { "type": "text", "id": "stat_label", "label": "Stat Label", "default": "reduction in wrinkle area in 8 weeks." }
-      ]
-    },
-    {
       "type": "ingredients",
-      "name": "Ingredients Accordion",
+      "name": "Ingredients",
       "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji icon", "default": "🧪" },
         { "type": "text", "id": "title", "label": "Heading", "default": "What's inside — and why." },
-        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
-        { "type": "textarea", "id": "subtitle", "label": "Description", "default": "Every active in here has a job, a dose, and a reason." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "No filler. Every active has a job, a dose, and a reason." },
         { "type": "header", "content": "Ingredient 1" },
         { "type": "text", "id": "ing_1_name", "label": "Name" },
+        { "type": "text", "id": "ing_1_badge", "label": "Badge label (e.g. Barrier Builder)" },
+        { "type": "text", "id": "ing_1_icon", "label": "Emoji (if no image)" },
         { "type": "textarea", "id": "ing_1_benefit", "label": "Benefit" },
-        { "type": "image_picker", "id": "ing_1_image", "label": "Image" },
+        { "type": "image_picker", "id": "ing_1_image", "label": "Image (optional)" },
         { "type": "header", "content": "Ingredient 2" },
         { "type": "text", "id": "ing_2_name", "label": "Name" },
+        { "type": "text", "id": "ing_2_badge", "label": "Badge label" },
+        { "type": "text", "id": "ing_2_icon", "label": "Emoji" },
         { "type": "textarea", "id": "ing_2_benefit", "label": "Benefit" },
-        { "type": "image_picker", "id": "ing_2_image", "label": "Image" },
+        { "type": "image_picker", "id": "ing_2_image", "label": "Image (optional)" },
         { "type": "header", "content": "Ingredient 3" },
         { "type": "text", "id": "ing_3_name", "label": "Name" },
+        { "type": "text", "id": "ing_3_badge", "label": "Badge label" },
+        { "type": "text", "id": "ing_3_icon", "label": "Emoji" },
         { "type": "textarea", "id": "ing_3_benefit", "label": "Benefit" },
-        { "type": "image_picker", "id": "ing_3_image", "label": "Image" },
+        { "type": "image_picker", "id": "ing_3_image", "label": "Image (optional)" },
         { "type": "header", "content": "Ingredient 4" },
         { "type": "text", "id": "ing_4_name", "label": "Name" },
+        { "type": "text", "id": "ing_4_badge", "label": "Badge label" },
+        { "type": "text", "id": "ing_4_icon", "label": "Emoji" },
         { "type": "textarea", "id": "ing_4_benefit", "label": "Benefit" },
-        { "type": "image_picker", "id": "ing_4_image", "label": "Image" },
+        { "type": "image_picker", "id": "ing_4_image", "label": "Image (optional)" },
         { "type": "header", "content": "Ingredient 5" },
         { "type": "text", "id": "ing_5_name", "label": "Name" },
+        { "type": "text", "id": "ing_5_badge", "label": "Badge label" },
+        { "type": "text", "id": "ing_5_icon", "label": "Emoji" },
         { "type": "textarea", "id": "ing_5_benefit", "label": "Benefit" },
-        { "type": "image_picker", "id": "ing_5_image", "label": "Image" },
+        { "type": "image_picker", "id": "ing_5_image", "label": "Image (optional)" },
         { "type": "header", "content": "Ingredient 6" },
         { "type": "text", "id": "ing_6_name", "label": "Name" },
+        { "type": "text", "id": "ing_6_badge", "label": "Badge label" },
+        { "type": "text", "id": "ing_6_icon", "label": "Emoji" },
         { "type": "textarea", "id": "ing_6_benefit", "label": "Benefit" },
-        { "type": "image_picker", "id": "ing_6_image", "label": "Image" }
+        { "type": "image_picker", "id": "ing_6_image", "label": "Image (optional)" }
       ]
     },
     {
       "type": "how_to_use",
-      "name": "How to Use Accordion",
+      "name": "How to Use",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Takes 30 seconds. Works for 24 hours." },
+        { "type": "text", "id": "icon", "label": "Emoji icon", "default": "✋" },
+        { "type": "text", "id": "title", "label": "Heading", "default": "How to use" },
         { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
-        { "type": "textarea", "id": "subtitle", "label": "Description", "default": "Moisturiser goes on after serum, before SPF. It seals everything in." },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
         { "type": "header", "content": "Step 1" },
         { "type": "text", "id": "step_1_label", "label": "Label", "default": "Cleanser" },
-        { "type": "text", "id": "step_1_note", "label": "Note", "default": "Gentle only." },
+        { "type": "text", "id": "step_1_note", "label": "Note" },
+        { "type": "text", "id": "step_1_icon", "label": "Emoji" },
+        { "type": "checkbox", "id": "step_1_current", "label": "Mark as this product", "default": false },
         { "type": "header", "content": "Step 2" },
         { "type": "text", "id": "step_2_label", "label": "Label", "default": "Serum" },
-        { "type": "text", "id": "step_2_note", "label": "Note", "default": "Apply first." },
+        { "type": "text", "id": "step_2_note", "label": "Note" },
+        { "type": "text", "id": "step_2_icon", "label": "Emoji" },
+        { "type": "checkbox", "id": "step_2_current", "label": "Mark as this product", "default": false },
         { "type": "header", "content": "Step 3" },
-        { "type": "text", "id": "step_3_label", "label": "Label", "default": "Barrier Renew" },
-        { "type": "text", "id": "step_3_note", "label": "Note", "default": "Press into skin." },
-        { "type": "checkbox", "id": "step_3_current", "label": "Highlight as 'This Product'", "default": true },
+        { "type": "text", "id": "step_3_label", "label": "Label", "default": "Moisturiser" },
+        { "type": "text", "id": "step_3_note", "label": "Note" },
+        { "type": "text", "id": "step_3_icon", "label": "Emoji" },
+        { "type": "checkbox", "id": "step_3_current", "label": "Mark as this product", "default": true },
         { "type": "header", "content": "Step 4" },
         { "type": "text", "id": "step_4_label", "label": "Label", "default": "SPF" },
-        { "type": "text", "id": "step_4_note", "label": "Note", "default": "Non-negotiable." }
+        { "type": "text", "id": "step_4_note", "label": "Note" },
+        { "type": "text", "id": "step_4_icon", "label": "Emoji" },
+        { "type": "checkbox", "id": "step_4_current", "label": "Mark as this product", "default": false },
+        { "type": "header", "content": "Step 5" },
+        { "type": "text", "id": "step_5_label", "label": "Label" },
+        { "type": "text", "id": "step_5_note", "label": "Note" },
+        { "type": "text", "id": "step_5_icon", "label": "Emoji" },
+        { "type": "checkbox", "id": "step_5_current", "label": "Mark as this product", "default": false },
+        { "type": "header", "content": "Tip" },
+        { "type": "textarea", "id": "tip", "label": "Tip callout (optional)" }
       ]
     },
     {
       "type": "timeline",
-      "name": "Timeline Accordion",
+      "name": "Results Timeline",
       "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji icon", "default": "📅" },
         { "type": "text", "id": "title", "label": "Heading", "default": "What to actually expect." },
         { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
-        { "type": "textarea", "id": "subtitle", "label": "Description", "default": "No miracles. Rebuilding a barrier takes time." },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "No miracles. Rebuilding a barrier takes time." },
         { "type": "header", "content": "Milestone 1" },
-        { "type": "text", "id": "tl_1_period", "label": "Period", "default": "Day 1-3" },
+        { "type": "text", "id": "tl_1_period", "label": "Period", "default": "Day 1–3" },
         { "type": "text", "id": "tl_1_title", "label": "Title", "default": "Immediate comfort" },
         { "type": "textarea", "id": "tl_1_body", "label": "Body" },
         { "type": "header", "content": "Milestone 2" },
-        { "type": "text", "id": "tl_2_period", "label": "Period", "default": "Week 1-2" },
+        { "type": "text", "id": "tl_2_period", "label": "Period", "default": "Week 1–2" },
         { "type": "text", "id": "tl_2_title", "label": "Title", "default": "Hydration holds" },
         { "type": "textarea", "id": "tl_2_body", "label": "Body" },
         { "type": "header", "content": "Milestone 3" },
-        { "type": "text", "id": "tl_3_period", "label": "Period", "default": "Week 4-8" },
+        { "type": "text", "id": "tl_3_period", "label": "Period", "default": "Week 4–8" },
         { "type": "text", "id": "tl_3_title", "label": "Title", "default": "Barrier independence" },
         { "type": "textarea", "id": "tl_3_body", "label": "Body" },
         { "type": "header", "content": "Milestone 4" },
-        { "type": "text", "id": "tl_4_period", "label": "Period", "default": "Week 8-12" },
+        { "type": "text", "id": "tl_4_period", "label": "Period", "default": "Week 8–12" },
         { "type": "text", "id": "tl_4_title", "label": "Title", "default": "Structural change" },
         { "type": "textarea", "id": "tl_4_body", "label": "Body" }
       ]
     },
     {
       "type": "inci",
-      "name": "INCI Accordion",
+      "name": "Full Ingredients (INCI)",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Full Ingredients List" },
+        { "type": "text", "id": "icon", "label": "Emoji icon", "default": "🔬" },
+        { "type": "text", "id": "title", "label": "Heading", "default": "Full ingredients list" },
         { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
-        { "type": "richtext", "id": "content", "label": "Ingredients List" }
+        { "type": "header", "content": "Clean badges (up to 8)" },
+        { "type": "text", "id": "clean_badge_1", "label": "Badge 1", "default": "Fragrance-free" },
+        { "type": "text", "id": "clean_badge_2", "label": "Badge 2", "default": "Paraben-free" },
+        { "type": "text", "id": "clean_badge_3", "label": "Badge 3", "default": "Sulphate-free" },
+        { "type": "text", "id": "clean_badge_4", "label": "Badge 4", "default": "Mineral oil-free" },
+        { "type": "text", "id": "clean_badge_5", "label": "Badge 5", "default": "Cruelty-free" },
+        { "type": "text", "id": "clean_badge_6", "label": "Badge 6", "default": "Made in Pakistan" },
+        { "type": "text", "id": "clean_badge_7", "label": "Badge 7" },
+        { "type": "text", "id": "clean_badge_8", "label": "Badge 8" },
+        { "type": "richtext", "id": "content", "label": "Ingredients (bold the actives)" }
+      ]
+    },
+    {
+      "type": "science",
+      "name": "Science / Mechanism",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Emoji icon", "default": "⚗️" },
+        { "type": "text", "id": "title", "label": "Heading", "default": "How it works." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+        { "type": "header", "content": "Pathway Cards" },
+        { "type": "text", "id": "card_1_title", "label": "Card 1 Title" },
+        { "type": "textarea", "id": "card_1_body", "label": "Card 1 Body" },
+        { "type": "text", "id": "card_1_ingredient", "label": "Card 1 Ingredient tag" },
+        { "type": "text", "id": "card_2_title", "label": "Card 2 Title" },
+        { "type": "textarea", "id": "card_2_body", "label": "Card 2 Body" },
+        { "type": "text", "id": "card_2_ingredient", "label": "Card 2 Ingredient tag" },
+        { "type": "text", "id": "card_3_title", "label": "Card 3 Title" },
+        { "type": "textarea", "id": "card_3_body", "label": "Card 3 Body" },
+        { "type": "text", "id": "card_3_ingredient", "label": "Card 3 Ingredient tag" },
+        { "type": "text", "id": "card_4_title", "label": "Card 4 Title" },
+        { "type": "textarea", "id": "card_4_body", "label": "Card 4 Body" },
+        { "type": "text", "id": "card_4_ingredient", "label": "Card 4 Ingredient tag" },
+        { "type": "text", "id": "card_5_title", "label": "Card 5 Title" },
+        { "type": "textarea", "id": "card_5_body", "label": "Card 5 Body" },
+        { "type": "text", "id": "card_5_ingredient", "label": "Card 5 Ingredient tag" },
+        { "type": "header", "content": "Stat callout" },
+        { "type": "text", "id": "stat_num", "label": "Number (e.g. 45%)" },
+        { "type": "text", "id": "stat_label", "label": "Label" }
       ]
     },
     {
       "type": "rich_text",
-      "name": "Custom Content Accordion",
+      "name": "Custom Accordion",
       "settings": [
-        { "type": "text", "id": "title", "label": "Heading", "default": "Additional Information" },
+        { "type": "text", "id": "icon", "label": "Emoji icon" },
+        { "type": "text", "id": "title", "label": "Heading", "default": "Additional info" },
         { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
         { "type": "richtext", "id": "content", "label": "Content" }
       ]
@@ -431,7 +691,6 @@
     {
       "name": "PDP Accordions",
       "blocks": [
-        { "type": "science" },
         { "type": "ingredients" },
         { "type": "how_to_use" },
         { "type": "timeline" },
