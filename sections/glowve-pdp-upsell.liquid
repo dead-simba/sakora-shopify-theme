@@ -77,7 +77,17 @@
             {%- endif -%}
           </div>
         </div>
-        {%- if section.settings.bundle_url != blank -%}
+        {%- if section.settings.bundle_product != blank -%}
+          {%- assign bundle_prod_target = all_products[section.settings.bundle_product] -%}
+          <button
+            class="gv-btn-primary gv-upsell-bundle-btn"
+            data-product-id="{{ bundle_prod_target.variants.first.id }}"
+            onclick="glowveAddToCart(event, {{ bundle_prod_target.variants.first.id }})"
+          >
+            Shop the Bundle
+            {% render 'gv-icon', icon: 'arrow-right', size: 14 %}
+          </button>
+        {%- elsif section.settings.bundle_url != blank -%}
           <a href="{{ section.settings.bundle_url }}" class="gv-btn-primary gv-upsell-bundle-btn">
             Shop the Bundle
             {% render 'gv-icon', icon: 'arrow-right', size: 14 %}
@@ -89,10 +99,58 @@
   </div>
 </section>
 
+<script>
+  if (typeof window.glowveAddToCart !== 'function') {
+    window.glowveAddToCart = function(event, variantId) {
+      event.preventDefault();
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      if (btn.classList.contains('gv-loading')) return;
+      btn.classList.add('gv-loading');
+      const originalText = btn.textContent;
+      btn.textContent = '...';
+
+      const sectionIds = [];
+      document.querySelectorAll('cart-items-component[data-section-id]').forEach(el => {
+        sectionIds.push(el.dataset.sectionId);
+      });
+
+      fetch('/cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: 1, sections: sectionIds.join(',') })
+      })
+      .then(r => r.json())
+      .then(response => {
+        btn.textContent = '✓ Added';
+        const cartEvent = new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { sections: response.sections } }
+        });
+        document.dispatchEvent(cartEvent);
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('gv-loading');
+        }, 1800);
+      })
+      .catch(() => {
+        btn.textContent = 'Error';
+        btn.classList.remove('gv-loading');
+        setTimeout(() => { btn.textContent = originalText; }, 1500);
+      });
+    };
+  }
+</script>
+
 {% stylesheet %}
   .gv-pdp-upsell {
     background: var(--berry-dark);
     padding: 80px 0;
+  }
+  .gv-pdp-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
   }
 
   .gv-upsell-sub {
@@ -247,6 +305,15 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .gv-upsell-bundle-btn.gv-loading {
+    opacity: 0.7;
+    cursor: wait;
   }
 
   @media (max-width: 768px) {
@@ -278,7 +345,8 @@
     { "type": "textarea", "id": "bundle_desc", "label": "Bundle description" },
     { "type": "text", "id": "bundle_price", "label": "Bundle price", "default": "PKR 3,999" },
     { "type": "text", "id": "bundle_original", "label": "Original price", "default": "PKR 4,999" },
-    { "type": "url", "id": "bundle_url", "label": "Bundle link" }
+    { "type": "product", "id": "bundle_product", "label": "Bundle Product" },
+    { "type": "url", "id": "bundle_url", "label": "Bundle link (fallback)" }
   ],
   "presets": [
     { "name": "PDP Upsell" }

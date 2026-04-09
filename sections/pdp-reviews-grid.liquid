@@ -1,5 +1,5 @@
 <section class="reviews-section" id="reviews">
-  <div class="container">
+  <div class="reviews-container">
     <div class="section-label">{{ section.settings.label }}</div>
     <h2 class="section-title">{{ section.settings.title }}</h2>
     <div class="reviews-grid">
@@ -34,6 +34,7 @@
 
 {% stylesheet %}
   .reviews-section{background:var(--cream-glow, #fff); padding: 80px 0;}
+  .reviews-container{max-width: 1200px; margin: 0 auto; padding: 0 24px;}
   .reviews-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   .review-card{background:white;border-radius:16px;padding:24px;box-shadow:0 2px 12px rgba(0,0,0,0.05); border: 1px solid var(--warm-gray, #ECECEC);}
   .rev-stars{color:#FFB800;font-size:14px;letter-spacing:2px;margin-bottom:10px;}
