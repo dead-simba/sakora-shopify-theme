@@ -338,9 +338,9 @@
           "type": "inci",
           "settings": {
             "title": "Full Ingredients List",
-            "open": false,
+            "open": true,
             "subtitle": "Every ingredient listed in order.",
-            "clean_badge_1": "Fragrance-free",
+            "clean_badge_1": "",
             "clean_badge_2": "Paraben-free",
             "clean_badge_3": "Sulphate-free",
             "clean_badge_4": "Mineral oil-free",
