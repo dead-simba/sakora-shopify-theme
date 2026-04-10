@@ -12,6 +12,38 @@
 
           {%- case block.type -%}
 
+            {%- when 'pathways' -%}
+              <div class="acc-pdp-science acc-pdp-pathways">
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="gv-section-sub" style="margin-bottom:24px; color:var(--pearl-glow, rgba(255,255,255,0.75));">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                <div class="pathway-cards">
+                  {%- for i in (1..5) -%}
+                    {%- assign num_k = 'pw_' | append: i | append: '_num' -%}
+                    {%- assign title_k = 'pw_' | append: i | append: '_title' -%}
+                    {%- assign trig_k = 'pw_' | append: i | append: '_trig' -%}
+                    {%- assign ing_k = 'pw_' | append: i | append: '_ing' -%}
+                    {%- assign mech_k = 'pw_' | append: i | append: '_mech' -%}
+                    {%- if block.settings[num_k] != blank -%}
+                      <div class="pathway-card">
+                        <div class="pathway-num-pill">{{ block.settings[num_k] }}</div>
+                        <div class="pathway-name-big">{{ block.settings[title_k] }}</div>
+                        <div class="pathway-trigger-text">{{ block.settings[trig_k] }}</div>
+                        <div class="pathway-divider"><div class="pathway-divider-line"></div><div class="pathway-divider-text">blocked by</div><div class="pathway-divider-line"></div></div>
+                        <div class="pathway-ing-label">{{ block.settings[ing_k] }}</div>
+                        <div class="pathway-mech-text">{{ block.settings[mech_k] }}</div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                {%- if block.settings.stat_num != blank -%}
+                <div class="science-bottom-stat">
+                  <div class="science-stat-num">{{ block.settings.stat_num }}</div>
+                  <div class="science-stat-label">{{ block.settings.stat_label }}</div>
+                </div>
+                {%- endif -%}
+              </div>
+
             {%- when 'science' -%}
               <div class="acc-pdp-science">
                 <div class="barrier-diagram">
@@ -287,6 +319,26 @@
     max-width: 680px;
   }
 
+  /* Pathways */
+  .acc-pdp-pathways { padding-top: 32px; }
+  .pathway-cards{display:flex; gap:14px; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 8px;}
+  .pathway-cards::-webkit-scrollbar{display:none;}
+  .pathway-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:24px 18px;transition:background 0.2s; min-width: 220px; flex: 1; flex-shrink: 0; scroll-snap-align: start;}
+  .pathway-card:hover{background:rgba(255,255,255,0.08);}
+  .pathway-num-pill{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent, #FF4D8D);background:rgba(255,77,141,0.15);border-radius:100px;padding:4px 10px;display:inline-block;margin-bottom:16px;}
+  .pathway-name-big{font-family:var(--font-serif);font-size:20px;color:var(--cream-glow, #fff);margin-bottom:6px;line-height:1.2;}
+  .pathway-trigger-text{font-size:11px;color:rgba(255,255,255,0.38);margin-bottom:20px;line-height:1.5;}
+  .pathway-divider{display:flex;align-items:center;gap:6px;margin-bottom:14px;}
+  .pathway-divider-line{flex:1;height:1px;background:rgba(255,77,141,0.25);}
+  .pathway-divider-text{font-family:var(--font-mono);font-size:8px;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent, #FF4D8D);}
+  .pathway-ing-label{font-family:var(--font-mono);font-size:13px;color:var(--accent, #FF4D8D);font-weight:500;margin-bottom:10px;}
+  .pathway-mech-text{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.65;}
+  .science-bottom-stat{background:rgba(155,114,170,0.2); border:1px solid rgba(155,114,170,0.4);border-radius:16px;padding:28px;margin-top:32px;text-align:center;}
+  @media(min-width:1024px) {
+    .pathway-cards { display: grid; grid-template-columns: repeat(5, 1fr); overflow-x: visible; }
+    .pathway-card { min-width: auto; }
+  }
+
   /* Science Barrier */
   .acc-pdp-science {
     background: var(--berry-dark, #1A1A1A);
@@ -373,6 +425,48 @@
   "name": "PDP Accordions",
   "settings": [],
   "blocks": [
+    {
+      "type": "pathways",
+      "name": "Science Pathways",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "Five pathways. One serum." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Your skin has five separate ways to make dark spots. Most serums block one. This formula blocks all five." },
+        { "type": "header", "content": "Pathway 1" },
+        { "type": "text", "id": "pw_1_num", "label": "Number/Badge", "default": "Pathway 01" },
+        { "type": "text", "id": "pw_1_title", "label": "Title", "default": "Tyrosinase enzyme" },
+        { "type": "text", "id": "pw_1_trig", "label": "Trigger", "default": "Triggered by UV exposure" },
+        { "type": "text", "id": "pw_1_ing", "label": "Blocked By", "default": "Alpha Arbutin 2%" },
+        { "type": "textarea", "id": "pw_1_mech", "label": "Mechanism", "default": "Locks the melanin-production enzyme." },
+        { "type": "header", "content": "Pathway 2" },
+        { "type": "text", "id": "pw_2_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_2_title", "label": "Title" },
+        { "type": "text", "id": "pw_2_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_2_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_2_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Pathway 3" },
+        { "type": "text", "id": "pw_3_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_3_title", "label": "Title" },
+        { "type": "text", "id": "pw_3_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_3_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_3_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Pathway 4" },
+        { "type": "text", "id": "pw_4_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_4_title", "label": "Title" },
+        { "type": "text", "id": "pw_4_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_4_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_4_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Pathway 5" },
+        { "type": "text", "id": "pw_5_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_5_title", "label": "Title" },
+        { "type": "text", "id": "pw_5_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_5_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_5_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Bottom Stat" },
+        { "type": "text", "id": "stat_num", "label": "Stat Number", "default": "92%" },
+        { "type": "text", "id": "stat_label", "label": "Stat Label", "default": "of participants noticed brighter skin within 4 weeks" }
+      ]
+    },
     {
       "type": "science",
       "name": "Science Diagram",
@@ -524,6 +618,7 @@
     {
       "name": "PDP Accordions",
       "blocks": [
+        { "type": "pathways" },
         { "type": "science" },
         { "type": "ingredients" },
         { "type": "how_to_use" },
