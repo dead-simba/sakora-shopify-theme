@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -86,6 +95,13 @@
                 "border_width": 1,
                 "border_opacity": 100,
                 "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
                 "padding-block-start": 0,
                 "padding-block-end": 0,
                 "padding-inline-start": 0,
@@ -106,24 +122,44 @@
                     "letter_spacing": "normal",
                     "case": "none",
                     "wrap": "pretty",
-                    "color": "var(--color-foreground)"
-                  }
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "price_main": {
                   "type": "price",
                   "settings": {
                     "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
                     "type_preset": "custom",
                     "width": "100%",
                     "alignment": "left",
                     "font": "var(--font-subheading--family)",
                     "font_size": "1.25rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
                     "color": "var(--color-foreground)",
-                    "padding-block-start": 4
-                  }
+                    "padding-block-start": 4,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text_title", "price_main"]
+              "block_order": [
+                "text_title",
+                "price_main"
+              ]
             },
             "gv_social_proof": {
               "type": "gv-social-proof",
@@ -132,33 +168,41 @@
                 "view_max": 25,
                 "buy_min": 3,
                 "buy_max": 15
-              }
+              },
+              "blocks": {}
             },
             "buy_buttons_main": {
               "type": "buy-buttons",
               "settings": {
                 "stacking": true,
                 "show_pickup_availability": false,
-                "gift_card_form": true
+                "gift_card_form": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "quantity": {
                   "type": "quantity",
                   "disabled": true,
                   "static": true,
-                  "settings": {}
+                  "settings": {},
+                  "blocks": {}
                 },
                 "add-to-cart": {
                   "type": "add-to-cart",
                   "static": true,
                   "settings": {
                     "style_class": "button"
-                  }
+                  },
+                  "blocks": {}
                 },
                 "accelerated-checkout": {
                   "type": "accelerated-checkout",
                   "static": true,
-                  "settings": {}
+                  "settings": {},
+                  "blocks": {}
                 }
               },
               "block_order": []
@@ -169,20 +213,25 @@
               "settings": {
                 "thickness": 1,
                 "corner_radius": "square",
-                "width_percent": 100
-              }
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
             },
             "gv_urgency": {
               "type": "gv-urgency",
               "settings": {
                 "text": "Order before 2pm PKT — ships today"
-              }
+              },
+              "blocks": {}
             },
             "gv_ship_tracker": {
               "type": "gv-ship-tracker",
               "settings": {
                 "threshold": 2500
-              }
+              },
+              "blocks": {}
             },
             "gv_guarantee": {
               "type": "gv-guarantee",
@@ -190,17 +239,20 @@
                 "item_1": "30-day money-back",
                 "item_2": "Free delivery above PKR 2,500",
                 "item_3": "Cash on delivery"
-              }
+              },
+              "blocks": {}
             },
             "gv_pk": {
               "type": "gv-pk-callout",
               "settings": {
                 "text": "<p><strong>Formulated for Fitzpatrick IV–VI and Pakistan's UV index 10–12.</strong> Most brightening serums are developed for European skin tones in European climates. This one isn't.</p>"
-              }
+              },
+              "blocks": {}
             },
             "gv_atc_bar": {
               "type": "gv-atc-bar",
-              "settings": {}
+              "settings": {},
+              "blocks": {}
             },
             "text_description": {
               "type": "text",
@@ -213,8 +265,20 @@
                 "type_preset": "rte",
                 "font": "var(--font-body--family)",
                 "font_size": "1rem",
-                "color": "var(--color-foreground)"
-              }
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -237,17 +301,35 @@
         "equal_columns": true,
         "limit_details_width": false,
         "gap": 48,
-        "enable_sticky_add_to_cart": false
+        "enable_sticky_add_to_cart": false,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     },
     "pdp_accordions": {
       "type": "pdp-accordions",
       "blocks": {
+        "inci_1": {
+          "type": "inci",
+          "settings": {
+            "title": "Nothing to hide.",
+            "open": true,
+            "subtitle": "16 ingredients. Every one listed in order of concentration — highest first. Actives highlighted.",
+            "clean_badge_1": "Fragrance-free",
+            "clean_badge_2": "Paraben-free",
+            "clean_badge_3": "Sulphate-free",
+            "clean_badge_4": "Mineral oil-free",
+            "clean_badge_5": "Cruelty-free",
+            "clean_badge_6": "Made in Pakistan",
+            "content": "<p>Aqua, Niacinamide, Alpha-Arbutin, 3-O-Ethyl Ascorbic Acid, Tranexamic Acid, Propanediol, Glycerin, Sodium Hyaluronate, Glycyrrhiza Glabra (Licorice) Root Extract, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin, Citric Acid, Sodium Hydroxide, Fragrance.</p>"
+          }
+        },
         "pathways_1": {
           "type": "pathways",
           "settings": {
             "title": "Five pathways. One serum.",
-            "open": true,
+            "open": false,
             "subtitle": "Your skin has five separate ways to make dark spots. Most serums block one. This formula blocks all five — simultaneously.",
             "pw_1_num": "Pathway 01",
             "pw_1_title": "Tyrosinase enzyme",
@@ -365,30 +447,16 @@
             "tl_4_body": "Melasma and long-standing PIH visibly reduced. Fitzpatrick IV–VI skin needs this full window — but results hold with continued use.",
             "tip": "⚠️ **Daily SPF is mandatory.** UV exposure undoes brightening progress. The serum works hardest when SPF has your back during the day."
           }
-        },
-        "inci_1": {
-          "type": "inci",
-          "settings": {
-            "title": "Nothing to hide.",
-            "open": false,
-            "subtitle": "16 ingredients. Every one listed in order of concentration — highest first. Actives highlighted.",
-            "clean_badge_1": "Fragrance-free",
-            "clean_badge_2": "Paraben-free",
-            "clean_badge_3": "Sulphate-free",
-            "clean_badge_4": "Mineral oil-free",
-            "clean_badge_5": "Cruelty-free",
-            "clean_badge_6": "Made in Pakistan",
-            "content": "<p>Aqua, Glycerin, Propanediol, <strong>Niacinamide (5%)</strong>, <strong>Alpha-Arbutin (2%)</strong>, <strong>Ethyl Ascorbyl Ether</strong>, <strong>Tranexamic Acid</strong>, Sodium Hyaluronate, Butylene Glycol, Panthenol, Allantoin, <strong>Glycyrrhiza Glabra Root Extract</strong>, Xanthan Gum, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>"
-          }
         }
       },
       "block_order": [
+        "inci_1",
         "pathways_1",
         "ingredients_1",
         "how_to_use_1",
-        "timeline_1",
-        "inci_1"
-      ]
+        "timeline_1"
+      ],
+      "settings": {}
     },
     "pdp_clinical": {
       "type": "pdp-clinical-evidence",
@@ -396,32 +464,33 @@
         "ba_1": {
           "type": "clinical_card",
           "settings": {
-            "image": "shopify://shop_images/Serum_-_Alpha_Arbutin.webp",
+            "bg_gradient": "linear-gradient(135deg,#F5DDD0,#EEC8B5)",
             "title": "Alpha-Arbutin 2% · Enzyme Inhibition",
-            "detail": "Actively binding to tyrosinase to block pigment conversion.",
-            "bg_gradient": "linear-gradient(135deg,#F5DDD0,#EEC8B5)"
+            "detail": "Actively binding to tyrosinase to block pigment conversion."
           }
         },
         "ba_2": {
           "type": "clinical_card",
           "settings": {
-            "image": "shopify://shop_images/Serum_-_Tranexamic_Acid.webp",
+            "bg_gradient": "linear-gradient(135deg,#EAD5C4,#D4B5A0)",
             "title": "Tranexamic Acid · Plasmin Blockade",
-            "detail": "Interrupting the post-inflammatory cascade before dark spots form.",
-            "bg_gradient": "linear-gradient(135deg,#EAD5C4,#D4B5A0)"
+            "detail": "Interrupting the post-inflammatory cascade before dark spots form."
           }
         },
         "ba_3": {
           "type": "clinical_card",
           "settings": {
-            "image": "shopify://shop_images/Serum_-_Vitamin_C_Stability.webp",
+            "bg_gradient": "linear-gradient(135deg,#DDD0CC,#C8B0A8)",
             "title": "Ethyl Ascorbic Acid · ROS Defense",
-            "detail": "Neutralizing oxidative stress and free radicals from UV exposure.",
-            "bg_gradient": "linear-gradient(135deg,#DDD0CC,#C8B0A8)"
+            "detail": "Neutralizing oxidative stress and free radicals from UV exposure."
           }
         }
       },
-      "block_order": ["ba_1", "ba_2", "ba_3"],
+      "block_order": [
+        "ba_1",
+        "ba_2",
+        "ba_3"
+      ],
       "settings": {
         "label": "Biochemical mechanisms",
         "title": "See the science in action.",
@@ -469,7 +538,11 @@
           }
         }
       },
-      "block_order": ["rev_1", "rev_2", "rev_3"],
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3"
+      ],
       "settings": {
         "label": "Early reviews",
         "title": "From people who tried it first."
@@ -514,7 +587,13 @@
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"],
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
       "settings": {
         "label": "Quick answers",
         "title": "Got questions?"
@@ -546,24 +625,134 @@
         "text_recs_header": {
           "type": "text",
           "settings": {
-            "text": "<h3>You may also like</h3>"
-          }
+            "text": "<h3>You may also like</h3>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "static-product-card": {
           "type": "_product-card",
           "static": true,
-          "blocks": {
-            "product_card_gallery": { "type": "_product-card-gallery" },
-            "product_title": { "type": "product-title" },
-            "price_card": { "type": "price" }
+          "settings": {
+            "product_card_gap": 16,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "block_order": ["product_card_gallery", "product_title", "price_card"]
+          "blocks": {
+            "product_card_gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title": {
+              "type": "product-title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_card": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery",
+            "product_title",
+            "price_card"
+          ]
         }
       },
-      "block_order": ["text_recs_header"],
+      "block_order": [
+        "text_recs_header"
+      ],
       "settings": {
+        "product": "",
+        "recommendation_type": "related",
         "layout_type": "grid",
-        "columns": 4
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 16,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
