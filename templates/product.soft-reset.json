@@ -474,6 +474,7 @@
         "ba_1": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/BR_-_Triple_Ceramide_Complex.webp",
             "bg_gradient": "linear-gradient(135deg,#EDE0F5,#D8C8EC)",
             "title": "Triple Ceramide Complex · 6-week clinical study",
             "detail": "Dry + barrier-compromised skin · Fitzpatrick IV"
@@ -482,6 +483,7 @@
         "ba_2": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/BR_-_Niacinamide_5.webp",
             "bg_gradient": "linear-gradient(135deg,#DDD5EE,#C8BCE0)",
             "title": "Niacinamide 5% · 8-week ceramide synthesis study",
             "detail": "Sensitive + reactive skin · Fitzpatrick V"
@@ -490,6 +492,7 @@
         "ba_3": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/BR_-_Matrixyl_3000_Sederma.webp",
             "bg_gradient": "linear-gradient(135deg,#CDBFE0,#B8A8D0)",
             "title": "Matrixyl 3000™ (Sederma) · 12-week study",
             "detail": "Mature dry skin · Anti-aging + barrier"
@@ -515,43 +518,30 @@
           "type": "review",
           "settings": {
             "stars": 5,
-            "title": "I finally stopped looking for something better",
-            "body": "Been on a year-long moisturiser hunt. Dry skin in Islamabad winters is brutal — nothing held hydration past noon. This one is different. At week 6, my skin is plumper and softer than it's ever been. The ceramide science isn't hype. You can feel it working from the first week.",
-            "author": "Maira J. · Islamabad",
-            "date": "Feb 2026",
-            "tag1": "Dry skin",
-            "tag2": "Fitzpatrick IV"
+            "title": "Skin Barrier: Restored. ✨",
+            "body": "Skin Barrier: Restored. ✨\nPichle 2 weeks se LumaLabs Barrier Renew Moisturizer use kar raha hoon aur results ne mujhe impress kar diya hai. Mera skin barrier kaafi kharab ho chuka tha, lekin is gel-cream ne na sirf usey repair kiya balkay excess oil ko bhi control kiya.\nTexture: Super lightweight, non-greasy.\nKey Vibes: Hydrated, calm, and healthy skin.\nJaisa brand ne claim kiya, bilkul waisa hi result mila. Highly recommended for anyone struggling with dehydration or a damaged barrier! 🛡️💧\nH HUZAIFA TEK 🥀",
+            "author": "Huzaifa Tek · Talagang",
+            "date": "Apr 2026",
+            "tag1": "",
+            "tag2": ""
           }
         },
         "rev_2": {
           "type": "review",
           "settings": {
             "stars": 5,
-            "title": "Reactive skin for 3 years. Zero reaction from this.",
-            "body": "Fragrance, silicones, alcohol — all break me out. I've been rejecting moisturisers for years. This is the first one that hasn't caused a reaction. It calms rather than irritates. The ingredient list is completely transparent and every single choice makes sense to me.",
-            "author": "Khadija N. · Lahore",
-            "date": "Jan 2026",
-            "tag1": "Sensitive",
-            "tag2": "Fitzpatrick III"
-          }
-        },
-        "rev_3": {
-          "type": "review",
-          "settings": {
-            "stars": 4,
-            "title": "Works in summer AND Islamabad winter. PKR 1,999 well spent.",
-            "body": "I'm oily in Karachi summers and chronically dry when I'm up north in winter. This moisturiser handles both. Lightweight enough in heat, rich enough to stop the winter dryness. Pairing it with the serum — the combined difference in my skin is something I genuinely comment on. Dropped one star: I need a travel size.",
-            "author": "Rabia H. · Islamabad",
-            "date": "Mar 2026",
-            "tag1": "Combo skin",
-            "tag2": "Fitzpatrick IV"
+            "title": "Didn’t cause any irritation or burning at all",
+            "body": "My father had quite severe sunburn damage on his skin, but this moisturizer made a significant difference. His skin improved noticeably, and the best part is that it didn’t cause any irritation or burning at all !!! 🤍",
+            "author": "Ayesha · Shaikhopura",
+            "date": "Apr 2026",
+            "tag1": "",
+            "tag2": ""
           }
         }
       },
       "block_order": [
         "rev_1",
-        "rev_2",
-        "rev_3"
+        "rev_2"
       ],
       "settings": {
         "label": "Early reviews",
