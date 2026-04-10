@@ -476,8 +476,8 @@
           "settings": {
             "image": "shopify://shop_images/BR_-_Triple_Ceramide_Complex.webp",
             "bg_gradient": "linear-gradient(135deg,#EDE0F5,#D8C8EC)",
-            "title": "Triple Ceramide Complex · 6-week clinical study",
-            "detail": "Dry + barrier-compromised skin · Fitzpatrick IV"
+            "title": "Triple Ceramide Complex · Structural Integration",
+            "detail": "Golden lipid molecules physically integrating to seal cracked lipid layers."
           }
         },
         "ba_2": {
@@ -485,8 +485,8 @@
           "settings": {
             "image": "shopify://shop_images/BR_-_Niacinamide_5.webp",
             "bg_gradient": "linear-gradient(135deg,#DDD5EE,#C8BCE0)",
-            "title": "Niacinamide 5% · 8-week ceramide synthesis study",
-            "detail": "Sensitive + reactive skin · Fitzpatrick V"
+            "title": "Niacinamide 5% · Cellular Energy",
+            "detail": "Upregulating natural ceramide synthase to calm inflammation."
           }
         },
         "ba_3": {
@@ -494,8 +494,8 @@
           "settings": {
             "image": "shopify://shop_images/BR_-_Matrixyl_3000_Sederma.webp",
             "bg_gradient": "linear-gradient(135deg,#CDBFE0,#B8A8D0)",
-            "title": "Matrixyl 3000™ (Sederma) · 12-week study",
-            "detail": "Mature dry skin · Anti-aging + barrier"
+            "title": "Matrixyl 3000™ · Collagen Support",
+            "detail": "Signaling the dermal matrix to rebuild structural scaffolding."
           }
         }
       },
@@ -505,10 +505,10 @@
         "ba_3"
       ],
       "settings": {
-        "label": "Clinical evidence",
-        "title": "This formula's results speak for themselves.",
-        "subtitle": "Ceramide NP/AP/EOP and Matrixyl 3000™ are among the most clinically documented barrier and anti-aging ingredients.",
-        "note": "⚗️ Images from clinical studies on the active ingredients in this formula at identical concentrations. Individual results vary. Patch test recommended for sensitive skin."
+        "label": "Biochemical mechanisms",
+        "title": "See the science in action.",
+        "subtitle": "We rebuild the barrier at a cellular level. Here is exactly how the actives in Soft Reset interact with your skin's structures to seal and strengthen.",
+        "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of Triple Ceramides, Niacinamide, and Matrixyl 3000™."
       }
     },
     "pdp_reviews": {
