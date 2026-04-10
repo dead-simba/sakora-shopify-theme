@@ -396,34 +396,37 @@
         "ba_1": {
           "type": "clinical_card",
           "settings": {
-            "title": "Alpha-Arbutin 2% · 8-week clinical study",
-            "detail": "PIH + sun spots · Fitzpatrick IV · Twice daily",
+            "image": "shopify://shop_images/Serum_-_Alpha_Arbutin.webp",
+            "title": "Alpha-Arbutin 2% · Enzyme Inhibition",
+            "detail": "Actively binding to tyrosinase to block pigment conversion.",
             "bg_gradient": "linear-gradient(135deg,#F5DDD0,#EEC8B5)"
           }
         },
         "ba_2": {
           "type": "clinical_card",
           "settings": {
-            "title": "Tranexamic Acid + Niacinamide · 6-week study",
-            "detail": "Melasma + PIH · Fitzpatrick V · AM routine",
+            "image": "shopify://shop_images/Serum_-_Tranexamic_Acid.webp",
+            "title": "Tranexamic Acid · Plasmin Blockade",
+            "detail": "Interrupting the post-inflammatory cascade before dark spots form.",
             "bg_gradient": "linear-gradient(135deg,#EAD5C4,#D4B5A0)"
           }
         },
         "ba_3": {
           "type": "clinical_card",
           "settings": {
-            "title": "Multi-active brightening formula · 12 weeks",
-            "detail": "Combo oily skin · Fitzpatrick IV · Full protocol",
+            "image": "shopify://shop_images/Serum_-_Vitamin_C_Stability.webp",
+            "title": "Ethyl Ascorbic Acid · ROS Defense",
+            "detail": "Neutralizing oxidative stress and free radicals from UV exposure.",
             "bg_gradient": "linear-gradient(135deg,#DDD0CC,#C8B0A8)"
           }
         }
       },
       "block_order": ["ba_1", "ba_2", "ba_3"],
       "settings": {
-        "label": "Clinical evidence",
-        "title": "This formula's results speak for themselves.",
-        "subtitle": "These actives — Alpha Arbutin 2%, Tranexamic Acid, Ethyl Ascorbic Acid — are among the most studied brightening ingredients in dermatology. The results below are from published clinical studies using identical concentrations.",
-        "note": "⚗️ Images above are from clinical studies on the active ingredients used in this formula at identical concentrations. Individual results vary based on skin type, concern severity, SPF compliance, and consistency of use. Results are not guaranteed."
+        "label": "Biochemical mechanisms",
+        "title": "See the science in action.",
+        "subtitle": "We approach pigmentation at the cellular level. Here is exactly how the actives in Fade Theory interact with your skin's structures to block melanin.",
+        "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of Alpha Arbutin, Tranexamic Acid, and Vitamin C."
       }
     },
     "pdp_reviews": {
