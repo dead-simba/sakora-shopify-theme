@@ -464,6 +464,7 @@
         "ba_1": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/Serum_-_Alpha_Arbutin.webp",
             "bg_gradient": "linear-gradient(135deg,#F5DDD0,#EEC8B5)",
             "title": "Alpha-Arbutin 2% · Enzyme Inhibition",
             "detail": "Actively binding to tyrosinase to block pigment conversion."
@@ -472,6 +473,7 @@
         "ba_2": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/Serum_-_Tranexamic_Acid.webp",
             "bg_gradient": "linear-gradient(135deg,#EAD5C4,#D4B5A0)",
             "title": "Tranexamic Acid · Plasmin Blockade",
             "detail": "Interrupting the post-inflammatory cascade before dark spots form."
@@ -480,6 +482,7 @@
         "ba_3": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/Serum_-_Vitamin_C_Stability.webp",
             "bg_gradient": "linear-gradient(135deg,#DDD0CC,#C8B0A8)",
             "title": "Ethyl Ascorbic Acid · ROS Defense",
             "detail": "Neutralizing oxidative stress and free radicals from UV exposure."
