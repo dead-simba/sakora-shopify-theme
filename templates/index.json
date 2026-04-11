@@ -37,7 +37,7 @@
             "headline": "<p>SPF that <em>disappears.</em><br/>Skin that doesn't.</p>",
             "subline": "Matte UV Defence SPF 50+ — zero white cast, formulated for Pakistan's UV index.",
             "cta_primary_label": "Shop SPF",
-            "cta_primary_url": "/collections/spf",
+            "cta_primary_url": "shopify://collections/sunscreen",
             "cta_secondary_label": "See ingredients",
             "cta_secondary_url": "/pages/ingredients"
           }
@@ -52,7 +52,7 @@
             "headline": "<p>Rebuild. <em>Restore.</em><br/>Repeat.</p>",
             "subline": "Triple ceramide complex + Matrixyl 3000™ — the moisturizer your skin was waiting for.",
             "cta_primary_label": "Shop Moisturizers",
-            "cta_primary_url": "/collections/barrier-repair",
+            "cta_primary_url": "shopify://collections/moisturizer",
             "cta_secondary_label": "Learn more",
             "cta_secondary_url": "/pages/ingredients"
           }
