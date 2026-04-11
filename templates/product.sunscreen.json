@@ -11,44 +11,146 @@
             "media_columns": "two",
             "image_gap": 4,
             "large_first_image": true,
-            "icons_style": "chevron"
-          }
+            "icons_style": "chevron",
+            "slideshow_controls_style": "thumbnails",
+            "slideshow_mobile_controls_style": "thumbnails",
+            "thumbnail_position": "bottom",
+            "thumbnail_width": 44,
+            "thumbnail_radius": 0,
+            "aspect_ratio": "adapt",
+            "constrain_to_viewport": true,
+            "media_fit": "contain",
+            "media_radius": 0,
+            "extend_media": false,
+            "zoom": true,
+            "video_loop": false,
+            "hide_variants": true,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "product-details": {
           "type": "_product-details",
           "static": true,
           "settings": {
             "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "details_position": "flex-start",
+            "gap": 20,
             "sticky_details_desktop": true,
+            "inherit_color_scheme": true,
+            "color_scheme": "scheme-1",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
             "padding-block-start": 24,
-            "padding-block-end": 24
+            "padding-block-end": 24,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
           "blocks": {
             "group_header": {
               "type": "group",
+              "name": "Header",
               "settings": {
                 "content_direction": "column",
                 "vertical_on_mobile": true,
-                "gap": 8
+                "horizontal_alignment": "flex-start",
+                "vertical_alignment": "center",
+                "align_baseline": false,
+                "horizontal_alignment_flex_direction_column": "flex-start",
+                "vertical_alignment_flex_direction_column": "center",
+                "gap": 8,
+                "width": "fill",
+                "custom_width": 100,
+                "width_mobile": "fill",
+                "custom_width_mobile": 100,
+                "height": "fit",
+                "custom_height": 100,
+                "inherit_color_scheme": true,
+                "color_scheme": "",
+                "background_media": "none",
+                "video_position": "cover",
+                "background_image_position": "cover",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "toggle_overlay": false,
+                "overlay_color": "#00000026",
+                "overlay_style": "solid",
+                "gradient_direction": "to top",
+                "link": "",
+                "open_in_new_tab": false,
+                "placeholder": "",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
               },
               "blocks": {
                 "text_title": {
                   "type": "text",
                   "settings": {
                     "text": "<h1>{{ closest.product.title }}</h1>",
-                    "type_preset": "h3"
-                  }
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "h3",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 },
                 "price_main": {
                   "type": "price",
                   "settings": {
+                    "show_sale_price_first": true,
+                    "show_installments": false,
+                    "show_tax_info": false,
                     "type_preset": "custom",
+                    "width": "100%",
+                    "alignment": "left",
                     "font": "var(--font-subheading--family)",
-                    "font_size": "1.25rem"
-                  }
+                    "font_size": "1.25rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "color": "var(--color-foreground)",
+                    "padding-block-start": 4,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
-              "block_order": ["text_title", "price_main"]
+              "block_order": [
+                "text_title",
+                "price_main"
+              ]
             },
             "gv_social_proof": {
               "type": "gv-social-proof",
@@ -57,7 +159,8 @@
                 "view_max": 25,
                 "buy_min": 3,
                 "buy_max": 15
-              }
+              },
+              "blocks": {}
             },
             "buy_buttons_main": {
               "type": "buy-buttons",
@@ -95,14 +198,31 @@
               },
               "block_order": []
             },
-            "divider_main": { "type": "_divider" },
+            "divider_main": {
+              "type": "_divider",
+              "name": "Divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
             "gv_urgency": {
               "type": "gv-urgency",
-              "settings": { "text": "Order before 2pm PKT — ships today" }
+              "settings": {
+                "text": "Order before 2pm PKT — ships today"
+              },
+              "blocks": {}
             },
             "gv_ship_tracker": {
               "type": "gv-ship-tracker",
-              "settings": { "threshold": 2500 }
+              "settings": {
+                "threshold": 2500
+              },
+              "blocks": {}
             },
             "gv_guarantee": {
               "type": "gv-guarantee",
@@ -110,18 +230,46 @@
                 "item_1": "30-day money-back",
                 "item_2": "Free delivery above PKR 2,500",
                 "item_3": "Cash on delivery"
-              }
+              },
+              "blocks": {}
             },
             "gv_pk": {
               "type": "gv-pk-callout",
               "settings": {
                 "text": "<p><strong>Pakistan's UV index reaches 10–12 in summer — most SPFs are tested at UV index 4.</strong> This formula was developed for the actual UV exposure Pakistanis experience daily, not European testing conditions.</p>"
-              }
+              },
+              "blocks": {}
             },
-            "gv_atc_bar": { "type": "gv-atc-bar" },
+            "gv_atc_bar": {
+              "type": "gv-atc-bar",
+              "settings": {},
+              "blocks": {}
+            },
             "text_description": {
               "type": "text",
-              "settings": { "text": "{{ closest.product.description }}" }
+              "name": "Product description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
             }
           },
           "block_order": [
@@ -138,7 +286,17 @@
           ]
         }
       },
-      "settings": {}
+      "settings": {
+        "content_width": "content-center-aligned",
+        "desktop_media_position": "left",
+        "equal_columns": true,
+        "limit_details_width": false,
+        "gap": 48,
+        "enable_sticky_add_to_cart": false,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     },
     "pdp_accordions": {
       "type": "pdp-accordions",
@@ -289,34 +447,37 @@
     "pdp_clinical": {
       "type": "pdp-clinical-evidence",
       "settings": {
-        "label": "Clinical evidence",
-        "title": "The science behind daily UV defence.",
-        "subtitle": "Every active in this formula has been studied in isolation and in combination. Here's what the data shows.",
-        "note": "⚗️ Images are from published clinical studies on the active ingredients in this formula at identical concentrations."
+        "label": "Biochemical mechanisms",
+        "title": "See the science in action.",
+        "subtitle": "We approach UV protection at the cellular level. Here is exactly how the actives in Daylite interact with your skin's structures to protect and repair.",
+        "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of our 6-Filter System, Zinc PCA, and Antioxidant Complex."
       },
       "blocks": {
         "ba_1": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/SPF_-_Six_Layer_Protection.webp",
             "bg_gradient": "linear-gradient(135deg,#FFF0D8,#FFE0B8)",
-            "title": "6-Filter UV System · Independent lab SPF testing",
+            "title": "6-Filter UV System · Complete Spectrum Defense",
             "detail": "Zero UV coverage gaps from 280nm to 400nm · PA++++ confirmed"
           }
         },
         "ba_2": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/Zinc_PCA__Sebum_Control_.webp",
             "bg_gradient": "linear-gradient(135deg,#FFEAC0,#FFD898)",
-            "title": "Zinc PCA · Dermatological sebum study · 4 weeks",
-            "detail": "Visible reduction in surface sebum · Matte finish maintained 8h+"
+            "title": "Zinc PCA · Sebum Regulation",
+            "detail": "Actively regulating sebum production for a matte finish maintained 8h+"
           }
         },
         "ba_3": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/SPF_-_Antioxidant_Complex.webp",
             "bg_gradient": "linear-gradient(135deg,#FFD8B0,#FFC898)",
-            "title": "Daily UV defence · PIH prevention study · 12 weeks",
-            "detail": "SPF blocks the UV trigger that worsens existing dark spots and creates new PIH"
+            "title": "Antioxidant Complex · Free Radical Defense",
+            "detail": "Neutralizing oxidative stress and preventing PIH formation at the source"
           }
         }
       },
