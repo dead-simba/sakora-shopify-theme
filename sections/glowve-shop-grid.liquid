@@ -1,0 +1,455 @@
+<section class="gv-product-section">
+  <div class="gv-product-grid">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'product_card' -%}
+        {%- assign prod = all_products[block.settings.product] -%}
+        
+        <div class="gv-product-card" {{ block.shopify_attributes }}>
+          <div class="gv-card-image-wrap" style="background: {{ block.settings.img_bg_gradient }};">
+            <a href="{{ prod.url | default: '#' }}" aria-label="{{ prod.title }}">
+              {%- if prod != empty and prod.featured_image -%}
+                {{ prod.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: prod.title }}
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+              {%- endif -%}
+            </a>
+            
+            {%- if block.settings.badge_text != blank -%}
+              <span class="gv-card-badge" style="background: {{ block.settings.badge_bg_color }}; color: {{ block.settings.badge_text_color }}; border: 1px solid {{ block.settings.badge_text_color }};">
+                {{ block.settings.badge_text }}
+              </span>
+            {%- endif -%}
+          </div>
+          
+          <div class="gv-card-body">
+            {%- if block.settings.ingredient_tag != blank -%}
+              <p class="gv-card-ingredient-tag">{{ block.settings.ingredient_tag }}</p>
+            {%- endif -%}
+            
+            <h2 class="gv-card-name">
+              <a href="{{ prod.url | default: '#' }}">
+                {%- if block.settings.custom_title != blank -%}
+                  {{ block.settings.custom_title }}
+                {%- else -%}
+                  {{ prod.title | default: 'Product Title' }}
+                {%- endif -%}
+              </a>
+            </h2>
+            
+            {%- if block.settings.concern_text != blank -%}
+              <p class="gv-card-concern">{{ block.settings.concern_text }}</p>
+            {%- endif -%}
+            
+            <div class="gv-card-stars">
+              <span class="gv-stars">★★★★★</span>
+              {%- if block.settings.review_count != blank -%}
+                <span class="gv-review-count">{{ block.settings.review_count }}</span>
+              {%- endif -%}
+            </div>
+            
+            <div class="gv-card-footer">
+              <span class="gv-card-price">
+                {%- if prod != empty -%}
+                  {{ prod.price | money }}
+                {%- else -%}
+                  PKR 1,500
+                {%- endif -%}
+              </span>
+              
+              <div class="gv-card-actions">
+                {%- if prod != empty -%}
+                  <button class="gv-btn-add-to-bag" 
+                          onclick="glowveAddSingleToCart(event, this, {{ prod.first_available_variant.id }})" 
+                          {% unless prod.available %}disabled{% endunless %}>
+                    {% if prod.available %}Add to Bag{% else %}Sold Out{% endif %}
+                  </button>
+                {%- else -%}
+                  <button class="gv-btn-add-to-bag">Add to Bag</button>
+                {%- endif -%}
+                
+                <a href="{{ prod.url | default: '#' }}" class="gv-btn-view-details">View Details →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  window.glowveAddSingleToCart = function(event, btn, variantId) {
+    event.preventDefault();
+    if (!variantId) return;
+
+    var originalText = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Adding…';
+
+    var sectionIds = [];
+    document.querySelectorAll('cart-items-component[data-section-id]').forEach(function(el) {
+      sectionIds.push(el.dataset.sectionId);
+    });
+
+    fetch(window.Shopify.routes.root + 'cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1, sections: sectionIds.join(',') })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(response) {
+      document.dispatchEvent(new CustomEvent('cart:update', {
+        bubbles: true,
+        detail: { data: { sections: response.sections } }
+      }));
+      btn.textContent = 'Added ✓';
+      setTimeout(function() {
+        btn.disabled = false;
+        btn.textContent = originalText;
+      }, 2500);
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'Try again';
+      setTimeout(function() {
+        btn.textContent = originalText;
+      }, 2000);
+    });
+  };
+</script>
+
+{% stylesheet %}
+  .gv-product-section {
+    background: var(--off-white, #FFFFFF);
+    padding: 80px 40px;
+  }
+  
+  .gv-product-grid {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+
+  .gv-product-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--gray-light, #ECECEC);
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  
+  .gv-product-card a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .gv-product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  }
+
+  .gv-card-image-wrap {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .gv-card-image-wrap a {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .gv-card-image-wrap img, .gv-card-image-wrap svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .gv-product-card:hover .gv-card-image-wrap img {
+    transform: scale(1.03);
+  }
+
+  .gv-card-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 100px;
+    z-index: 2;
+  }
+
+  .gv-card-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - auto);
+  }
+
+  .gv-card-ingredient-tag {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 11px;
+    color: var(--brand-pink, #FF4D8D);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .gv-card-name {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--berry-dark, #1A1A1A);
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+    text-transform: lowercase;
+  }
+
+  .gv-card-concern {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    color: var(--mid-gray, #666666);
+    line-height: 1.5;
+    margin-bottom: 16px;
+    flex-grow: 1;
+  }
+
+  .gv-card-stars {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .gv-stars {
+    color: var(--brand-pink, #FF4D8D);
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+
+  .gv-review-count {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    color: var(--mid-gray, #666666);
+  }
+
+  .gv-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 18px;
+    border-top: 1px solid var(--warm-gray, #ECECEC);
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .gv-card-price {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--brand-pink, #FF4D8D);
+  }
+
+  .gv-card-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .gv-btn-add-to-bag {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--brand-pink, #FF4D8D);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    white-space: nowrap;
+  }
+
+  .gv-btn-add-to-bag:hover {
+    background: var(--brand-pink-dark, #E63974);
+    transform: scale(1.05);
+  }
+  
+  .gv-btn-add-to-bag:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .gv-btn-view-details {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--brand-pink, #FF4D8D);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color 0.2s ease;
+    border: 2px solid var(--brand-pink, #FF4D8D);
+    padding: 8px 16px;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  .gv-btn-view-details:hover {
+    background: var(--brand-pink, #FF4D8D);
+    color: white;
+  }
+
+  @media (max-width: 900px) {
+    .gv-product-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (max-width: 640px) {
+    .gv-product-section { padding: 60px 24px; }
+    .gv-product-grid { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shop Grid",
+  "tag": "section",
+  "class": "glowve-shop-grid-wrapper",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Custom Product Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "html",
+          "id": "custom_title",
+          "label": "Custom Title (optional)",
+          "info": "Use <br> for line breaks"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_tag",
+          "label": "Ingredient Tag (Top)",
+          "default": "Alpha Arbutin · Vitamin C"
+        },
+        {
+          "type": "textarea",
+          "id": "concern_text",
+          "label": "Concern/Subtitle",
+          "default": "Targets dark spots, PIH, and uneven tone."
+        },
+        {
+          "type": "text",
+          "id": "review_count",
+          "label": "Review Count text",
+          "default": "4.9 (143 reviews)"
+        },
+        {
+          "type": "header",
+          "content": "Image Styling"
+        },
+        {
+          "type": "text",
+          "id": "img_bg_gradient",
+          "label": "Image Background (Gradient/Color)",
+          "default": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)"
+        },
+        {
+          "type": "header",
+          "content": "Card Badge"
+        },
+        {
+          "type": "text",
+          "id": "badge_text",
+          "label": "Badge Text",
+          "default": "Brightening · Best Choice"
+        },
+        {
+          "type": "color",
+          "id": "badge_bg_color",
+          "label": "Badge Background",
+          "default": "#FFF0E6"
+        },
+        {
+          "type": "color",
+          "id": "badge_text_color",
+          "label": "Badge Text Color",
+          "default": "#FF4D8D"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop Grid",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "custom_title": "2% Alpha Arbutin<br>+ Vitamin C",
+            "ingredient_tag": "Alpha Arbutin · Vitamin C · Tranexamic Acid",
+            "concern_text": "Targets dark spots, PIH, and uneven tone from three angles simultaneously.",
+            "review_count": "4.9 (143 reviews)",
+            "img_bg_gradient": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)",
+            "badge_text": "Brightening · Best Choice",
+            "badge_bg_color": "#FFF0E6",
+            "badge_text_color": "#FF4D8D"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "custom_title": "Barrier Renew<br>Moisturizer",
+            "ingredient_tag": "Ceramides · Niacinamide · Hyaluronic Acid",
+            "concern_text": "Rebuilds depleted skin barrier, calms sensitivity, and locks in moisture.",
+            "review_count": "4.8 (97 reviews)",
+            "img_bg_gradient": "linear-gradient(135deg, #E2F5EE 0%, #B8E8D4 100%)",
+            "badge_text": "Barrier Care · Cult Choice",
+            "badge_bg_color": "#E2F5EE",
+            "badge_text_color": "#FF4D8D"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "custom_title": "Matte UV Defence<br>SPF 50+",
+            "ingredient_tag": "SPF 50+ · Zinc Oxide · Niacinamide",
+            "concern_text": "Broad-spectrum daily protection formulated for Pakistan's UV index.",
+            "review_count": "4.9 (211 reviews)",
+            "img_bg_gradient": "linear-gradient(135deg, #FFF8D6 0%, #FFE08A 100%)",
+            "badge_text": "SPF Protection · High Def",
+            "badge_bg_color": "#FFF8D6",
+            "badge_text_color": "#FF4D8D"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
