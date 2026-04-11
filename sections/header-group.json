@@ -14,12 +14,6 @@
     "glowve_announcement_bar_amtwqn": {
       "type": "glowve-announcement-bar",
       "blocks": {
-        "message_MBgLXr": {
-          "type": "message",
-          "settings": {
-            "text": "Free delivery on orders above PKR 2,500"
-          }
-        },
         "message_gwNFfX": {
           "type": "message",
           "settings": {
@@ -40,7 +34,6 @@
         }
       },
       "block_order": [
-        "message_MBgLXr",
         "message_gwNFfX",
         "message_MD43tp",
         "message_WkVfRk"
