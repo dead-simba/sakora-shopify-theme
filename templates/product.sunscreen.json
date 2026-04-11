@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -162,6 +171,32 @@
               },
               "blocks": {}
             },
+            "text_description": {
+              "type": "text",
+              "name": "Product description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "buy_buttons_main": {
               "type": "buy-buttons",
               "settings": {
@@ -244,45 +279,19 @@
               "type": "gv-atc-bar",
               "settings": {},
               "blocks": {}
-            },
-            "text_description": {
-              "type": "text",
-              "name": "Product description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "group_header",
             "gv_social_proof",
+            "text_description",
             "buy_buttons_main",
             "divider_main",
             "gv_urgency",
             "gv_ship_tracker",
             "gv_guarantee",
             "gv_pk",
-            "gv_atc_bar",
-            "text_description"
+            "gv_atc_bar"
           ]
         }
       },
@@ -301,11 +310,26 @@
     "pdp_accordions": {
       "type": "pdp-accordions",
       "blocks": {
+        "inci_1": {
+          "type": "inci",
+          "settings": {
+            "title": "All Ingredients",
+            "open": true,
+            "subtitle": "Every one listed in order of concentration — highest first. UV filters and actives highlighted.",
+            "clean_badge_1": "",
+            "clean_badge_2": "Paraben-free",
+            "clean_badge_3": "Sulphate-free",
+            "clean_badge_4": "Mineral oil-free",
+            "clean_badge_5": "Cruelty-free",
+            "clean_badge_6": "SPF 50+",
+            "content": "<p>Aqua, Propylene Glycol, Terephthalylidene Dicamphor Sulfonic Acid, Butyl Methoxydibenzoylmethane, Phenylbenzimidazole Sulfonic Acid, Glycerin, Ethylhexyl Methoxycinnamate, Caprylic/Capric Triglyceride, Triethanolamine, Tapioca Starch, Ammonium Acryloyldimethyltaurate/VP Copolymer, Ethylhexyl Salicylate, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol, Decyl Glucoside, Xanthan Gum, Sodium Hyaluronate, Niacinamide, Xylitylglucoside, Anhydroxylitol, Xylitol, Capsicum Annuum Fruit Extract, Zinc PCA, Sodium Gluconate, Tocopheryl Acetate, BHT, Fragrance.</p>"
+          }
+        },
         "uv_spectrum_1": {
           "type": "uv_spectrum",
           "settings": {
-            "title": "No gaps. Every UV wavelength covered.",
-            "open": true,
+            "title": "No gaps. Every UV wavelength covered",
+            "open": false,
             "subtitle": "Most SPFs cover UVB well and UVA poorly. A single-filter sunscreen leaves you exposed. Six filters, working across the full spectrum.",
             "uv_1_nm": "300nm",
             "uv_1_name": "Ensulizole",
@@ -338,7 +362,7 @@
         "ingredients_1": {
           "type": "ingredients",
           "settings": {
-            "title": "What's in here — and why.",
+            "title": "What's in it  and why",
             "open": false,
             "subtitle": "Six UV filters plus a skin-benefit base. Not just protection — active skincare underneath the SPF layer.",
             "ing_1_name": "Tinosorb M™",
@@ -361,39 +385,27 @@
             "ing_6_benefit": "Carotenoid-rich antioxidant backup. Reduces post-UV redness and inflammation."
           }
         },
-        "inci_1": {
-          "type": "inci",
-          "settings": {
-            "title": "Nothing to hide.",
-            "open": false,
-            "subtitle": "26 ingredients. Every one listed in order of concentration — highest first. UV filters and actives highlighted.",
-            "clean_badge_1": "Fragrance-free",
-            "clean_badge_2": "Paraben-free",
-            "clean_badge_3": "Sulphate-free",
-            "clean_badge_4": "Mineral oil-free",
-            "clean_badge_5": "Cruelty-free",
-            "clean_badge_6": "SPF 50+",
-            "content": "<p>Aqua, <strong>Ethylhexyl Methoxycinnamate (Octinoxate)</strong>, <strong>Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (Tinosorb M™)</strong>, <strong>Butyl Methoxydibenzoylmethane (Avobenzone)</strong>, <strong>Terephthalylidene Dicamphor Sulfonic Acid (Mexoryl SX™)</strong>, <strong>Ethylhexyl Salicylate (Octisalate)</strong>, <strong>Phenylbenzimidazole Sulfonic Acid (Ensulizole)</strong>, <strong>Niacinamide (2%)</strong>, <strong>Zinc PCA</strong>, <strong>Xylitylglucoside + Anhydroxylitol + Xylitol (Aquaxyl™)</strong>, Vaccinium Corymbosum Fruit Extract, Capsicum Annuum Fruit Extract, Sodium Hyaluronate, Allantoin, Tocopheryl Acetate, Dimethicone, Cyclopentasiloxane, Glycerin, Propylene Glycol, Carbomer, Triethanolamine, Disodium EDTA, Phenoxyethanol, Ethylhexylglycerin.</p>"
-          }
-        },
         "how_to_use_1": {
           "type": "how_to_use",
           "settings": {
-            "title": "Last step in. First line of defence.",
+            "title": "How to Use",
             "open": false,
             "subtitle": "SPF always goes on last in the morning — after everything else. Here's exactly where this fits in your morning and night.",
             "am_1_label": "Cleanser",
             "am_1_icon": "🫧",
             "am_1_note": "Wash, pat dry. Gentle — don't over-strip.",
             "am_1_current": false,
+            "am_1_spf": false,
             "am_2_label": "Serum",
             "am_2_icon": "✨",
             "am_2_note": "Alpha Arbutin Serum. 30 seconds to absorb.",
             "am_2_current": false,
+            "am_2_spf": false,
             "am_3_label": "Moisturiser",
             "am_3_icon": "💧",
             "am_3_note": "Wait 60 seconds before SPF.",
             "am_3_current": false,
+            "am_3_spf": false,
             "am_4_label": "Matte UV Defence",
             "am_4_icon": "☀️",
             "am_4_note": "2-3 pumps. Be generous. Set 2 min before makeup.",
@@ -417,7 +429,7 @@
         "timeline_1": {
           "type": "timeline",
           "settings": {
-            "title": "What to actually expect.",
+            "title": "What to actually expect",
             "open": false,
             "subtitle": "SPF results are different — the benefit is what doesn't happen. Here's what you'll actually notice.",
             "tl_1_period": "Day 1",
@@ -437,26 +449,20 @@
         }
       },
       "block_order": [
+        "inci_1",
         "uv_spectrum_1",
         "ingredients_1",
-        "inci_1",
         "how_to_use_1",
         "timeline_1"
-      ]
+      ],
+      "settings": {}
     },
     "pdp_clinical": {
       "type": "pdp-clinical-evidence",
-      "settings": {
-        "label": "Biochemical mechanisms",
-        "title": "See the science in action.",
-        "subtitle": "We approach UV protection at the cellular level. Here is exactly how the actives in Daylite interact with your skin's structures to protect and repair.",
-        "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of our 6-Filter System, Zinc PCA, and Antioxidant Complex."
-      },
       "blocks": {
         "ba_1": {
           "type": "clinical_card",
           "settings": {
-            "image": "shopify://shop_images/SPF_-_Six_Layer_Protection.webp",
             "bg_gradient": "linear-gradient(135deg,#FFF0D8,#FFE0B8)",
             "title": "6-Filter UV System · Complete Spectrum Defense",
             "detail": "Zero UV coverage gaps from 280nm to 400nm · PA++++ confirmed"
@@ -465,7 +471,6 @@
         "ba_2": {
           "type": "clinical_card",
           "settings": {
-            "image": "shopify://shop_images/Zinc_PCA__Sebum_Control_.webp",
             "bg_gradient": "linear-gradient(135deg,#FFEAC0,#FFD898)",
             "title": "Zinc PCA · Sebum Regulation",
             "detail": "Actively regulating sebum production for a matte finish maintained 8h+"
@@ -474,21 +479,26 @@
         "ba_3": {
           "type": "clinical_card",
           "settings": {
-            "image": "shopify://shop_images/SPF_-_Antioxidant_Complex.webp",
             "bg_gradient": "linear-gradient(135deg,#FFD8B0,#FFC898)",
             "title": "Antioxidant Complex · Free Radical Defense",
             "detail": "Neutralizing oxidative stress and preventing PIH formation at the source"
           }
         }
       },
-      "block_order": ["ba_1", "ba_2", "ba_3"]
+      "block_order": [
+        "ba_1",
+        "ba_2",
+        "ba_3"
+      ],
+      "settings": {
+        "label": "Biochemical mechanisms",
+        "title": "See the science in action.",
+        "subtitle": "We approach UV protection at the cellular level. Here is exactly how the actives in Daylite interact with your skin's structures to protect and repair.",
+        "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of our 6-Filter System, Zinc PCA, and Antioxidant Complex."
+      }
     },
     "pdp_reviews": {
       "type": "pdp-reviews-grid",
-      "settings": {
-        "label": "What people are saying",
-        "title": "Reviewed by people who needed it to actually work."
-      },
       "blocks": {
         "rev_1": {
           "type": "review",
@@ -527,14 +537,18 @@
           }
         }
       },
-      "block_order": ["rev_1", "rev_2", "rev_3"]
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3"
+      ],
+      "settings": {
+        "label": "What people are saying",
+        "title": "Reviewed by people who needed it to actually work."
+      }
     },
     "pdp_faq": {
       "type": "glowve-pdp-faq",
-      "settings": {
-        "label": "Quick answers",
-        "title": "Got questions?"
-      },
       "blocks": {
         "faq_1": {
           "type": "item",
@@ -572,7 +586,17 @@
           }
         }
       },
-      "block_order": ["faq_1", "faq_2", "faq_3", "faq_4", "faq_5"]
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "label": "Quick answers",
+        "title": "Got questions?"
+      }
     },
     "pdp_upsell": {
       "type": "glowve-pdp-upsell",
@@ -601,21 +625,134 @@
           "type": "text",
           "settings": {
             "text": "<h3>You may also like</h3>",
-            "type_preset": "rte"
-          }
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
         },
         "static-product-card": {
           "type": "_product-card",
           "static": true,
-          "blocks": {
-            "product_card_gallery": { "type": "_product-card-gallery" },
-            "product_title": { "type": "product-title" },
-            "price_card": { "type": "price" }
+          "settings": {
+            "product_card_gap": 16,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
           },
-          "block_order": ["product_card_gallery", "product_title", "price_card"]
+          "blocks": {
+            "product_card_gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "portrait",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title": {
+              "type": "product-title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_card": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery",
+            "product_title",
+            "price_card"
+          ]
         }
       },
-      "block_order": ["text_recs_header"]
+      "block_order": [
+        "text_recs_header"
+      ],
+      "settings": {
+        "product": "",
+        "recommendation_type": "related",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 16,
+        "rows_gap": 16,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 12,
+        "color_scheme": "",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
