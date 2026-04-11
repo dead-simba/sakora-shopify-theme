@@ -241,8 +241,9 @@
       ],
       products: {
         serum: {
-          {%- if section.settings.serum_prod != blank -%}
-            {%- assign p = section.settings.serum_prod -%}
+          {%- assign p_handle = section.settings.serum_prod -%}
+          {%- assign p = all_products[p_handle] -%}
+          {%- if p != blank -%}
             handle: '{{ p.handle }}',
             name: '{{ p.title }}',
             tag: '{{ p.metafields.custom.short_description | default: '10% Niacinamide + Alpha Arbutin' }}',
@@ -258,8 +259,9 @@
           why: 'Targets the hyperpigmentation root cause for Fitzpatrick IV-VI skin.'
         },
         moisturizer: {
-          {%- if section.settings.moisturizer_prod != blank -%}
-            {%- assign p = section.settings.moisturizer_prod -%}
+          {%- assign p_handle = section.settings.moisturizer_prod -%}
+          {%- assign p = all_products[p_handle] -%}
+          {%- if p != blank -%}
             handle: '{{ p.handle }}',
             name: '{{ p.title }}',
             tag: '{{ p.metafields.custom.short_description | default: 'Ceramide Barrier Cream' }}',
@@ -275,8 +277,9 @@
           why: 'Triple ceramides build back the barrier humidity and pollution strip away.'
         },
         spf: {
-          {%- if section.settings.spf_prod != blank -%}
-            {%- assign p = section.settings.spf_prod -%}
+          {%- assign p_handle = section.settings.spf_prod -%}
+          {%- assign p = all_products[p_handle] -%}
+          {%- if p != blank -%}
             handle: '{{ p.handle }}',
             name: '{{ p.title }}',
             tag: '{{ p.metafields.custom.short_description | default: 'SPF 50+ PA++++' }}',
