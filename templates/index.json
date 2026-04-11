@@ -85,7 +85,7 @@
           "type": "bubble",
           "settings": {
             "label": "Sunscreens",
-            "link": "/collections/spf",
+            "link": "shopify://collections/sunscreen",
             "image": "shopify://shop_images/Daylite_Clear_BG.jpg",
             "emoji": "☀️",
             "bg_color": "var(--accent-yellow)"
@@ -95,7 +95,7 @@
           "type": "bubble",
           "settings": {
             "label": "Moisturizer",
-            "link": "/collections/barrier-repair",
+            "link": "shopify://collections/moisturizer",
             "image": "shopify://shop_images/Soft_Reset_Clear_BG.jpg",
             "emoji": "🌿",
             "bg_color": "var(--accent-mint)"
@@ -105,7 +105,7 @@
           "type": "bubble",
           "settings": {
             "label": "Serums",
-            "link": "/collections/brightening",
+            "link": "shopify://collections/serum",
             "image": "shopify://shop_images/Fade_Theory_Clear_BG.jpg",
             "emoji": "💧",
             "bg_color": "var(--accent-peach)"
