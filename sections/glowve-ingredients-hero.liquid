@@ -7,18 +7,18 @@
   
   <div class="gv-container">
     <div class="gv-ing-hero-content">
-      <div class="gv-eyebrow">{{ section.settings.eyebrow }}</div>
+      <div class="gv-ing-hero-label">{{ section.settings.label }}</div>
       <h1 class="gv-ing-hero-title">{{ section.settings.title }}</h1>
       <p class="gv-ing-hero-sub">{{ section.settings.text }}</p>
       
-      <div class="gv-ing-stats">
+      <div class="gv-ing-hero-stats">
         {%- for block in section.blocks -%}
-          <div class="gv-ing-stat" {{ block.shopify_attributes }}>
-            <div class="gv-ing-stat-num">{{ block.settings.number }}</div>
-            <div class="gv-ing-stat-label">{{ block.settings.label }}</div>
+          <div class="gv-ing-hero-stat" {{ block.shopify_attributes }}>
+            <div class="gv-ing-hero-stat-num">{{ block.settings.number }}</div>
+            <div class="gv-ing-hero-stat-label">{{ block.settings.label }}</div>
           </div>
           {%- unless forloop.last -%}
-            <div class="gv-ing-stat-divider"></div>
+            <div class="gv-ing-hero-stat-divider"></div>
           {%- endunless -%}
         {%- endfor -%}
       </div>
@@ -28,128 +28,79 @@
 
 {% stylesheet %}
   .gv-ing-hero {
-    background: var(--berry-dark, #1A1A1A);
-    padding: 120px 0 100px;
+    background: #1A1A1A;
+    padding: 100px 0 80px;
     position: relative;
     overflow: hidden;
   }
   
   .gv-ing-hero-blobs {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
   }
   
   .gv-ing-blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    opacity: 0.2;
-    animation: gvBlobFloat 20s infinite alternate ease-in-out;
+    position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.18;
   }
   
-  .gv-ing-blob-1 {
-    width: 400px;
-    height: 400px;
-    background: var(--brand-pink, #FF4D8D);
-    top: -100px;
-    left: -100px;
-  }
+  .gv-ing-blob-1 { width: 500px; height: 500px; background: #FF4D8D; top: -150px; left: -100px; }
+  .gv-ing-blob-2 { width: 400px; height: 400px; background: #9B72AA; bottom: -120px; right: -80px; }
+  .gv-ing-blob-3 { width: 300px; height: 300px; background: #F5A623; top: 50%; left: 55%; }
   
-  .gv-ing-blob-2 {
-    width: 300px;
-    height: 300px;
-    background: #9B72AA;
-    bottom: -50px;
-    right: -50px;
-    animation-delay: -5s;
-  }
-  
-  .gv-ing-blob-3 {
-    width: 250px;
-    height: 250px;
-    background: #F5A623;
-    top: 40%;
-    left: 60%;
-    animation-delay: -10s;
-  }
-  
-  @keyframes gvBlobFloat {
-    from { transform: translate(0, 0) rotate(0deg); }
-    to { transform: translate(50px, 30px) rotate(10deg); }
+  .gv-ing-hero-content {
+    position: relative; z-index: 2; max-width: 1200px;
   }
 
-  .gv-ing-hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
+  .gv-ing-hero-label {
+    font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.2em; color: #FF4D8D; margin-bottom: 20px;
   }
 
   .gv-ing-hero-title {
-    font-size: min(80px, 12vw);
-    line-height: 1;
-    color: white;
-    margin: 20px 0 32px;
-    letter-spacing: -0.02em;
-    font-weight: 700;
+    font-family: 'Poppins', sans-serif; font-size: min(72px, 12vw); font-weight: 700; color: white;
+    line-height: 1.0; margin-bottom: 20px; letter-spacing: -0.02em;
   }
   
-  .gv-ing-hero-title em {
-    font-style: normal;
-    color: var(--brand-pink, #FF4D8D);
-  }
+  .gv-ing-hero-title em { font-style: normal; color: #FF4D8D; }
 
   .gv-ing-hero-sub {
-    font-size: 18px;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.6;
-    margin-bottom: 60px;
-    max-width: 600px;
+    font-family: 'Poppins', sans-serif; font-size: 17px; color: rgba(255,255,255,0.65);
+    max-width: 520px; line-height: 1.7; margin-bottom: 48px;
   }
 
-  .gv-ing-stats {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    flex-wrap: wrap;
+  .gv-ing-hero-stats {
+    display: flex; gap: 40px; flex-wrap: wrap;
   }
 
-  .gv-ing-stat-num {
-    font-size: 40px;
-    font-weight: 700;
-    color: white;
-    line-height: 1;
+  .gv-ing-hero-stat { display: flex; flex-direction: column; gap: 4px; }
+
+  .gv-ing-hero-stat-num {
+    font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; color: white; line-height: 1;
   }
 
-  .gv-ing-stat-label {
-    font-size: 12px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.4);
-    margin-top: 8px;
+  .gv-ing-hero-stat-label {
+    font-family: 'Poppins', sans-serif; font-size: 12px; color: rgba(255,255,255,0.5);
+    text-transform: uppercase; letter-spacing: 0.08em;
   }
 
-  .gv-ing-stat-divider {
-    width: 1px;
-    height: 40px;
-    background: rgba(255,255,255,0.1);
+  .gv-ing-hero-stat-divider {
+    width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; margin: 4px 0;
   }
 
   @media (max-width: 768px) {
     .gv-ing-hero { padding: 80px 0; }
-    .gv-ing-stats { gap: 30px; }
-    .gv-ing-stat-divider { display: none; }
+    .gv-ing-hero-title { font-size: 48px; }
+    .gv-ing-hero-stat-divider { display: none; }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "Ingredients Hero",
+  "name": "Ingredients Hero (Exact)",
   "settings": [
     {
       "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
+      "id": "label",
+      "label": "Label",
       "default": "The Ingredient Directory"
     },
     {
@@ -162,7 +113,7 @@
       "type": "textarea",
       "id": "text",
       "label": "Description",
-      "default": "Every active, every functional ingredient, and exactly why it's there. Clinical concentrations, total transparency."
+      "default": "Every active, every functional ingredient, and exactly why it's there. Clinical concentrations, total transparency — no marketing names, no hidden complexes."
     }
   ],
   "blocks": [
@@ -188,7 +139,7 @@
   ],
   "presets": [
     {
-      "name": "Ingredients Hero",
+      "name": "Ingredients Hero (Exact)",
       "blocks": [
         { "type": "stat", "settings": { "number": "3", "label": "Products" } },
         { "type": "stat", "settings": { "number": "25", "label": "Unique Actives" } },

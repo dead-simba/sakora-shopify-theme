@@ -10,7 +10,7 @@
       },
       "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
       "settings": {
-        "eyebrow": "The Ingredient Directory",
+        "label": "The Ingredient Directory",
         "title": "No secrets.<br><em>Science,</em> simplified.",
         "text": "Every active, every functional ingredient, and exactly why it's there. Clinical concentrations, total transparency — no marketing names, no hidden complexes."
       }
@@ -41,7 +41,7 @@
             "badge_1": "Barrier Lipids",
             "badge_2": "Skin Shield",
             "inci": "CERAMIDE NP · CERAMIDE AP · CERAMIDE EOP",
-            "desc": "Your skin barrier is 50% ceramides. One ceramide type leaves gaps. All three, plus cholesterol and phytosphingosine, rebuild it properly.",
+            "desc": "Your skin barrier is 50% ceramides, 25% cholesterol, 25% fatty acids. Lahore summers strip it. One ceramide type leaves gaps. All three, plus cholesterol and phytosphingosine, rebuild it properly.",
             "why_label": "Why all three types",
             "why_text": "Your skin contains NP, AP, and EOP in specific proportions. One type alone is like patching a wall with one kind of brick."
           }
@@ -54,8 +54,8 @@
             "color_theme": "yellow",
             "badge_1": "Broad Spectrum",
             "badge_2": "PA++++",
-            "inci": "TINOSORB M · MEXORYL SX · OCTISALATE · ENSULIZOLE",
-            "desc": "No single UV filter covers 280nm–400nm. Six filters working together leave zero gaps — zero white cast, matte finish.",
+            "inci": "TINOSORB M · MEXORYL SX · AVOBENZONE · OCTINOXATE · OCTISALATE · ENSULIZOLE",
+            "desc": "No single UV filter covers 280nm–400nm. Six filters working together leave zero gaps — zero white cast, matte finish that holds in Pakistani humidity.",
             "why_label": "Why Pakistan needs this",
             "why_text": "Pakistan's UV index hits 10–12 in summer. Most SPFs here were tested at the European standard of 4. That's not the same protection."
           }
@@ -65,7 +65,7 @@
       "settings": {
         "label": "Hero Ingredients",
         "title": "Three ingredients.<br><em>Everything</em> built around them.",
-        "text": "Each product is built around one star active — chosen for clinical evidence, not trends."
+        "text": "Each product is built around one star active — chosen for clinical evidence, not trends. Here's what they are and why we chose them."
       }
     },
     "supporting": {
@@ -76,10 +76,10 @@
           "settings": {
             "name": "Niacinamide",
             "icon": "💊",
-            "color": "#FFF0F5",
+            "color": "#FFF0E6",
             "inci": "Niacinamide (Vitamin B3)",
             "short_fn": "Minimises pores, evens skin tone, and strengthens the barrier.",
-            "desc": "Niacinamide is a powerhouse vitamin that manages oil, calms redness, and improves uneven skin tone.",
+            "desc": "In every single Glowve product. Niacinamide is a powerhouse vitamin that manages oil, calms redness, and improves uneven skin tone.",
             "why": "It is one of the most researched and stable ingredients in modern skincare."
           }
         },
@@ -91,8 +91,20 @@
             "color": "#E0F4FF",
             "inci": "Sodium Hyaluronate",
             "short_fn": "Penetrates deeper than standard HA to hydrate from within.",
-            "desc": "A smaller molecule weight of Hyaluronic Acid that can penetrate the top layer of skin.",
+            "desc": "A smaller molecule weight of Hyaluronic Acid that can penetrate the top layer of skin and hold 1000x its weight in water.",
             "why": "Topical hydration is temporary; internal hydration lasts."
+          }
+        },
+        "tranex": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Tranexamic Acid",
+            "icon": "🔬",
+            "color": "#F5E8FF",
+            "inci": "Tranexamic Acid",
+            "short_fn": "Blocks melanin transfer at a second pathway.",
+            "desc": "Works alongside Alpha-Arbutin for double the brightening effect without the irritation of retinoids.",
+            "why": "It targets the vascular component of dark spots, something other actives skip."
           }
         },
         "pant": {
@@ -103,12 +115,72 @@
             "color": "#FFF8D6",
             "inci": "Panthenol (Pro-Vitamin B5)",
             "short_fn": "Locks moisture in and accelerates skin healing.",
-            "desc": "A soothing humectant that also helps the skin produce more lipids to repair the barrier.",
-            "why": "Essential for reducing trans-epidermal water loss (TEWL)."
+            "desc": "Essential for barrier repair and serum comfort. A soothing humectant that also helps skin produce more lipids.",
+            "why": "Crucial for calming skin after UV exposure in hot climates."
+          }
+        },
+        "zinc": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Zinc PCA",
+            "icon": "🪨",
+            "color": "#E2F5EE",
+            "inci": "Zinc Polymerised Carboxylic Acid",
+            "short_fn": "Controls sebum without drying.",
+            "desc": "Keeps formula matte in Pakistani summer heat. Helps regulate oil production and inhibits certain bacteria.",
+            "why": "Standard Zinc can be drying; Zinc PCA is moisturising and calming."
+          }
+        },
+        "licorice": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Licorice Root Extract",
+            "icon": "🌿",
+            "color": "#F0EBF8",
+            "inci": "Glycyrrhiza Glabra Root Extract",
+            "short_fn": "Botanical brightening and anti-inflammatory.",
+            "desc": "A gentler complement to the brightening actives. Contains liquiritin which helps disperse existing melanin.",
+            "why": "Nature's answer to brightening, safe for even the most sensitive skin."
+          }
+        },
+        "allant": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Allantoin",
+            "icon": "🌱",
+            "color": "#E8F5E9",
+            "inci": "Allantoin",
+            "short_fn": "Speeds cell renewal and soothes redness.",
+            "desc": "Makes actives tolerable even for sensitive skin. An extract from the comfrey plant that promotes healing.",
+            "why": "Strong actives need a strong soothing partner to prevent irritation."
+          }
+        },
+        "toco": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Tocopherol (Vitamin E)",
+            "icon": "🌻",
+            "color": "#FFF3E0",
+            "inci": "Tocopherol",
+            "short_fn": "Antioxidant shield against UV damage.",
+            "desc": "Amplifies the effect of other antioxidants. Specifically protects cell membranes from oxidative stress.",
+            "why": "Acts as the first line of defense against free radical damage from pollution."
+          }
+        },
+        "peptide": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Matrixyl Peptides",
+            "icon": "🧬",
+            "color": "#E1F5FE",
+            "inci": "Palmitoyl Tripeptide-1 + -7",
+            "short_fn": "Signal peptides that boost collagen production.",
+            "desc": "Helps maintain the structural integrity of the dermis. Works like a messenger to tell skin to fix itself.",
+            "why": "Topical collagen doesn't work; peptides tell your skin to make its own."
           }
         }
       },
-      "block_order": ["niacin", "ha", "pant"],
+      "block_order": ["niacin", "ha", "tranex", "pant", "zinc", "licorice", "allant", "toco", "peptide"],
       "settings": {
         "label": "Supporting Cast",
         "title": "Every ingredient<br>pulls its <em>weight.</em>",
@@ -117,10 +189,21 @@
     },
     "refused": {
       "type": "glowve-ingredients-refused",
+      "blocks": {
+        "hydro": { "type": "ingredient", "settings": { "name": "Hydroquinone", "why": "Common bleaching agent linked to ochronosis with long-term use. We use Alpha-Arbutin instead — no risk." } },
+        "parab": { "type": "ingredient", "settings": { "name": "Parabens", "why": "Preservatives flagged for hormone disruption. We use cleaner phenoxyethanol complexes instead." } },
+        "mineral": { "type": "ingredient", "settings": { "name": "Mineral Oil", "why": "Cheap occlusive that does nothing for barrier repair. Our ceramide complex actually rebuilds it." } },
+        "color": { "type": "ingredient", "settings": { "name": "Artificial Colorants", "why": "No colour ingredient serves a function. If it doesn't do something, it doesn't go in." } },
+        "bleach": { "type": "ingredient", "settings": { "name": "Bleaching Agents", "why": "Mercury and unregulated depigmenting agents found in fairness creams. We brighten, we don't bleach." } },
+        "sls": { "type": "ingredient", "settings": { "name": "SLS / SLES", "why": "Harsh surfactants that strip the skin barrier. Compromised skin gets worse with every wash." } },
+        "phthal": { "type": "ingredient", "settings": { "name": "Phthalates", "why": "Plasticiser chemicals with an endocrine disruption risk profile we're not comfortable with." } },
+        "steroid": { "type": "ingredient", "settings": { "name": "Steroid / Corticosteroid", "why": "Widely misused in Pakistani lightening creams. Clears skin while thinning it permanently. Never." } }
+      },
+      "block_order": ["hydro", "parab", "mineral", "color", "bleach", "sls", "phthal", "steroid"],
       "settings": {
-        "label": "Cleaner Formulas",
-        "title": "What we don't use.",
-        "text": "We formulate according to EU standards — the strictest in the world. We refuse over 1,400 ingredients."
+        "label": "Our Standards",
+        "title": "What we <em>refuse</em><br>to put in your skin.",
+        "text": "Transparency goes both ways — knowing what's in the formula matters, but so does knowing what we deliberately left out."
       }
     },
     "inci": {
@@ -129,25 +212,27 @@
         "fade": {
           "type": "product_list",
           "settings": {
-            "fallback_name": "Fade Theory Serum",
-            "ingredient_count": "18",
-            "inci_list": "Aqua, <b>Niacinamide (10%)</b>, Glycerin, <b>Alpha-Arbutin (2%)</b>, <b>Tranexamic Acid (3%)</b>, Propanediol, Phenoxyethanol."
+            "fallback_name": "Fade Theory",
+            "fallback_type": "2% Alpha Arbutin + Vitamin C Serum",
+            "ingredient_count": "16",
+            "inci_list": "Aqua, <b>Niacinamide</b>, <b>Alpha-Arbutin</b>, <b>3-O-Ethyl Ascorbic Acid</b>, <b>Tranexamic Acid</b>, Propanediol, Glycerin, <b>Sodium Hyaluronate</b>, <b>Licorice Root Extract</b>, <b>Allantoin</b>, <b>Panthenol</b>, Phenoxyethanol, Ethylhexylglycerin."
           }
         },
         "soft": {
           "type": "product_list",
           "settings": {
-            "fallback_name": "Soft Reset Moisturizer",
-            "ingredient_count": "24",
-            "inci_list": "Aqua, <b>Ceramide NP</b>, <b>Ceramide AP</b>, <b>Ceramide EOP</b>, Squalane, <b>Panthenol</b>, Cholesterol, Phytosphingosine."
+            "fallback_name": "Soft Reset",
+            "fallback_type": "Barrier Repair Moisturizer",
+            "ingredient_count": "26",
+            "inci_list": "Aqua, <b>Ceramide NP</b>, <b>Ceramide AP</b>, <b>Ceramide EOP</b>, Squalane, <b>Panthenol</b>, Cholesterol, Phytosphingosine, Glycerin, Stearic Acid, Cetyl Alcohol, Phenoxyethanol."
           }
         }
       },
       "block_order": ["fade", "soft"],
       "settings": {
         "label": "Full Transparency",
-        "title": "Complete INCI Lists",
-        "text": "Search every formula. We hide nothing."
+        "title": "The complete<br><em>ingredient lists.</em>",
+        "text": "Exactly what's on the bottle — in INCI order (highest concentration first). Key actives are highlighted."
       }
     },
     "cta": {
