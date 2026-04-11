@@ -30,15 +30,18 @@
             <h3 class="gv-ing-support-name">{{ block.settings.name }}</h3>
             <p class="gv-ing-support-fn">{{ block.settings.short_fn }}</p>
             
-            <div class="gv-ing-support-products">
-              {%- if block.settings.prod_1_label != blank -%}
-                <span class="gv-ing-spl gv-ing-spl--pink">{{ block.settings.prod_1_label }}</span>
+            <div class="gv-ing-support-products" onclick="event.stopPropagation();">
+              {%- if block.settings.prod_1 != blank -%}
+                {%- assign p1 = block.settings.prod_1 -%}
+                <a href="{{ p1.url }}" class="gv-ing-spl gv-ing-spl--pink" data-prod-name="{{ p1.title | escape }}" data-prod-type="{{ p1.type | default: 'Skincare' | escape }}" data-prod-url="{{ p1.url }}">{{ p1.title }}</a>
               {%- endif -%}
-              {%- if block.settings.prod_2_label != blank -%}
-                <span class="gv-ing-spl gv-ing-spl--mint">{{ block.settings.prod_2_label }}</span>
+              {%- if block.settings.prod_2 != blank -%}
+                {%- assign p2 = block.settings.prod_2 -%}
+                <a href="{{ p2.url }}" class="gv-ing-spl gv-ing-spl--mint" data-prod-name="{{ p2.title | escape }}" data-prod-type="{{ p2.type | default: 'Skincare' | escape }}" data-prod-url="{{ p2.url }}">{{ p2.title }}</a>
               {%- endif -%}
-              {%- if block.settings.prod_3_label != blank -%}
-                <span class="gv-ing-spl gv-ing-spl--gold">{{ block.settings.prod_3_label }}</span>
+              {%- if block.settings.prod_3 != blank -%}
+                {%- assign p3 = block.settings.prod_3 -%}
+                <a href="{{ p3.url }}" class="gv-ing-spl gv-ing-spl--gold" data-prod-name="{{ p3.title | escape }}" data-prod-type="{{ p3.type | default: 'Skincare' | escape }}" data-prod-url="{{ p3.url }}">{{ p3.title }}</a>
               {%- endif -%}
             </div>
           </div>
@@ -109,10 +112,13 @@
   .gv-ing-support-fn { font-size: 12px; color: #666; line-height: 1.5; margin-bottom: 14px; flex-grow: 1; }
 
   .gv-ing-support-products { display: flex; gap: 6px; flex-wrap: wrap; }
-  .gv-ing-spl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 12px; border-radius: 100px; transition: all 0.2s; display: inline-block; }
+  .gv-ing-spl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 5px 12px; border-radius: 100px; transition: all 0.2s; display: inline-block; text-decoration: none; }
   .gv-ing-spl--pink { background: #FFF0F5; color: #FF4D8D; border: 1px solid #FFD0E4; }
+  .gv-ing-spl--pink:hover { background: #FF4D8D; color: white; border-color: #FF4D8D; }
   .gv-ing-spl--mint { background: #E8F8F3; color: #1A8A72; border: 1px solid #B8E8D4; }
+  .gv-ing-spl--mint:hover { background: #1A8A72; color: white; border-color: #1A8A72; }
   .gv-ing-spl--gold { background: #FFF8E8; color: #8B6914; border: 1px solid #FFE4A0; }
+  .gv-ing-spl--gold:hover { background: #8B6914; color: white; border-color: #8B6914; }
 
   /* "Tap to learn more" on hover */
   .gv-ing-support-body::after {
@@ -154,10 +160,13 @@
     border: 1px solid #ECECEC; transition: border-color 0.2s, transform 0.2s;
     text-decoration: none; color: inherit;
   }
-  .gv-ing-modal-products .gv-modal-prod:hover { border-color: #FF4D8D; transform: translateY(-2px); }
+  .gv-ing-modal-products .gv-modal-prod:hover { border-color: #FF4D8D; box-shadow: 0 4px 16px rgba(255,77,141,0.12); transform: translateY(-2px); }
   .gv-modal-prod-img { width: 48px; height: 48px; border-radius: 10px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 22px; overflow: hidden; }
   .gv-modal-prod-name { font-size: 13px; font-weight: 700; color: #1A1A1A; line-height: 1.2; }
   .gv-modal-prod-type { font-size: 11px; color: #666; margin-top: 2px; }
+  .gv-modal-prod-arrow { margin-left: auto; color: #FF4D8D; opacity: 0; transform: translateX(-4px); transition: opacity 0.2s, transform 0.2s; }
+  .gv-modal-prod-arrow svg { width: 14px; height: 14px; }
+  .gv-modal-prod:hover .gv-modal-prod-arrow { opacity: 1; transform: translateX(0); }
 
   @media (max-width: 900px) {
     .gv-ing-support-grid { grid-template-columns: repeat(2, 1fr); }
@@ -197,15 +206,20 @@
           'linear-gradient(135deg, #FFF8D6, #F5A623)'
         ];
         bubbles.forEach((b, i) => {
-          const div = document.createElement('div');
-          div.className = 'gv-modal-prod';
-          div.innerHTML = `
+          const url = b.getAttribute('data-prod-url') || b.getAttribute('href') || '#';
+          const name = b.getAttribute('data-prod-name') || b.innerText;
+          const type = b.getAttribute('data-prod-type') || 'Glowvé Product';
+          const a = document.createElement('a');
+          a.className = 'gv-modal-prod';
+          a.href = url;
+          a.innerHTML = `
             <div class="gv-modal-prod-img" style="background:${gradients[i] || gradients[0]}">🧴</div>
             <div>
-              <div class="gv-modal-prod-name">${b.innerText}</div>
-              <div class="gv-modal-prod-type">Glowvé Product</div>
-            </div>`;
-          prodContainer.appendChild(div);
+              <div class="gv-modal-prod-name">${name}</div>
+              <div class="gv-modal-prod-type">${type}</div>
+            </div>
+            <div class="gv-modal-prod-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>`;
+          prodContainer.appendChild(a);
         });
 
         overlay.classList.add('is-active');
@@ -246,9 +260,9 @@
         { "type": "textarea", "id": "desc", "label": "Modal Full Description" },
         { "type": "text", "id": "why_label", "label": "Why Label", "default": "Why we use it" },
         { "type": "textarea", "id": "why", "label": "Modal Why Text" },
-        { "type": "text", "id": "prod_1_label", "label": "Product 1 Name (Pink)", "default": "Fade Theory" },
-        { "type": "text", "id": "prod_2_label", "label": "Product 2 Name (Mint)" },
-        { "type": "text", "id": "prod_3_label", "label": "Product 3 Name (Gold)" }
+        { "type": "product", "id": "prod_1", "label": "Product 1 (Pink Bubble)" },
+        { "type": "product", "id": "prod_2", "label": "Product 2 (Mint Bubble)" },
+        { "type": "product", "id": "prod_3", "label": "Product 3 (Gold Bubble)" }
       ]
     }
   ],
