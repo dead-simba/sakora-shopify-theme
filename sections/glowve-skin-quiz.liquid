@@ -8,13 +8,22 @@
       
       <div class="gv-hero-trust">
         {%- if section.settings.trust_1 != blank -%}
-          <div class="gv-trust-item"><span>🧪</span> {{ section.settings.trust_1 }}</div>
+          <div class="gv-trust-item">
+            <svg class="gv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M7 7l10 10M17 7L7 10"/></svg>
+            {{ section.settings.trust_1 }}
+          </div>
         {%- endif -%}
         {%- if section.settings.trust_2 != blank -%}
-          <div class="gv-trust-item"><span>🇵🇰</span> {{ section.settings.trust_2 }}</div>
+          <div class="gv-trust-item">
+            <svg class="gv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg>
+            {{ section.settings.trust_2 }}
+          </div>
         {%- endif -%}
         {%- if section.settings.trust_3 != blank -%}
-          <div class="gv-trust-item"><span>🌿</span> {{ section.settings.trust_3 }}</div>
+          <div class="gv-trust-item">
+            <svg class="gv-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            {{ section.settings.trust_3 }}
+          </div>
         {%- endif -%}
       </div>
 
@@ -34,7 +43,9 @@
       </div>
 
       <div class="gv-hero-actions">
-        <button class="gv-btn-primary gv-btn-large" onclick="GlowveQuiz.start()">{{ section.settings.start_btn_text }} →</button>
+        {%- if section.settings.start_btn_text != blank -%}
+          <button class="gv-btn-primary gv-btn-large" onclick="GlowveQuiz.start()">{{ section.settings.start_btn_text }} →</button>
+        {%- endif -%}
         <p class="gv-hero-meta">{{ section.settings.hero_meta }}</p>
       </div>
     </div>
@@ -61,26 +72,40 @@
     <div class="gv-quiz-inner-narrow text-center">
       <div class="gv-capture-content">
         <h2 class="gv-q-headline">Where should we send your results?</h2>
-        <p class="gv-q-sub">We'll email your personalized routine + a special 10% off code for your first order.</p>
+        <p class="gv-q-sub">We'll send your routine via WhatsApp + a 10% discount code.</p>
         
         <div class="gv-capture-form">
-          <input type="email" id="QuizEmail" placeholder="your@email.com" class="gv-input" required>
-          <button class="gv-btn-primary" onclick="GlowveQuiz.submitLead()">Show My Routine →</button>
+          <div class="gv-input-group">
+            <label for="QuizPhone">WhatsApp Number (Required)</label>
+            <input type="tel" id="QuizPhone" placeholder="+92 3xx xxxxxxx" class="gv-input" required>
+          </div>
+          <div class="gv-input-group">
+            <label for="QuizEmail">Email Address (Optional)</label>
+            <input type="email" id="QuizEmail" placeholder="your@email.com" class="gv-input">
+          </div>
+          <button class="gv-btn-primary gv-btn-full" onclick="GlowveQuiz.submitLead()">Get My Results →</button>
         </div>
-        <p class="gv-form-note">By clicking, you agree to receive our newsletter and results. You can unsubscribe anytime.</p>
+        <p class="gv-form-note">By clicking, you agree to receive a WhatsApp message from Glowve. You can opt-out at any time.</p>
       </div>
     </div>
   </div>
 
   <!-- LOADING SCREEN -->
   <div class="gv-loading-screen" id="StepLoading" style="display: none;">
-    <div class="gv-loading-dots">
-      <div class="gv-dot"></div>
-      <div class="gv-dot"></div>
-      <div class="gv-dot"></div>
+    <div class="gv-loading-content">
+      <div class="gv-formula-loader">
+        <svg viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="283" stroke-dashoffset="283">
+            <animate attributeName="stroke-dashoffset" from="283" to="0" dur="2s" fill="freeze" />
+          </circle>
+          <path d="M30 50 L45 65 L70 35" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+            <animate attributeName="stroke-dasharray" from="0 100" to="60 100" dur="0.5s" begin="1.5s" fill="freeze" />
+          </path>
+        </svg>
+      </div>
+      <div class="gv-loading-text" id="LoadingText">Analyzing your answers...</div>
+      <div class="gv-loading-sub">Cross-referencing with our formula database</div>
     </div>
-    <div class="gv-loading-text" id="LoadingText">Analyzing your answers...</div>
-    <div class="gv-loading-sub">Cross-referencing with our formula database</div>
   </div>
 
   <!-- RESULTS STEP -->
@@ -216,27 +241,54 @@
       ],
       products: {
         serum: {
-          handle: 'fade-theory', // Ensure this matches handle
-          name: 'Fade Theory',
-          tag: '10% Niacinamide + Alpha Arbutin',
-          price: 'PKR 1,400',
-          img: 'https://cdn.shopify.com/s/files/1/0861/2311/8904/files/studio-mockup_1.png?v=1712836500',
+          {%- if section.settings.serum_prod != blank -%}
+            {%- assign p = section.settings.serum_prod -%}
+            handle: '{{ p.handle }}',
+            name: '{{ p.title }}',
+            tag: '{{ p.metafields.custom.short_description | default: '10% Niacinamide + Alpha Arbutin' }}',
+            price: '{{ p.price | money }}',
+            img: '{{ p.featured_image | image_url: width: 600 }}',
+          {%- else -%}
+            handle: 'fade-theory',
+            name: 'Fade Theory',
+            tag: '10% Niacinamide + Alpha Arbutin',
+            price: 'PKR 1,400',
+            img: 'https://cdn.shopify.com/s/files/1/0861/2311/8904/files/studio-mockup_1.png?v=1712836500',
+          {%- endif -%}
           why: 'Targets the hyperpigmentation root cause for Fitzpatrick IV-VI skin.'
         },
         moisturizer: {
-          handle: 'soft-reset',
-          name: 'Soft Reset',
-          tag: 'Ceramide Barrier Cream',
-          price: 'PKR 1,999',
-          img: 'https://cdn.shopify.com/s/files/1/0861/2311/8904/files/mockup_1.png?v=1712836500',
+          {%- if section.settings.moisturizer_prod != blank -%}
+            {%- assign p = section.settings.moisturizer_prod -%}
+            handle: '{{ p.handle }}',
+            name: '{{ p.title }}',
+            tag: '{{ p.metafields.custom.short_description | default: 'Ceramide Barrier Cream' }}',
+            price: '{{ p.price | money }}',
+            img: '{{ p.featured_image | image_url: width: 600 }}',
+          {%- else -%}
+            handle: 'soft-reset',
+            name: 'Soft Reset',
+            tag: 'Ceramide Barrier Cream',
+            price: 'PKR 1,999',
+            img: 'https://cdn.shopify.com/s/files/1/0861/2311/8904/files/mockup_1.png?v=1712836500',
+          {%- endif -%}
           why: 'Triple ceramides build back the barrier humidity and pollution strip away.'
         },
         spf: {
-          handle: 'sunscreen',
-          name: 'Matte UV Defence',
-          tag: 'SPF 50+ PA++++',
-          price: 'PKR 1,600',
-          img: 'https://cdn.shopify.com/s/files/1/0861/2311/8904/files/studio-mockup_2.png?v=1712836500',
+          {%- if section.settings.spf_prod != blank -%}
+            {%- assign p = section.settings.spf_prod -%}
+            handle: '{{ p.handle }}',
+            name: '{{ p.title }}',
+            tag: '{{ p.metafields.custom.short_description | default: 'SPF 50+ PA++++' }}',
+            price: '{{ p.price | money }}',
+            img: '{{ p.featured_image | image_url: width: 600 }}',
+          {%- else -%}
+            handle: 'sunscreen',
+            name: 'Matte UV Defence',
+            tag: 'SPF 50+ PA++++',
+            price: 'PKR 1,600',
+            img: 'https://cdn.shopify.com/s/files/1/0861/2311/8904/files/studio-mockup_2.png?v=1712836500',
+          {%- endif -%}
           why: 'No white cast, matte finish — vital for the high UV index in Pakistan.'
         }
       }
@@ -327,20 +379,32 @@
     }
 
     async function submitLead() {
+      const phone = document.getElementById('QuizPhone').value;
       const email = document.getElementById('QuizEmail').value;
-      if (!email || !email.includes('@')) return alert('Please enter a valid email.');
+      
+      if (!phone || phone.length < 10) return alert('Please enter a valid WhatsApp number.');
+      
       state.email = email;
+      state.phone = phone;
 
       document.getElementById('StepCapture').style.display = 'none';
       document.getElementById('StepLoading').style.display = 'flex';
       
       // PREPARE DATA FOR SHOPIFY
-      const tags = [`Quiz_Lead`, `SkinType_${state.answers.skin_type}`, `Concern_${state.answers.concern}`, `City_${state.answers.city}`];
-      document.getElementById('LeadEmailHidden').value = email;
+      const tags = [`Quiz_Lead`, `SkinType_${state.answers.skin_type}`, `Concern_${state.answers.concern}`];
+      document.getElementById('LeadEmailHidden').value = email || 'no-email@glowve.com'; // Shopify needs an email, we'll use a placeholder if empty
       document.getElementById('LeadTags').value = tags.join(',');
       
       const attrsWrap = document.getElementById('LeadAttributes');
       attrsWrap.innerHTML = '';
+      
+      // Add WhatsApp to core field
+      const phoneInput = document.createElement('input');
+      phoneInput.type = 'hidden';
+      phoneInput.name = `contact[phone]`;
+      phoneInput.value = phone;
+      attrsWrap.appendChild(phoneInput);
+
       Object.keys(state.answers).forEach(key => {
         const input = document.createElement('input');
         input.type = 'hidden';
@@ -653,14 +717,11 @@
     text-align: center;
     padding: 40px;
   }
-  .gv-loading-dots { display: flex; gap: 10px; margin-bottom: 24px; }
-  .gv-dot { width: 12px; height: 12px; background: var(--brand-pink); border-radius: 50%; animation: gvBounce 1.4s infinite ease-in-out both; }
-  .gv-dot:nth-child(1) { animation-delay: -0.32s; }
-  .gv-dot:nth-child(2) { animation-delay: -0.16s; }
-  @keyframes gvBounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-
+  .gv-formula-loader { width: 100px; height: 100px; margin-bottom: 24px; color: var(--brand-pink); }
   .gv-loading-text { font-size: 24px; font-weight: 600; margin-bottom: 8px; }
   .gv-loading-sub { color: var(--mid-gray); font-size: 14px; }
+  .gv-icon { width: 18px; height: 18px; color: var(--brand-pink); }
+
 
   /* RESULTS */
   .gv-results-hero { background: var(--berry-dark, #1A1A1A); color: white; padding: 100px 24px; text-align: center; }
@@ -712,12 +773,17 @@
   .animate-in { animation: gvFadeIn 0.5s ease-out forwards; }
   @keyframes gvFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
   
-  .gv-btn-primary { background: var(--brand-pink); color: white; border: none; padding: 14px 28px; border-radius: 100px; font-weight: 600; cursor: pointer; text-transform: uppercase; transition: transform 0.2s; }
+  .gv-btn-primary { background: #FF4D8D !important; color: white !important; border: none; padding: 14px 28px; border-radius: 100px; font-weight: 600; cursor: pointer; text-transform: uppercase; transition: transform 0.2s; display: inline-flex; align-items: center; justify-content: center; }
   .gv-btn-primary:hover { transform: scale(1.02); }
-  .gv-btn-large { padding: 18px 48px; font-size: 16px; }
+  .gv-btn-full { width: 100%; margin-top: 10px; }
+  .gv-btn-large { padding: 18px 48px; font-size: 16px; margin-top: 24px; }
   .gv-btn-outline { background: none; border: 2px solid var(--warm-gray); color: var(--mid-gray); padding: 12px 32px; border-radius: 100px; cursor: pointer; }
-  .gv-input { width: 100%; padding: 16px 24px; border-radius: 100px; border: 1.5px solid var(--warm-gray); margin-bottom: 12px; outline: none; transition: border-color 0.2s; }
-  .gv-input:focus { border-color: var(--brand-pink); }
+  
+  .gv-input-group { text-align: left; margin-bottom: 20px; }
+  .gv-input-group label { display: block; font-size: 12px; font-weight: 600; color: var(--mid-gray); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .gv-input { width: 100%; padding: 16px 24px; border-radius: 100px; border: 1.5px solid var(--warm-gray); outline: none; transition: border-color 0.2s; font-size: 16px; box-sizing: border-box; }
+  .gv-input:focus { border-color: #FF4D8D; }
+
 {% endstylesheet %}
 
 {% schema %}
@@ -792,6 +858,25 @@
       "id": "hero_meta",
       "label": "Hero Meta Text",
       "default": "Free · 2 minutes · Personalised for your city and skin type"
+    },
+    {
+      "type": "header",
+      "content": "Recommended Products"
+    },
+    {
+      "type": "product",
+      "id": "serum_prod",
+      "label": "Recommended Serum"
+    },
+    {
+      "type": "product",
+      "id": "moisturizer_prod",
+      "label": "Recommended Moisturizer"
+    },
+    {
+      "type": "product",
+      "id": "spf_prod",
+      "label": "Recommended Sunscreen"
     }
   ]
 }
