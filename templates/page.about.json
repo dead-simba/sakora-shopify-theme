@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -14,17 +23,72 @@
     "ticker": {
       "type": "glowve-about-ticker",
       "blocks": {
-        "t1": { "type": "item", "settings": { "text": "Ingredient First" } },
-        "t2": { "type": "item", "settings": { "text": "Made for Pakistan" } },
-        "t3": { "type": "item", "settings": { "text": "Fragrance Free" } },
-        "t4": { "type": "item", "settings": { "text": "Clinically Tested" } },
-        "t5": { "type": "item", "settings": { "text": "Fitzpatrick IV–VI" } },
-        "t6": { "type": "item", "settings": { "text": "Alpha Arbutin" } },
-        "t7": { "type": "item", "settings": { "text": "SPF 50+" } },
-        "t8": { "type": "item", "settings": { "text": "No Hidden Ingredients" } },
-        "t9": { "type": "item", "settings": { "text": "Glow Your Way" } }
+        "t1": {
+          "type": "item",
+          "settings": {
+            "text": "Ingredient First"
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "text": "Made for Pakistan"
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "text": "Fragrance Free"
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "text": "Clinically Tested"
+          }
+        },
+        "t5": {
+          "type": "item",
+          "settings": {
+            "text": "Fitzpatrick IV–VI"
+          }
+        },
+        "t6": {
+          "type": "item",
+          "settings": {
+            "text": "Alpha Arbutin"
+          }
+        },
+        "t7": {
+          "type": "item",
+          "settings": {
+            "text": "SPF 50+"
+          }
+        },
+        "t8": {
+          "type": "item",
+          "settings": {
+            "text": "No Hidden Ingredients"
+          }
+        },
+        "t9": {
+          "type": "item",
+          "settings": {
+            "text": "Glow Your Way"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3", "t4", "t5", "t6", "t7", "t8", "t9"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4",
+        "t5",
+        "t6",
+        "t7",
+        "t8",
+        "t9"
+      ],
       "settings": {}
     },
     "story": {
@@ -40,20 +104,93 @@
     "founder": {
       "type": "glowve-about-founder",
       "blocks": {
-        "p1": { "type": "pill", "settings": { "text": "Alpha Arbutin" } },
-        "p2": { "type": "pill", "settings": { "text": "SPF 50+" } },
-        "p3": { "type": "pill", "settings": { "text": "Vitamin C" } },
-        "p4": { "type": "pill", "settings": { "text": "Niacinamide" } },
-        "p5": { "type": "pill", "settings": { "text": "Ceramides" } },
-        "p6": { "type": "pill", "settings": { "text": "Hyaluronic" } },
-        "tr1": { "type": "trait", "settings": { "text": "📍 Pakistan" } },
-        "tr2": { "type": "trait", "settings": { "text": "🔬 Formulation Obsessed" } },
-        "tr3": { "type": "trait", "settings": { "text": "☀️ UV Index Nerds" } },
-        "tr4": { "type": "trait", "settings": { "text": "📖 Full INCI Labels Only" } },
-        "tr5": { "type": "trait", "settings": { "text": "🧪 Evidence-Based Skincare" } },
-        "tr6": { "type": "trait", "settings": { "text": "🇵🇰 Built for Here" } }
+        "p1": {
+          "type": "pill",
+          "settings": {
+            "text": "Alpha Arbutin"
+          }
+        },
+        "p2": {
+          "type": "pill",
+          "settings": {
+            "text": "SPF 50+"
+          }
+        },
+        "p3": {
+          "type": "pill",
+          "settings": {
+            "text": "Vitamin C"
+          }
+        },
+        "p4": {
+          "type": "pill",
+          "settings": {
+            "text": "Niacinamide"
+          }
+        },
+        "p5": {
+          "type": "pill",
+          "settings": {
+            "text": "Ceramides"
+          }
+        },
+        "p6": {
+          "type": "pill",
+          "settings": {
+            "text": "Hyaluronic"
+          }
+        },
+        "tr1": {
+          "type": "trait",
+          "settings": {
+            "text": "📍 Pakistan"
+          }
+        },
+        "tr2": {
+          "type": "trait",
+          "settings": {
+            "text": "🔬 Formulation Obsessed"
+          }
+        },
+        "tr3": {
+          "type": "trait",
+          "settings": {
+            "text": "☀️ UV Index Nerds"
+          }
+        },
+        "tr4": {
+          "type": "trait",
+          "settings": {
+            "text": "📖 Full INCI Labels Only"
+          }
+        },
+        "tr5": {
+          "type": "trait",
+          "settings": {
+            "text": "🧪 Evidence-Based Skincare"
+          }
+        },
+        "tr6": {
+          "type": "trait",
+          "settings": {
+            "text": "🇵🇰 Built for Here"
+          }
+        }
       },
-      "block_order": ["p1", "p2", "p3", "p4", "p5", "p6", "tr1", "tr2", "tr3", "tr4", "tr5", "tr6"],
+      "block_order": [
+        "p1",
+        "p2",
+        "p3",
+        "p4",
+        "p5",
+        "p6",
+        "tr1",
+        "tr2",
+        "tr3",
+        "tr4",
+        "tr5",
+        "tr6"
+      ],
       "settings": {
         "label": "Behind the Brand",
         "quote": "\"We spent years looking for skincare that respected our climate, our skin tones, and our intelligence. We couldn't find it. So we built it.\"",
@@ -75,7 +212,8 @@
         "g1": {
           "type": "gap",
           "settings": {
-            "product": "sunscreen",
+            "product": "daylite-spf-50-sunscreen",
+            "link": "",
             "number": "01",
             "headline": "The UV Mismatch",
             "body": "Most sunscreens are tested for European UV indices (average 4). In Pakistan, we regularly hit 10–12. We built our SPF for the plateau, not the valley. Six-filter broad spectrum, tested locally.",
@@ -86,6 +224,7 @@
           "type": "gap",
           "settings": {
             "product": "fade-theory",
+            "link": "",
             "number": "02",
             "headline": "The PIH Problem",
             "body": "Fitzpatrick IV–VI skin marks differently. A breakout doesn't just fade — it leaves post-inflammatory hyperpigmentation that lasts months. We target the pigment-inflammation loop directly.",
@@ -95,7 +234,8 @@
         "g3": {
           "type": "gap",
           "settings": {
-            "product": "soft-reset",
+            "product": "soft-reset-moisturizer",
+            "link": "",
             "number": "03",
             "headline": "The Barrier Paradox",
             "body": "Humidity can fool you into thinking your barrier is healthy. In hard water climates, it's often the opposite — stripped and sensitised. A lightweight, ceramide-led moisturiser fixes what the environment breaks.",
@@ -105,6 +245,8 @@
         "g4": {
           "type": "gap",
           "settings": {
+            "product": "",
+            "link": "",
             "number": "04",
             "headline": "The Label Problem",
             "body": "Ingredient transparency isn't the norm in Pakistani skincare. \"Brightening blend\" tells you nothing. We list every ingredient, explain what it does, and tell you the concentration. Always.",
@@ -112,23 +254,17 @@
           }
         }
       },
-      "block_order": ["g1", "g2", "g3", "g4"],
+      "block_order": [
+        "g1",
+        "g2",
+        "g3",
+        "g4"
+      ],
       "settings": {
         "label": "— Why We Exist —",
         "title": "Solving the<br><em>Mismatched Science.</em>",
         "subtitle": "Every Glowve product exists because a specific gap did."
       }
-    },
-    "stats": {
-      "type": "glowve-about-stats",
-      "blocks": {
-        "s1": { "type": "stat", "settings": { "value": "100%", "label": "Fragrance Free" } },
-        "s2": { "type": "stat", "settings": { "value": "30k+", "label": "Skin Quizzes Taken" } },
-        "s3": { "type": "stat", "settings": { "value": "2x", "label": "Clinical Active Dose" } },
-        "s4": { "type": "stat", "settings": { "value": "PA++++", "label": "Max UVA Protection" } }
-      },
-      "block_order": ["s1", "s2", "s3", "s4"],
-      "settings": {}
     },
     "promise": {
       "type": "glowve-about-promise",
@@ -150,42 +286,49 @@
             "badge": "Step 1",
             "style": "serum",
             "step": "01 — Brightening",
-            "name": "2% Alpha Arbutin + Vitamin C Serum",
+            "name": "",
             "desc": "Fades PIH, evening skin tone, and brightens without irritation. Works with your melanin, not against it.",
-            "price": "PKR 1,599",
-            "size": "/30ml"
+            "price": "",
+            "size": "/30ml",
+            "link": ""
           }
         },
         "prod2": {
           "type": "product",
           "settings": {
-            "product": "soft-reset",
+            "product": "soft-reset-moisturizer",
             "letter": "M",
             "badge": "Step 2",
             "style": "moisturizer",
             "step": "02 — Barrier Repair",
-            "name": "Barrier Renew Moisturizer",
+            "name": "",
             "desc": "Ceramide-led, lightweight enough for Lahore humidity. Restores what hard water and heat strip away.",
-            "price": "PKR 1,799",
-            "size": "/60ml"
+            "price": "",
+            "size": "/60ml",
+            "link": ""
           }
         },
         "prod3": {
           "type": "product",
           "settings": {
-            "product": "sunscreen",
+            "product": "daylite-spf-50-sunscreen",
             "letter": "S",
             "badge": "Step 3",
             "style": "spf",
             "step": "03 — UV Protection",
-            "name": "Matte UV Defence SPF 50+",
+            "name": "",
             "desc": "PA++++. Six-filter broad spectrum. Matte finish for Karachi summers. Built for a UV Index 12, not 4.",
-            "price": "PKR 1,999",
-            "size": "/50ml"
+            "price": "",
+            "size": "/50ml",
+            "link": ""
           }
         }
       },
-      "block_order": ["prod1", "prod2", "prod3"],
+      "block_order": [
+        "prod1",
+        "prod2",
+        "prod3"
+      ],
       "settings": {
         "label": "— The Protocol —",
         "title": "Three Products.<br><em>One System.</em>",
@@ -199,7 +342,9 @@
         "title": "Your Skin.<br>Our <em>Science.</em><br>No Risk.",
         "subtitle": "Try any Glowve product with our 30-Day Clinical Guarantee — opened, used, returned if it's not right. We trust you.",
         "btn_1_label": "Shop the Protocol",
-        "btn_2_label": "Take the Skin Quiz"
+        "btn_1_link": "shopify://collections",
+        "btn_2_label": "Take the Skin Quiz",
+        "btn_2_link": ""
       }
     }
   },
@@ -210,7 +355,6 @@
     "founder",
     "insight",
     "gaps",
-    "stats",
     "promise",
     "products",
     "cta"
