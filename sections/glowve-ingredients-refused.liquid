@@ -1,0 +1,135 @@
+<section class="gv-ing-no-section">
+  <div class="gv-container">
+    <div class="gv-section-header">
+      <div class="gv-section-label gv-section-label--pink">{{ section.settings.label }}</div>
+      <h2 class="gv-section-title gv-text-white">{{ section.settings.title }}</h2>
+      <p class="gv-section-sub gv-text-dim">{{ section.settings.text }}</p>
+    </div>
+
+    <div class="gv-ing-no-grid">
+      {%- for block in section.blocks -%}
+        <div class="gv-ing-no-card" {{ block.shopify_attributes }}>
+          <div class="gv-ing-no-icon">✕</div>
+          <div class="gv-ing-no-content">
+            <h3 class="gv-ing-no-name">{{ block.settings.name }}</h3>
+            <p class="gv-ing-no-why">{{ block.settings.why }}</p>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ing-no-section {
+    background: var(--berry-dark, #1A1A1A);
+    padding: 100px 0;
+  }
+  
+  .gv-text-white { color: white !important; }
+  .gv-text-dim { color: rgba(255,255,255,0.6) !important; }
+  .gv-section-label--pink { color: var(--brand-pink, #FF4D8D) !important; }
+
+  .gv-ing-no-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .gv-ing-no-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    transition: all 0.2s;
+  }
+  
+  .gv-ing-no-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,77,141,0.3); }
+
+  .gv-ing-no-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(255,77,141,0.15);
+    color: var(--brand-pink, #FF4D8D);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .gv-ing-no-name { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
+  .gv-ing-no-why { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+  @media (max-width: 1100px) {
+    .gv-ing-no-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .gv-ing-no-grid { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Refused Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Label",
+      "default": "Cleaner Formulas"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "What we don't use."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "We formulate according to EU standards — the strictest in the world. We refuse over 1,400 ingredients."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Parabens"
+        },
+        {
+          "type": "textarea",
+          "id": "why",
+          "label": "Why we avoid it",
+          "default": "Preservatives linked to hormone disruption."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Refused Ingredients",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Parabens", "why": "Preservatives linked to hormone disruption." } },
+        { "type": "ingredient", "settings": { "name": "Sulfates (SLS/SLES)", "why": "Harsh surfactants that strip the barrier." } },
+        { "type": "ingredient", "settings": { "name": "Phthalates", "why": "Solvents used in synthetic fragrance." } },
+        { "type": "ingredient", "settings": { "name": "Formaldehyde", "why": "Carcinogenic preservative used in cheaper formulas." } },
+        { "type": "ingredient", "settings": { "name": "Hydroquinone", "why": "Can cause rebound pigment issues on local skin." } },
+        { "type": "ingredient", "settings": { "name": "Drying Alcohol", "why": "SD Alcohol 40 can damage cell lipids." } },
+        { "type": "ingredient", "settings": { "name": "Mineral Oil", "why": "Can trap sweat and heat in warm climates." } },
+        { "type": "ingredient", "settings": { "name": "Essential Oils", "why": "Contains volatile aromatic compounds that trigger sensitivity." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,298 @@
+<section class="gv-ing-supporting-section">
+  <div class="gv-container">
+    <div class="gv-section-header">
+      <div class="gv-section-label">{{ section.settings.label }}</div>
+      <h2 class="gv-section-title">{{ section.settings.title }}</h2>
+      <p class="gv-section-sub">{{ section.settings.text }}</p>
+    </div>
+
+    <div class="gv-ing-support-grid">
+      {%- for block in section.blocks -%}
+        <div class="gv-ing-support-card js-ing-card" 
+             data-name="{{ block.settings.name | escape }}"
+             data-inci="{{ block.settings.inci | escape }}"
+             data-desc="{{ block.settings.desc | escape }}"
+             data-why="{{ block.settings.why | escape }}"
+             data-icon="{{ block.settings.icon | escape }}"
+             data-color="{{ block.settings.color }}"
+             {{ block.shopify_attributes }}>
+          
+          <div class="gv-ing-support-img" style="background: {{ block.settings.color }};">
+            {%- if block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 400 | image_tag: loading: 'lazy' }}
+            {%- else -%}
+              <span class="gv-ing-emoji">{{ block.settings.icon }}</span>
+            {%- if block.settings.image == blank -%}
+              <div class="gv-ing-support-overlay"></div>
+            {%- endif -%}
+            {%- endif -%}
+          </div>
+          
+          <div class="gv-ing-support-body">
+            <h3 class="gv-ing-support-name">{{ block.settings.name }}</h3>
+            <p class="gv-ing-support-fn">{{ block.settings.short_fn }}</p>
+            
+            <div class="gv-ing-support-products">
+              {%- if block.settings.prod_1 != blank -%}
+                {%- assign p1 = all_products[block.settings.prod_1] -%}
+                <span class="gv-ing-support-tag">{{ p1.title }}</span>
+              {%- endif -%}
+              {%- if block.settings.prod_2 != blank -%}
+                {%- assign p2 = all_products[block.settings.prod_2] -%}
+                <span class="gv-ing-support-tag">{{ p2.title }}</span>
+              {%- endif -%}
+            </div>
+          </div>
+          <div class="gv-ing-card-footer">Learn More →</div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  <!-- MODAL STRUCTURE -->
+  <div class="gv-ing-modal-overlay" id="IngModalOverlay">
+    <div class="gv-ing-modal">
+      <button class="gv-ing-modal-close" id="IngModalClose">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      
+      <div class="gv-ing-modal-img" id="ModalImg"></div>
+      
+      <div class="gv-ing-modal-content">
+        <div class="gv-ing-modal-badge">Ingredient Profile</div>
+        <h2 class="gv-ing-modal-name" id="ModalName"></h2>
+        <div class="gv-ing-modal-inci" id="ModalInci"></div>
+        
+        <div class="gv-ing-modal-divider"></div>
+        
+        <p class="gv-ing-modal-desc" id="ModalDesc"></p>
+        
+        <div class="gv-ing-modal-why-box">
+          <div class="gv-ing-modal-why-label">Why we use it</div>
+          <div class="gv-ing-modal-why-text" id="ModalWhy"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ing-supporting-section { padding: 80px 0; background: #FAFAFA; position: relative; }
+  
+  .gv-ing-support-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .gv-ing-support-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid var(--warm-gray, #ECECEC);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .gv-ing-support-card:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); border-color: var(--brand-pink); }
+
+  .gv-ing-support-img {
+    height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .gv-ing-emoji { font-size: 48px; position: relative; z-index: 2; }
+  .gv-ing-support-overlay { position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(0,0,0,0.05), rgba(0,0,0,0.1)); }
+  .gv-ing-support-img img { width: 100%; height: 100%; object-fit: cover; }
+
+  .gv-ing-support-body { padding: 20px; flex-grow: 1; }
+  .gv-ing-support-name { font-size: 18px; font-weight: 700; margin-bottom: 4px; color: var(--berry-dark); }
+  .gv-ing-support-fn { font-size: 13px; color: var(--mid-gray); line-height: 1.5; margin-bottom: 16px; }
+
+  .gv-ing-support-products { display: flex; gap: 6px; flex-wrap: wrap; }
+  .gv-ing-support-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; background: #F0F0F0; color: #888; padding: 4px 10px; border-radius: 100px; }
+  
+  .gv-ing-card-footer { padding: 12px 20px; border-top: 1px solid #F0F0F0; font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--brand-pink); opacity: 0; transition: opacity 0.2s; }
+  .gv-ing-support-card:hover .gv-ing-card-footer { opacity: 1; }
+
+  /* MODAL */
+  .gv-ing-modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    z-index: 2000; visibility: hidden; opacity: 0; transition: all 0.3s ease;
+    display: flex; align-items: center; justify-content: center; padding: 20px;
+  }
+  .gv-ing-modal-overlay.is-active { visibility: visible; opacity: 1; }
+
+  .gv-ing-modal {
+    background: white; width: 100%; max-width: 500px; border-radius: 24px;
+    overflow: hidden; position: relative; transform: translateY(20px); transition: transform 0.3s ease;
+  }
+  .gv-ing-modal-overlay.is-active .gv-ing-modal { transform: translateY(0); }
+
+  .gv-ing-modal-close {
+    position: absolute; top: 16px; right: 16px; width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.9); border: none; cursor: pointer; color: var(--berry-dark);
+    display: flex; align-items: center; justify-content: center; z-index: 10;
+  }
+  
+  .gv-ing-modal-img { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 80px; }
+  .gv-ing-modal-content { padding: 32px; }
+  
+  .gv-ing-modal-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; color: var(--brand-pink); margin-bottom: 12px; }
+  .gv-ing-modal-name { font-size: 28px; font-weight: 700; margin-bottom: 4px; color: var(--berry-dark); }
+  .gv-ing-modal-inci { font-size: 12px; text-transform: uppercase; color: var(--mid-gray); margin-bottom: 20px; letter-spacing: 0.05em; }
+  
+  .gv-ing-modal-divider { height: 1px; background: #F0F0F0; margin-bottom: 24px; }
+  
+  .gv-ing-modal-desc { font-size: 15px; color: var(--mid-gray); line-height: 1.7; margin-bottom: 24px; }
+  
+  .gv-ing-modal-why-box { background: #F9F9F9; border-left: 3px solid var(--brand-pink); padding: 20px; border-radius: 0 16px 16px 0; }
+  .gv-ing-modal-why-label { font-size: 11px; font-weight: 700; text-transform: uppercase; color: var(--brand-pink); margin-bottom: 6px; }
+  .gv-ing-modal-why-text { font-size: 13px; color: var(--berry-dark); line-height: 1.5; }
+
+  @media (max-width: 900px) {
+    .gv-ing-support-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .gv-ing-support-grid { grid-template-columns: 1fr; }
+  }
+{% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = document.querySelectorAll('.js-ing-card');
+    const overlay = document.getElementById('IngModalOverlay');
+    const closeBtn = document.getElementById('IngModalClose');
+    
+    const modalName = document.getElementById('ModalName');
+    const modalInci = document.getElementById('ModalInci');
+    const modalDesc = document.getElementById('ModalDesc');
+    const modalWhy = document.getElementById('ModalWhy');
+    const modalImg = document.getElementById('ModalImg');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const data = card.dataset;
+        
+        modalName.innerText = data.name;
+        modalInci.innerText = data.inci;
+        modalDesc.innerText = data.desc;
+        modalWhy.innerText = data.why;
+        modalImg.innerText = data.icon;
+        modalImg.style.background = data.color;
+        
+        overlay.classList.add('is-active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    const closeModal = () => {
+      overlay.classList.remove('is-active');
+      document.body.style.overflow = '';
+    };
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Supporting Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Label",
+      "default": "The Supporting Cast"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Every ingredient pulls its weight."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "No fillers, no padding. Every ingredient in our formulas has a functional reason to be there."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ingredient",
+      "name": "Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Niacinamide"
+        },
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon (Emoji)",
+          "default": "💊"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Background Color",
+          "default": "#F0EBF8"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Override Image (Macro)"
+        },
+        {
+          "type": "text",
+          "id": "inci",
+          "label": "INCI Name",
+          "default": "Niacinamide (Vitamin B3)"
+        },
+        {
+          "type": "text",
+          "id": "short_fn",
+          "label": "Short Function",
+          "default": "Minimises pores and strengthens the skin barrier."
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Full Description",
+          "default": "Niacinamide is a powerhouse vitamin that manages oil, calms redness, and improves uneven skin tone."
+        },
+        {
+          "type": "textarea",
+          "id": "why",
+          "label": "Why we use it",
+          "default": "It is one of the most researched and stable ingredients in modern skincare."
+        },
+        { "type": "product", "id": "prod_1", "label": "Found In Product 1" },
+        { "type": "product", "id": "prod_2", "label": "Found In Product 2" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Supporting Ingredients",
+      "blocks": [
+        { "type": "ingredient", "settings": { "name": "Niacinamide", "icon": "💊", "color": "#FFF0F5" } },
+        { "type": "ingredient", "settings": { "name": "Sodium Hyaluronate", "icon": "💧", "color": "#E0F4FF" } },
+        { "type": "ingredient", "settings": { "name": "Tranexamic Acid", "icon": "🔬", "color": "#F5E8FF" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,170 @@
+{
+  "sections": {
+    "hero": {
+      "type": "glowve-ingredients-hero",
+      "blocks": {
+        "stat_1": { "type": "stat", "settings": { "number": "3", "label": "Products" } },
+        "stat_2": { "type": "stat", "settings": { "number": "~25", "label": "Unique Actives" } },
+        "stat_3": { "type": "stat", "settings": { "number": "0", "label": "Hidden Complexes" } },
+        "stat_4": { "type": "stat", "settings": { "number": "8", "label": "Things we refuse to use" } }
+      },
+      "block_order": ["stat_1", "stat_2", "stat_3", "stat_4"],
+      "settings": {
+        "eyebrow": "The Ingredient Directory",
+        "title": "No secrets.<br><em>Science,</em> simplified.",
+        "text": "Every active, every functional ingredient, and exactly why it's there. Clinical concentrations, total transparency — no marketing names, no hidden complexes."
+      }
+    },
+    "star": {
+      "type": "glowve-ingredients-star",
+      "blocks": {
+        "alpha": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Alpha-Arbutin",
+            "icon_emoji": "🫐",
+            "color_theme": "peach",
+            "badge_1": "Tyrosinase Inhibitor",
+            "badge_2": "Brightening",
+            "inci": "ALPHA-ARBUTIN · 2% · from bearberry",
+            "desc": "Blocks melanin production at the source — not by stripping pigment, but by stopping new dark spots from forming. Clinically validated for PIH on South Asian skin tones.",
+            "why_label": "Why 2%",
+            "why_text": "EU-validated as the exact efficacy threshold without irritation. Not rounded up, not cut down."
+          }
+        },
+        "ceramide": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Triple Ceramide Complex",
+            "icon_emoji": "🧱",
+            "color_theme": "mint",
+            "badge_1": "Barrier Lipids",
+            "badge_2": "Skin Shield",
+            "inci": "CERAMIDE NP · CERAMIDE AP · CERAMIDE EOP",
+            "desc": "Your skin barrier is 50% ceramides. One ceramide type leaves gaps. All three, plus cholesterol and phytosphingosine, rebuild it properly.",
+            "why_label": "Why all three types",
+            "why_text": "Your skin contains NP, AP, and EOP in specific proportions. One type alone is like patching a wall with one kind of brick."
+          }
+        },
+        "uv": {
+          "type": "ingredient",
+          "settings": {
+            "name": "6-Filter UV System",
+            "icon_emoji": "☀️",
+            "color_theme": "yellow",
+            "badge_1": "Broad Spectrum",
+            "badge_2": "PA++++",
+            "inci": "TINOSORB M · MEXORYL SX · OCTISALATE · ENSULIZOLE",
+            "desc": "No single UV filter covers 280nm–400nm. Six filters working together leave zero gaps — zero white cast, matte finish.",
+            "why_label": "Why Pakistan needs this",
+            "why_text": "Pakistan's UV index hits 10–12 in summer. Most SPFs here were tested at the European standard of 4. That's not the same protection."
+          }
+        }
+      },
+      "block_order": ["alpha", "ceramide", "uv"],
+      "settings": {
+        "label": "Hero Ingredients",
+        "title": "Three ingredients.<br><em>Everything</em> built around them.",
+        "text": "Each product is built around one star active — chosen for clinical evidence, not trends."
+      }
+    },
+    "supporting": {
+      "type": "glowve-ingredients-supporting",
+      "blocks": {
+        "niacin": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Niacinamide",
+            "icon": "💊",
+            "color": "#FFF0F5",
+            "inci": "Niacinamide (Vitamin B3)",
+            "short_fn": "Minimises pores, evens skin tone, and strengthens the barrier.",
+            "desc": "Niacinamide is a powerhouse vitamin that manages oil, calms redness, and improves uneven skin tone.",
+            "why": "It is one of the most researched and stable ingredients in modern skincare."
+          }
+        },
+        "ha": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Sodium Hyaluronate",
+            "icon": "💧",
+            "color": "#E0F4FF",
+            "inci": "Sodium Hyaluronate",
+            "short_fn": "Penetrates deeper than standard HA to hydrate from within.",
+            "desc": "A smaller molecule weight of Hyaluronic Acid that can penetrate the top layer of skin.",
+            "why": "Topical hydration is temporary; internal hydration lasts."
+          }
+        },
+        "pant": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Panthenol (B5)",
+            "icon": "🍯",
+            "color": "#FFF8D6",
+            "inci": "Panthenol (Pro-Vitamin B5)",
+            "short_fn": "Locks moisture in and accelerates skin healing.",
+            "desc": "A soothing humectant that also helps the skin produce more lipids to repair the barrier.",
+            "why": "Essential for reducing trans-epidermal water loss (TEWL)."
+          }
+        }
+      },
+      "block_order": ["niacin", "ha", "pant"],
+      "settings": {
+        "label": "Supporting Cast",
+        "title": "Every ingredient<br>pulls its <em>weight.</em>",
+        "text": "No fillers, no padding. Every ingredient in our formulas has a functional reason to be there."
+      }
+    },
+    "refused": {
+      "type": "glowve-ingredients-refused",
+      "settings": {
+        "label": "Cleaner Formulas",
+        "title": "What we don't use.",
+        "text": "We formulate according to EU standards — the strictest in the world. We refuse over 1,400 ingredients."
+      }
+    },
+    "inci": {
+      "type": "glowve-ingredients-inci",
+      "blocks": {
+        "fade": {
+          "type": "product_list",
+          "settings": {
+            "fallback_name": "Fade Theory Serum",
+            "ingredient_count": "18",
+            "inci_list": "Aqua, <b>Niacinamide (10%)</b>, Glycerin, <b>Alpha-Arbutin (2%)</b>, <b>Tranexamic Acid (3%)</b>, Propanediol, Phenoxyethanol."
+          }
+        },
+        "soft": {
+          "type": "product_list",
+          "settings": {
+            "fallback_name": "Soft Reset Moisturizer",
+            "ingredient_count": "24",
+            "inci_list": "Aqua, <b>Ceramide NP</b>, <b>Ceramide AP</b>, <b>Ceramide EOP</b>, Squalane, <b>Panthenol</b>, Cholesterol, Phytosphingosine."
+          }
+        }
+      },
+      "block_order": ["fade", "soft"],
+      "settings": {
+        "label": "Full Transparency",
+        "title": "Complete INCI Lists",
+        "text": "Search every formula. We hide nothing."
+      }
+    },
+    "cta": {
+      "type": "glowve-quiz-cta",
+      "settings": {
+        "title": "Not sure which one is right for you?",
+        "text": "Answer 5 questions and we'll tell you exactly where to start.",
+        "btn_label": "Take the Skin Quiz →"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "star",
+    "supporting",
+    "refused",
+    "inci",
+    "cta"
+  ]
+}

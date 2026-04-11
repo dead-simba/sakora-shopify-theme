@@ -1,0 +1,253 @@
+<section class="gv-inci-section">
+  <div class="gv-container-narrow">
+    <div class="gv-section-header">
+      <div class="gv-section-label">{{ section.settings.label }}</div>
+      <h2 class="gv-section-title">{{ section.settings.title }}</h2>
+      <p class="gv-section-sub">{{ section.settings.text }}</p>
+    </div>
+
+    <div class="gv-inci-list">
+      {%- for block in section.blocks -%}
+        {%- assign p = all_products[block.settings.product] -%}
+        <div class="gv-inci-item js-inci-item" {{ block.shopify_attributes }}>
+          <button class="gv-inci-trigger js-inci-trigger">
+            <div class="gv-inci-trigger-left">
+              <div class="gv-inci-prod-thumb">
+                {%- if p.featured_image != blank -%}
+                  {{ p.featured_image | image_url: width: 120 | image_tag: loading: 'lazy' }}
+                {%- else -%}
+                  <span>🧴</span>
+                {%- endif -%}
+              </div>
+              <div class="gv-inci-prod-info">
+                <div class="gv-inci-prod-name">{{ p.title | default: block.settings.fallback_name }}</div>
+                <div class="gv-inci-prod-type">{{ p.type | default: 'Treatment' }}</div>
+              </div>
+            </div>
+            <div class="gv-inci-trigger-right">
+              <span class="gv-inci-count">{{ block.settings.ingredient_count }} ingredients</span>
+              <div class="gv-inci-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 9l-7 7-7-7"/></svg>
+              </div>
+            </div>
+          </button>
+          
+          <div class="gv-inci-body js-inci-body">
+            <div class="gv-inci-content">
+              <div class="gv-inci-text-wrap">
+                <div class="gv-inci-text">{{ block.settings.inci_list }}</div>
+              </div>
+              
+              <div class="gv-inci-note">
+                <div class="gv-inci-note-icon">✨</div>
+                <div>Actives are highlighted. We list our ingredients in descending order of concentration.</div>
+              </div>
+
+              {%- if p != blank -%}
+                <a href="{{ p.url }}" class="gv-inci-shop-btn">
+                  Shop {{ p.title }}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-inci-section { padding: 80px 0; background: #FFF; }
+  .gv-container-narrow { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+  .gv-inci-list { display: flex; flex-direction: column; gap: 16px; }
+
+  .gv-inci-item {
+    background: white;
+    border: 1px solid var(--warm-gray, #ECECEC);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  
+  .gv-inci-item:hover { border-color: var(--brand-pink); }
+  .gv-inci-item.is-open { border-color: var(--brand-pink); box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+
+  .gv-inci-trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  .gv-inci-trigger-left { display: flex; align-items: center; gap: 16px; }
+  .gv-inci-prod-thumb { width: 56px; height: 56px; border-radius: 12px; background: #F9F9F9; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+  .gv-inci-prod-thumb img { width: 100%; height: 100%; object-fit: contain; }
+  
+  .gv-inci-prod-name { font-size: 16px; font-weight: 700; color: var(--berry-dark); margin-bottom: 2px; }
+  .gv-inci-prod-type { font-size: 12px; color: var(--mid-gray); }
+
+  .gv-inci-trigger-right { display: flex; align-items: center; gap: 12px; }
+  .gv-inci-count { font-size: 11px; font-weight: 600; color: #888; background: #F3F3F3; padding: 4px 10px; border-radius: 100px; }
+  
+  .gv-inci-arrow {
+    width: 32px; height: 32px; border-radius: 50%; background: #F3F3F3;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .gv-inci-arrow svg { width: 14px; height: 14px; transition: transform 0.3s; }
+  
+  .gv-inci-item.is-open .gv-inci-arrow { background: var(--brand-pink); color: white; }
+  .gv-inci-item.is-open .gv-inci-arrow svg { transform: rotate(180deg); }
+
+  .gv-inci-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .gv-inci-content { padding: 0 20px 24px; border-top: 1px solid #F3F3F3; margin-top: 0; padding-top: 20px; }
+  
+  .gv-inci-text {
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--mid-gray);
+    letter-spacing: 0.05em;
+  }
+  
+  .gv-inci-text b { color: var(--brand-pink); font-weight: 600; }
+
+  .gv-inci-note {
+    margin-top: 24px;
+    padding: 12px 16px;
+    background: #FFF0F5;
+    border-radius: 12px;
+    font-size: 12px;
+    color: var(--mid-gray, #666);
+    display: flex;
+    gap: 10px;
+    line-height: 1.5;
+  }
+  
+  .gv-inci-shop-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    background: var(--berry-dark);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  
+  .gv-inci-shop-btn:hover { background: var(--brand-pink); transform: translateY(-2px); }
+
+  @media (max-width: 600px) {
+    .gv-inci-trigger-right .gv-inci-count { display: none; }
+  }
+{% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.js-inci-item');
+    
+    items.forEach(item => {
+      const trigger = item.querySelector('.js-inci-trigger');
+      const body = item.querySelector('.js-inci-body');
+      
+      trigger.addEventListener('click', () => {
+        const isOpen = item.classList.contains('is-open');
+        
+        // Close others
+        items.forEach(i => {
+          i.classList.remove('is-open');
+          i.querySelector('.js-inci-body').style.maxHeight = null;
+        });
+        
+        if (!isOpen) {
+          item.classList.add('is-open');
+          body.style.maxHeight = body.scrollHeight + "px";
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "INCI Lists",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Label",
+      "default": "Full Transparency"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Complete INCI Lists",
+      "default": "Every single molecule."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Description",
+      "default": "Search every formula. We hide nothing."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_list",
+      "name": "Product Ingredients",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Link Product"
+        },
+        {
+          "type": "text",
+          "id": "fallback_name",
+          "label": "Fallback Name (if no product)",
+          "default": "Product Formula"
+        },
+        {
+          "type": "text",
+          "id": "ingredient_count",
+          "label": "Total Ingredients",
+          "default": "18"
+        },
+        {
+          "type": "textarea",
+          "id": "inci_list",
+          "label": "Final INCI List",
+          "info": "Use <b>Active Name</b> to highlight actives.",
+          "default": "Aqua, <b>Niacinamide (10%)</b>, Glycerin, <b>Alpha-Arbutin (2%)</b>, Propanediol, Phenoxyethanol, Ethylhexylglycerin."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "INCI Lists",
+      "blocks": [
+        { "type": "product_list", "settings": { "fallback_name": "Fade Theory Serum" } },
+        { "type": "product_list", "settings": { "fallback_name": "Soft Reset Moisturizer" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
