@@ -259,6 +259,29 @@
               },
               "blocks": {}
             },
+            "gv_protocol": {
+              "type": "gv-protocol-picker",
+              "settings": {
+                "title": "Select Your Protocol",
+                "opt1_title": "1 Bottle",
+                "opt1_subtitle": "Try it out.",
+                "opt1_badge": "",
+                "opt1_badge_color": "coral",
+                "opt2_product": "2x-matter-uv-defense",
+                "opt2_title": "2 Bottles (2 Month Supply)",
+                "opt2_subtitle": "",
+                "opt2_free_shipping": true,
+                "opt2_badge": "Most Popular (Save 15%)",
+                "opt2_badge_color": "coral",
+                "opt3_product": "2x-matter-uv-defense",
+                "opt3_title": "3 Bottles (3 Month Supply)",
+                "opt3_subtitle": "",
+                "opt3_free_shipping": true,
+                "opt3_badge": "Best Value (Save 20%)",
+                "opt3_badge_color": "coral"
+              },
+              "blocks": {}
+            },
             "gv_guarantee": {
               "type": "gv-guarantee",
               "settings": {
@@ -278,29 +301,6 @@
             "gv_atc_bar": {
               "type": "gv-atc-bar",
               "settings": {},
-              "blocks": {}
-            },
-            "gv_protocol": {
-              "type": "gv-protocol-picker",
-              "settings": {
-                "title": "Select Your Protocol",
-                "opt1_title": "1 Bottle",
-                "opt1_subtitle": "Try it out.",
-                "opt1_badge": "",
-                "opt1_badge_color": "coral",
-                "opt2_product": "2x-daylite-sunscreen",
-                "opt2_title": "2 Bottles (2 Month Supply)",
-                "opt2_subtitle": "",
-                "opt2_free_shipping": true,
-                "opt2_badge": "Most Popular (Save 15%)",
-                "opt2_badge_color": "coral",
-                "opt3_product": "3x-daylite-sunscreen",
-                "opt3_title": "3 Bottles (3 Month Supply)",
-                "opt3_subtitle": "",
-                "opt3_free_shipping": true,
-                "opt3_badge": "Best Value (Save 20%)",
-                "opt3_badge_color": "coral"
-              },
               "blocks": {}
             }
           },
