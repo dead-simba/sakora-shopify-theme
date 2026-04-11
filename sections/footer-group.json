@@ -25,14 +25,14 @@
           "type": "nav_column",
           "settings": {
             "title": "Learn",
-            "menu": "footer"
+            "menu": "footer-company"
           }
         },
         "col_help": {
           "type": "nav_column",
           "settings": {
             "title": "Help",
-            "menu": "footer"
+            "menu": "footer-support"
           }
         }
       },
