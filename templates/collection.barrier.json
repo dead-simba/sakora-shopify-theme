@@ -1,16 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "glowve-collection-hero",
       "settings": {
-        "bg_color": "#E8F5E4",
+        "bg_color": "#e8f5e4",
+        "padding_y": 80,
         "show_back_link": true,
         "back_link_text": "back to shop",
         "back_link_url": "/collections/all",
         "eyebrow": "Barrier Repair Collection",
-        "eyebrow_color": "#5A7056",
-        "title": "for <em>sensitive</em>, dry & compromised skin",
-        "title_color": "#1A1A1A",
+        "eyebrow_color": "#5a7056",
+        "title": "For <em>sensitive</em>, dry &amp; compromised skin",
+        "title_color": "#1a1a1a",
         "subtitle": ""
       }
     },
@@ -35,9 +45,14 @@
         "lipid"
       ],
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
+        "max_width": 760,
+        "eyebrow": "",
+        "eyebrow_color": "#ff4d8d",
         "title": "Your barrier isn't broken. It's just depleted.",
-        "body": "<p>Your skin barrier is a lipid lattice: ceramides, cholesterol, and fatty acids in a ratio of roughly 50:25:25. Over-exfoliation, harsh cleansers, Pakistan's hard water, and even stress strip this mortar layer by layer.</p><p>The result? Skin that feels tight, reacts to everything, and can't hold moisture. You put on moisturiser and it feels like it evaporates within the hour. Fragrance that never bothered you starts stinging. Actives that used to work now cause irritation. That's not sensitivity \u2014 that's a barrier that needs rebuilding.</p><p>The fix isn't more products \u2014 it's replacing what was lost. Ceramides replace the lipids directly. Niacinamide stimulates your skin to produce more of its own ceramides. And that combination \u2014 external reinforcement plus internal stimulation \u2014 is how you actually repair a compromised barrier, not just mask the symptoms.</p>"
+        "title_color": "#1a1a1a",
+        "body": "<p>Your skin barrier is a lipid lattice: ceramides, cholesterol, and fatty acids in a ratio of roughly 50:25:25. Over-exfoliation, harsh cleansers, Pakistan's hard water, and even stress strip this mortar layer by layer.</p><p>The result? Skin that feels tight, reacts to everything, and can't hold moisture. You put on moisturiser and it feels like it evaporates within the hour. Fragrance that never bothered you starts stinging. Actives that used to work now cause irritation. That's not sensitivity — that's a barrier that needs rebuilding.</p><p>The fix isn't more products — it's replacing what was lost. Ceramides replace the lipids directly. Niacinamide stimulates your skin to produce more of its own ceramides. And that combination — external reinforcement plus internal stimulation — is how you actually repair a compromised barrier, not just mask the symptoms.</p>",
+        "body_color": "#4a3f3a"
       }
     },
     "symptoms": {
@@ -79,8 +94,9 @@
         "s4"
       ],
       "settings": {
-        "bg_color": "#FFFFFF",
-        "title": "Signs your barrier needs attention"
+        "bg_color": "#ffffff",
+        "title": "Signs your barrier needs attention",
+        "title_color": "#1a1a1a"
       }
     },
     "primary": {
@@ -122,30 +138,37 @@
         "i4"
       ],
       "settings": {
-        "bg_color": "#E2F5EE",
+        "bg_color": "#e2f5ee",
         "section_label": "Your Primary Barrier Product",
-        "label_color": "#5A7056",
-        "product": "barrier-renew-moisturizer",
+        "label_color": "#5a7056",
+        "section_title": "",
+        "product": "soft-reset-moisturizer",
         "custom_title": "Barrier Renew<br>Moisturizer",
         "tagline": "Ceramides that repair. Niacinamide that rebuilds. Hyaluronic Acid that holds.",
         "img_bg_gradient": "linear-gradient(135deg, #F5EEFF 0%, #E8D5F0 100%)",
         "badge_text": "Start Here",
-        "badge_bg": "#5A7056",
-        "badge_text_color": "#FFFFFF"
+        "badge_bg": "#5a7056",
+        "badge_text_color": "#ffffff",
+        "stars": false,
+        "review_text": "4.9 · 1,547 reviews"
       }
     },
     "supporting": {
       "type": "glowve-paired-product",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "card_size": "standard",
         "section_label": "Two products, overlapping benefits",
-        "label_color": "#FF4D8D",
-        "product": "2x-fade-theory",
+        "label_color": "#ff4d8d",
+        "section_title": "",
+        "product": "fade-theory",
         "card_eyebrow": "Brightening Serum",
         "custom_title": "2% Alpha Arbutin<br>+ Vitamin C",
-        "note_html": "<p>The niacinamide in the serum also builds your barrier \u2014 it reinforces ceramide production and reduces trans-epidermal water loss. <strong>So when you use both, you're getting barrier support from two products simultaneously.</strong> The serum doesn't replace the moisturizer. But it does make the whole stack more effective.</p>",
-        "img_bg_gradient": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)"
+        "note_html": "<p>The niacinamide in the serum also builds your barrier — it reinforces ceramide production and reduces trans-epidermal water loss. <strong>So when you use both, you're getting barrier support from two products simultaneously.</strong> The serum doesn't replace the moisturizer. But it does make the whole stack more effective.</p>",
+        "img_bg_gradient": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)",
+        "hide_price": false,
+        "hide_add_to_bag": false,
+        "link_text": "View Details →"
       }
     },
     "quiz": {
