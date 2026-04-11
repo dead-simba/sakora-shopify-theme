@@ -381,7 +381,7 @@
         "soft": {
           "type": "product_list",
           "settings": {
-            "product": "",
+            "product": "soft-reset-moisturizer",
             "fallback_name": "Soft Reset",
             "fallback_type": "Barrier Repair Moisturizer",
             "thumb_gradient": "linear-gradient(135deg, #E2F5EE, #2ABFA3)",
@@ -393,7 +393,7 @@
         "daylite": {
           "type": "product_list",
           "settings": {
-            "product": "",
+            "product": "daylite-spf-50-sunscreen",
             "fallback_name": "Daylite",
             "fallback_type": "SPF 50+ Sunscreen PA++++",
             "thumb_gradient": "linear-gradient(135deg, #FFF8D6, #F5A623)",
