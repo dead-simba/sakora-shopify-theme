@@ -74,9 +74,9 @@
         {%- endif -%}
 
         {%- if section.settings.stars -%}
-          <div class="gv-featured-stars" style="display:flex;align-items:center;gap:8px;margin-bottom:24px;">
-            <span style="color:#FFB347;font-size:14px;letter-spacing:1px;">★★★★★</span>
-            <span style="font-family:var(--font-sans,'Poppins',sans-serif);font-size:13px;color:var(--mid-gray,#666666);">{{ section.settings.review_text }}</span>
+          <div class="gv-featured-stars">
+            <span class="gv-star-icons">★★★★★</span>
+            <span class="gv-star-text">{{ section.settings.review_text }}</span>
           </div>
         {%- endif -%}
 
@@ -143,16 +143,20 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 0;
-    align-items: start;
+    align-items: stretch;
     background: white;
     border-radius: 24px;
-    overflow: hidden;
     border: 1px solid var(--warm-gray, #ECECEC);
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
   .gv-featured-img-wrap {
     padding: 0;
     display: block;
+    align-self: start;
+    position: sticky;
+    top: 100px;
+    border-radius: 24px 0 0 24px;
+    overflow: hidden;
   }
   .gv-featured-img-wrap img, .gv-featured-img-wrap svg {
     max-width: 100%;
@@ -237,6 +241,22 @@
     border-radius: 100px;
     border: 1px solid rgba(255,179,71,0.3);
   }
+  .gv-featured-stars {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .gv-star-icons {
+    color: #FFB347;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .gv-star-text {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    color: var(--mid-gray, #666666);
+  }
 
   .gv-featured-footer {
     display: flex;
@@ -289,8 +309,29 @@
     .gv-featured-card {
       grid-template-columns: 1fr;
     }
+    .gv-featured-img-wrap {
+      position: static;
+      border-radius: 24px 24px 0 0;
+    }
     .gv-featured-content {
       padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .gv-featured-badge { order: 1; }
+    .gv-featured-name { order: 2; margin-top: 0; }
+    .gv-featured-tagline { order: 3; }
+    .gv-ingredient-list { order: 4; }
+    .gv-product-pills { order: 5; }
+    .gv-featured-stars { order: 6; }
+    
+    .gv-featured-footer {
+      order: 0;
+      border-top: none;
+      border-bottom: 1px solid var(--warm-gray, #ECECEC);
+      padding-top: 0;
+      padding-bottom: 24px;
+      margin-bottom: 24px;
     }
   }
   @media (max-width: 640px) {
@@ -305,6 +346,15 @@
     }
     .gv-featured-price {
       font-size: 28px;
+    }
+    .gv-ingredient-list li {
+      flex-direction: column;
+      gap: 4px;
+    }
+    .gv-ing-name {
+      min-width: 0;
+      padding-top: 0;
+      margin-bottom: 2px;
     }
   }
 {% endstylesheet %}
