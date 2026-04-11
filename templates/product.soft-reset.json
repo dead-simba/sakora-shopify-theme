@@ -346,7 +346,7 @@
             "clean_badge_4": "Mineral oil-free",
             "clean_badge_5": "Cruelty-free",
             "clean_badge_6": "Made in Pakistan",
-            "content": ""
+            "content": "<p>Aqua, Glycerin, Niacinamide, Propanediol, Panthenol, Betaine, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Ceramide NP, Ceramide AP, Ceramide EOP, Cholesterol, Phytosphingosine, Sodium Hyaluronate, Allantoin, Tocopherol, Cetearyl Olivate, Sorbitan Olivate, Carbomer, Xanthan Gum, Sodium Lauroyl Lactylate, Disodium EDTA, 1,2-Hexanediol, Phenoxyethanol, Ethylhexylglycerin, Fragrance.</p>"
           }
         },
         "science_fiQrm8": {
@@ -378,27 +378,21 @@
             "ing_1_name": "Triple Ceramide Complex",
             "ing_1_badge": "Ceramide NP / AP / EOP",
             "ing_1_benefit": "Replicates your skin's natural lipid profile to immediately reinforce and rebuild the outer barrier. No single ceramide type is enough, patching it with one leaves gaps.",
-            "ing_1_image": "shopify://shop_images/BR_Ing_Ceramide.webp",
             "ing_2_name": "Niacinamide",
             "ing_2_badge": "Multi-Tasker 5%",
             "ing_2_benefit": "Vitamin B3. Builds natural ceramides for barrier support, reduces oil production, and calms redness. Used at the clinically relevant 5% dose.",
-            "ing_2_image": "shopify://shop_images/BR_Ing_Niacinamide.webp",
             "ing_3_name": "Panthenol",
             "ing_3_badge": "Soothing B5",
             "ing_3_benefit": "Provitamin B5 converts into pantothenic acid in your skin, accelerates cell renewal, and reduces redness. Helps skin adapt without irritation.",
-            "ing_3_image": "shopify://shop_images/BR_Ing_Panthenol.webp",
             "ing_4_name": "Sodium Hyaluronate",
             "ing_4_badge": "Humectant",
             "ing_4_benefit": "Holds up to 1,000× its weight in water, drawing moisture from the air into your skin. The deeper-penetrating salt form of hyaluronic acid.",
-            "ing_4_image": "shopify://shop_images/BR_Ing_Hyaluronic.webp",
             "ing_5_name": "Allantoin",
             "ing_5_badge": "Skin Soother",
             "ing_5_benefit": "Derived from comfrey. Softens and soothes — helps skin tolerate actives and recover faster. The unsung hero in barrier formulas.",
-            "ing_5_image": "shopify://shop_images/BR_Ing_Allantoin.webp",
             "ing_6_name": "Olivem 1000",
             "ing_6_badge": "Natural Emulsifier",
-            "ing_6_benefit": "Derived from olive oil. Naturally compatible with skin lipids to create a cream texture that absorbs smoothly without a film or heaviness.",
-            "ing_6_image": "shopify://shop_images/BR_Ing_Olivem.webp"
+            "ing_6_benefit": "Derived from olive oil. Naturally compatible with skin lipids to create a cream texture that absorbs smoothly without a film or heaviness."
           }
         },
         "how_to_use_NikUg6": {
