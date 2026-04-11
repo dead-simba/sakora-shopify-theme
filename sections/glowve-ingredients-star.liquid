@@ -1,16 +1,9 @@
 <section class="gv-ing-star-section">
   <div class="gv-container">
-    <div class="gv-split-header">
-      <div class="gv-header-col gv-header-col--label">
-        <div class="gv-section-label">{{ section.settings.label }}</div>
-      </div>
-      <div class="gv-header-col gv-header-col--title">
-        <h2 class="gv-section-title">{{ section.settings.title }}</h2>
-      </div>
-      <div class="gv-header-col gv-header-col--sub">
-        <p class="gv-section-sub">{{ section.settings.text }}</p>
-      </div>
-    </div>
+    <!-- STACKED header — matches mockup exactly -->
+    <div class="gv-section-label">{{ section.settings.label }}</div>
+    <h2 class="gv-section-title">{{ section.settings.title }}</h2>
+    <p class="gv-section-sub">{{ section.settings.text }}</p>
 
     <div class="gv-ing-star-grid">
       {%- for block in section.blocks -%}
@@ -69,20 +62,10 @@
 </section>
 
 {% stylesheet %}
-  .gv-ing-star-section {
-    padding: 96px 0;
-    background: white;
-  }
-  
-  /* SPLIT HEADER LAYOUT */
-  .gv-split-header {
-    display: grid;
-    grid-template-columns: 200px 1fr 340px;
-    gap: 40px;
-    align-items: end;
-    margin-bottom: 60px;
-  }
+  .gv-ing-star-section { padding: 96px 40px; background: white; }
+  .gv-ing-star-section .gv-container { max-width: 1200px; margin: 0 auto; }
 
+  /* STACKED HEADER — Matching mockup exactly */
   .gv-section-label {
     font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
     color: #FF4D8D; margin-bottom: 12px;
@@ -91,25 +74,22 @@
   .gv-section-label::before { content: ''; display: block; width: 28px; height: 1px; background: #FF4D8D; }
   
   .gv-section-title {
-    font-size: 48px; font-weight: 700; color: #1A1A1A; line-height: 1.1; letter-spacing: -0.02em;
+    font-size: 48px; font-weight: 700; color: #1A1A1A; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 12px;
   }
   .gv-section-title em { font-style: normal; color: #FF4D8D; }
 
   .gv-section-sub {
-    font-size: 16px; color: #666; line-height: 1.7;
+    font-size: 16px; color: #666; line-height: 1.7; margin-bottom: 56px; max-width: 580px;
   }
 
   /* STAR GRID */
-  .gv-ing-star-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-  }
+  .gv-ing-star-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 
   .gv-ing-star-card {
     background: white; border-radius: 24px; border: 1px solid #ECECEC;
     overflow: hidden; display: flex; flex-direction: column;
-    transition: transform 0.3s ease, box-shadow 0.3s;
+    transition: transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.3s;
     box-shadow: 0 4px 24px rgba(0,0,0,0.06);
   }
   .gv-ing-star-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(0,0,0,0.1); }
@@ -123,53 +103,55 @@
   .gv-ing-star-icon { font-size: 64px; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.15)); }
   .gv-ing-star-header-blob { position: absolute; border-radius: 50%; filter: blur(30px); opacity: 0.5; width: 200px; height: 200px; }
 
-  /* CARD THEMES */
-  .gv-ing-star-card--peach .gv-ing-star-header { background: #FFF0E6; }
-  .gv-ing-star-card--peach .gv-ing-star-header-blob { background: #FF8C5A; top: -50px; right: -50px; }
-  .gv-ing-star-card--peach .gv-ing-badge { background: #FFE6D6; color: #E8622A; }
+  /* Alpha-Arbutin — peach */
+  .gv-ing-star-card--peach .gv-ing-star-header { background: linear-gradient(135deg, #FFF0E6, #FFD4B8); }
+  .gv-ing-star-card--peach .gv-ing-star-header-blob { background: #FF8C5A; top: -40px; right: -40px; }
+  .gv-ing-star-card--peach .gv-ing-badge { background: #FFF0E6; color: #E8622A; }
 
-  .gv-ing-star-card--mint .gv-ing-star-header { background: #E2F5EE; }
-  .gv-ing-star-card--mint .gv-ing-star-header-blob { background: #2ABFA3; top: -50px; right: -50px; }
-  .gv-ing-star-card--mint .gv-ing-badge { background: #D4F0E6; color: #1A8A72; }
+  /* Ceramides — mint */
+  .gv-ing-star-card--mint .gv-ing-star-header { background: linear-gradient(135deg, #E2F5EE, #B8E8D4); }
+  .gv-ing-star-card--mint .gv-ing-star-header-blob { background: #2ABFA3; top: -40px; right: -40px; }
+  .gv-ing-star-card--mint .gv-ing-badge { background: #E2F5EE; color: #1A8A72; }
 
-  .gv-ing-star-card--yellow .gv-ing-star-header { background: #FFF8D6; }
-  .gv-ing-star-card--yellow .gv-ing-star-header-blob { background: #F5A623; top: -50px; right: -50px; }
-  .gv-ing-star-card--yellow .gv-ing-badge { background: #FEF0B2; color: #8B6914; }
+  /* UV System — yellow */
+  .gv-ing-star-card--yellow .gv-ing-star-header { background: linear-gradient(135deg, #FFF8D6, #FFE89A); }
+  .gv-ing-star-card--yellow .gv-ing-star-header-blob { background: #F5A623; top: -40px; right: -40px; }
+  .gv-ing-star-card--yellow .gv-ing-badge { background: #FFF8D6; color: #8B6914; }
 
-  .gv-ing-star-body { padding: 32px; flex-grow: 1; display: flex; flex-direction: column; }
-  .gv-ing-star-badges { display: flex; gap: 8px; margin-bottom: 16px; }
-  .gv-ing-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; padding: 4px 10px; border-radius: 100px; }
+  .gv-ing-star-body { padding: 28px; flex-grow: 1; display: flex; flex-direction: column; }
+  .gv-ing-star-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+  .gv-ing-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 100px; }
   
-  .gv-ing-star-name { font-size: 24px; font-weight: 700; color: #1A1A1A; margin-bottom: 4px; }
-  .gv-ing-star-inci { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666; margin-bottom: 20px; }
-  .gv-ing-star-desc { font-size: 14px; color: #666; line-height: 1.6; margin-bottom: 24px; flex-grow: 1; }
+  .gv-ing-star-name { font-size: 22px; font-weight: 700; color: #1A1A1A; letter-spacing: -0.01em; margin-bottom: 4px; line-height: 1.2; }
+  .gv-ing-star-inci { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #666; margin-bottom: 16px; }
+  .gv-ing-star-desc { font-size: 13px; color: #666; line-height: 1.75; margin-bottom: 16px; flex-grow: 1; }
 
-  .gv-ing-why-box { background: #F9F9F9; border-left: 3px solid #FF4D8D; padding: 16px; border-radius: 0 12px 12px 0; margin-bottom: 24px; }
-  .gv-ing-why-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #FF4D8D; margin-bottom: 4px; }
-  .gv-ing-why-text { font-size: 12px; color: #1A1A1A; line-height: 1.5; }
+  .gv-ing-why-box { background: #F8F8F8; border-left: 3px solid #FF4D8D; padding: 12px 14px; border-radius: 0 10px 10px 0; margin-bottom: 20px; }
+  .gv-ing-why-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #FF4D8D; margin-bottom: 5px; }
+  .gv-ing-why-text { font-size: 12px; color: #1A1A1A; line-height: 1.6; }
 
-  .gv-ing-found-label { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #BBB; margin-bottom: 12px; }
+  .gv-ing-found-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #BBB; margin-bottom: 10px; }
   
   .gv-ing-product-link {
-    display: flex; align-items: center; gap: 12px; background: #F9F9F9; padding: 10px;
-    border-radius: 16px; text-decoration: none; border: 1px solid #EEE; transition: all 0.2s;
+    display: flex; align-items: center; gap: 12px; background: #F8F8F8; padding: 10px 14px 10px 10px;
+    border-radius: 14px; text-decoration: none; border: 1px solid #ECECEC; transition: all 0.2s;
   }
-  .gv-ing-product-link:hover { border-color: #FF4D8D; transform: translateX(4px); }
+  .gv-ing-product-link:hover { border-color: #FF4D8D; box-shadow: 0 4px 16px rgba(255,77,141,0.12); transform: translateY(-2px); }
   
-  .gv-ing-product-img { width: 44px; height: 44px; border-radius: 8px; background: white; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 20px; }
-  .gv-ing-product-img img { width: 100%; height: 100%; object-fit: contain; }
+  .gv-ing-product-img { width: 48px; height: 48px; border-radius: 10px; background: white; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .gv-ing-product-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
   
   .gv-ing-p-name { font-size: 13px; font-weight: 700; color: #1A1A1A; line-height: 1.2; }
-  .gv-ing-p-type { font-size: 11px; color: #666; }
-  .gv-ing-p-arrow { margin-left: auto; color: #FF4D8D; }
-  .gv-ing-p-arrow svg { width: 16px; height: 16px; }
+  .gv-ing-p-type { font-size: 11px; color: #666; margin-top: 2px; }
+  .gv-ing-p-arrow { margin-left: auto; color: #FF4D8D; opacity: 0; transform: translateX(-4px); transition: opacity 0.2s, transform 0.2s; }
+  .gv-ing-product-link:hover .gv-ing-p-arrow { opacity: 1; transform: translateX(0); }
+  .gv-ing-p-arrow svg { width: 14px; height: 14px; }
 
-  @media (max-width: 1024px) {
-    .gv-split-header { grid-template-columns: 1fr; gap: 12px; align-items: start; }
-    .gv-header-col--sub { margin-bottom: 20px; }
+  @media (max-width: 1100px) {
     .gv-ing-star-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 640px) {
+    .gv-ing-star-section { padding: 64px 20px; }
     .gv-ing-star-grid { grid-template-columns: 1fr; }
     .gv-section-title { font-size: 32px; }
   }
@@ -177,26 +159,11 @@
 
 {% schema %}
 {
-  "name": "Star Ingredients (Exact)",
+  "name": "Star Ingredients",
   "settings": [
-    {
-      "type": "text",
-      "id": "label",
-      "label": "Section Label",
-      "default": "Hero Ingredients"
-    },
-    {
-      "type": "html",
-      "id": "title",
-      "label": "Title",
-      "default": "Three ingredients.<br><em>Everything</em> built around them."
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Description",
-      "default": "Each product is built around one star active — chosen for clinical evidence, not trends. Here's what they are and why we chose them."
-    }
+    { "type": "text", "id": "label", "label": "Section Label", "default": "Hero Ingredients" },
+    { "type": "html", "id": "title", "label": "Title", "default": "Three ingredients.<br><em>Everything</em> built around them." },
+    { "type": "textarea", "id": "text", "label": "Description", "default": "Each product is built around one star active — chosen for clinical evidence, not trends. Here's what they are and why we chose them." }
   ],
   "blocks": [
     {
@@ -217,16 +184,16 @@
         { "type": "text", "id": "badge_1", "label": "Badge 1", "default": "Tyrosinase Inhibitor" },
         { "type": "text", "id": "badge_2", "label": "Badge 2", "default": "Brightening" },
         { "type": "text", "id": "inci", "label": "INCI Details", "default": "ALPHA-ARBUTIN · 2% · from bearberry" },
-        { "type": "textarea", "id": "desc", "label": "Description", "default": "Blocks melanin production at the source — not by stripping pigment, but by stopping new dark spots from forming." },
+        { "type": "textarea", "id": "desc", "label": "Description", "default": "Blocks melanin production at the source." },
         { "type": "text", "id": "why_label", "label": "Why Label", "default": "Why 2%" },
-        { "type": "textarea", "id": "why_text", "label": "Why Text", "default": "EU-validated as the exact efficacy threshold without irritation. Not rounded up, not cut down." },
+        { "type": "textarea", "id": "why_text", "label": "Why Text", "default": "EU-validated as the exact efficacy threshold without irritation." },
         { "type": "product", "id": "product", "label": "Featured Product" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Star Ingredients (Exact)",
+      "name": "Star Ingredients",
       "blocks": [
         { "type": "ingredient", "settings": { "name": "Alpha-Arbutin", "icon_emoji": "🫐", "color_theme": "peach" } },
         { "type": "ingredient", "settings": { "name": "Triple Ceramide Complex", "icon_emoji": "🧱", "color_theme": "mint" } },

@@ -1,16 +1,9 @@
 <section class="gv-inci-section">
   <div class="gv-container">
-    <div class="gv-split-header">
-      <div class="gv-header-col gv-header-col--label">
-        <div class="gv-section-label">{{ section.settings.label }}</div>
-      </div>
-      <div class="gv-header-col gv-header-col--title">
-        <h2 class="gv-section-title">{{ section.settings.title }}</h2>
-      </div>
-      <div class="gv-header-col gv-header-col--sub">
-        <p class="gv-section-sub">{{ section.settings.text }}</p>
-      </div>
-    </div>
+    <!-- STACKED header — matches mockup -->
+    <div class="gv-inci-label">{{ section.settings.label }}</div>
+    <h2 class="gv-inci-title">{{ section.settings.title }}</h2>
+    <p class="gv-inci-intro">{{ section.settings.text }}</p>
 
     <div class="gv-inci-list">
       {%- for block in section.blocks -%}
@@ -18,7 +11,7 @@
         <div class="gv-inci-item js-inci-item" {{ block.shopify_attributes }}>
           <button class="gv-inci-trigger js-inci-trigger">
             <div class="gv-inci-trigger-left">
-              <div class="gv-inci-prod-thumb">
+              <div class="gv-inci-prod-thumb" style="background: {{ block.settings.thumb_gradient }};">
                 {%- if p.featured_image != blank -%}
                   {{ p.featured_image | image_url: width: 120 | image_tag: loading: 'lazy' }}
                 {%- else -%}
@@ -27,7 +20,7 @@
               </div>
               <div class="gv-inci-prod-info">
                 <div class="gv-inci-prod-name">{{ p.title | default: block.settings.fallback_name }}</div>
-                <div class="gv-inci-prod-type">{{ p.type | default: block.settings.fallback_type }}</div>
+                <div class="gv-inci-prod-type">{{ block.settings.fallback_type }}</div>
               </div>
             </div>
             <div class="gv-inci-trigger-right">
@@ -40,18 +33,16 @@
           
           <div class="gv-inci-body js-inci-body">
             <div class="gv-inci-content">
-              <div class="gv-inci-text-wrap">
-                <div class="gv-inci-text">{{ block.settings.inci_list }}</div>
-              </div>
+              <div class="gv-inci-text">{{ block.settings.inci_list }}</div>
               
               <div class="gv-inci-note">
-                <div class="gv-inci-note-icon">💡</div>
-                <div>Highlighted ingredients are key actives. Listed from highest to lowest concentration as per INCI convention.</div>
+                <span>💡</span>
+                <span>{{ block.settings.note | default: 'Highlighted ingredients are key actives. Listed from highest to lowest concentration as per INCI convention.' }}</span>
               </div>
 
               {%- if p != blank -%}
                 <a href="{{ p.url }}" class="gv-inci-shop-btn">
-                  Shop {{ p.title }}
+                  Shop {{ p.title | default: block.settings.fallback_name }}
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               {%- endif -%}
@@ -64,48 +55,53 @@
 </section>
 
 {% stylesheet %}
-  .gv-inci-section { padding: 80px 0; background: #FFF; }
-  
-  /* SPLIT HEADER MATCH */
-  .gv-split-header { display: grid; grid-template-columns: 200px 1fr 340px; gap: 40px; align-items: end; margin-bottom: 60px; }
-  .gv-section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: #FF4D8D; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-  .gv-section-label::before { content: ''; display: block; width: 28px; height: 1px; background: #FF4D8D; }
-  .gv-section-title { font-size: 48px; font-weight: 700; color: #1A1A1A; line-height: 1.1; letter-spacing: -0.02em; }
-  .gv-section-title em { font-style: normal; color: #FF4D8D; }
-  .gv-section-sub { font-size: 16px; color: #666; line-height: 1.7; }
+  .gv-inci-section { padding: 96px 40px; background: #FAFAFA; }
+  .gv-inci-section .gv-container { max-width: 1200px; margin: 0 auto; }
 
-  .gv-inci-list { display: flex; flex-direction: column; gap: 16px; max-width: 800px; margin: 0 auto; }
-
-  .gv-inci-item { background: white; border: 1px solid #ECECEC; border-radius: 20px; overflow: hidden; transition: all 0.2s ease; }
-  .gv-inci-item:hover { border-color: #FF4D8D; }
-  .gv-inci-item.is-open { border-color: #FF4D8D; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-
-  .gv-inci-trigger { width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; background: none; border: none; cursor: pointer; text-align: left; }
-  .gv-inci-trigger-left { display: flex; align-items: center; gap: 16px; }
-  .gv-inci-prod-thumb { width: 56px; height: 56px; border-radius: 12px; background: #F9F9F9; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-  .gv-inci-prod-thumb img { width: 100%; height: 100%; object-fit: contain; }
-  .gv-inci-prod-name { font-size: 16px; font-weight: 700; color: #1A1A1A; margin-bottom: 2px; }
-  .gv-inci-prod-type { font-size: 12px; color: #666; }
-  .gv-inci-trigger-right { display: flex; align-items: center; gap: 12px; }
-  .gv-inci-count { font-size: 11px; font-weight: 600; color: #888; background: #F3F3F3; padding: 4px 10px; border-radius: 100px; }
-  .gv-inci-arrow { width: 32px; height: 32px; border-radius: 50%; background: #F3F3F3; display: flex; align-items: center; justify-content: center; color: #1A1A1A; transition: all 0.3s; }
-  .gv-inci-arrow svg { width: 14px; height: 14px; transition: transform 0.3s; }
-  .gv-inci-item.is-open .gv-inci-arrow { background: #FF4D8D; color: white; }
-  .gv-inci-item.is-open .gv-inci-arrow svg { transform: rotate(180deg); }
-
-  .gv-inci-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-  .gv-inci-content { padding: 0 20px 24px; border-top: 1px solid #F3F3F3; margin-top: 0; padding-top: 20px; }
-  .gv-inci-text { font-family: 'Poppins', sans-serif; font-size: 13px; line-height: 1.8; color: #666; letter-spacing: 0.05em; }
-  .gv-inci-text b, .gv-inci-text .gv-inci-active { color: #FF4D8D; font-weight: 600; }
-
-  .gv-inci-note { margin-top: 24px; padding: 12px 16px; background: #FFF0F5; border-radius: 12px; font-size: 12px; color: #666; display: flex; gap: 10px; line-height: 1.5; }
-  .gv-inci-shop-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; background: #1A1A1A; color: white; padding: 12px 24px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
-  .gv-inci-shop-btn:hover { background: #FF4D8D; transform: translateY(-2px); }
-
-  @media (max-width: 1024px) {
-    .gv-split-header { grid-template-columns: 1fr; gap: 12px; align-items: start; }
+  /* STACKED HEADER */
+  .gv-inci-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+    color: #FF4D8D; margin-bottom: 12px; display: flex; align-items: center; gap: 10px;
   }
+  .gv-inci-label::before { content: ''; display: block; width: 28px; height: 1px; background: #FF4D8D; }
+  .gv-inci-title { font-size: 48px; font-weight: 700; color: #1A1A1A; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 12px; }
+  .gv-inci-title em { font-style: normal; color: #FF4D8D; }
+  .gv-inci-intro { font-size: 15px; color: #666; line-height: 1.7; max-width: 640px; margin-bottom: 40px; }
+
+  .gv-inci-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .gv-inci-item { background: white; border-radius: 16px; border: 1px solid #ECECEC; overflow: hidden; transition: box-shadow 0.2s; }
+  .gv-inci-item:hover { box-shadow: 0 4px 20px rgba(0,0,0,0.06); }
+  .gv-inci-item.is-open { border-color: #FF4D8D; }
+
+  .gv-inci-trigger { display: flex; align-items: center; justify-content: space-between; padding: 22px 28px; cursor: pointer; background: none; border: none; width: 100%; text-align: left; }
+  .gv-inci-trigger-left { display: flex; align-items: center; gap: 16px; }
+  .gv-inci-prod-thumb { width: 56px; height: 56px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; overflow: hidden; }
+  .gv-inci-prod-thumb img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
+  .gv-inci-prod-name { font-size: 17px; font-weight: 700; color: #1A1A1A; }
+  .gv-inci-prod-type { font-size: 12px; color: #666; margin-top: 2px; }
+
+  .gv-inci-trigger-right { display: flex; align-items: center; gap: 12px; }
+  .gv-inci-count { font-size: 11px; font-weight: 600; color: #666; background: #F3F3F3; padding: 4px 12px; border-radius: 100px; }
+  .gv-inci-arrow { width: 32px; height: 32px; border-radius: 50%; background: #F3F3F3; display: flex; align-items: center; justify-content: center; transition: transform 0.3s, background 0.2s; flex-shrink: 0; }
+  .gv-inci-arrow svg { width: 14px; height: 14px; color: #1A1A1A; transition: transform 0.3s; }
+  .gv-inci-item.is-open .gv-inci-arrow { background: #FF4D8D; }
+  .gv-inci-item.is-open .gv-inci-arrow svg { color: white; transform: rotate(180deg); }
+
+  .gv-inci-body { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .gv-inci-content { padding: 0 28px 28px; border-top: 1px solid #ECECEC; padding-top: 20px; }
+  .gv-inci-text { font-size: 13px; color: #666; line-height: 2.0; font-family: 'Courier New', monospace; letter-spacing: 0.01em; }
+  .gv-inci-text b { color: #FF4D8D; font-weight: 600; }
+
+  .gv-inci-note { margin-top: 16px; font-size: 12px; color: #666; display: flex; align-items: flex-start; gap: 8px; background: #FFF0E6; padding: 12px 14px; border-radius: 10px; }
+  .gv-inci-shop-btn { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; background: #1A1A1A; color: white; font-size: 12px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 12px 22px; border-radius: 100px; transition: background 0.2s, transform 0.2s; text-decoration: none; }
+  .gv-inci-shop-btn:hover { background: #FF4D8D; transform: translateY(-2px); }
+  .gv-inci-shop-btn svg { width: 13px; height: 13px; }
+
   @media (max-width: 600px) {
+    .gv-inci-section { padding: 64px 20px; }
+    .gv-inci-title { font-size: 32px; }
+    .gv-inci-trigger { padding: 16px; }
     .gv-inci-trigger-right .gv-inci-count { display: none; }
   }
 {% endstylesheet %}
@@ -118,14 +114,8 @@
       const body = item.querySelector('.js-inci-body');
       trigger.addEventListener('click', () => {
         const isOpen = item.classList.contains('is-open');
-        items.forEach(i => {
-          i.classList.remove('is-open');
-          i.querySelector('.js-inci-body').style.maxHeight = null;
-        });
-        if (!isOpen) {
-          item.classList.add('is-open');
-          body.style.maxHeight = body.scrollHeight + "px";
-        }
+        items.forEach(i => { i.classList.remove('is-open'); i.querySelector('.js-inci-body').style.maxHeight = null; });
+        if (!isOpen) { item.classList.add('is-open'); body.style.maxHeight = body.scrollHeight + "px"; }
       });
     });
   });
@@ -133,11 +123,11 @@
 
 {% schema %}
 {
-  "name": "INCI Lists (Exact)",
+  "name": "INCI Lists",
   "settings": [
     { "type": "text", "id": "label", "label": "Section Label", "default": "Full Transparency" },
     { "type": "html", "id": "title", "label": "Title", "default": "The complete<br><em>ingredient lists.</em>" },
-    { "type": "textarea", "id": "text", "label": "Description", "default": "Exactly what's on the bottle — in INCI order (highest concentration first). Key actives are highlighted." }
+    { "type": "textarea", "id": "text", "label": "Description", "default": "Exactly what's on the bottle — in INCI order (highest concentration first). Key actives are highlighted. We'll never hide an ingredient behind a \"proprietary blend.\"" }
   ],
   "blocks": [
     {
@@ -146,15 +136,17 @@
       "settings": [
         { "type": "product", "id": "product", "label": "Link Product" },
         { "type": "text", "id": "fallback_name", "label": "Fallback Name", "default": "Product Formula" },
-        { "type": "text", "id": "fallback_type", "label": "Fallback Type", "default": "Skincare Treatment" },
+        { "type": "text", "id": "fallback_type", "label": "Product Subtitle", "default": "Skincare Treatment" },
+        { "type": "text", "id": "thumb_gradient", "label": "Thumb Gradient", "default": "linear-gradient(135deg, #FFF0E6, #FF8C5A)" },
         { "type": "text", "id": "ingredient_count", "label": "Total Ingredients", "default": "18" },
-        { "type": "textarea", "id": "inci_list", "label": "Final INCI List", "info": "Use <b>Active Name</b> or <span class='gv-inci-active'>Name</span> to highlight actives.", "default": "Aqua, <b>Niacinamide (10%)</b>, Glycerin, <b>Alpha-Arbutin (2%)</b>, Propanediol, Phenoxyethanol, Ethylhexylglycerin." }
+        { "type": "textarea", "id": "inci_list", "label": "Full INCI List (use <b> for actives)", "default": "Aqua, <b>Niacinamide</b>, Glycerin." },
+        { "type": "textarea", "id": "note", "label": "Footer Note", "default": "Highlighted ingredients are key actives. Listed from highest to lowest concentration as per INCI convention." }
       ]
     }
   ],
   "presets": [
     {
-      "name": "INCI Lists (Exact)"
+      "name": "INCI Lists"
     }
   ]
 }

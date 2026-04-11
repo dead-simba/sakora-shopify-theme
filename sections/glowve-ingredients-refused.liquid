@@ -1,10 +1,9 @@
 <section class="gv-ing-no-section">
   <div class="gv-container">
-    <div class="gv-section-header">
-      <div class="gv-section-label gv-section-label--pink">{{ section.settings.label }}</div>
-      <h2 class="gv-section-title gv-text-white">{{ section.settings.title }}</h2>
-      <p class="gv-section-sub gv-text-dim">{{ section.settings.text }}</p>
-    </div>
+    <!-- STACKED header — matches mockup -->
+    <div class="gv-ing-no-label">{{ section.settings.label }}</div>
+    <h2 class="gv-ing-no-title">{{ section.settings.title }}</h2>
+    <p class="gv-ing-no-sub">{{ section.settings.text }}</p>
 
     <div class="gv-ing-no-grid">
       {%- for block in section.blocks -%}
@@ -21,56 +20,52 @@
 </section>
 
 {% stylesheet %}
-  .gv-ing-no-section {
-    background: var(--berry-dark, #1A1A1A);
-    padding: 100px 0;
+  .gv-ing-no-section { background: #1A1A1A; padding: 96px 40px; }
+  .gv-ing-no-section .gv-container { max-width: 1200px; margin: 0 auto; }
+
+  /* STACKED header for dark section */
+  .gv-ing-no-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em;
+    color: #FF4D8D; margin-bottom: 12px;
+    display: flex; align-items: center; gap: 10px;
   }
+  .gv-ing-no-label::before { content: ''; display: block; width: 28px; height: 1px; background: #FF4D8D; }
+
+  .gv-ing-no-title {
+    font-size: 48px; font-weight: 700; color: white; line-height: 1.1;
+    letter-spacing: -0.02em; margin-bottom: 12px;
+  }
+  .gv-ing-no-title em { font-style: normal; color: #FF4D8D; }
+
+  .gv-ing-no-sub {
+    font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 56px; max-width: 580px;
+  }
+
+  .gv-ing-no-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
   
-  .gv-text-white { color: white !important; }
-  .gv-text-dim { color: rgba(255,255,255,0.6) !important; }
-  .gv-section-label--pink { color: var(--brand-pink, #FF4D8D) !important; }
-
-  .gv-ing-no-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-  }
-
   .gv-ing-no-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px;
-    padding: 24px;
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    transition: all 0.2s;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 16px; padding: 22px 20px; display: flex; align-items: flex-start; gap: 14px;
+    transition: background 0.2s, border-color 0.2s;
   }
-  
-  .gv-ing-no-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,77,141,0.3); }
+  .gv-ing-no-card:hover { background: rgba(255,255,255,0.09); border-color: rgba(255,77,141,0.4); }
 
   .gv-ing-no-icon {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: rgba(255,77,141,0.15);
-    color: var(--brand-pink, #FF4D8D);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 14px;
-    font-weight: 700;
+    width: 32px; height: 32px; border-radius: 50%; background: rgba(255,77,141,0.15);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    color: #FF4D8D; font-size: 14px; font-weight: 700;
   }
 
-  .gv-ing-no-name { font-size: 14px; font-weight: 700; color: white; margin-bottom: 4px; }
-  .gv-ing-no-why { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .gv-ing-no-name { font-size: 13px; font-weight: 600; color: white; margin-bottom: 3px; }
+  .gv-ing-no-why { font-size: 11px; color: rgba(255,255,255,0.45); line-height: 1.5; }
 
   @media (max-width: 1100px) {
     .gv-ing-no-grid { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
+    .gv-ing-no-section { padding: 64px 20px; }
     .gv-ing-no-grid { grid-template-columns: 1fr; }
+    .gv-ing-no-title { font-size: 32px; }
   }
 {% endstylesheet %}
 
@@ -78,57 +73,23 @@
 {
   "name": "Refused Ingredients",
   "settings": [
-    {
-      "type": "text",
-      "id": "label",
-      "label": "Section Label",
-      "default": "Cleaner Formulas"
-    },
-    {
-      "type": "text",
-      "id": "title",
-      "label": "What we don't use."
-    },
-    {
-      "type": "textarea",
-      "id": "text",
-      "label": "Description",
-      "default": "We formulate according to EU standards — the strictest in the world. We refuse over 1,400 ingredients."
-    }
+    { "type": "text", "id": "label", "label": "Section Label", "default": "Our Standards" },
+    { "type": "html", "id": "title", "label": "Title", "default": "What we <em>refuse</em><br>to put in your skin." },
+    { "type": "textarea", "id": "text", "label": "Description", "default": "Transparency goes both ways — knowing what's in the formula matters, but so does knowing what we deliberately left out." }
   ],
   "blocks": [
     {
       "type": "ingredient",
       "name": "Ingredient",
       "settings": [
-        {
-          "type": "text",
-          "id": "name",
-          "label": "Name",
-          "default": "Parabens"
-        },
-        {
-          "type": "textarea",
-          "id": "why",
-          "label": "Why we avoid it",
-          "default": "Preservatives linked to hormone disruption."
-        }
+        { "type": "text", "id": "name", "label": "Name", "default": "Parabens" },
+        { "type": "textarea", "id": "why", "label": "Why we avoid it", "default": "Preservatives linked to hormone disruption." }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Refused Ingredients",
-      "blocks": [
-        { "type": "ingredient", "settings": { "name": "Parabens", "why": "Preservatives linked to hormone disruption." } },
-        { "type": "ingredient", "settings": { "name": "Sulfates (SLS/SLES)", "why": "Harsh surfactants that strip the barrier." } },
-        { "type": "ingredient", "settings": { "name": "Phthalates", "why": "Solvents used in synthetic fragrance." } },
-        { "type": "ingredient", "settings": { "name": "Formaldehyde", "why": "Carcinogenic preservative used in cheaper formulas." } },
-        { "type": "ingredient", "settings": { "name": "Hydroquinone", "why": "Can cause rebound pigment issues on local skin." } },
-        { "type": "ingredient", "settings": { "name": "Drying Alcohol", "why": "SD Alcohol 40 can damage cell lipids." } },
-        { "type": "ingredient", "settings": { "name": "Mineral Oil", "why": "Can trap sweat and heat in warm climates." } },
-        { "type": "ingredient", "settings": { "name": "Essential Oils", "why": "Contains volatile aromatic compounds that trigger sensitivity." } }
-      ]
+      "name": "Refused Ingredients"
     }
   ]
 }
