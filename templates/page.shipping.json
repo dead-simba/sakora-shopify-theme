@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -22,7 +31,8 @@
             "feat_1": "Orders PKR 2,500 and above",
             "feat_2": "3–5 working days",
             "feat_3": "All major Pakistani cities",
-            "note": "The Glowve Bundle (PKR 3,999) always qualifies for free delivery."
+            "note": "The Glowve Bundle (PKR 3,999) always qualifies for free delivery.",
+            "tagline": ""
           }
         },
         "standard": {
@@ -35,24 +45,16 @@
             "style": "standard",
             "feat_1": "Orders under PKR 2,500",
             "feat_2": "3–5 working days",
-            "feat_3": "All major cities"
-          }
-        },
-        "express": {
-          "type": "option",
-          "settings": {
-            "icon": "⚡",
-            "tier": "EXPRESS",
-            "name": "Express Delivery",
-            "price": "PKR 350",
-            "style": "express",
-            "feat_1": "1–2 business days",
-            "feat_2": "Lahore, Karachi, Islamabad",
-            "tagline": "For when your skin can't wait."
+            "feat_3": "All major cities",
+            "note": "",
+            "tagline": ""
           }
         }
       },
-      "block_order": ["free", "standard", "express"],
+      "block_order": [
+        "free",
+        "standard"
+      ],
       "settings": {
         "label": "— Delivery —",
         "title": "How Your Order<br><em>Gets To You.</em>"
@@ -61,20 +63,93 @@
     "cities": {
       "type": "glowve-shipping-cities",
       "blocks": {
-        "c1": { "type": "city", "settings": { "name": "Karachi" } },
-        "c2": { "type": "city", "settings": { "name": "Lahore" } },
-        "c3": { "type": "city", "settings": { "name": "Islamabad" } },
-        "c4": { "type": "city", "settings": { "name": "Rawalpindi" } },
-        "c5": { "type": "city", "settings": { "name": "Faisalabad" } },
-        "c6": { "type": "city", "settings": { "name": "Multan" } },
-        "c7": { "type": "city", "settings": { "name": "Hyderabad" } },
-        "c8": { "type": "city", "settings": { "name": "Peshawar" } },
-        "c9": { "type": "city", "settings": { "name": "Quetta" } },
-        "c10": { "type": "city", "settings": { "name": "Sialkot" } },
-        "c11": { "type": "city", "settings": { "name": "Gujranwala" } },
-        "c12": { "type": "city", "settings": { "name": "Abbottabad" } }
+        "c1": {
+          "type": "city",
+          "settings": {
+            "name": "Karachi"
+          }
+        },
+        "c2": {
+          "type": "city",
+          "settings": {
+            "name": "Lahore"
+          }
+        },
+        "c3": {
+          "type": "city",
+          "settings": {
+            "name": "Islamabad"
+          }
+        },
+        "c4": {
+          "type": "city",
+          "settings": {
+            "name": "Rawalpindi"
+          }
+        },
+        "c5": {
+          "type": "city",
+          "settings": {
+            "name": "Faisalabad"
+          }
+        },
+        "c6": {
+          "type": "city",
+          "settings": {
+            "name": "Multan"
+          }
+        },
+        "c7": {
+          "type": "city",
+          "settings": {
+            "name": "Hyderabad"
+          }
+        },
+        "c8": {
+          "type": "city",
+          "settings": {
+            "name": "Peshawar"
+          }
+        },
+        "c9": {
+          "type": "city",
+          "settings": {
+            "name": "Quetta"
+          }
+        },
+        "c10": {
+          "type": "city",
+          "settings": {
+            "name": "Sialkot"
+          }
+        },
+        "c11": {
+          "type": "city",
+          "settings": {
+            "name": "Gujranwala"
+          }
+        },
+        "c12": {
+          "type": "city",
+          "settings": {
+            "name": "Abbottabad"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4", "c5", "c6", "c7", "c8", "c9", "c10", "c11", "c12"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+        "c9",
+        "c10",
+        "c11",
+        "c12"
+      ],
       "settings": {
         "label": "— Cities We Serve —",
         "title": "All of <em>Pakistan.</em>",
@@ -146,15 +221,65 @@
     "faq": {
       "type": "glowve-shipping-faq",
       "blocks": {
-        "q1": { "type": "question", "settings": { "question": "How long does delivery take?", "answer": "<p>Standard delivery is 3–5 working days to all major cities. Express delivery (Lahore, Karachi, Islamabad only) is 1–2 business days for PKR 350. Free delivery on orders PKR 2,500+ runs at standard speed.</p>" } },
-        "q2": { "type": "question", "settings": { "question": "Can I return a product I've already used?", "answer": "<p>Yes — that's the whole point of the 30-Day Clinical Guarantee. We want you to actually try the product. Opened, used, or partially used products are all eligible for return within 30 days of delivery, for any reason.</p>" } },
-        "q3": { "type": "question", "settings": { "question": "Can I track my order?", "answer": "<p>Yes — you'll receive updates when your order is confirmed and dispatched with a tracking link.</p>" } },
-        "q4": { "type": "question", "settings": { "question": "How do I get a refund for a Cash on Delivery order?", "answer": "<p>For COD orders, we'll transfer your refund directly to your bank account — or issue store credit if you prefer. Just share your account details when you initiate the return and we'll handle the rest.</p>" } },
-        "q5": { "type": "question", "settings": { "question": "Do you ship internationally?", "answer": "<p>Not yet. We're Pakistan-only for now — that's where we're focused and where we're building. If you're Pakistani diaspora abroad, <a href=\"https://glowve.skin/pages/contact\">message us</a> and let us know your location. We're listening.</p>" } },
-        "q6": { "type": "question", "settings": { "question": "What if I'm not home when my order arrives?", "answer": "<p>Our courier partners typically attempt delivery twice and then hold the package at a nearby facility. You'll receive a message with your options. If you're having trouble, contact us directly and we'll coordinate.</p>" } },
-        "q7": { "type": "question", "settings": { "question": "How do I start a return?", "answer": "<p>Message us on <a href=\"https://wa.me/923277771047\">WhatsApp</a> or <a href=\"https://instagram.com/glowve.skinn\">Instagram</a> (@glowve.skinn) with your order number and reason for return. We'll confirm within 24 hours and arrange the pickup — you don't need to figure out logistics on your end.</p>" } }
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "How long does delivery take?",
+            "answer": "<p>Standard delivery is 3–5 working days to all major cities. Express delivery (Lahore, Karachi, Islamabad only) is 1–2 business days for PKR 350. Free delivery on orders PKR 2,500+ runs at standard speed.</p>"
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return a product I've already used?",
+            "answer": "<p>Yes — that's the whole point of the 30-Day Clinical Guarantee. We want you to actually try the product. Opened, used, or partially used products are all eligible for return within 30 days of delivery, for any reason.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "Can I track my order?",
+            "answer": "<p>Yes — you'll receive updates when your order is confirmed and dispatched with a tracking link.</p>"
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How do I get a refund for a Cash on Delivery order?",
+            "answer": "<p>For COD orders, we'll transfer your refund directly to your bank account — or issue store credit if you prefer. Just share your account details when you initiate the return and we'll handle the rest.</p>"
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Do you ship internationally?",
+            "answer": "<p>Not yet. We're Pakistan-only for now — that's where we're focused and where we're building. If you're Pakistani diaspora abroad, <a href=\"https://glowve.skin/pages/contact\">message us</a> and let us know your location. We're listening.</p>"
+          }
+        },
+        "q6": {
+          "type": "question",
+          "settings": {
+            "question": "What if I'm not home when my order arrives?",
+            "answer": "<p>Our courier partners typically attempt delivery twice and then hold the package at a nearby facility. You'll receive a message with your options. If you're having trouble, contact us directly and we'll coordinate.</p>"
+          }
+        },
+        "q7": {
+          "type": "question",
+          "settings": {
+            "question": "How do I start a return?",
+            "answer": "<p>Message us on <a href=\"https://wa.me/923277771047\">WhatsApp</a> or <a href=\"https://instagram.com/glowve.skinn\">Instagram</a> (@glowve.skinn) with your order number and reason for return. We'll confirm within 24 hours and arrange the pickup — you don't need to figure out logistics on your end.</p>"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3", "q4", "q5", "q6", "q7"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q7"
+      ],
       "settings": {
         "label": "— FAQ —",
         "title": "Common <em>Questions.</em>"
