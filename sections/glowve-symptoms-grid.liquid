@@ -11,11 +11,21 @@
         {%- for block in section.blocks -%}
           <div class="gv-symptom-item" {{ block.shopify_attributes }}>
             <span class="gv-symptom-icon">
-              {%- if block.settings.icon_image != blank -%}
+              {%- if block.settings.icon_type == 'custom' and block.settings.icon_image != blank -%}
                 {{ block.settings.icon_image | image_url: width: 64 | image_tag: loading: 'lazy', style: 'width: 32px; height: 32px; object-fit: contain;' }}
               {%- else -%}
-                <!-- Fallback SVG icon if no image provided -->
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--berry-dark, #1A1A1A);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                {%- case block.settings.icon_type -%}
+                  {%- when 'water' -%}
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-pink, #FF4D8D);"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+                  {%- when 'sting' -%}
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-pink, #FF4D8D);"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                  {%- when 'alert' -%}
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-pink, #FF4D8D);"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                  {%- when 'flake' -%}
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-pink, #FF4D8D);"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                  {%- else -%}
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brand-pink, #FF4D8D);"><circle cx="12" cy="12" r="10"></circle></svg>
+                {%- endcase -%}
               {%- endif -%}
             </span>
             <p class="gv-symptom-text">{{ block.settings.text }}</p>
@@ -117,10 +127,23 @@
       "name": "Symptom",
       "settings": [
         {
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Style",
+          "options": [
+            { "value": "water", "label": "Water Drop" },
+            { "value": "sting", "label": "Sting / Spark" },
+            { "value": "alert", "label": "Redness / Alert" },
+            { "value": "flake", "label": "Flaky / Texture" },
+            { "value": "custom", "label": "Custom Image" }
+          ],
+          "default": "water"
+        },
+        {
           "type": "image_picker",
           "id": "icon_image",
-          "label": "Icon Image",
-          "info": "Upload a PNG or SVG icon (Recommended size: 64x64px)"
+          "label": "Custom Icon Image",
+          "info": "Only used if 'Custom Image' is selected."
         },
         {
           "type": "textarea",

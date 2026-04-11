@@ -61,24 +61,28 @@
         "s1": {
           "type": "symptom",
           "settings": {
+            "icon_type": "water",
             "text": "Moisturiser seems to evaporate within an hour"
           }
         },
         "s2": {
           "type": "symptom",
           "settings": {
+            "icon_type": "sting",
             "text": "Products that used to be fine now sting or burn"
           }
         },
         "s3": {
           "type": "symptom",
           "settings": {
+            "icon_type": "alert",
             "text": "Redness and tightness, especially after washing"
           }
         },
         "s4": {
           "type": "symptom",
           "settings": {
+            "icon_type": "flake",
             "text": "Skin feels rough or flaky despite regular hydration"
           }
         }
