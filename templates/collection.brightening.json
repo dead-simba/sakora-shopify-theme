@@ -75,7 +75,7 @@
         "product": "sun-defense-spf-50",
         "card_eyebrow": "Sun Protection",
         "custom_title": "Matte UV Defence<br>SPF 50+",
-        "note_html": "<p><strong>SPF prevents new PIH from forming.</strong> Every spot the serum fades, unprotected sun exposure creates another. The serum works at night. The SPF protects that work during the day. Skip one and you're running on a treadmill \u2014 effort without progress.</p><p style=\"margin-top:-8px;\">It's not optional. It's what makes everything else work.</p>",
+        "note_html": "<p><strong>SPF prevents new PIH from forming.</strong> Every spot the serum fades, unprotected sun exposure creates another. The serum works at night. The SPF protects that work during the day. Skip one and you're running on a treadmill \u2014 effort without progress.</p><p>It's not optional. It's what makes everything else work.</p>",
         "img_bg_gradient": "linear-gradient(135deg, #FFFBEE 0%, #FFF0C2 100%)"
       }
     },
