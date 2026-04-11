@@ -75,6 +75,7 @@
         "g1": {
           "type": "gap",
           "settings": {
+            "product": "sunscreen",
             "number": "01",
             "headline": "The UV Mismatch",
             "body": "Most sunscreens are tested for European UV indices (average 4). In Pakistan, we regularly hit 10–12. We built our SPF for the plateau, not the valley. Six-filter broad spectrum, tested locally.",
@@ -84,6 +85,7 @@
         "g2": {
           "type": "gap",
           "settings": {
+            "product": "fade-theory",
             "number": "02",
             "headline": "The PIH Problem",
             "body": "Fitzpatrick IV–VI skin marks differently. A breakout doesn't just fade — it leaves post-inflammatory hyperpigmentation that lasts months. We target the pigment-inflammation loop directly.",
@@ -93,6 +95,7 @@
         "g3": {
           "type": "gap",
           "settings": {
+            "product": "soft-reset",
             "number": "03",
             "headline": "The Barrier Paradox",
             "body": "Humidity can fool you into thinking your barrier is healthy. In hard water climates, it's often the opposite — stripped and sensitised. A lightweight, ceramide-led moisturiser fixes what the environment breaks.",
@@ -142,6 +145,7 @@
         "prod1": {
           "type": "product",
           "settings": {
+            "product": "fade-theory",
             "letter": "S",
             "badge": "Step 1",
             "style": "serum",
@@ -155,6 +159,7 @@
         "prod2": {
           "type": "product",
           "settings": {
+            "product": "soft-reset",
             "letter": "M",
             "badge": "Step 2",
             "style": "moisturizer",
@@ -168,6 +173,7 @@
         "prod3": {
           "type": "product",
           "settings": {
+            "product": "sunscreen",
             "letter": "S",
             "badge": "Step 3",
             "style": "spf",

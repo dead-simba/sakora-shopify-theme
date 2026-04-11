@@ -7,12 +7,19 @@
 
   <div class="gv-about-gaps__grid">
     {%- for block in section.blocks -%}
+      {%- assign p = block.settings.product -%}
       <div class="gv-about-gap-card" {{ block.shopify_attributes }}>
         <div class="gv-about-gap-card__num">{{ block.settings.number }}</div>
         <h3 class="gv-about-gap-card__title">{{ block.settings.headline }}</h3>
         <p class="gv-about-gap-card__body">{{ block.settings.body }}</p>
         {%- if block.settings.chip != blank -%}
-          <span class="gv-about-gap-card__chip">{{ block.settings.chip }}</span>
+          {%- if p != blank or block.settings.link != blank -%}
+            <a href="{% if p != blank %}{{ p.url }}{% else %}{{ block.settings.link }}{% endif %}" class="gv-about-gap-card__chip gv-about-gap-card__chip--link">
+              {{ block.settings.chip }}
+            </a>
+          {%- else -%}
+            <span class="gv-about-gap-card__chip">{{ block.settings.chip }}</span>
+          {%- endif -%}
         {%- endif -%}
       </div>
     {%- endfor -%}
@@ -72,8 +79,10 @@
     background: #FF4D8D; color: white; padding: 10px 18px;
     border-radius: 100px; font-family: 'Poppins', sans-serif;
     font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
+    text-decoration: none;
   }
   .gv-about-gap-card__chip::before { content: '→'; }
+  .gv-about-gap-card__chip--link:hover { opacity: 0.9; transform: scale(1.02); }
 
   @media (max-width: 900px) { .gv-about-gaps__grid { grid-template-columns: 1fr; } }
   @media (max-width: 600px) { .gv-about-gaps { padding: 80px 24px; } }
@@ -92,6 +101,8 @@
       "type": "gap",
       "name": "Gap Card",
       "settings": [
+        { "type": "product", "id": "product", "label": "Product (Optional link)" },
+        { "type": "url", "id": "link", "label": "Manual Link (If no product)" },
         { "type": "text", "id": "number", "label": "Number", "default": "01" },
         { "type": "text", "id": "headline", "label": "Headline", "default": "The UV Mismatch" },
         { "type": "textarea", "id": "body", "label": "Body", "default": "Most sunscreens are tested for European UV indices (average 4). In Pakistan, we regularly hit 10–12." },
