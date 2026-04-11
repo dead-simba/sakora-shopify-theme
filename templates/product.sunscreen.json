@@ -368,21 +368,27 @@
             "ing_1_name": "Tinosorb M™",
             "ing_1_badge": "Broad Spectrum Anchor",
             "ing_1_benefit": "Absorbs UVB and UVA1 simultaneously. Keeps Avobenzone from degrading in sunlight.",
+            "ing_1_image": "shopify://shop_images/DL_Ing_Tinosorb_M.webp",
             "ing_2_name": "Mexoryl SX™ + Avobenzone",
             "ing_2_badge": "UVA Specialist",
             "ing_2_benefit": "Complete UVA2 + UVA1 coverage. The deep UV that causes PIH — blocked.",
+            "ing_2_image": "shopify://shop_images/DL_Ing_Mexoryl_SX.webp",
             "ing_3_name": "Zinc PCA + Niacinamide",
             "ing_3_badge": "Matte + Pore",
             "ing_3_benefit": "Regulates sebum at the source. Stays matte past 3pm. Not a cosmetic trick.",
+            "ing_3_image": "shopify://shop_images/DL_Ing_Zinc_PCA.webp",
             "ing_4_name": "Aquaxyl™",
             "ing_4_badge": "Barrier-Hydrator",
             "ing_4_benefit": "Regulates moisture channels actively. No tight or dry feeling under SPF.",
+            "ing_4_image": "shopify://shop_images/DL_Ing_Aquaxyl.webp",
             "ing_5_name": "Blueberry Extract",
             "ing_5_badge": "Antioxidant Defense",
             "ing_5_benefit": "Neutralises the UV that makes it through the filters. SPF + antioxidants together.",
+            "ing_5_image": "shopify://shop_images/DL_Ing__Blueberry_Extract.webp",
             "ing_6_name": "Capsicum Annuum",
             "ing_6_badge": "UV Defense Booster",
-            "ing_6_benefit": "Carotenoid-rich antioxidant backup. Reduces post-UV redness and inflammation."
+            "ing_6_benefit": "Carotenoid-rich antioxidant backup. Reduces post-UV redness and inflammation.",
+            "ing_6_image": "shopify://shop_images/DL_Ing_Capsicum_Annuum.webp"
           }
         },
         "how_to_use_1": {
