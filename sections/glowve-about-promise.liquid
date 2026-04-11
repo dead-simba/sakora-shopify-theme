@@ -1,0 +1,100 @@
+<section class="gv-about-promise">
+  <div class="gv-about-promise__header">
+    <p class="gv-about-promise__label">{{ section.settings.label }}</p>
+    <h2 class="gv-about-promise__title">{{ section.settings.title }}</h2>
+  </div>
+
+  <div class="gv-about-promise__grid">
+    <!-- IS column -->
+    <div class="gv-about-promise__col gv-about-promise__col--is">
+      <div class="gv-about-promise__col-title gv-about-promise__col-title--is">Glowve Is</div>
+      <ul class="gv-about-promise__items gv-about-promise__items--is">
+        {%- assign is_items = section.settings.is_items | split: '|' -%}
+        {%- for item in is_items -%}
+          {%- assign trimmed = item | strip -%}
+          {%- if trimmed != blank -%}
+            <li>{{ trimmed }}</li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+    <!-- IS NOT column -->
+    <div class="gv-about-promise__col gv-about-promise__col--isnot">
+      <div class="gv-about-promise__col-title gv-about-promise__col-title--isnot">Glowve Is Not</div>
+      <ul class="gv-about-promise__items gv-about-promise__items--isnot">
+        {%- assign isnot_items = section.settings.isnot_items | split: '|' -%}
+        {%- for item in isnot_items -%}
+          {%- assign trimmed = item | strip -%}
+          {%- if trimmed != blank -%}
+            <li>{{ trimmed }}</li>
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-about-promise { padding: 120px 40px; background: white; }
+  .gv-about-promise__header { text-align: center; margin-bottom: 72px; }
+
+  .gv-about-promise__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .gv-about-promise__label::before { content: ''; width: 28px; height: 1px; background: #FF4D8D; }
+
+  .gv-about-promise__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(32px, 3.5vw, 48px) !important; font-weight: 600 !important;
+    color: #1A1A1A !important; line-height: 1.1 !important; letter-spacing: -0.02em;
+  }
+  .gv-about-promise__title em { font-style: normal !important; color: #FF4D8D !important; }
+
+  .gv-about-promise__grid {
+    max-width: 1000px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
+  }
+
+  .gv-about-promise__col { padding: 40px; border-radius: 20px; }
+  .gv-about-promise__col--is { background: #1A1A1A; }
+  .gv-about-promise__col--isnot { background: #F5F5F5; }
+
+  .gv-about-promise__col-title {
+    font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 28px;
+    padding-bottom: 16px; border-bottom: 1px solid;
+  }
+  .gv-about-promise__col-title--is { color: #FF4D8D; border-color: rgba(255,77,141,0.2); }
+  .gv-about-promise__col-title--isnot { color: #666; border-color: rgba(0,0,0,0.08); }
+
+  .gv-about-promise__items { list-style: none; padding: 0; }
+  .gv-about-promise__items li {
+    font-family: 'Poppins', sans-serif; font-size: 15px; line-height: 1.5;
+    padding: 11px 0; display: flex; gap: 12px; align-items: flex-start;
+    border-bottom: 1px solid;
+  }
+  .gv-about-promise__items--is li { color: rgba(255,255,255,0.8); border-color: rgba(255,255,255,0.06); }
+  .gv-about-promise__items--isnot li { color: #9a9a9a; border-color: rgba(0,0,0,0.06); text-decoration: line-through; text-decoration-color: rgba(0,0,0,0.2); }
+  .gv-about-promise__items--is li::before { content: '✓'; color: #3DB87A; font-size: 13px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .gv-about-promise__items--isnot li::before { content: '×'; color: #ccc; font-size: 15px; flex-shrink: 0; }
+
+  @media (max-width: 900px) { .gv-about-promise__grid { grid-template-columns: 1fr; } }
+  @media (max-width: 600px) { .gv-about-promise { padding: 80px 24px; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Promise Columns",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "— Our Commitment —" },
+    { "type": "html", "id": "title", "label": "Title", "default": "Glowve <em>Is</em> and Is Not." },
+    { "type": "textarea", "id": "is_items", "label": "Glowve IS (pipe-separated)", "default": "Clinically dosed actives — not trace amounts for label claims|Formulated for South Asian skin, humidity, and UV Index 10+|100% fragrance-free, always — because fragrance hides in \"natural\"|Full INCI transparency — every ingredient, every time|Designed to work as a system — not standalone products|Backed by dermatology, not marketing" },
+    { "type": "textarea", "id": "isnot_items", "label": "Glowve IS NOT (pipe-separated)", "default": "A brand with 40 SKUs and vague \"nourishing blend\" labels|Imported European formulas relabelled for Pakistan|Priced to signal luxury, not deliver it|Chasing trends with ingredients that sound good but do nothing|Hiding behind celebrity endorsements instead of results|Ever going to compromise on fragrance-free formulation" }
+  ],
+  "presets": [{ "name": "Promise Columns" }]
+}
+{% endschema %}

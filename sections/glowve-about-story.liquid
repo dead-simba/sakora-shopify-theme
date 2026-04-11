@@ -1,0 +1,74 @@
+<section class="gv-about-story" id="gv-about-story">
+  <div class="gv-about-story__inner">
+    <p class="gv-about-story__label">{{ section.settings.label }}</p>
+    <h2 class="gv-about-story__title">{{ section.settings.title }}</h2>
+    <div class="gv-about-story__body">
+      {{ section.settings.body_1 }}
+
+      {%- if section.settings.pullquote != blank -%}
+        <div class="gv-about-story__pullout">
+          <p>{{ section.settings.pullquote }}</p>
+        </div>
+      {%- endif -%}
+
+      {{ section.settings.body_2 }}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-about-story { padding: 120px 40px; background: white; }
+  .gv-about-story__inner { max-width: 760px; margin: 0 auto; }
+
+  .gv-about-story__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .gv-about-story__label::before { content: ''; width: 28px; height: 1px; background: #FF4D8D; }
+
+  .gv-about-story__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(34px, 4vw, 52px) !important; font-weight: 600 !important;
+    color: #1A1A1A !important; line-height: 1.1 !important;
+    letter-spacing: -0.02em; margin-bottom: 48px;
+  }
+  .gv-about-story__title em { font-style: normal !important; color: #FF4D8D !important; }
+
+  .gv-about-story__body p {
+    font-family: 'Poppins', sans-serif; font-size: 17px; line-height: 1.85;
+    color: #4a3728; margin-bottom: 28px;
+  }
+  .gv-about-story__body strong { color: #1A1A1A; }
+
+  .gv-about-story__pullout {
+    border-left: 3px solid #FF4D8D; padding: 20px 28px;
+    margin: 44px 0; background: #FFF0E6; border-radius: 0 12px 12px 0;
+  }
+  .gv-about-story__pullout p {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 22px !important; font-weight: 500 !important;
+    color: #1A1A1A !important; line-height: 1.5; margin: 0 !important;
+  }
+
+  @media (max-width: 600px) {
+    .gv-about-story { padding: 80px 24px; }
+    .gv-about-story__pullout p { font-size: 18px !important; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Origin Story",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "The Beginning" },
+    { "type": "html", "id": "title", "label": "Title", "default": "A market that was full.<br>And <em>completely empty.</em>" },
+    { "type": "richtext", "id": "body_1", "label": "Body Paragraph 1", "default": "<p>Walk into any pharmacy in Lahore or Karachi. You'll see global brands priced for global incomes — and local products that hide behind vague \"nourishing blend\" labels, telling you nothing about what's actually inside. Neither felt right.</p>" },
+    { "type": "textarea", "id": "pullquote", "label": "Pullquote", "default": "\"Pakistani skin faces challenges that European and American formulations were never designed for. Extreme UV, hard water, monsoon humidity, and Fitzpatrick IV–VI tones that mark differently. We decided to stop adapting products that were never made for us — and start from the skin up.\"" },
+    { "type": "richtext", "id": "body_2", "label": "Body Paragraph 2", "default": "<p>The ingredients we needed existed. The clinical research was there. What didn't exist was a brand that combined transparent formulation with honest pricing — for the skin that actually lives here. <strong>Glowve was that gap.</strong></p>" }
+  ],
+  "presets": [{ "name": "Origin Story" }]
+}
+{% endschema %}

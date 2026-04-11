@@ -1,0 +1,44 @@
+<section class="gv-about-ticker">
+  <div class="gv-about-ticker__inner">
+    {%- for block in section.blocks -%}
+      <span class="gv-about-ticker__item" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+    {%- endfor -%}
+    <!-- Duplicate for seamless loop -->
+    {%- for block in section.blocks -%}
+      <span class="gv-about-ticker__item">{{ block.settings.text }}</span>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-about-ticker { background: #FF4D8D; padding: 14px 0; overflow: hidden; position: relative; }
+  .gv-about-ticker__inner {
+    display: flex; gap: 0; animation: gvAboutTicker 28s linear infinite;
+    white-space: nowrap; width: max-content;
+  }
+  .gv-about-ticker:hover .gv-about-ticker__inner { animation-play-state: paused; }
+  .gv-about-ticker__item {
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: white;
+    padding: 0 48px; display: flex; align-items: center; gap: 16px;
+  }
+  .gv-about-ticker__item::after { content: '✦'; opacity: 0.6; font-size: 10px; }
+  @keyframes gvAboutTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "About Ticker",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Ticker Item",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Ingredient First" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "About Ticker" }]
+}
+{% endschema %}

@@ -1,0 +1,73 @@
+<section class="gv-about-cta">
+  <div class="gv-about-cta__inner">
+    <p class="gv-about-cta__label">{{ section.settings.label }}</p>
+    <h2 class="gv-about-cta__title">{{ section.settings.title }}</h2>
+    <p class="gv-about-cta__sub">{{ section.settings.subtitle }}</p>
+    <div class="gv-about-cta__btns">
+      {%- if section.settings.btn_1_label != blank -%}
+        <a href="{{ section.settings.btn_1_link }}" class="gv-about-cta__btn gv-about-cta__btn--primary">{{ section.settings.btn_1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.btn_2_label != blank -%}
+        <a href="{{ section.settings.btn_2_link }}" class="gv-about-cta__btn gv-about-cta__btn--outline">{{ section.settings.btn_2_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-about-cta { padding: 120px 40px; background: #FFF0E6; text-align: center; }
+  .gv-about-cta__inner { max-width: 600px; margin: 0 auto; }
+
+  .gv-about-cta__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 16px;
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+  }
+  .gv-about-cta__label::before { content: ''; width: 28px; height: 1px; background: #FF4D8D; }
+
+  .gv-about-cta__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(36px, 4.5vw, 56px) !important; font-weight: 600 !important;
+    color: #1A1A1A !important; line-height: 1.1 !important;
+    letter-spacing: -0.02em; margin-bottom: 24px;
+  }
+  .gv-about-cta__title em { font-style: normal !important; color: #FF4D8D !important; }
+  .gv-about-cta__sub {
+    font-family: 'Poppins', sans-serif; font-size: 17px; color: #666;
+    line-height: 1.7; margin-bottom: 44px;
+  }
+
+  .gv-about-cta__btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .gv-about-cta__btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 32px; border-radius: 100px;
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; transition: transform 0.25s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.25s, background 0.2s, color 0.2s;
+  }
+  .gv-about-cta__btn:hover { transform: translateY(-3px); }
+  .gv-about-cta__btn--primary { background: #FF4D8D; color: white; }
+  .gv-about-cta__btn--primary:hover { box-shadow: 0 12px 32px rgba(255,77,141,0.35); }
+  .gv-about-cta__btn--outline { background: transparent; color: #FF4D8D; border: 2px solid #FF4D8D; }
+  .gv-about-cta__btn--outline:hover { background: #FF4D8D; color: white; }
+
+  @media (max-width: 600px) { .gv-about-cta { padding: 80px 24px; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "About CTA",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "— Glow Your Way —" },
+    { "type": "html", "id": "title", "label": "Title", "default": "Your Skin.<br>Our <em>Science.</em><br>No Risk." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Try any Glowve product with our 30-Day Clinical Guarantee — opened, used, returned if it's not right. We trust you." },
+    { "type": "text", "id": "btn_1_label", "label": "Primary Button", "default": "Shop the Protocol" },
+    { "type": "url", "id": "btn_1_link", "label": "Primary Link" },
+    { "type": "text", "id": "btn_2_label", "label": "Secondary Button", "default": "Take the Skin Quiz" },
+    { "type": "url", "id": "btn_2_link", "label": "Secondary Link" }
+  ],
+  "presets": [{ "name": "About CTA" }]
+}
+{% endschema %}

@@ -1,0 +1,63 @@
+<section class="gv-about-insight">
+  <div class="gv-about-insight__grid-bg"></div>
+  <div class="gv-about-insight__inner">
+    <p class="gv-about-insight__eyebrow">{{ section.settings.label }}</p>
+    <h2 class="gv-about-insight__title">{{ section.settings.title }}</h2>
+    <p class="gv-about-insight__sub">{{ section.settings.subtitle }}</p>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div style="background:#1A1A1A;line-height:0;overflow:hidden;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;display:block;width:100%;">
+    <path d="M0,48L120,37.3C240,27,480,5,720,5.3C960,5,1200,27,1320,37.3L1440,48V80H0Z" fill="#FFF0E6"/>
+  </svg>
+</div>
+
+{% stylesheet %}
+  .gv-about-insight {
+    background: #1A1A1A; padding: 120px 40px;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .gv-about-insight__grid-bg {
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,77,141,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,77,141,0.05) 1px, transparent 1px);
+    background-size: 60px 60px; pointer-events: none;
+  }
+  .gv-about-insight__inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 2; }
+
+  .gv-about-insight__eyebrow {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.35) !important; margin-bottom: 40px;
+  }
+  .gv-about-insight__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(32px, 4.5vw, 58px) !important; font-weight: 600 !important;
+    color: white !important; line-height: 1.1 !important;
+    letter-spacing: -0.02em; margin-bottom: 32px;
+  }
+  .gv-about-insight__title em { font-style: normal !important; color: #FF4D8D !important; }
+  .gv-about-insight__sub {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 17px !important; color: rgba(255,255,255,0.5) !important;
+    line-height: 1.7; max-width: 520px; margin: 0 auto;
+  }
+
+  @media (max-width: 600px) {
+    .gv-about-insight { padding: 80px 24px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "About Insight",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "The Glowve Insight" },
+    { "type": "html", "id": "title", "label": "Title", "default": "Pakistan didn't need its 201st product.<br>It needed <em>three</em> that actually<br>worked together." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "We stopped the noise. We focused on skin biology in our specific environmental context — and built backwards from there." }
+  ],
+  "presets": [{ "name": "About Insight" }]
+}
+{% endschema %}

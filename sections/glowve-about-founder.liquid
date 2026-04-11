@@ -1,0 +1,208 @@
+<section class="gv-about-founder">
+  <div class="gv-about-founder__inner">
+    <!-- LEFT: Abstract orbiting visual -->
+    <div class="gv-about-founder__visual">
+      <div class="gv-about-founder__orbit" id="gv-orbit-wrap">
+        <div class="gv-about-founder__ring gv-about-founder__ring--1"></div>
+        <div class="gv-about-founder__ring gv-about-founder__ring--2"></div>
+        <div class="gv-about-founder__ring gv-about-founder__ring--3"></div>
+        <div class="gv-about-founder__core">
+          <span class="gv-about-founder__initials">G</span>
+        </div>
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'pill' -%}
+            <div class="gv-about-orbit-pill gv-about-orbit-pill--{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <span>{{ block.settings.text }}</span>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+        <div class="gv-about-particle" style="width:6px;height:6px;left:30%;top:20%;animation-delay:0s;"></div>
+        <div class="gv-about-particle" style="width:4px;height:4px;left:70%;top:40%;animation-delay:1s;"></div>
+        <div class="gv-about-particle" style="width:5px;height:5px;left:50%;top:70%;animation-delay:0.5s;"></div>
+        <div class="gv-about-particle" style="width:3px;height:3px;left:20%;top:60%;animation-delay:1.5s;"></div>
+        <div class="gv-about-particle" style="width:6px;height:6px;left:80%;top:25%;animation-delay:2s;"></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Founder text -->
+    <div class="gv-about-founder__text">
+      <p class="gv-about-founder__label">{{ section.settings.label }}</p>
+      <blockquote class="gv-about-founder__quote">{{ section.settings.quote }}</blockquote>
+      <p class="gv-about-founder__bio">{{ section.settings.bio }}</p>
+      <div class="gv-about-founder__traits">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'trait' -%}
+            <span class="gv-about-trait-pill" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <p class="gv-about-founder__note">{{ section.settings.note }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE -->
+<div style="background:#FAFAFA;line-height:0;overflow:hidden;">
+  <svg viewBox="0 0 1440 80" preserveAspectRatio="none" style="height:80px;display:block;width:100%;">
+    <path d="M0,32L120,42.7C240,53,480,75,720,74.7C960,75,1200,53,1320,42.7L1440,32V80H0Z" fill="#1A1A1A"/>
+  </svg>
+</div>
+
+{% stylesheet %}
+  .gv-about-founder { padding: 120px 40px; background: #FAFAFA; }
+  .gv-about-founder__inner {
+    max-width: 1100px; margin: 0 auto; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  /* ORBITAL VISUAL */
+  .gv-about-founder__visual { display: flex; align-items: center; justify-content: center; }
+  .gv-about-founder__orbit { position: relative; width: 380px; height: 380px; flex-shrink: 0; margin: 0 auto; }
+
+  .gv-about-founder__core {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 180px; height: 180px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF4D8D, #FF8DC7);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 20px 60px rgba(255,77,141,0.4); z-index: 3;
+  }
+  .gv-about-founder__initials {
+    font-family: 'Poppins', sans-serif; font-size: 64px; font-weight: 700;
+    color: white; letter-spacing: -0.04em; line-height: 1;
+  }
+
+  .gv-about-founder__ring {
+    position: absolute; top: 50%; left: 50%; border-radius: 50%;
+    border: 1.5px dashed rgba(255,77,141,0.25); transform: translate(-50%, -50%);
+  }
+  .gv-about-founder__ring--1 { width: 240px; height: 240px; animation: gvAboutSpin 20s linear infinite; }
+  .gv-about-founder__ring--2 { width: 310px; height: 310px; animation: gvAboutSpin 30s linear infinite reverse; }
+  .gv-about-founder__ring--3 { width: 380px; height: 380px; animation: gvAboutSpin 45s linear infinite; }
+  @keyframes gvAboutSpin { from { transform: translate(-50%,-50%) rotate(0deg); } to { transform: translate(-50%,-50%) rotate(360deg); } }
+
+  .gv-about-orbit-pill {
+    position: absolute; top: 50%; left: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .gv-about-orbit-pill span {
+    background: white; border: 1.5px solid #ECECEC; border-radius: 100px;
+    padding: 6px 14px; font-family: 'Poppins', sans-serif;
+    font-size: 11px; font-weight: 600; color: #1A1A1A;
+    white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    letter-spacing: 0.02em;
+  }
+
+  .gv-about-particle {
+    position: absolute; border-radius: 50%; background: #FF4D8D; opacity: 0;
+    animation: gvAboutParticle 4s ease-in-out infinite; pointer-events: none;
+  }
+  @keyframes gvAboutParticle { 0% { transform: translateY(0) scale(1); opacity: 0.5; } 100% { transform: translateY(-80px) scale(0.3); opacity: 0; } }
+
+  /* FOUNDER TEXT */
+  .gv-about-founder__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .gv-about-founder__label::before { content: ''; width: 28px; height: 1px; background: #FF4D8D; }
+
+  .gv-about-founder__quote {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(22px, 2.5vw, 32px) !important; font-weight: 600 !important;
+    color: #1A1A1A !important; line-height: 1.4; letter-spacing: -0.01em;
+    margin-bottom: 28px; position: relative; padding-left: 24px;
+  }
+  .gv-about-founder__quote::before {
+    content: ''; position: absolute; left: 0; top: 6px; bottom: 6px;
+    width: 3px; background: #FF4D8D; border-radius: 2px;
+  }
+
+  .gv-about-founder__bio {
+    font-family: 'Poppins', sans-serif; font-size: 15px;
+    line-height: 1.8; color: #666; margin-bottom: 32px;
+  }
+
+  .gv-about-founder__traits { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 32px; }
+  .gv-about-trait-pill {
+    background: white; border: 1.5px solid #ECECEC; border-radius: 100px;
+    padding: 7px 16px; font-family: 'Poppins', sans-serif;
+    font-size: 12px; font-weight: 600; color: #1A1A1A;
+    letter-spacing: 0.02em; transition: border-color 0.2s, background 0.2s;
+  }
+  .gv-about-trait-pill:hover { border-color: #FF4D8D; background: #FFF0E6; }
+
+  .gv-about-founder__note {
+    font-family: 'Poppins', sans-serif; font-size: 12px; color: #666;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .gv-about-founder__note::before { content: ''; width: 24px; height: 1px; background: #ECECEC; }
+
+  @media (max-width: 900px) {
+    .gv-about-founder__inner { grid-template-columns: 1fr; gap: 60px; }
+    .gv-about-founder__orbit { width: 280px; height: 280px; }
+    .gv-about-founder__core { width: 130px; height: 130px; }
+    .gv-about-founder__initials { font-size: 46px; }
+  }
+  @media (max-width: 600px) { .gv-about-founder { padding: 80px 24px; } }
+{% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const wrap = document.getElementById('gv-orbit-wrap');
+    if (!wrap) return;
+    const cx = wrap.offsetWidth / 2;
+    const cy = wrap.offsetHeight / 2;
+    const r = Math.min(wrap.offsetWidth, wrap.offsetHeight) * 0.41;
+    const pills = wrap.querySelectorAll('.gv-about-orbit-pill');
+    const count = pills.length;
+    let angle = 0;
+
+    function place() {
+      pills.forEach((pill, i) => {
+        const theta = (angle + (360 / count) * i) * Math.PI / 180;
+        const x = cx + r * Math.cos(theta) - pill.offsetWidth / 2;
+        const y = cy + r * Math.sin(theta) - pill.offsetHeight / 2;
+        pill.style.cssText = `position:absolute;left:${x}px;top:${y}px;transform:none;`;
+      });
+    }
+
+    function animate() {
+      angle -= 0.15;
+      place();
+      requestAnimationFrame(animate);
+    }
+
+    setTimeout(() => { place(); animate(); }, 100);
+  });
+</script>
+
+{% schema %}
+{
+  "name": "About Founder",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Behind the Brand" },
+    { "type": "textarea", "id": "quote", "label": "Quote", "default": "\"We spent years looking for skincare that respected our climate, our skin tones, and our intelligence. We couldn't find it. So we built it.\"" },
+    { "type": "textarea", "id": "bio", "label": "Bio", "default": "Glowve was built by people who grew up navigating pharmacies full of products that weren't made for them. After years watching brands translate Western formulations for Pakistani shelves without changing a single ingredient, the team decided the approach itself needed to change. It began with one question: what does Pakistani skin actually need?" },
+    { "type": "text", "id": "note", "label": "Footer Note", "default": "The focus is the work, not the faces behind it." }
+  ],
+  "blocks": [
+    {
+      "type": "pill",
+      "name": "Orbit Pill",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Alpha Arbutin" }
+      ]
+    },
+    {
+      "type": "trait",
+      "name": "Trait Pill",
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "📍 Pakistan" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "About Founder" }]
+}
+{% endschema %}
