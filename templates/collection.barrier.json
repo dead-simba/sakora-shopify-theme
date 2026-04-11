@@ -1,0 +1,169 @@
+{
+  "sections": {
+    "hero": {
+      "type": "glowve-collection-hero",
+      "settings": {
+        "bg_color": "#E8F5E4",
+        "show_back_link": true,
+        "back_link_text": "back to shop",
+        "back_link_url": "/collections/all",
+        "eyebrow": "Barrier Repair Collection",
+        "eyebrow_color": "#5A7056",
+        "title": "for <em>sensitive</em>, dry & compromised skin",
+        "title_color": "#1A1A1A",
+        "subtitle": ""
+      }
+    },
+    "education": {
+      "type": "glowve-education",
+      "blocks": {
+        "lipid": {
+          "type": "lipid_callout",
+          "settings": {
+            "label": "Healthy Skin Barrier Lipid Ratio",
+            "val_1": "50%",
+            "name_1": "Ceramides",
+            "val_2": "25%",
+            "name_2": "Cholesterol",
+            "val_3": "25%",
+            "name_3": "Fatty Acids",
+            "note": "When this ratio is disrupted, moisture escapes and irritants enter. Replenishing ceramides directly restores the balance."
+          }
+        }
+      },
+      "block_order": [
+        "lipid"
+      ],
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "title": "Your barrier isn't broken. It's just depleted.",
+        "body": "<p>Your skin barrier is a lipid lattice: ceramides, cholesterol, and fatty acids in a ratio of roughly 50:25:25. Over-exfoliation, harsh cleansers, Pakistan's hard water, and even stress strip this mortar layer by layer.</p><p>The result? Skin that feels tight, reacts to everything, and can't hold moisture. You put on moisturiser and it feels like it evaporates within the hour. Fragrance that never bothered you starts stinging. Actives that used to work now cause irritation. That's not sensitivity \u2014 that's a barrier that needs rebuilding.</p><p>The fix isn't more products \u2014 it's replacing what was lost. Ceramides replace the lipids directly. Niacinamide stimulates your skin to produce more of its own ceramides. And that combination \u2014 external reinforcement plus internal stimulation \u2014 is how you actually repair a compromised barrier, not just mask the symptoms.</p>"
+      }
+    },
+    "symptoms": {
+      "type": "glowve-symptoms-grid",
+      "blocks": {
+        "s1": {
+          "type": "symptom",
+          "settings": {
+            "icon": "💧",
+            "text": "Moisturiser seems to evaporate within an hour"
+          }
+        },
+        "s2": {
+          "type": "symptom",
+          "settings": {
+            "icon": "🌶",
+            "text": "Products that used to be fine now sting or burn"
+          }
+        },
+        "s3": {
+          "type": "symptom",
+          "settings": {
+            "icon": "🔴",
+            "text": "Redness and tightness, especially after washing"
+          }
+        },
+        "s4": {
+          "type": "symptom",
+          "settings": {
+            "icon": "🌊",
+            "text": "Skin feels rough or flaky despite regular hydration"
+          }
+        }
+      },
+      "block_order": [
+        "s1",
+        "s2",
+        "s3",
+        "s4"
+      ],
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "title": "Signs your barrier needs attention"
+      }
+    },
+    "primary": {
+      "type": "glowve-featured-product",
+      "blocks": {
+        "i1": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Ceramides",
+            "desc": "Directly replaces the lipids stripped by cleansers, hard water, and exfoliants. Fills the gaps in your barrier immediately."
+          }
+        },
+        "i2": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Niacinamide",
+            "desc": "Signals your skin to produce its own ceramides. External repair and internal stimulation simultaneously."
+          }
+        },
+        "i3": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Hyaluronic Acid",
+            "desc": "Draws and holds moisture once the barrier is intact enough to keep it there. Works better when ceramides are in place."
+          }
+        },
+        "i4": {
+          "type": "ingredient",
+          "settings": {
+            "name": "Panthenol",
+            "desc": "Pro-vitamin B5. Calms inflammation and supports the skin's own healing process. Useful during recovery phase."
+          }
+        }
+      },
+      "block_order": [
+        "i1",
+        "i2",
+        "i3",
+        "i4"
+      ],
+      "settings": {
+        "bg_color": "#E2F5EE",
+        "section_label": "Your Primary Barrier Product",
+        "label_color": "#5A7056",
+        "product": "barrier-renew-moisturizer",
+        "custom_title": "Barrier Renew<br>Moisturizer",
+        "tagline": "Ceramides that repair. Niacinamide that rebuilds. Hyaluronic Acid that holds.",
+        "img_bg_gradient": "linear-gradient(135deg, #F5EEFF 0%, #E8D5F0 100%)",
+        "badge_text": "Start Here",
+        "badge_bg": "#5A7056",
+        "badge_text_color": "#FFFFFF"
+      }
+    },
+    "supporting": {
+      "type": "glowve-paired-product",
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "card_size": "standard",
+        "section_label": "Two products, overlapping benefits",
+        "label_color": "#FF4D8D",
+        "product": "2x-fade-theory",
+        "card_eyebrow": "Brightening Serum",
+        "custom_title": "2% Alpha Arbutin<br>+ Vitamin C",
+        "note_html": "<p>The niacinamide in the serum also builds your barrier \u2014 it reinforces ceramide production and reduces trans-epidermal water loss. <strong>So when you use both, you're getting barrier support from two products simultaneously.</strong> The serum doesn't replace the moisturizer. But it does make the whole stack more effective.</p>",
+        "img_bg_gradient": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)"
+      }
+    },
+    "quiz": {
+      "type": "glowve-quiz-cta",
+      "settings": {
+        "title": "Not sure this is right for your skin?",
+        "text": "Take the quiz and we'll build the right routine for you.",
+        "btn_label": "Take the Skin Quiz →",
+        "btn_link": "/pages/quiz"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "education",
+    "symptoms",
+    "primary",
+    "supporting",
+    "quiz"
+  ]
+}

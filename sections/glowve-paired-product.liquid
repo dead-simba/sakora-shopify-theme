@@ -1,0 +1,371 @@
+<section class="gv-paired-section" style="background: {{ section.settings.bg_color }};">
+  <div class="gv-paired-inner">
+    {%- if section.settings.section_label != blank -%}
+      <div class="gv-paired-label" style="color: {{ section.settings.label_color }};">
+        {{ section.settings.section_label }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.section_title != blank -%}
+      <h3 class="gv-paired-section-title">{{ section.settings.section_title }}</h3>
+    {%- endif -%}
+
+    <div class="gv-paired-card gv-paired-card--{{ section.settings.card_size }}">
+      <div class="gv-paired-img-wrap" style="background: {{ section.settings.img_bg_gradient }};">
+        {%- assign prod = section.settings.product -%}
+        {%- if section.settings.custom_image != blank -%}
+          {{ section.settings.custom_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+        {%- elsif prod != empty and prod.featured_image -%}
+          {{ prod.featured_image | image_url: width: 600 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'product-2' | placeholder_svg_tag: 'placeholder-svg' }}
+        {%- endif -%}
+      </div>
+
+      <div class="gv-paired-content">
+        {%- if section.settings.card_eyebrow != blank -%}
+          <span class="gv-paired-card-eyebrow" style="color: {{ section.settings.label_color }};">
+            {{ section.settings.card_eyebrow }}
+          </span>
+        {%- endif -%}
+
+        <h3 class="gv-paired-name">
+          {%- if section.settings.custom_title != blank -%}
+            {{ section.settings.custom_title }}
+          {%- else -%}
+            {{ prod.title | default: 'Paired Product' }}
+          {%- endif -%}
+        </h3>
+
+        {%- if section.settings.note_html != blank -%}
+          <div class="gv-paired-note">{{ section.settings.note_html }}</div>
+        {%- endif -%}
+
+        {%- unless section.settings.hide_price -%}
+          <p class="gv-paired-price">
+            {%- if prod != empty -%}
+              {{ prod.price | money }}
+            {%- else -%}
+              PKR 1,400
+            {%- endif -%}
+          </p>
+        {%- endunless -%}
+
+        <div class="gv-paired-actions">
+          {%- unless section.settings.hide_add_to_bag -%}
+            {%- if prod != empty -%}
+              <button class="gv-btn-paired-bag"
+                      onclick="glowveAddSingleToCart(event, this, {{ prod.first_available_variant.id }})" 
+                      {% unless prod.available %}disabled{% endunless %}>
+                {% if prod.available %}Add to Bag{% else %}Sold Out{% endif %}
+              </button>
+            {%- else -%}
+              <button class="gv-btn-paired-bag">Add to Bag</button>
+            {%- endif -%}
+          {%- endunless -%}
+
+          <a href="{{ prod.url }}" class="gv-btn-view-details" style="color: {{ section.settings.label_color }};">
+            {{ section.settings.link_text | default: 'View Details →' }}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-paired-section {
+    padding: 72px 40px;
+  }
+  .gv-paired-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gv-paired-label {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .gv-paired-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.2;
+  }
+  .gv-paired-section-title {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 32px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--berry-dark, #1A1A1A);
+    line-height: 1.2;
+    margin-bottom: 32px;
+    /* Ensuring proper casing */
+  }
+
+  .gv-paired-card {
+    display: grid;
+    align-items: center;
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--warm-gray, #ECECEC);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .gv-paired-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(45,27,53,0.08);
+  }
+
+  .gv-paired-card--large {
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+  }
+  .gv-paired-card--standard {
+    grid-template-columns: 240px 1fr;
+    gap: 40px;
+  }
+  .gv-paired-card--compact {
+    grid-template-columns: 160px 1fr;
+    gap: 40px;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+  }
+  .gv-paired-card--compact:hover {
+    transform: none;
+    box-shadow: none;
+  }
+  .gv-paired-card--compact .gv-paired-img-wrap {
+    border-radius: 16px;
+    border: 1px solid var(--warm-gray, #ECECEC);
+  }
+
+  .gv-paired-img-wrap {
+    height: 100%;
+    min-height: 240px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gv-paired-card--compact .gv-paired-img-wrap {
+    min-height: 160px;
+    height: 160px;
+  }
+  .gv-paired-img-wrap img, .gv-paired-img-wrap svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .gv-paired-content {
+    padding: 40px 40px 40px 0;
+  }
+  .gv-paired-card--compact .gv-paired-content {
+    padding: 0;
+  }
+  
+  .gv-paired-card-eyebrow {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .gv-paired-name {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--berry-dark, #1A1A1A);
+    margin-bottom: 12px;
+    line-height: 1.2;
+    /* Clean casing */
+  }
+
+  .gv-paired-note {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 15px;
+    color: #5A4E48;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 600px;
+  }
+  .gv-paired-note strong {
+    color: var(--berry-dark, #1A1A1A);
+    font-weight: 600;
+  }
+
+  .gv-paired-price {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--berry-dark, #1A1A1A);
+    margin-bottom: 20px;
+  }
+
+  .gv-paired-actions {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .gv-btn-paired-bag {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--brand-pink, #FF4D8D);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .gv-btn-paired-bag:hover {
+    background: var(--brand-pink-dark, #E63974);
+  }
+  .gv-btn-view-details {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+  .gv-btn-view-details:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .gv-paired-card {
+      grid-template-columns: 1fr;
+    }
+    .gv-paired-img-wrap {
+      height: 240px;
+    }
+    .gv-paired-content {
+      padding: 32px;
+    }
+  }
+  @media (max-width: 640px) {
+    .gv-paired-section {
+      padding: 56px 24px;
+    }
+    .gv-paired-card--compact {
+      grid-template-columns: 1fr;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Paired Product",
+  "tag": "section",
+  "class": "glowve-paired-product",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "select",
+      "id": "card_size",
+      "label": "Card Layout Size",
+      "options": [
+        { "value": "large", "label": "Large (280px image)" },
+        { "value": "standard", "label": "Standard (240px image)" },
+        { "value": "compact", "label": "Compact / Secondary (160px image)" }
+      ],
+      "default": "standard"
+    },
+    {
+      "type": "text",
+      "id": "section_label",
+      "label": "Section Label Eyebrow",
+      "default": "Also worth knowing"
+    },
+    {
+      "type": "color",
+      "id": "label_color",
+      "label": "Label Theme Color",
+      "default": "#FF4D8D"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Optional Section Title",
+      "info": "Used primarily in pairing sections."
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Select Product"
+    },
+    {
+      "type": "text",
+      "id": "card_eyebrow",
+      "label": "Card Inner Eyebrow (Optional)",
+      "info": "e.g. 'Brightening Serum'"
+    },
+    {
+      "type": "html",
+      "id": "custom_title",
+      "label": "Custom Product Title",
+      "info": "Use <br> for new lines"
+    },
+    {
+      "type": "richtext",
+      "id": "note_html",
+      "label": "Body Paragraph Note"
+    },
+    {
+      "type": "image_picker",
+      "id": "custom_image",
+      "label": "Custom Image (Optional)"
+    },
+    {
+      "type": "text",
+      "id": "img_bg_gradient",
+      "label": "Image Area Background",
+      "default": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)"
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_price",
+      "label": "Hide Price",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "hide_add_to_bag",
+      "label": "Hide Add to Bag Button",
+      "default": false
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "Link Text",
+      "default": "View Details →"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Paired Product"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,187 @@
+<section class="gv-collection-hero" style="background: {{ section.settings.bg_color }}; padding: {{ section.settings.padding_y }}px 0;">
+  <div class="gv-hero-inner">
+    {%- if section.settings.show_back_link -%}
+      <a href="{{ section.settings.back_link_url | default: '/collections/all' }}" class="gv-hero-back-link">
+        ← {{ section.settings.back_link_text | default: 'back to shop' }}
+      </a>
+    {%- endif -%}
+
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="gv-hero-eyebrow" style="color: {{ section.settings.eyebrow_color }};">
+        {{ section.settings.eyebrow }}
+      </p>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h1 class="gv-hero-h1" style="color: {{ section.settings.title_color }};">
+        {{ section.settings.title }}
+      </h1>
+    {%- endif -%}
+
+    {%- if section.settings.subtitle != blank -%}
+      <p class="gv-hero-subtitle">
+        {{ section.settings.subtitle }}
+      </p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-collection-hero {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .gv-hero-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .gv-hero-back-link {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    color: var(--mid-gray, #666666);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 32px;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: lowercase; /* Backlink is usually lowercase visually, but we can manage */
+    transition: color 0.2s ease;
+  }
+  .gv-hero-back-link:hover {
+    color: var(--brand-pink, #FF4D8D);
+  }
+  .gv-hero-eyebrow {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .gv-hero-h1 {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 64px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    max-width: 720px;
+    margin-bottom: 0;
+  }
+  .gv-hero-h1 em {
+    font-style: italic;
+    color: var(--brand-pink, #FF4D8D);
+  }
+  .gv-hero-subtitle {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 18px;
+    color: var(--mid-gray, #666666);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 900px) {
+    .gv-hero-h1 {
+      font-size: 46px;
+    }
+  }
+  @media (max-width: 640px) {
+    .gv-collection-hero {
+      padding-left: 24px;
+      padding-right: 24px;
+      /* Optional responsive padding override via CSS if needed */
+    }
+    .gv-hero-h1 {
+      font-size: 36px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Custom Hero",
+  "tag": "section",
+  "class": "glowve-collection-hero",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#E8F5E4"
+    },
+    {
+      "type": "range",
+      "id": "padding_y",
+      "min": 40,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical Padding",
+      "default": 80
+    },
+    {
+      "type": "header",
+      "content": "Back Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_back_link",
+      "label": "Show 'Back to shop' link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "back_link_text",
+      "label": "Link Text",
+      "default": "back to shop"
+    },
+    {
+      "type": "url",
+      "id": "back_link_url",
+      "label": "Link URL"
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Barrier Repair Collection"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#FF4D8D"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Title",
+      "default": "for <em>sensitive</em>, dry & compromised skin",
+      "info": "Use <em> tags to italicise and colorise a word."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle (Optional)",
+      "info": "Used primarily in the SPF collection variant."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Custom Hero"
+    }
+  ]
+}
+{% endschema %}

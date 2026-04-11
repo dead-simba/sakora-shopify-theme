@@ -1,0 +1,133 @@
+<section class="gv-symptoms-section" style="background: {{ section.settings.bg_color }};">
+  <div class="gv-symptoms-inner">
+    {%- if section.settings.title != blank -%}
+      <h3 class="gv-symptoms-title" style="color: {{ section.settings.title_color }};">
+        {{ section.settings.title }}
+      </h3>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="gv-symptoms-grid">
+        {%- for block in section.blocks -%}
+          <div class="gv-symptom-item" {{ block.shopify_attributes }}>
+            <span class="gv-symptom-icon">{{ block.settings.icon }}</span>
+            <p class="gv-symptom-text">{{ block.settings.text }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-symptoms-section {
+    padding: 72px 40px;
+    border-top: 1px solid var(--warm-gray, #ECECEC);
+  }
+  .gv-symptoms-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .gv-symptoms-title {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 30px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--berry-dark, #1A1A1A);
+    margin-bottom: 36px;
+    text-align: center;
+    /* Clean casing */
+  }
+  .gv-symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  .gv-symptom-item {
+    background: white;
+    border-radius: 16px;
+    padding: 28px 24px;
+    border: 1px solid var(--warm-gray, #ECECEC);
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+  }
+  .gv-symptom-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .gv-symptom-text {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    color: #5A4E48;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    .gv-symptoms-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .gv-symptoms-section {
+      padding: 56px 24px;
+    }
+    .gv-symptoms-grid {
+      gap: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Symptoms Grid",
+  "tag": "section",
+  "class": "glowve-symptoms-grid",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Signs your barrier needs attention"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1A1A1A"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "symptom",
+      "name": "Symptom",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji or Text Icon",
+          "default": "💧"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Symptom Text",
+          "default": "Moisturiser seems to evaporate within an hour"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Symptoms Grid"
+    }
+  ]
+}
+{% endschema %}

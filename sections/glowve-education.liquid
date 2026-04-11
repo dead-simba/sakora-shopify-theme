@@ -1,0 +1,266 @@
+<section class="gv-edu-section" style="background: {{ section.settings.bg_color }};">
+  <div class="gv-edu-inner" style="max-width: {{ section.settings.max_width }}px;">
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="gv-edu-eyebrow" style="color: {{ section.settings.eyebrow_color }};">
+        {{ section.settings.eyebrow }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="gv-edu-title" style="color: {{ section.settings.title_color }};">
+        {{ section.settings.title }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.body != blank -%}
+      <div class="gv-edu-body" style="color: {{ section.settings.body_color }};">
+        {{ section.settings.body }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'lipid_callout' -%}
+          <div class="gv-lipid-callout" {{ block.shopify_attributes }}>
+            <p class="gv-lipid-label">{{ block.settings.label }}</p>
+            <div class="gv-lipid-ratio">
+              <div class="gv-lipid-item">
+                <span class="gv-lipid-pct">{{ block.settings.val_1 }}</span>
+                <p class="gv-lipid-name">{{ block.settings.name_1 }}</p>
+              </div>
+              <div class="gv-lipid-item">
+                <span class="gv-lipid-pct">{{ block.settings.val_2 }}</span>
+                <p class="gv-lipid-name">{{ block.settings.name_2 }}</p>
+              </div>
+              <div class="gv-lipid-item">
+                <span class="gv-lipid-pct">{{ block.settings.val_3 }}</span>
+                <p class="gv-lipid-name">{{ block.settings.name_3 }}</p>
+              </div>
+            </div>
+            {%- if block.settings.note != blank -%}
+              <p class="gv-lipid-note">{{ block.settings.note }}</p>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endif -%}
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-edu-section {
+    padding: 80px 40px;
+  }
+  .gv-edu-inner {
+    margin: 0 auto;
+  }
+  .gv-edu-eyebrow {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+  .gv-edu-title {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    /* Removed text-transform: lowercase; per user request */
+  }
+  .gv-edu-title em {
+    font-style: italic;
+  }
+  .gv-edu-body {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+  .gv-edu-body p {
+    margin-bottom: 16px;
+  }
+  .gv-edu-body p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Lipid Callout specifically for Barrier Template */
+  .gv-lipid-callout {
+    margin: 40px 0 0;
+    background: #EDF5EC;
+    border-radius: 16px;
+    padding: 28px 32px;
+    border-left: 3px solid var(--brand-pink, #FF4D8D);
+  }
+  .gv-lipid-label {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sage-calm, #5A7056); /* fallback color, typically theme defined */
+    margin-bottom: 12px;
+  }
+  .gv-lipid-ratio {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .gv-lipid-item {
+    text-align: center;
+  }
+  .gv-lipid-pct {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--berry-dark, #1A1A1A);
+    line-height: 1;
+    display: block;
+  }
+  .gv-lipid-name {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    color: #5A7056;
+    margin-top: 4px;
+  }
+  .gv-lipid-note {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    color: #5A7056;
+    line-height: 1.6;
+    margin-top: 16px;
+  }
+
+  @media (max-width: 640px) {
+    .gv-edu-section {
+      padding: 60px 24px;
+    }
+    .gv-lipid-ratio {
+      gap: 20px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection Education",
+  "tag": "section",
+  "class": "glowve-collection-education",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1200,
+      "step": 20,
+      "unit": "px",
+      "label": "Content Max Width",
+      "default": 760
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text (Optional)"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#FF4D8D"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Title",
+      "default": "Your barrier isn't broken. It's just depleted."
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1A1A1A"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body Text",
+      "default": "<p>Your skin barrier is a lipid lattice...</p>"
+    },
+    {
+      "type": "color",
+      "id": "body_color",
+      "label": "Body Text Color",
+      "default": "#4A3F3A"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "lipid_callout",
+      "name": "Lipid Ratio Callout",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Callout Label",
+          "default": "Healthy Skin Barrier Lipid Ratio"
+        },
+        {
+          "type": "text",
+          "id": "val_1",
+          "label": "Value 1",
+          "default": "50%"
+        },
+        {
+          "type": "text",
+          "id": "name_1",
+          "label": "Name 1",
+          "default": "Ceramides"
+        },
+        {
+          "type": "text",
+          "id": "val_2",
+          "label": "Value 2",
+          "default": "25%"
+        },
+        {
+          "type": "text",
+          "id": "name_2",
+          "label": "Name 2",
+          "default": "Cholesterol"
+        },
+        {
+          "type": "text",
+          "id": "val_3",
+          "label": "Value 3",
+          "default": "25%"
+        },
+        {
+          "type": "text",
+          "id": "name_3",
+          "label": "Name 3",
+          "default": "Fatty Acids"
+        },
+        {
+          "type": "textarea",
+          "id": "note",
+          "label": "Footer Note",
+          "default": "When this ratio is disrupted, moisture escapes and irritants enter."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Education"
+    }
+  ]
+}
+{% endschema %}
