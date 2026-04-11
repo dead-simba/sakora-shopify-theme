@@ -288,6 +288,7 @@
         "concern_2",
         "concern_3"
       ],
+      "disabled": true,
       "name": "Glowve Shop by Concern",
       "settings": {
         "label": "Personalised for You",
