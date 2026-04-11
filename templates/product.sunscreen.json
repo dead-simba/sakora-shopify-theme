@@ -469,6 +469,7 @@
         "ba_1": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/SPF_-_Six_Layer_Protection.webp",
             "bg_gradient": "linear-gradient(135deg,#FFF0D8,#FFE0B8)",
             "title": "6-Filter UV System · Complete Spectrum Defense",
             "detail": "Zero UV coverage gaps from 280nm to 400nm · PA++++ confirmed"
@@ -477,6 +478,7 @@
         "ba_2": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/Zinc_PCA_Sebum_Control.webp",
             "bg_gradient": "linear-gradient(135deg,#FFEAC0,#FFD898)",
             "title": "Zinc PCA · Sebum Regulation",
             "detail": "Actively regulating sebum production for a matte finish maintained 8h+"
@@ -485,6 +487,7 @@
         "ba_3": {
           "type": "clinical_card",
           "settings": {
+            "image": "shopify://shop_images/SPF_-_Antioxidant_Complex.webp",
             "bg_gradient": "linear-gradient(135deg,#FFD8B0,#FFC898)",
             "title": "Antioxidant Complex · Free Radical Defense",
             "detail": "Neutralizing oxidative stress and preventing PIH formation at the source"
@@ -742,7 +745,7 @@
         "text_recs_header"
       ],
       "settings": {
-        "product": "",
+        "product": "{{ product }}",
         "recommendation_type": "related",
         "layout_type": "grid",
         "carousel_on_mobile": false,
@@ -756,8 +759,8 @@
         "section_width": "page-width",
         "gap": 12,
         "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 44,
+        "padding-block-end": 44
       }
     }
   },
