@@ -378,21 +378,27 @@
             "ing_1_name": "Triple Ceramide Complex",
             "ing_1_badge": "Ceramide NP / AP / EOP",
             "ing_1_benefit": "Replicates your skin's natural lipid profile to immediately reinforce and rebuild the outer barrier. No single ceramide type is enough, patching it with one leaves gaps.",
+            "ing_1_image": "shopify://shop_images/BR_Ing_Ceramide.webp",
             "ing_2_name": "Niacinamide",
             "ing_2_badge": "Multi-Tasker 5%",
             "ing_2_benefit": "Vitamin B3. Builds natural ceramides for barrier support, reduces oil production, and calms redness. Used at the clinically relevant 5% dose.",
+            "ing_2_image": "shopify://shop_images/BR_Ing_Niacinamide.webp",
             "ing_3_name": "Panthenol",
             "ing_3_badge": "Soothing B5",
             "ing_3_benefit": "Provitamin B5 converts into pantothenic acid in your skin, accelerates cell renewal, and reduces redness. Helps skin adapt without irritation.",
+            "ing_3_image": "shopify://shop_images/BR_Ing_Panthenol.webp",
             "ing_4_name": "Sodium Hyaluronate",
             "ing_4_badge": "Humectant",
             "ing_4_benefit": "Holds up to 1,000× its weight in water, drawing moisture from the air into your skin. The deeper-penetrating salt form of hyaluronic acid.",
+            "ing_4_image": "shopify://shop_images/BR_Ing_Hyaluronic.webp",
             "ing_5_name": "Allantoin",
             "ing_5_badge": "Skin Soother",
             "ing_5_benefit": "Derived from comfrey. Softens and soothes — helps skin tolerate actives and recover faster. The unsung hero in barrier formulas.",
+            "ing_5_image": "shopify://shop_images/BR_Ing_Allantoin.webp",
             "ing_6_name": "Olivem 1000",
             "ing_6_badge": "Natural Emulsifier",
-            "ing_6_benefit": "Derived from olive oil. Naturally compatible with skin lipids to create a cream texture that absorbs smoothly without a film or heaviness."
+            "ing_6_benefit": "Derived from olive oil. Naturally compatible with skin lipids to create a cream texture that absorbs smoothly without a film or heaviness.",
+            "ing_6_image": "shopify://shop_images/BR_Ing_Olivem.webp"
           }
         },
         "how_to_use_NikUg6": {
@@ -444,17 +450,17 @@
             "subtitle": "No overnight miracles.",
             "tl_1_period": "Day 1–3",
             "tl_1_title": "Immediate comfort",
-            "tl_1_body": "",
+            "tl_1_body": "Skin feels calmer and less tight within hours of first use. Ceramides start integrating into the barrier from day one. The plumpness is real, not just moisture sitting on top.",
             "tl_2_period": "Week 1–2",
             "tl_2_title": "Hydration holds longer",
-            "tl_2_body": "",
+            "tl_2_body": "You stop feeling dry by 3pm. Redness reduces. Skin reacts less to hard water, wind, and temperature changes. Niacinamide starting to stimulate ceramide production internally.",
             "tl_3_period": "Week 4–8",
             "tl_3_title": "Barrier independence",
-            "tl_3_body": "",
+            "tl_3_body": "Skin is noticeably calmer and more resilient. Sensitivity to active ingredients drops — you can now tolerate things that used to sting. Matrixyl 3000™ visibly firming around jaw and eyes.",
             "tl_4_period": "Week 8–12",
             "tl_4_title": "Structural change",
-            "tl_4_body": "",
-            "tip": ""
+            "tl_4_body": "Wrinkle depth reduced — this is the Matrixyl clinical window. Skin feels structurally different, not just soft. Most customers at this stage say they've stopped looking for a \"better\" moisturiser.",
+            "tip": "Tip for Pakistan winters: Islamabad and upper Punjab can see humidity drop below 30% in January–February. Add an extra pump at night during these months. Your barrier is working harder against cold + dry + heating."
           }
         }
       },
