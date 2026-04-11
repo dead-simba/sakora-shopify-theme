@@ -1,9 +1,18 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
       "type": "glowve-skin-quiz",
       "settings": {
-        "bg_color": "#FFFFFF",
+        "bg_color": "#ffffff",
         "hero_eyebrow": "Your Skin · Your Routine",
         "hero_title": "what does your skin<br><em>actually</em> need?",
         "hero_desc": "Answer 6 questions and we'll build your personal routine based on ingredients, not guesswork. Takes about 2 minutes.",
@@ -12,7 +21,10 @@
         "trust_3": "Fitzpatrick IV–VI specialists",
         "social_proof": "\"I took this quiz and finally found what actually works for my PIH.\" — Nida, Lahore",
         "start_btn_text": "Find My Routine",
-        "hero_meta": "Free · 2 minutes · Personalised for your city and skin type"
+        "hero_meta": "Free · 2 minutes · Personalised for your city and skin type",
+        "serum_prod": "fade-theory",
+        "moisturizer_prod": "soft-reset-moisturizer",
+        "spf_prod": "daylite-spf-50-sunscreen"
       }
     }
   },
