@@ -460,10 +460,10 @@
       "name": "Glowve Routine Builder",
       "settings": {
         "eyebrow": "✦ Personalised Skincare",
-        "title": "<p>Not sure where<br>to <em>start?</em></p>",
+        "title": "<p>Not sure where<br/>to <em>start?</em></p>",
         "description": "Answer 5 quick questions and we'll build a custom routine for your skin type, concerns, and budget. No fluff — just the products that will actually work for you.",
         "cta_label": "Take the Skin Quiz",
-        "cta_url": "/pages/skin-quiz"
+        "cta_url": "shopify://pages/quiz"
       }
     },
     "glowve_ugc": {
