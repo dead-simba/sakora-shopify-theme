@@ -76,13 +76,14 @@ em {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 15px 34px;
+  padding: 14px 26px;
   border-radius: 100px;
   border: none;
   cursor: pointer;
   transition: background 0.2s, transform 0.2s;
   display: inline-block;
   text-decoration: none;
+  width: fit-content;
 }
 .gv-btn-primary:hover { background: var(--coral-dark); transform: scale(1.02); }
 
@@ -108,12 +109,13 @@ em {
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 14px 32px;
+  padding: 14px 26px;
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.2s;
   display: inline-block;
   text-decoration: none;
+  width: fit-content;
 }
 .gv-btn-ghost:hover { background: #fff; color: var(--berry-dark); }
 

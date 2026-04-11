@@ -95,14 +95,15 @@
     font-size: 15px;
     color: var(--warm-espresso);
     outline: none;
-    min-width: 0;
+    min-width: 140px; /* Pre-emptively give input space */
   }
   .gv-email-input::placeholder { color: var(--mid-gray); }
 
   .gv-email-form .gv-btn-primary {
     flex-shrink: 0;
-    padding: 12px 28px;
+    padding: 12px 24px;
     font-size: 12px;
+    width: auto; /* Ensure it doesn't stretch */
   }
 
   .gv-email-success {
@@ -132,16 +133,16 @@
 
   @media (max-width: 568px) {
     .gv-email-capture { padding: 70px 0; }
-    .gv-email-inner { padding: 0 20px; }
-    .gv-email-title { font-size: 36px; }
+    .gv-email-inner { padding: 0 24px; }
+    .gv-email-title { font-size: 32px; }
     .gv-email-form {
       flex-direction: column;
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 20px;
+      padding: 12px;
       gap: 12px;
     }
-    .gv-email-input { width: 100%; text-align: center; }
-    .gv-email-form .gv-btn-primary { width: 100%; text-align: center; border-radius: 100px; }
+    .gv-email-input { width: 100%; text-align: center; min-width: 0; padding: 10px 0; }
+    .gv-email-form .gv-btn-primary { width: 100%; max-width: 300px; margin: 0 auto; text-align: center; border-radius: 100px; }
   }
 {% endstylesheet %}
 
