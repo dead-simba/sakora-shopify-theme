@@ -753,7 +753,7 @@
         "text_recs_header"
       ],
       "settings": {
-        "product": "{{ closest.product }}",
+        "product": "{{ product }}",
         "recommendation_type": "related",
         "layout_type": "grid",
         "carousel_on_mobile": false,
