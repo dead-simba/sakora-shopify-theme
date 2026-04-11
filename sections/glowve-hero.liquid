@@ -19,7 +19,11 @@
                 <source media="(max-width: 768px)" srcset="{{ block.settings.mobile_image | image_url: width: 800 }} 800w, {{ block.settings.mobile_image | image_url: width: 1200 }} 1200w" sizes="100vw">
               {%- endif -%}
               <source media="(min-width: 769px)" srcset="{{ block.settings.image | image_url: width: 1200 }} 1200w, {{ block.settings.image | image_url: width: 1600 }} 1600w, {{ block.settings.image | image_url: width: 2000 }} 2000w" sizes="100vw">
-              {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-bg-img' }}
+              {%- if forloop.first -%}
+                {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'eager', fetchpriority: 'high', class: 'gv-hero-bg-img' }}
+              {%- else -%}
+                {{ block.settings.image | image_url: width: 2000 | image_tag: loading: 'lazy', class: 'gv-hero-bg-img' }}
+              {%- endif -%}
             </picture>
           {%- else -%}
             <div class="gv-hero-bg-placeholder gv-hero-bg-placeholder--{{ forloop.index }}"></div>
