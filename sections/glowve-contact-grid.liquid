@@ -54,7 +54,22 @@
               {%- when 'contact_method' -%}
                 <div class="gv-info-item" {{ block.shopify_attributes }}>
                   <div class="gv-info-icon" style="background: {{ block.settings.icon_bg }};">
-                    {{ block.settings.icon }}
+                    {%- if block.settings.icon_type == 'custom' and block.settings.icon_image != blank -%}
+                      {{ block.settings.icon_image | image_url: width: 48 | image_tag: loading: 'lazy' }}
+                    {%- else -%}
+                      {%- case block.settings.icon_type -%}
+                        {%- when 'email' -%}
+                          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                        {%- when 'whatsapp' -%}
+                          <svg width="22" height="22" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-2.135 0-4.141.832-5.648 2.342a7.947 7.947 0 00-2.342 5.648c0 1.258.293 2.484.851 3.585l-1.07 3.906 4.004-1.05a7.933 7.933 0 003.58.857c.002.001.003.001.005.001 2.134 0 4.14-.832 5.648-2.342a7.947 7.947 0 002.342-5.648c0-2.134-.832-4.14-2.342-5.648a7.947 7.947 0 00-5.648-2.342zm4.312 11.232c-.179.505-.888.922-1.229.984-.336.062-.644.067-.93.029-.286-.038-.57-.086-.855-.133-1.636-.266-2.924-.962-4.008-1.782-1.084-.82-1.848-1.583-2.164-2.166-.316-.583-.497-1.164-.528-1.78-.031-.616.141-1.189.513-1.763.179-.276.357-.552.536-.827.179-.275.179-.275.179-.391 0-.116 0-.232-.058-.344-.058-.112-.513-1.232-.705-1.702-.192-.47-.384-.384-.527-.384-.143 0-.286-.058-.429-.058-.143 0-.317.058-.459.174-.142.116-.54.528-.54 1.288 0 .8.286 1.58.6 2.056.314.476 1.486 2.268 3.596 3.178.503.216.896.345 1.201.442.502.159.959.137 1.32.083.403-.059 1.229-.503 1.403-.984.174-.481.174-.897.123-1.229-.051-.332-.178-.501-.371-.599-.193-.098-.458-.231-.722-.363-.264-.132-.528-.264-.722-.361-.194-.097-.247-.132-.371-.132-.124 0-.247.058-.371.132-.124.074-.536.632-.656.772-.12.14-.24.155-.429.07-.189-.085-.798-.266-1.516-.906-.558-.496-.935-1.11-1.044-1.297-.109-.187-.012-.288.082-.381l.302-.349.191-.223c.06-.07.094-.132.132-.224.038-.092.019-.174-.01-.256-.029-.082-.26-.628-.356-.856-.096-.228-.192-.196-.264-.196H9.42c-.072 0-.188.028-.288.136-.1.108-.384.376-.384.916s.396 1.068.452 1.144c.056.076.78 1.192 1.892 1.672.26.112.464.18.62.228.408.128.78.112 1.072.072.32-.044.976-.4 1.112-.784.136-.384.136-.712.096-.784-.04-.072-.148-.112-.312-.196z"/></svg>
+                        {%- when 'clock' -%}
+                          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        {%- when 'location' -%}
+                          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        {%- else -%}
+                          <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle></svg>
+                      {%- endcase -%}
+                    {%- endif -%}
                   </div>
                   <div class="gv-info-content">
                     <div class="gv-info-label">{{ block.settings.label }}</div>
@@ -91,7 +106,7 @@
 
 {% stylesheet %}
   .gv-contact-section {
-    padding: 0 0 100px;
+    padding: 80px 0 100px;
   }
   .gv-contact-inner {
     max-width: 1280px;
@@ -220,15 +235,13 @@
     gap: 20px;
     align-items: flex-start;
   }
-  .gv-info-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    flex-shrink: 0;
+  .gv-info-icon img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  .gv-info-icon svg {
+    color: var(--brand-pink, #FF4D8D);
   }
   .gv-info-content {
     display: flex;
@@ -332,10 +345,22 @@
       "name": "Contact Method",
       "settings": [
         {
-          "type": "text",
-          "id": "icon",
-          "label": "Icon Emoji",
-          "default": "📧"
+          "type": "select",
+          "id": "icon_type",
+          "label": "Icon Style",
+          "options": [
+            { "value": "email", "label": "Email" },
+            { "value": "whatsapp", "label": "WhatsApp" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "location", "label": "Location" },
+            { "value": "custom", "label": "Custom Image" }
+          ],
+          "default": "email"
+        },
+        {
+          "type": "image_picker",
+          "id": "icon_image",
+          "label": "Custom Icon Image"
         },
         {
           "type": "text",

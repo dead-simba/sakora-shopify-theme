@@ -18,7 +18,7 @@
         "email": {
           "type": "contact_method",
           "settings": {
-            "icon": "📧",
+            "icon_type": "email",
             "icon_bg": "linear-gradient(135deg, #FFE8D6, #F4845F22)",
             "label": "Email",
             "text_1": "",
@@ -30,19 +30,19 @@
         "whatsapp": {
           "type": "contact_method",
           "settings": {
-            "icon": "💬",
+            "icon_type": "whatsapp",
             "icon_bg": "linear-gradient(135deg, #E8F5E4, #A8C5A022)",
             "label": "WhatsApp",
-            "text_1": "For urgent queries, WhatsApp is fastest.",
+            "text_1": "+92 327 7771047",
             "text_1_color": "#1A1A1A",
             "link_text": "Message us on WhatsApp →",
-            "link_url": "#"
+            "link_url": "https://wa.me/923277771047"
           }
         },
         "response_time": {
           "type": "contact_method",
           "settings": {
-            "icon": "⏰",
+            "icon_type": "clock",
             "icon_bg": "linear-gradient(135deg, #FFF3D6, #FFC85C22)",
             "label": "Response Time",
             "text_1": "Within 24 hours<br>Monday to Saturday",
@@ -54,7 +54,7 @@
         "location": {
           "type": "contact_method",
           "settings": {
-            "icon": "📍",
+            "icon_type": "location",
             "icon_bg": "linear-gradient(135deg, #F0EBF8, #9B72AA22)",
             "label": "Location",
             "text_1": "Pakistan 🇵🇰",
@@ -144,7 +144,7 @@
         "trust_1": {
           "type": "trust_item",
           "settings": {
-            "icon": "⚡",
+            "icon_type": "lightning",
             "title": "Fast Replies",
             "desc": "Within 24 hours, Mon–Sat"
           }
@@ -152,7 +152,7 @@
         "trust_2": {
           "type": "trust_item",
           "settings": {
-            "icon": "🤝",
+            "icon_type": "support",
             "title": "Friendly Support",
             "desc": "Real people, not bots"
           }
@@ -160,7 +160,7 @@
         "trust_3": {
           "type": "trust_item",
           "settings": {
-            "icon": "🇵🇰",
+            "icon_type": "shield",
             "title": "Made for Pakistan",
             "desc": "We understand your skin"
           }
