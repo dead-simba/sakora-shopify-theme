@@ -96,6 +96,68 @@
                 </div>
               </div>
 
+            {%- when 'uv_spectrum' -%}
+              <div class="acc-pdp-science">
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="gv-section-sub" style="margin-bottom:24px; color:var(--pearl-glow, rgba(255,255,255,0.75));">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+
+                <div class="uv-spectrum">
+                  <div class="uv-labels">
+                    <span>UVB (280nm)</span>
+                    <span>UVA2 (320nm)</span>
+                    <span>UVA1 (400nm)</span>
+                  </div>
+                  <div class="uv-bar-container">
+                    <div class="uv-bar"></div>
+                  </div>
+                  <div class="uv-markers">
+                    {%- for i in (1..6) -%}
+                      {%- assign nm_k = 'uv_' | append: i | append: '_nm' -%}
+                      {%- assign name_k = 'uv_' | append: i | append: '_name' -%}
+                      {%- assign desc_k = 'uv_' | append: i | append: '_desc' -%}
+                      {%- if block.settings[name_k] != blank -%}
+                        <div class="uv-marker">
+                          <div class="uv-marker-nm">{{ block.settings[nm_k] }}</div>
+                          <div class="uv-marker-name">{{ block.settings[name_k] }}</div>
+                          <div class="uv-marker-desc">{{ block.settings[desc_k] }}</div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                  {%- if block.settings.quote != blank -%}
+                  <div class="uv-conclusion">
+                    <div class="uv-conclusion-main">"{{ block.settings.quote }}"</div>
+                    <div class="uv-conclusion-sub">{{ block.settings.quote_sub }}</div>
+                  </div>
+                  {%- endif -%}
+                </div>
+
+                {%- if block.settings.pk_uv_num != blank -%}
+                <div class="pk-uv-box">
+                  <div>
+                    <div class="pk-uv-num">{{ block.settings.pk_uv_num }}</div>
+                    <div style="font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;">{{ block.settings.pk_uv_label | default: 'PAKISTAN SUMMER UV INDEX' }}</div>
+                  </div>
+                  <div class="pk-uv-text">
+                    {{ block.settings.pk_uv_text }}
+                  </div>
+                </div>
+                {%- endif -%}
+
+                {%- if block.settings.pa_rating != blank -%}
+                <div class="pa-badge-section">
+                  <div class="pa-badge">
+                    <div class="pa-badge-rating">{{ block.settings.pa_rating }}</div>
+                    <div class="pa-badge-label">{{ block.settings.pa_label | default: 'UVA PROTECTION RATING' }}</div>
+                  </div>
+                  <div class="pa-explain">
+                    {{ block.settings.pa_explain }}
+                  </div>
+                </div>
+                {%- endif -%}
+              </div>
+
 
             {%- when 'ingredients' -%}
               {%- if block.settings.subtitle != blank -%}
@@ -361,6 +423,41 @@
   .science-stat-label { font-size:15px; color:rgba(255,255,255,0.7); linha-height:1.4;}
   .science-stat-source { font-size:11px; color:rgba(255,255,255,0.4); margin-top:8px; font-family:var(--font-mono);}
 
+  /* UV Spectrum */
+  .uv-spectrum{margin-top:24px;}
+  .uv-bar-container{position:relative;margin:32px 0;}
+  .uv-bar{height:40px;border-radius:12px;background:linear-gradient(to right, #4A90E2 0%, #7B68EE 30%, #9B72AA 55%, #E07070 80%, #FF8C00 100%);display:flex;align-items:center;position:relative;}
+  .uv-labels{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:8px;}
+  .uv-markers{display:flex; gap:8px; overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:8px;}
+  .uv-markers::-webkit-scrollbar{display:none;}
+  .uv-marker{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px;text-align:center; min-width: 140px; flex: 1; flex-shrink: 0; scroll-snap-align: start;}
+  .uv-marker-nm{font-family:var(--font-mono);font-size:11px;color:var(--mango-zest, #FFB347);margin-bottom:6px;}
+  .uv-marker-name{font-family:var(--font-mono);font-size:12px;color:var(--cream-glow, #fff);margin-bottom:6px;font-weight:500; min-height:30px;}
+  .uv-marker-desc{font-size:11px;color:rgba(255,255,255,0.55);line-height:1.4;}
+  .uv-conclusion{margin-top:32px;background:rgba(255,179,71,0.1);border:1px solid rgba(255,179,71,0.3);border-radius:16px;padding:24px;text-align:center;}
+  .uv-conclusion-main{font-family:var(--font-serif);font-size:20px;color:var(--cream-glow, #fff);font-style:italic;}
+  .uv-conclusion-sub{font-size:13px;color:rgba(255,255,255,0.6);margin-top:8px;}
+  .pk-uv-box{background:rgba(255,179,71,0.15);border:1px solid rgba(255,179,71,0.4);border-radius:16px;padding:20px;margin-top:32px;display:flex;flex-direction:column;gap:16px;}
+  .pk-uv-num{font-family:var(--font-serif);font-size:48px;font-weight:300;color:var(--mango-zest, #FFB347);line-height:1;}
+  .pk-uv-text{font-size:13px;color:rgba(255,255,255,0.75);line-height:1.65;}
+  .pk-uv-text strong{color:var(--mango-zest, #FFB347);}
+  .pa-badge-section{margin-top:32px;display:flex;gap:20px;flex-direction:column;}
+  .pa-badge{background:rgba(255,179,71,0.2);border:1px solid rgba(255,179,71,0.5);border-radius:16px;padding:20px;text-align:center;}
+  .pa-badge-rating{font-family:var(--font-serif);font-size:32px;color:var(--mango-zest, #FFB347);font-weight:300;line-height:1;}
+  .pa-badge-label{font-family:var(--font-mono);font-size:10px;color:rgba(255,255,255,0.6);margin-top:8px;}
+  .pa-explain{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.7;}
+  .pa-explain strong{color:var(--cream-glow, #fff);}
+  @media(min-width:1024px) {
+    .uv-markers { display: grid; grid-template-columns: repeat(6, 1fr); overflow-x: visible; }
+    .uv-marker { min-width: auto; }
+    .pk-uv-box { flex-direction: row; align-items: center; gap: 32px; padding: 28px; }
+    .pk-uv-num { font-size: 80px; }
+    .pk-uv-text { font-size: 15px; }
+    .pa-badge-section { flex-direction: row; align-items: center; }
+    .pa-badge { padding: 20px 32px; }
+    .pa-badge-rating { font-size: 48px; }
+  }
+
   /* Ingredients scroll */
   .ing-scroll-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
   .ing-scroll-track::-webkit-scrollbar{display:none;}
@@ -465,6 +562,50 @@
         { "type": "header", "content": "Bottom Stat" },
         { "type": "text", "id": "stat_num", "label": "Stat Number", "default": "92%" },
         { "type": "text", "id": "stat_label", "label": "Stat Label", "default": "of participants noticed brighter skin within 4 weeks" }
+      ]
+    },
+    {
+      "type": "uv_spectrum",
+      "name": "UV Spectrum Science",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "No gaps. Every UV wavelength covered." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Most SPFs cover UVB well and UVA poorly." },
+        { "type": "header", "content": "Filter 1" },
+        { "type": "text", "id": "uv_1_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_1_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_1_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 2" },
+        { "type": "text", "id": "uv_2_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_2_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_2_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 3" },
+        { "type": "text", "id": "uv_3_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_3_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_3_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 4" },
+        { "type": "text", "id": "uv_4_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_4_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_4_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 5" },
+        { "type": "text", "id": "uv_5_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_5_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_5_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 6" },
+        { "type": "text", "id": "uv_6_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_6_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_6_desc", "label": "Description" },
+        { "type": "header", "content": "Conclusion Box" },
+        { "type": "text", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "quote_sub", "label": "Quote subtitle" },
+        { "type": "header", "content": "PK UV Context" },
+        { "type": "text", "id": "pk_uv_num", "label": "Number (e.g. 10-12)" },
+        { "type": "text", "id": "pk_uv_label", "label": "Label", "default": "PAKISTAN SUMMER UV INDEX" },
+        { "type": "richtext", "id": "pk_uv_text", "label": "Text details" },
+        { "type": "header", "content": "PA Rating" },
+        { "type": "text", "id": "pa_rating", "label": "Rating (e.g. PA++++)" },
+        { "type": "text", "id": "pa_label", "label": "Label", "default": "UVA PROTECTION RATING" },
+        { "type": "richtext", "id": "pa_explain", "label": "Explanation text" }
       ]
     },
     {
