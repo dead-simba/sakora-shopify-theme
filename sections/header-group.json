@@ -32,12 +32,6 @@
             "text": "Ingredient transparency: we show you every %"
           }
         },
-        "message_KfpQPW": {
-          "type": "message",
-          "settings": {
-            "text": "Dermatologist tested. Always."
-          }
-        },
         "message_WkVfRk": {
           "type": "message",
           "settings": {
@@ -49,7 +43,6 @@
         "message_MBgLXr",
         "message_gwNFfX",
         "message_MD43tp",
-        "message_KfpQPW",
         "message_WkVfRk"
       ],
       "name": "Glowve Announcement Bar",
