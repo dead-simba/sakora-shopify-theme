@@ -24,7 +24,7 @@
           "type": "pill",
           "settings": {
             "label": "Serums",
-            "link": "/collections/serums",
+            "link": "shopify://collections/serum",
             "is_active": false
           }
         },
@@ -32,7 +32,7 @@
           "type": "pill",
           "settings": {
             "label": "Moisturisers",
-            "link": "/collections/moisturisers",
+            "link": "shopify://collections/moisturizer",
             "is_active": false
           }
         },
@@ -40,7 +40,7 @@
           "type": "pill",
           "settings": {
             "label": "Sunscreens",
-            "link": "/collections/sunscreens",
+            "link": "shopify://collections/sunscreen",
             "is_active": false
           }
         }
