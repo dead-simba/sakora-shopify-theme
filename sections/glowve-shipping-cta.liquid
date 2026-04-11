@@ -1,0 +1,73 @@
+<section class="gv-ship-cta">
+  <div class="gv-ship-cta__inner">
+    <div class="gv-ship-cta__label">{{ section.settings.label }}</div>
+    <h2 class="gv-ship-cta__title">{{ section.settings.title }}</h2>
+    <p class="gv-ship-cta__sub">{{ section.settings.subtitle }}</p>
+    <div class="gv-ship-cta__btns">
+      {%- if section.settings.btn_1_label != blank -%}
+        <a href="{{ section.settings.btn_1_link }}" class="gv-ship-cta__btn gv-ship-cta__btn--primary">{{ section.settings.btn_1_label }}</a>
+      {%- endif -%}
+      {%- if section.settings.btn_2_label != blank -%}
+        <a href="{{ section.settings.btn_2_link }}" class="gv-ship-cta__btn gv-ship-cta__btn--outline">{{ section.settings.btn_2_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ship-cta { background: white; padding: 80px 0; }
+  .gv-ship-cta__inner { max-width: 760px; margin: 0 auto; padding: 0 40px; text-align: center; }
+
+  .gv-ship-cta__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 16px;
+  }
+  .gv-ship-cta__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 42px !important; font-weight: 600 !important;
+    color: #1A1A1A !important; line-height: 1.2 !important;
+    margin-bottom: 20px; text-transform: lowercase !important;
+  }
+  .gv-ship-cta__title em { font-style: normal !important; color: #FF4D8D !important; }
+  .gv-ship-cta__sub {
+    font-family: 'Poppins', sans-serif; font-size: 16px; color: #666;
+    line-height: 1.7; max-width: 460px; margin: 0 auto 40px;
+  }
+
+  .gv-ship-cta__btns { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .gv-ship-cta__btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: 100px;
+    font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    text-decoration: none; transition: transform 0.2s, background 0.2s;
+  }
+  .gv-ship-cta__btn:hover { transform: translateY(-2px); }
+  .gv-ship-cta__btn--primary { background: #FF4D8D; color: white; }
+  .gv-ship-cta__btn--primary:hover { background: #E63974; }
+  .gv-ship-cta__btn--outline { background: transparent; color: #FF4D8D; border: 2px solid #FF4D8D; }
+  .gv-ship-cta__btn--outline:hover { background: #FF4D8D; color: white; }
+
+  @media (max-width: 768px) {
+    .gv-ship-cta__inner { padding: 0 20px; }
+    .gv-ship-cta__title { font-size: 32px !important; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact CTA",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "— Reach Out Anytime —" },
+    { "type": "html", "id": "title", "label": "Title", "default": "we're not a<br><em>faceless team.</em>" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "We're skincare people who genuinely care about your skin. Message us anytime — before you buy, after you buy, or if something goes wrong." },
+    { "type": "text", "id": "btn_1_label", "label": "Button 1 Label", "default": "💬 WhatsApp Us" },
+    { "type": "url", "id": "btn_1_link", "label": "Button 1 Link" },
+    { "type": "text", "id": "btn_2_label", "label": "Button 2 Label", "default": "📸 @glowve" },
+    { "type": "url", "id": "btn_2_link", "label": "Button 2 Link" }
+  ],
+  "presets": [{ "name": "Contact CTA" }]
+}
+{% endschema %}

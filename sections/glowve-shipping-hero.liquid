@@ -1,0 +1,55 @@
+<section class="gv-ship-hero">
+  <div class="gv-ship-hero__inner">
+    <div class="gv-ship-hero__label">{{ section.settings.label }}</div>
+    <h1 class="gv-ship-hero__title">{{ section.settings.title }}</h1>
+    <p class="gv-ship-hero__sub">{{ section.settings.subtitle }}</p>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ship-hero {
+    background: #FFF0E6;
+    padding: 100px 0 80px;
+  }
+  .gv-ship-hero__inner {
+    max-width: 1280px; margin: 0 auto; padding: 0 40px;
+  }
+  .gv-ship-hero__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 16px;
+  }
+  .gv-ship-hero__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 64px !important; font-weight: 600 !important;
+    line-height: 1.05 !important; color: #1A1A1A !important;
+    margin-bottom: 16px; text-transform: lowercase !important;
+    letter-spacing: -0.02em;
+  }
+  .gv-ship-hero__title em {
+    font-style: normal !important; color: #FF4D8D !important;
+  }
+  .gv-ship-hero__sub {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 18px !important; color: #666 !important;
+    line-height: 1.7; max-width: 520px;
+  }
+  @media (max-width: 768px) {
+    .gv-ship-hero { padding: 72px 0 60px; }
+    .gv-ship-hero__inner { padding: 0 20px; }
+    .gv-ship-hero__title { font-size: 42px !important; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Shipping Hero",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "Delivery & Returns" },
+    { "type": "html", "id": "title", "label": "Title", "default": "shipping,<br><em>simplified.</em>" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "No surprises. No hidden fees. And if the product isn't right for your skin — return it, no questions asked." }
+  ],
+  "presets": [{ "name": "Shipping Hero" }]
+}
+{% endschema %}

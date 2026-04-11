@@ -1,0 +1,46 @@
+<section class="gv-ship-guarantee">
+  <div class="gv-ship-guarantee__inner">
+    <div class="gv-ship-guarantee__label">{{ section.settings.label }}</div>
+    <h2 class="gv-ship-guarantee__title">{{ section.settings.title }}</h2>
+    <p class="gv-ship-guarantee__sub">{{ section.settings.subtitle }}</p>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ship-guarantee { background: #FF4D8D; padding: 64px 0; }
+  .gv-ship-guarantee__inner { max-width: 760px; margin: 0 auto; padding: 0 40px; text-align: center; }
+
+  .gv-ship-guarantee__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: rgba(255,255,255,0.7) !important; margin-bottom: 16px;
+  }
+  .gv-ship-guarantee__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 48px !important; font-weight: 600 !important;
+    color: white !important; line-height: 1.1 !important;
+    margin-bottom: 20px; text-transform: lowercase !important;
+  }
+  .gv-ship-guarantee__sub {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 18px !important; color: rgba(255,255,255,0.85) !important;
+    line-height: 1.7; max-width: 480px; margin: 0 auto;
+  }
+  @media (max-width: 768px) {
+    .gv-ship-guarantee__inner { padding: 0 20px; }
+    .gv-ship-guarantee__title { font-size: 36px !important; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "30-Day Guarantee",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "The Glowve Promise" },
+    { "type": "html", "id": "title", "label": "Title", "default": "30-day clinical<br>guarantee." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "We believe you should love what you put on your skin. Try it, test the texture, use it — if it's not right for you, return it for a full 100% refund." }
+  ],
+  "presets": [{ "name": "30-Day Guarantee" }]
+}
+{% endschema %}

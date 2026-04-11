@@ -1,0 +1,116 @@
+<section class="gv-ship-faq">
+  <div class="gv-ship-faq__inner">
+    <div class="gv-ship-faq__label">{{ section.settings.label }}</div>
+    <h2 class="gv-ship-faq__title">{{ section.settings.title }}</h2>
+
+    <div class="gv-ship-faq__list">
+      {%- for block in section.blocks -%}
+        <div class="gv-ship-faq-item js-ship-faq" {{ block.shopify_attributes }}>
+          <button class="gv-ship-faq-trigger js-ship-faq-trigger">
+            <span>{{ block.settings.question }}</span>
+            <span class="gv-ship-faq-icon">+</span>
+          </button>
+          <div class="gv-ship-faq-body js-ship-faq-body">
+            <div class="gv-ship-faq-answer">{{ block.settings.answer }}</div>
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-ship-faq { background: #FAFAFA; padding: 80px 0; border-top: 1px solid #ECECEC; }
+  .gv-ship-faq__inner { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+  .gv-ship-faq__label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 11px !important; font-weight: 700 !important;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: #FF4D8D !important; margin-bottom: 12px;
+  }
+  .gv-ship-faq__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 42px !important; font-weight: 600 !important;
+    color: #1A1A1A !important; line-height: 1.2 !important;
+    margin-bottom: 48px; text-transform: lowercase !important;
+  }
+  .gv-ship-faq__title em { font-style: normal !important; color: #FF4D8D !important; }
+
+  .gv-ship-faq__list {
+    background: white; border: 1.5px solid #ECECEC; border-radius: 20px; overflow: hidden;
+  }
+  .gv-ship-faq-item { border-bottom: 1px solid #ECECEC; }
+  .gv-ship-faq-item:last-child { border-bottom: none; }
+
+  .gv-ship-faq-trigger {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 24px; cursor: pointer; width: 100%;
+    background: none; border: none; text-align: left;
+    font-family: 'Poppins', sans-serif; font-size: 15px; font-weight: 500; color: #1A1A1A;
+    transition: color 0.2s;
+  }
+  .gv-ship-faq-trigger:hover { color: #FF4D8D; }
+  .gv-ship-faq-icon {
+    font-size: 20px; color: #666; transition: transform 0.3s; flex-shrink: 0; margin-left: 16px;
+  }
+  .gv-ship-faq-item.is-open .gv-ship-faq-icon { transform: rotate(45deg); color: #FF4D8D; }
+
+  .gv-ship-faq-body {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .gv-ship-faq-answer {
+    padding: 0 24px 20px; font-family: 'Poppins', sans-serif; font-size: 14px;
+    color: #666; line-height: 1.75;
+  }
+  .gv-ship-faq-answer a { color: #FF4D8D; font-weight: 600; text-decoration: none; }
+  .gv-ship-faq-answer a:hover { text-decoration: underline; }
+
+  @media (max-width: 768px) {
+    .gv-ship-faq__inner { padding: 0 20px; }
+    .gv-ship-faq__title { font-size: 32px !important; }
+  }
+{% endstylesheet %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.js-ship-faq-trigger').forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const item = trigger.closest('.js-ship-faq');
+        const body = item.querySelector('.js-ship-faq-body');
+        const isOpen = item.classList.contains('is-open');
+
+        document.querySelectorAll('.js-ship-faq').forEach(i => {
+          i.classList.remove('is-open');
+          i.querySelector('.js-ship-faq-body').style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          item.classList.add('is-open');
+          body.style.maxHeight = body.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Shipping FAQ",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Label", "default": "— FAQ —" },
+    { "type": "html", "id": "title", "label": "Title", "default": "common <em>questions.</em>" }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "How long does delivery take?" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Shipping FAQ" }]
+}
+{% endschema %}
