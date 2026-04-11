@@ -161,6 +161,32 @@
                 "price_main"
               ]
             },
+            "text_description": {
+              "type": "text",
+              "name": "Product description",
+              "settings": {
+                "text": "{{ closest.product.description }}",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
             "gv_social_proof": {
               "type": "gv-social-proof",
               "settings": {
@@ -253,36 +279,11 @@
               "type": "gv-atc-bar",
               "settings": {},
               "blocks": {}
-            },
-            "text_description": {
-              "type": "text",
-              "name": "Product description",
-              "settings": {
-                "text": "{{ closest.product.description }}",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
             }
           },
           "block_order": [
             "group_header",
+            "text_description",
             "gv_social_proof",
             "buy_buttons_main",
             "divider_main",
@@ -290,8 +291,7 @@
             "gv_ship_tracker",
             "gv_guarantee",
             "gv_pk",
-            "gv_atc_bar",
-            "text_description"
+            "gv_atc_bar"
           ]
         }
       },
@@ -313,7 +313,7 @@
         "inci_1": {
           "type": "inci",
           "settings": {
-            "title": "Nothing to hide.",
+            "title": "All Ingredients",
             "open": true,
             "subtitle": "16 ingredients. Every one listed in order of concentration — highest first. Actives highlighted.",
             "clean_badge_1": "Fragrance-free",
@@ -369,21 +369,27 @@
             "ing_1_name": "Alpha-Arbutin 2%",
             "ing_1_badge": "Tyrosinase Inhibitor",
             "ing_1_benefit": "Stops melanin at the enzyme — the root cause of every dark spot.",
+            "ing_1_image": "shopify://shop_images/FT_Ing_AlphaArbutin.webp",
             "ing_2_name": "Ethyl Ascorbic Acid",
             "ing_2_badge": "Stable Vitamin C",
             "ing_2_benefit": "Fades marks already there. Shields from new ones forming.",
+            "ing_2_image": "shopify://shop_images/FT_Ing_EthylAscorbicAcid.webp",
             "ing_3_name": "Tranexamic Acid",
             "ing_3_badge": "PIH Specialist",
             "ing_3_benefit": "Cuts the breakout→pigment inflammation chain. Works on Fitzpatrick IV–VI.",
+            "ing_3_image": "shopify://shop_images/FT_Ing_TranexamicAcid.webp",
             "ing_4_name": "Niacinamide 5%",
             "ing_4_badge": "Multi-Tasker",
             "ing_4_benefit": "Blocks pigment transfer. Controls oil. Builds barrier. All at once.",
+            "ing_4_image": "shopify://shop_images/FT_Ing_Niacinamide.webp",
             "ing_5_name": "Glycyrrhiza Glabra",
             "ing_5_badge": "Gentle Brightener",
             "ing_5_benefit": "Licorice root. Natural melanin inhibitor — also calms the inflammation that triggers PIH.",
+            "ing_5_image": "shopify://shop_images/FT_Ing_Glabra.webp",
             "ing_6_name": "Sodium Hyaluronate",
             "ing_6_badge": "Humectant",
-            "ing_6_benefit": "Pulls moisture into skin. Keeps it hydrated so actives can penetrate properly."
+            "ing_6_benefit": "Pulls moisture into skin. Keeps it hydrated so actives can penetrate properly.",
+            "ing_6_image": "shopify://shop_images/FT_Ing_SodiumHyaluronate.webp"
           }
         },
         "how_to_use_1": {
@@ -740,7 +746,7 @@
         "text_recs_header"
       ],
       "settings": {
-        "product": "",
+        "product": "{{ product }}",
         "recommendation_type": "related",
         "layout_type": "grid",
         "carousel_on_mobile": false,
@@ -754,8 +760,8 @@
         "section_width": "page-width",
         "gap": 12,
         "color_scheme": "",
-        "padding-block-start": 0,
-        "padding-block-end": 0
+        "padding-block-start": 44,
+        "padding-block-end": 44
       }
     }
   },
