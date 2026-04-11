@@ -1,0 +1,202 @@
+<section class="gv-page-faq" style="background: {{ section.settings.bg_color }};">
+  <div class="gv-page-faq-inner">
+    
+    {%- if section.settings.eyebrow != blank -%}
+      <div class="gv-faq-eyebrow" style="color: {{ section.settings.eyebrow_color }};">
+        {{ section.settings.eyebrow }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.title != blank -%}
+      <h2 class="gv-faq-title" style="color: {{ section.settings.title_color }};">
+        {{ section.settings.title }}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="gv-faq-box-list">
+        {%- for block in section.blocks -%}
+          <div class="gv-faq-box" {{ block.shopify_attributes }}>
+            <button
+              class="gv-faq-box-q"
+              aria-expanded="false"
+              onclick="var item=this.closest('.gv-faq-box'); var open=this.getAttribute('aria-expanded')==='true'; item.classList.toggle('open',!open); this.setAttribute('aria-expanded',String(!open));"
+            >
+              <span>{{ block.settings.question }}</span>
+              <span class="gv-faq-box-icon">+</span>
+            </button>
+            <div class="gv-faq-box-a" hidden>
+              <div class="gv-faq-box-a-inner">{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    document.querySelectorAll('.gv-faq-box-a').forEach(function (el) {
+      el.removeAttribute('hidden');
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .gv-page-faq {
+    padding: 100px 0;
+  }
+  .gv-page-faq-inner {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .gv-faq-eyebrow {
+    font-family: var(--font-mono, 'Poppins', sans-serif);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .gv-faq-title {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 48px;
+    font-weight: 300;
+    line-height: 1.15;
+    margin-bottom: 48px;
+  }
+  .gv-faq-title em {
+    font-style: italic;
+  }
+
+  .gv-faq-box-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .gv-faq-box {
+    border-radius: 16px;
+    background: #FFFFFF;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid var(--warm-gray, #ECECEC);
+    overflow: hidden;
+  }
+  .gv-faq-box-q {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--berry-dark, #1A1A1A);
+    text-align: left;
+    transition: color 0.2s;
+  }
+  .gv-faq-box-q:hover { color: var(--brand-pink, #FF4D8D); }
+  .gv-faq-box.open .gv-faq-box-q { color: var(--brand-pink, #FF4D8D); }
+
+  .gv-faq-box-icon {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--mid-gray, #666666);
+    transition: transform 0.3s ease;
+  }
+  .gv-faq-box.open .gv-faq-box-icon {
+    transform: rotate(45deg);
+  }
+
+  .gv-faq-box-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .gv-faq-box.open .gv-faq-box-a {
+    max-height: 800px;
+  }
+  .gv-faq-box-a-inner {
+    padding: 0 20px 20px;
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 14px;
+    color: var(--mid-gray, #666666);
+    line-height: 1.7;
+  }
+  .gv-faq-box-a-inner a {
+    color: var(--brand-pink, #FF4D8D);
+  }
+
+  @media (max-width: 768px) {
+    .gv-page-faq { padding: 60px 0; }
+    .gv-page-faq-inner { padding: 0 24px; }
+    .gv-faq-title { font-size: 40px; margin-bottom: 32px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ Cards",
+  "tag": "section",
+  "class": "glowve-page-faq-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "— Frequently Asked —"
+    },
+    {
+      "type": "color",
+      "id": "eyebrow_color",
+      "label": "Eyebrow Color",
+      "default": "#FF4D8D"
+    },
+    {
+      "type": "html",
+      "id": "title",
+      "label": "Title",
+      "default": "Quick <em>answers.</em>"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Color",
+      "default": "#1A1A1A"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "FAQ Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQ Cards"
+    }
+  ]
+}
+{% endschema %}

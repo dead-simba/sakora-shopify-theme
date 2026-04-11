@@ -1,0 +1,402 @@
+<section class="gv-contact-section" style="background: {{ section.settings.bg_color }};">
+  <div class="gv-contact-inner">
+    <div class="gv-contact-grid">
+      <!-- FORM -->
+      <div class="gv-contact-form-wrap">
+        {% form 'contact' %}
+          {%- if form.posted_successfully? -%}
+            <div class="gv-form-success">
+              <div class="gv-success-icon">✓</div>
+              <h3 class="gv-success-title">Message sent.</h3>
+              <p class="gv-success-desc">We'll be in touch within 24 hours.</p>
+            </div>
+          {%- else -%}
+            {{ form.errors | default_errors }}
+            
+            <div class="gv-form-field">
+              <label for="ContactFormName">Name</label>
+              <input type="text" id="ContactFormName" name="contact[name]" placeholder="Your name" required>
+            </div>
+            
+            <div class="gv-form-field">
+              <label for="ContactFormEmail">Email</label>
+              <input type="email" id="ContactFormEmail" name="contact[email]" placeholder="your@email.com" required>
+            </div>
+            
+            <div class="gv-form-field">
+              <label for="ContactFormOrderNumber">Order Number <span class="gv-optional">(optional)</span></label>
+              <input type="text" id="ContactFormOrderNumber" name="contact[Order Number]" placeholder="GLW-12345">
+            </div>
+            
+            <div class="gv-form-field">
+              <label for="ContactFormMessage">Message</label>
+              <textarea id="ContactFormMessage" name="contact[body]" placeholder="What can we help you with?" required></textarea>
+            </div>
+            
+            <button type="submit" class="gv-btn-primary">Send Message</button>
+            
+            {%- if section.settings.form_note != blank -%}
+              <p class="gv-form-note">{{ section.settings.form_note }}</p>
+            {%- endif -%}
+          {%- endif -%}
+        {% endform %}
+      </div>
+
+      <!-- CONTACT INFO -->
+      <div class="gv-contact-info-wrap">
+        {%- if section.settings.info_title != blank -%}
+          <h2 class="gv-info-title">{{ section.settings.info_title }}</h2>
+        {%- endif -%}
+
+        <div class="gv-info-blocks">
+          {%- for block in section.blocks -%}
+            {%- case block.type -%}
+              {%- when 'contact_method' -%}
+                <div class="gv-info-item" {{ block.shopify_attributes }}>
+                  <div class="gv-info-icon" style="background: {{ block.settings.icon_bg }};">
+                    {{ block.settings.icon }}
+                  </div>
+                  <div class="gv-info-content">
+                    <div class="gv-info-label">{{ block.settings.label }}</div>
+                    {%- if block.settings.text_1 != blank -%}
+                      <p class="gv-info-text1" style="color: {{ block.settings.text_1_color }};">{{ block.settings.text_1 }}</p>
+                    {%- endif -%}
+                    {%- if block.settings.link_text != blank -%}
+                      <a href="{{ block.settings.link_url }}" class="gv-info-link">{{ block.settings.link_text }}</a>
+                    {%- endif -%}
+                  </div>
+                </div>
+
+              {%- when 'quick_links' -%}
+                <div class="gv-quick-links" {{ block.shopify_attributes }}>
+                  <div class="gv-quick-label">{{ block.settings.title }}</div>
+                  <div class="gv-quick-list">
+                    {%- if block.settings.menu != blank -%}
+                      {%- for link in linklists[block.settings.menu].links -%}
+                        <a href="{{ link.url }}" class="gv-quick-link">{{ link.title }} →</a>
+                      {%- endfor -%}
+                    {%- else -%}
+                      <a href="/pages/track" class="gv-quick-link">Track my order →</a>
+                      <a href="/policies/shipping-policy" class="gv-quick-link">Shipping & returns →</a>
+                    {%- endif -%}
+                  </div>
+                </div>
+            {%- endcase -%}
+          {%- endfor -%}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-contact-section {
+    padding: 0 0 100px;
+  }
+  .gv-contact-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .gv-contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .gv-form-field {
+    margin-bottom: 20px;
+  }
+  .gv-form-field label {
+    display: block;
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--berry-dark, #1A1A1A);
+    margin-bottom: 8px;
+  }
+  .gv-form-field input, .gv-form-field textarea {
+    width: 100%;
+    padding: 14px 18px;
+    border: 1px solid var(--warm-gray, #ECECEC);
+    border-radius: 16px;
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 15px;
+    color: var(--berry-dark, #1A1A1A);
+    background: #FFFFFF;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+  .gv-form-field input:focus, .gv-form-field textarea:focus {
+    border-color: var(--brand-pink, #FF4D8D);
+  }
+  .gv-form-field textarea {
+    height: 140px;
+    resize: vertical;
+  }
+  .gv-optional {
+    font-weight: 400;
+    color: var(--mid-gray, #666666);
+    font-size: 11px;
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 6px;
+  }
+  .gv-btn-primary {
+    background: var(--brand-pink, #FF4D8D);
+    color: white;
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+  }
+  .gv-btn-primary:hover {
+    background: var(--brand-pink-dark, #E63974);
+    transform: scale(1.01);
+  }
+  .gv-form-note {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    color: var(--mid-gray, #666666);
+    margin-top: 16px;
+    text-align: center;
+  }
+  .gv-form-success {
+    background: rgba(168,197,160,0.2);
+    border: 1px solid #A8C5A0;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 20px;
+  }
+  .gv-success-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+    color: #5A7056;
+  }
+  .gv-success-title {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--berry-dark, #1A1A1A);
+    margin-bottom: 8px;
+  }
+  .gv-success-desc {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 14px;
+    color: var(--mid-gray, #666666);
+  }
+
+  .gv-info-title {
+    font-family: var(--font-serif, 'Poppins', sans-serif);
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--berry-dark, #1A1A1A);
+    line-height: 1.2;
+    margin-bottom: 40px;
+  }
+  .gv-info-title em {
+    font-style: italic;
+  }
+  .gv-info-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .gv-info-item {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .gv-info-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+  }
+  .gv-info-content {
+    display: flex;
+    flex-direction: column;
+  }
+  .gv-info-label {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--berry-dark, #1A1A1A);
+    margin-bottom: 4px;
+  }
+  .gv-info-text1 {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 15px;
+    margin-bottom: 6px;
+    line-height: 1.6;
+  }
+  .gv-info-link {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--brand-pink, #FF4D8D);
+    border-bottom: 1px solid var(--brand-pink, #FF4D8D);
+    padding-bottom: 2px;
+    align-self: flex-start;
+  }
+  .gv-quick-links {
+    margin-top: 20px;
+    padding: 24px;
+    background: var(--base-bg, #FFFFFF);
+    border-radius: 16px;
+    border: 1px solid var(--warm-gray, #ECECEC);
+  }
+  .gv-quick-label {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--mid-gray, #666666);
+    margin-bottom: 16px;
+  }
+  .gv-quick-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .gv-quick-link {
+    font-family: var(--font-sans, 'Poppins', sans-serif);
+    font-size: 14px;
+    color: var(--brand-pink, #FF4D8D);
+    transition: opacity 0.2s;
+  }
+  .gv-quick-link:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 900px) {
+    .gv-contact-grid {
+      gap: 60px;
+    }
+  }
+  @media (max-width: 768px) {
+    .gv-contact-section { padding: 0 0 60px; }
+    .gv-contact-inner { padding: 0 24px; }
+    .gv-contact-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact Grid",
+  "tag": "section",
+  "class": "glowve-contact-grid-section",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFFFFF"
+    },
+    {
+      "type": "text",
+      "id": "form_note",
+      "label": "Form Footer Note",
+      "default": "We reply within 24 hours, Monday–Saturday."
+    },
+    {
+      "type": "html",
+      "id": "info_title",
+      "label": "Information Pane Title",
+      "default": "Other ways to<br><em>reach us.</em>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "contact_method",
+      "name": "Contact Method",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Icon Emoji",
+          "default": "📧"
+        },
+        {
+          "type": "text",
+          "id": "icon_bg",
+          "label": "Icon Background (CSS gradient or color)",
+          "default": "linear-gradient(135deg, #FFE8D6, #F4845F22)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Email"
+        },
+        {
+          "type": "textarea",
+          "id": "text_1",
+          "label": "Primary Text (Optional)"
+        },
+        {
+          "type": "color",
+          "id": "text_1_color",
+          "label": "Primary Text Color",
+          "default": "#666666"
+        },
+        {
+          "type": "text",
+          "id": "link_text",
+          "label": "Link Text (Optional)",
+          "default": "hello@glowve.pk"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "Link URL"
+        }
+      ]
+    },
+    {
+      "type": "quick_links",
+      "name": "Quick Links Card",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Card Title",
+          "default": "Quick links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Link List (Menu)",
+          "info": "Overrides default layout if selected"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact Grid"
+    }
+  ]
+}
+{% endschema %}

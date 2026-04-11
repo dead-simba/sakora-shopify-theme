@@ -1,135 +1,188 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page",
-      "blocks": {
-        "title": {
-          "type": "text",
-          "name": "t:names.title",
-          "settings": {
-            "text": "<h1>{{ closest.page.title }}</h1>",
-            "width": "100%",
-            "max_width": "normal",
-            "alignment": "center",
-            "type_preset": "h2",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        },
-        "content": {
-          "type": "text",
-          "name": "t:names.content",
-          "settings": {
-            "text": "{{ closest.page.content }}",
-            "width": "100%",
-            "max_width": "narrow",
-            "alignment": "center",
-            "type_preset": "rte",
-            "font": "var(--font-primary--family)",
-            "font_size": "",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
-        }
-      },
-      "block_order": ["title", "content"],
+    "contact_hero": {
+      "type": "glowve-page-hero",
       "settings": {
-        "content_direction": "column",
-        "gap": 32,
-        "color_scheme": "",
-        "padding-block-start": 40,
-        "padding-block-end": 0
+        "bg_color": "#FFF0E6",
+        "eyebrow": "Get in Touch",
+        "eyebrow_color": "#FF4D8D",
+        "title": "we're <em>here.</em>",
+        "title_color": "#1A1A1A",
+        "description": "<p>Every message gets a real reply. Not a bot. We reply within 24 hours, Monday to Saturday.</p>",
+        "text_color": "#666666"
       }
     },
-    "form": {
-      "type": "section",
+    "contact_grid": {
+      "type": "glowve-contact-grid",
       "blocks": {
-        "contact_form_UwiCkQ": {
-          "type": "contact-form",
+        "email": {
+          "type": "contact_method",
           "settings": {
-            "width": "custom",
-            "custom_width": 50,
-            "width_mobile": "custom",
-            "custom_width_mobile": 100,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "submit-button": {
-              "type": "contact-form-submit-button",
-              "static": true,
-              "settings": {
-                "label": "Submit",
-                "style_class": "button",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "icon": "📧",
+            "icon_bg": "linear-gradient(135deg, #FFE8D6, #F4845F22)",
+            "label": "Email",
+            "text_1": "",
+            "text_1_color": "#666666",
+            "link_text": "hello@glowve.pk",
+            "link_url": "mailto:hello@glowve.pk"
+          }
+        },
+        "whatsapp": {
+          "type": "contact_method",
+          "settings": {
+            "icon": "💬",
+            "icon_bg": "linear-gradient(135deg, #E8F5E4, #A8C5A022)",
+            "label": "WhatsApp",
+            "text_1": "For urgent queries, WhatsApp is fastest.",
+            "text_1_color": "#1A1A1A",
+            "link_text": "Message us on WhatsApp →",
+            "link_url": "#"
+          }
+        },
+        "response_time": {
+          "type": "contact_method",
+          "settings": {
+            "icon": "⏰",
+            "icon_bg": "linear-gradient(135deg, #FFF3D6, #FFC85C22)",
+            "label": "Response Time",
+            "text_1": "Within 24 hours<br>Monday to Saturday",
+            "text_1_color": "#666666",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "location": {
+          "type": "contact_method",
+          "settings": {
+            "icon": "📍",
+            "icon_bg": "linear-gradient(135deg, #F0EBF8, #9B72AA22)",
+            "label": "Location",
+            "text_1": "Pakistan 🇵🇰",
+            "text_1_color": "#666666",
+            "link_text": "",
+            "link_url": ""
+          }
+        },
+        "quick_links": {
+          "type": "quick_links",
+          "settings": {
+            "title": "Quick links",
+            "menu": ""
+          }
         }
       },
-      "block_order": ["contact_form_UwiCkQ"],
-      "name": "t:names.contact_form",
+      "block_order": [
+        "email",
+        "whatsapp",
+        "response_time",
+        "location",
+        "quick_links"
+      ],
       "settings": {
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "flex-start",
-        "vertical_alignment": "center",
-        "align_baseline": false,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "center",
-        "gap": 32,
-        "section_width": "page-width",
-        "section_height": "",
-        "section_height_custom": 50,
-        "color_scheme": "scheme-1",
-        "background_media": "none",
-        "video_position": "cover",
-        "background_image_position": "cover",
-        "border": "none",
-        "border_width": 1,
-        "border_opacity": 100,
-        "border_radius": 0,
-        "toggle_overlay": false,
-        "overlay_color": "#00000026",
-        "overlay_style": "solid",
-        "gradient_direction": "to top",
-        "padding-block-start": 32,
-        "padding-block-end": 84
+        "bg_color": "#FFFFFF",
+        "form_note": "We reply within 24 hours, Monday–Saturday.",
+        "info_title": "Other ways to<br><em>reach us.</em>"
+      }
+    },
+    "contact_faq": {
+      "type": "glowve-page-faq",
+      "blocks": {
+        "faq_1": {
+          "type": "item",
+          "settings": {
+            "question": "Can I change my order after placing it?",
+            "answer": "<p>Yes — if your order hasn't been dispatched yet. Message us on WhatsApp or email hello@glowve.pk as soon as possible with your order number. We process orders quickly, so the sooner the better.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "item",
+          "settings": {
+            "question": "What if my product arrives damaged?",
+            "answer": "<p>Send us a photo of the damage at hello@glowve.pk or via WhatsApp. We'll send a replacement within 48 hours. No questions, no returns needed — we just fix it.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "item",
+          "settings": {
+            "question": "Do you ship to my city?",
+            "answer": "<p>We deliver to all major cities across Pakistan — including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Hyderabad, Peshawar, Quetta, Sialkot, Gujranwala, and Abbottabad. Don't see your city? Message us and we'll work it out.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "item",
+          "settings": {
+            "question": "Can I return a product I've opened?",
+            "answer": "<p>Unfortunately we can only accept returns on unopened products in original packaging within 7 days of delivery. If a product is reacting with your skin, message us — we want to understand what happened and help you find what works.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "item",
+          "settings": {
+            "question": "How do I track my order?",
+            "answer": "<p>Use our order tracking page — just enter your order number and email. You'll also receive tracking updates by email once your order is dispatched.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ],
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "eyebrow": "— Frequently Asked —",
+        "eyebrow_color": "#FF4D8D",
+        "title": "Quick <em>answers.</em>",
+        "title_color": "#1A1A1A"
+      }
+    },
+    "contact_trust": {
+      "type": "glowve-trust-strip",
+      "blocks": {
+        "trust_1": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "⚡",
+            "title": "Fast Replies",
+            "desc": "Within 24 hours, Mon–Sat"
+          }
+        },
+        "trust_2": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🤝",
+            "title": "Friendly Support",
+            "desc": "Real people, not bots"
+          }
+        },
+        "trust_3": {
+          "type": "trust_item",
+          "settings": {
+            "icon": "🇵🇰",
+            "title": "Made for Pakistan",
+            "desc": "We understand your skin"
+          }
+        }
+      },
+      "block_order": [
+        "trust_1",
+        "trust_2",
+        "trust_3"
+      ],
+      "settings": {
+        "bg_color": "#FFFFFF",
+        "border_top": true,
+        "text_color": "#1A1A1A",
+        "desc_color": "#666666"
       }
     }
   },
-  "order": ["main", "form"]
+  "order": [
+    "contact_hero",
+    "contact_grid",
+    "contact_faq",
+    "contact_trust"
+  ]
 }
