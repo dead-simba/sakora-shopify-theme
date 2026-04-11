@@ -271,8 +271,8 @@
       "settings": {
         "label": "— Our Commitment —",
         "title": "Glowve <em>Is</em> and Is Not.",
-        "is_items": "Clinically dosed actives — not trace amounts for label claims|Formulated for South Asian skin, humidity, and UV Index 10+|100% fragrance-free, always — because fragrance hides in \"natural\"|Full INCI transparency — every ingredient, every time|Designed to work as a system — not standalone products|Backed by dermatology, not marketing",
-        "isnot_items": "A brand with 40 SKUs and vague \"nourishing blend\" labels|Imported European formulas relabelled for Pakistan|Priced to signal luxury, not deliver it|Chasing trends with ingredients that sound good but do nothing|Hiding behind celebrity endorsements instead of results|Ever going to compromise on fragrance-free formulation"
+        "is_items": "Clinically dosed actives — not trace amounts for label claims|Formulated for South Asian skin, humidity, and UV Index 10+|Full INCI transparency — every ingredient, every time|Designed to work as a system — not standalone products|Backed by dermatology, not marketing",
+        "isnot_items": "A brand with 40 SKUs and vague \"nourishing blend\" labels|Imported European formulas relabelled for Pakistan|Priced to signal luxury, not deliver it|Chasing trends with ingredients that sound good but do nothing|Hiding behind celebrity endorsements instead of results"
       }
     },
     "products": {
@@ -342,7 +342,7 @@
         "title": "Your Skin.<br>Our <em>Science.</em><br>No Risk.",
         "subtitle": "Try any Glowve product with our 30-Day Clinical Guarantee — opened, used, returned if it's not right. We trust you.",
         "btn_1_label": "Shop the Protocol",
-        "btn_1_link": "shopify://collections",
+        "btn_1_link": "shopify://collections/all",
         "btn_2_label": "Take the Skin Quiz",
         "btn_2_link": ""
       }
