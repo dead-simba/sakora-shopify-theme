@@ -259,6 +259,29 @@
               },
               "blocks": {}
             },
+            "gv_protocol": {
+              "type": "gv-protocol-picker",
+              "settings": {
+                "title": "Select Your Protocol",
+                "opt1_title": "1 Bottle",
+                "opt1_subtitle": "Try it out.",
+                "opt1_badge": "",
+                "opt1_badge_color": "coral",
+                "opt2_product": "test-bundle",
+                "opt2_title": "2 Bottles (2 Month Supply)",
+                "opt2_subtitle": "",
+                "opt2_free_shipping": true,
+                "opt2_badge": "Most Popular (Save 15%)",
+                "opt2_badge_color": "coral",
+                "opt3_product": "3x-alpha-arbutin",
+                "opt3_title": "3 Bottles (3 Month Supply)",
+                "opt3_subtitle": "",
+                "opt3_free_shipping": true,
+                "opt3_badge": "Best Value (Save 20%)",
+                "opt3_badge_color": "coral"
+              },
+              "blocks": {}
+            },
             "gv_guarantee": {
               "type": "gv-guarantee",
               "settings": {
@@ -278,29 +301,6 @@
             "gv_atc_bar": {
               "type": "gv-atc-bar",
               "settings": {},
-              "blocks": {}
-            },
-            "gv_protocol": {
-              "type": "gv-protocol-picker",
-              "settings": {
-                "title": "Select Your Protocol",
-                "opt1_title": "1 Bottle",
-                "opt1_subtitle": "Try it out.",
-                "opt1_badge": "",
-                "opt1_badge_color": "coral",
-                "opt2_product": "2x-fade-theory",
-                "opt2_title": "2 Bottles (2 Month Supply)",
-                "opt2_subtitle": "",
-                "opt2_free_shipping": true,
-                "opt2_badge": "Most Popular (Save 15%)",
-                "opt2_badge_color": "coral",
-                "opt3_product": "3x-fade-theory",
-                "opt3_title": "3 Bottles (3 Month Supply)",
-                "opt3_subtitle": "",
-                "opt3_free_shipping": true,
-                "opt3_badge": "Best Value (Save 20%)",
-                "opt3_badge_color": "coral"
-              },
               "blocks": {}
             }
           },
@@ -641,7 +641,7 @@
         "product_1": "soft-reset-moisturizer",
         "product_1_tag": "Step 2 · Moisturiser",
         "product_1_why": "Soft Reset locks in the serum actives and provides the barrier repair needed to stop future inflammation.",
-        "product_2": "daylite-spf-50",
+        "product_2": "daylite-spf-50-sunscreen",
         "product_2_tag": "Step 3 · SPF 50+",
         "product_2_why": "Without daily SPF, UV exposure immediately undoes any brightening progress. Non-negotiable.",
         "bundle_title": "Save with the full protocol",
