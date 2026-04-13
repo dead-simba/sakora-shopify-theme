@@ -78,6 +78,13 @@
           </div>
         </div>
       </div>
+
+      {%- if section.settings.manual_url != blank -%}
+        <a href="{{ section.settings.manual_url }}" class="gv-auth__manual-link">
+          {{ section.settings.manual_label }}
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      {%- endif -%}
     </div>
 
     <div class="gv-auth__card gv-auth__card--delay-2">
@@ -478,6 +485,23 @@
     border: 2px solid var(--auth-text);
     margin-top: 12px;
   }
+
+  .gv-auth__manual-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 12px 18px;
+    background: rgba(255, 77, 141, 0.08);
+    color: var(--auth-pink);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s;
+  }
+  .gv-auth__manual-link:hover { background: rgba(255, 77, 141, 0.15); }
+  .gv-auth__manual-link svg { flex-shrink: 0; }
 {% endstylesheet %}
 
 {% schema %}
@@ -503,6 +527,8 @@
     { "type": "textarea", "id": "am_body", "label": "AM body", "default": "Apply 2-3 drops to clean, dry skin. Press lightly, don't rub. Follow with moisturizer and finish with your daily SPF." },
     { "type": "text", "id": "pm_title", "label": "PM title", "default": "Evening Application" },
     { "type": "textarea", "id": "pm_body", "label": "PM body", "default": "Night offers the longest repair window. Apply after cleansing and follow up with a moisturizer." },
+    { "type": "url", "id": "manual_url", "label": "Full manual link" },
+    { "type": "text", "id": "manual_label", "label": "Manual link label", "default": "Read the full manual" },
 
     { "type": "header", "content": "Reviews" },
     { "type": "url", "id": "review_url", "label": "Review URL" },

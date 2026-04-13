@@ -1,0 +1,656 @@
+{%- liquid
+  assign serum = section.settings.serum_product
+  assign moist = section.settings.moist_product
+  assign spf = section.settings.spf_product
+-%}
+
+<section class="gv-htu">
+
+  <nav class="gv-htu__anchor-nav" aria-label="Jump to product">
+    <a href="#fade-theory" class="gv-htu__pill">{{ section.settings.nav_serum }}</a>
+    <a href="#soft-reset" class="gv-htu__pill">{{ section.settings.nav_moist }}</a>
+    <a href="#daylite" class="gv-htu__pill">{{ section.settings.nav_spf }}</a>
+    <a href="#pro-tips" class="gv-htu__pill">{{ section.settings.nav_tips }}</a>
+  </nav>
+
+  <div class="gv-htu__container">
+
+    <div class="gv-htu__hero">
+      <span class="gv-htu__hero-label">{{ section.settings.hero_label }}</span>
+      <h1 class="gv-htu__hero-title">{{ section.settings.hero_title }}</h1>
+      <p class="gv-htu__hero-sub">{{ section.settings.hero_subtitle }}</p>
+    </div>
+
+    {%- if section.settings.fragrance_body != blank -%}
+      <div class="gv-htu__fragrance">
+        <h3>{{ section.settings.fragrance_title }}</h3>
+        <p>{{ section.settings.fragrance_body }}</p>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} ============ SERUM ============ {%- endcomment -%}
+    <section id="fade-theory" class="gv-htu__section">
+      <div class="gv-htu__section-header">
+        <span class="gv-htu__product-tag">{{ section.settings.serum_tag }}</span>
+        <h2 class="gv-htu__product-title">
+          {%- if serum != blank -%}{{ serum.title }}{%- else -%}{{ section.settings.serum_title_fallback }}{%- endif -%}
+        </h2>
+        <p class="gv-htu__product-sub">{{ section.settings.serum_subtitle }}</p>
+        {%- if serum != blank and serum.featured_image -%}
+          {{ serum.featured_image | image_url: width: 600 | image_tag: widths: '300,600', class: 'gv-htu__product-image', alt: serum.title }}
+        {%- elsif section.settings.serum_fallback_image != blank -%}
+          {{ section.settings.serum_fallback_image | image_url: width: 600 | image_tag: widths: '300,600', class: 'gv-htu__product-image', alt: section.settings.serum_title_fallback }}
+        {%- endif -%}
+      </div>
+
+      <div class="gv-htu__card">
+        <span class="gv-htu__card-label">{{ section.settings.serum_science_label }}</span>
+        <div class="gv-htu__science">
+          <h4>{{ section.settings.serum_science_title }}</h4>
+          <p>{{ section.settings.serum_science_body }}</p>
+        </div>
+        <table class="gv-htu__specs">
+          <tr><td>pH Level</td><td>{{ section.settings.serum_spec_ph }}</td></tr>
+          <tr><td>Stability</td><td>{{ section.settings.serum_spec_stability }}</td></tr>
+          <tr><td>Net Content</td><td>{{ section.settings.serum_spec_size }}</td></tr>
+        </table>
+      </div>
+
+      <div class="gv-htu__card">
+        <span class="gv-htu__card-label">Protocol</span>
+        <ol class="gv-htu__protocol">
+          <li class="gv-htu__step">
+            <div class="gv-htu__step-body">
+              <h5>{{ section.settings.serum_step1_title }}</h5>
+              <p>{{ section.settings.serum_step1_body }}</p>
+            </div>
+          </li>
+          <li class="gv-htu__step">
+            <div class="gv-htu__step-body">
+              <h5>{{ section.settings.serum_step2_title }}</h5>
+              <p>{{ section.settings.serum_step2_body }}</p>
+            </div>
+          </li>
+        </ol>
+
+        {%- if section.settings.serum_protip_body != blank -%}
+          <div class="gv-htu__callout gv-htu__callout--pro">
+            <h6>{{ section.settings.serum_protip_title }}</h6>
+            <p>{{ section.settings.serum_protip_body }}</p>
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.serum_conflict_body != blank -%}
+          <div class="gv-htu__callout gv-htu__callout--warn">
+            <h6>{{ section.settings.serum_conflict_title }}</h6>
+            <p>{{ section.settings.serum_conflict_body }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </section>
+
+    {%- comment -%} ============ MOISTURIZER ============ {%- endcomment -%}
+    <section id="soft-reset" class="gv-htu__section">
+      <div class="gv-htu__section-header">
+        <span class="gv-htu__product-tag">{{ section.settings.moist_tag }}</span>
+        <h2 class="gv-htu__product-title">
+          {%- if moist != blank -%}{{ moist.title }}{%- else -%}{{ section.settings.moist_title_fallback }}{%- endif -%}
+        </h2>
+        <p class="gv-htu__product-sub">{{ section.settings.moist_subtitle }}</p>
+        {%- if moist != blank and moist.featured_image -%}
+          {{ moist.featured_image | image_url: width: 600 | image_tag: widths: '300,600', class: 'gv-htu__product-image', alt: moist.title }}
+        {%- elsif section.settings.moist_fallback_image != blank -%}
+          {{ section.settings.moist_fallback_image | image_url: width: 600 | image_tag: widths: '300,600', class: 'gv-htu__product-image', alt: section.settings.moist_title_fallback }}
+        {%- endif -%}
+      </div>
+
+      <div class="gv-htu__card">
+        <span class="gv-htu__card-label">{{ section.settings.moist_science_label }}</span>
+        <div class="gv-htu__science">
+          <h4>{{ section.settings.moist_science_title }}</h4>
+          <p>{{ section.settings.moist_science_body }}</p>
+        </div>
+        <table class="gv-htu__specs">
+          <tr><td>Active Class</td><td>{{ section.settings.moist_spec_active }}</td></tr>
+          <tr><td>Lipid Ratio</td><td>{{ section.settings.moist_spec_ratio }}</td></tr>
+          <tr><td>Finish</td><td>{{ section.settings.moist_spec_finish }}</td></tr>
+        </table>
+      </div>
+
+      <div class="gv-htu__card">
+        <span class="gv-htu__card-label">Protocol</span>
+        <ol class="gv-htu__protocol">
+          <li class="gv-htu__step">
+            <div class="gv-htu__step-body">
+              <h5>{{ section.settings.moist_step1_title }}</h5>
+              <p>{{ section.settings.moist_step1_body }}</p>
+            </div>
+          </li>
+          <li class="gv-htu__step">
+            <div class="gv-htu__step-body">
+              <h5>{{ section.settings.moist_step2_title }}</h5>
+              <p>{{ section.settings.moist_step2_body }}</p>
+            </div>
+          </li>
+        </ol>
+
+        {%- if section.settings.moist_protip_body != blank -%}
+          <div class="gv-htu__callout gv-htu__callout--pro">
+            <h6>{{ section.settings.moist_protip_title }}</h6>
+            <p>{{ section.settings.moist_protip_body }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </section>
+
+    {%- comment -%} ============ SPF ============ {%- endcomment -%}
+    <section id="daylite" class="gv-htu__section">
+      <div class="gv-htu__section-header">
+        <span class="gv-htu__product-tag">{{ section.settings.spf_tag }}</span>
+        <h2 class="gv-htu__product-title">
+          {%- if spf != blank -%}{{ spf.title }}{%- else -%}{{ section.settings.spf_title_fallback }}{%- endif -%}
+        </h2>
+        <p class="gv-htu__product-sub">{{ section.settings.spf_subtitle }}</p>
+        {%- if spf != blank and spf.featured_image -%}
+          {{ spf.featured_image | image_url: width: 600 | image_tag: widths: '300,600', class: 'gv-htu__product-image', alt: spf.title }}
+        {%- elsif section.settings.spf_fallback_image != blank -%}
+          {{ section.settings.spf_fallback_image | image_url: width: 600 | image_tag: widths: '300,600', class: 'gv-htu__product-image', alt: section.settings.spf_title_fallback }}
+        {%- endif -%}
+      </div>
+
+      <div class="gv-htu__card">
+        <span class="gv-htu__card-label">{{ section.settings.spf_science_label }}</span>
+        <div class="gv-htu__science">
+          <h4>{{ section.settings.spf_science_title }}</h4>
+          <p>{{ section.settings.spf_science_body }}</p>
+        </div>
+        <table class="gv-htu__specs">
+          <tr><td>UVA Rating</td><td>{{ section.settings.spf_spec_uva }}</td></tr>
+          <tr><td>Stabilization</td><td>{{ section.settings.spf_spec_stab }}</td></tr>
+          <tr><td>Finish</td><td>{{ section.settings.spf_spec_finish }}</td></tr>
+        </table>
+      </div>
+
+      <div class="gv-htu__card">
+        <span class="gv-htu__card-label">The Critical Protocol</span>
+        <ol class="gv-htu__protocol">
+          <li class="gv-htu__step">
+            <div class="gv-htu__step-body">
+              <h5>{{ section.settings.spf_step1_title }}</h5>
+              <p>{{ section.settings.spf_step1_body }}</p>
+            </div>
+          </li>
+          <li class="gv-htu__step">
+            <div class="gv-htu__step-body">
+              <h5>{{ section.settings.spf_step2_title }}</h5>
+              <p>{{ section.settings.spf_step2_body }}</p>
+            </div>
+          </li>
+        </ol>
+
+        {%- if section.settings.spf_warn_body != blank -%}
+          <div class="gv-htu__callout gv-htu__callout--warn">
+            <h6>{{ section.settings.spf_warn_title }}</h6>
+            <p>{{ section.settings.spf_warn_body }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </section>
+
+    {%- comment -%} ============ PRO PROTOCOL TIMELINE ============ {%- endcomment -%}
+    <section id="pro-tips" class="gv-htu__section">
+      <div class="gv-htu__section-header">
+        <span class="gv-htu__product-tag">{{ section.settings.timeline_tag }}</span>
+        <h2 class="gv-htu__product-title">{{ section.settings.timeline_title }}</h2>
+      </div>
+
+      <div class="gv-htu__card">
+        <p class="gv-htu__timeline-intro">{{ section.settings.timeline_intro }}</p>
+        <div class="gv-htu__timeline">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'timeline_item' -%}
+              <div class="gv-htu__timeline-item{% if block.settings.highlight %} gv-htu__timeline-item--highlight{% endif %}" {{ block.shopify_attributes }}>
+                <span class="gv-htu__timeline-label">{{ block.settings.label }}</span>
+                <span class="gv-htu__timeline-val">{{ block.settings.value }}</span>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      {%- if section.settings.cta_label != blank -%}
+        <a href="{{ section.settings.cta_url | default: '/collections/all' }}" class="gv-htu__cta">{{ section.settings.cta_label }}</a>
+      {%- endif -%}
+    </section>
+
+  </div>
+</section>
+
+{% stylesheet %}
+  .gv-htu {
+    --htu-pink: #FF4D8D;
+    --htu-pink-dark: #E63974;
+    --htu-text: #1A1A1A;
+    --htu-gray: #666666;
+    --htu-science: #102A43;
+    --htu-glass: rgba(255, 255, 255, 0.9);
+    --htu-glass-border: rgba(255, 255, 255, 0.5);
+    background: linear-gradient(145deg, #FFF9FB 0%, #FFF0E6 100%);
+    font-family: 'Poppins', sans-serif;
+    color: var(--htu-text);
+    line-height: 1.6;
+    padding-bottom: 80px;
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+  }
+
+  .gv-htu__anchor-nav {
+    display: flex;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 14px 24px;
+    background: rgba(16, 42, 67, 0.05);
+    overflow-x: auto;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .gv-htu__anchor-nav::-webkit-scrollbar { display: none; }
+  .gv-htu__pill {
+    padding: 8px 16px;
+    background: #fff;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--htu-text);
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .gv-htu__pill:hover,
+  .gv-htu__pill:active {
+    background: var(--htu-pink);
+    color: #fff;
+    border-color: var(--htu-pink);
+  }
+
+  .gv-htu__container {
+    max-width: 540px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .gv-htu__hero {
+    text-align: center;
+    padding: 60px 0 40px;
+  }
+  .gv-htu__hero-label {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+    color: var(--htu-pink) !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    display: block;
+  }
+  .gv-htu__hero-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 36px !important;
+    font-weight: 700 !important;
+    line-height: 1.1 !important;
+    margin: 0 0 16px;
+    color: var(--htu-text) !important;
+  }
+  .gv-htu__hero-sub {
+    font-size: 16px;
+    color: var(--htu-gray);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .gv-htu__fragrance {
+    background: #fff;
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 40px;
+    border: 1px solid #FFE6F0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(255, 77, 141, 0.05);
+  }
+  .gv-htu__fragrance h3 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 14px !important;
+    color: var(--htu-pink) !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 8px;
+    font-weight: 700 !important;
+  }
+  .gv-htu__fragrance p {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .gv-htu__section {
+    padding: 80px 0 20px;
+  }
+  .gv-htu__section-header {
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .gv-htu__product-tag {
+    font-size: 12px;
+    font-weight: 700;
+    background: var(--htu-pink);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    display: inline-block;
+    margin-bottom: 16px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .gv-htu__product-title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 28px !important;
+    font-weight: 700 !important;
+    margin: 0 0 12px;
+    line-height: 1.2;
+    color: var(--htu-text) !important;
+  }
+  .gv-htu__product-sub {
+    font-size: 14px;
+    color: var(--htu-gray);
+    margin: 0 0 24px;
+  }
+  .gv-htu__product-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px;
+    display: block;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
+    height: auto;
+  }
+
+  .gv-htu__card {
+    background: var(--htu-glass);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--htu-glass-border);
+    border-radius: 32px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
+  }
+  .gv-htu__card-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--htu-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .gv-htu__science h4 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 18px !important;
+    font-weight: 600 !important;
+    margin: 0 0 8px;
+    color: var(--htu-text) !important;
+  }
+  .gv-htu__science p {
+    font-size: 14px;
+    color: var(--htu-gray);
+    margin: 0;
+  }
+
+  .gv-htu__specs {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 0;
+    font-size: 14px;
+  }
+  .gv-htu__specs td {
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+  .gv-htu__specs tr:last-child td { border-bottom: none; }
+  .gv-htu__specs td:first-child {
+    font-weight: 600;
+    width: 40%;
+    color: var(--htu-gray);
+  }
+
+  .gv-htu__protocol {
+    list-style: none;
+    counter-reset: gvhtuProtocol;
+    padding: 0;
+    margin: 0;
+  }
+  .gv-htu__step {
+    padding: 20px 0;
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    align-items: flex-start;
+  }
+  .gv-htu__step:last-child { border-bottom: none; }
+  .gv-htu__step::before {
+    counter-increment: gvhtuProtocol;
+    content: counter(gvhtuProtocol);
+    width: 36px; height: 36px;
+    background: var(--htu-text);
+    color: #fff;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 14px;
+  }
+  .gv-htu__step-body h5 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    margin: 0 0 4px;
+    color: var(--htu-text) !important;
+  }
+  .gv-htu__step-body p {
+    font-size: 14px;
+    color: var(--htu-gray);
+    margin: 0;
+  }
+
+  .gv-htu__callout {
+    border-radius: 20px;
+    padding: 24px;
+    margin-top: 24px;
+  }
+  .gv-htu__callout--pro { background: #E2F5EE; color: #102A43; }
+  .gv-htu__callout--warn { background: #FFF0E6; color: #854D0E; }
+  .gv-htu__callout h6 {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    margin: 0 0 8px;
+    letter-spacing: 0.5px;
+  }
+  .gv-htu__callout p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .gv-htu__timeline-intro {
+    font-size: 14px;
+    color: var(--htu-gray);
+    margin: 0 0 24px;
+  }
+  .gv-htu__timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+  .gv-htu__timeline-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: #fff;
+    border-radius: 12px;
+  }
+  .gv-htu__timeline-item--highlight {
+    border-left: 4px solid var(--htu-pink);
+  }
+  .gv-htu__timeline-label {
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .gv-htu__timeline-val {
+    font-size: 13px;
+    color: var(--htu-pink);
+    font-weight: 500;
+  }
+
+  .gv-htu__cta {
+    background: var(--htu-text);
+    color: #fff;
+    border: none;
+    padding: 20px;
+    width: 100%;
+    border-radius: 100px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-top: 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+
+  @media (max-width: 480px) {
+    .gv-htu__hero-title { font-size: 30px !important; }
+    .gv-htu__card { padding: 24px; border-radius: 24px; }
+    .gv-htu__section { padding: 60px 0 16px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Manual",
+  "settings": [
+    { "type": "header", "content": "Anchor Nav" },
+    { "type": "text", "id": "nav_serum", "label": "Serum pill label", "default": "Fade Theory (Serum)" },
+    { "type": "text", "id": "nav_moist", "label": "Moisturizer pill label", "default": "Soft Reset (Moisturizer)" },
+    { "type": "text", "id": "nav_spf", "label": "SPF pill label", "default": "Daylite (SPF)" },
+    { "type": "text", "id": "nav_tips", "label": "Tips pill label", "default": "Pro Protocol" },
+
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "hero_label", "label": "Label", "default": "Masterclass Mode" },
+    { "type": "text", "id": "hero_title", "label": "Title", "default": "The Glowve Manual" },
+    { "type": "textarea", "id": "hero_subtitle", "label": "Subtitle", "default": "For those who demand more than just results. This is the molecular mechanics of your daily ritual." },
+
+    { "type": "header", "content": "Fragrance Note" },
+    { "type": "text", "id": "fragrance_title", "label": "Title", "default": "Sensory Layer" },
+    { "type": "textarea", "id": "fragrance_body", "label": "Body", "default": "Every formula features our signature sensory fragrance, curated to transform clinical application into a high-end ritual." },
+
+    { "type": "header", "content": "Serum — Fade Theory" },
+    { "type": "product", "id": "serum_product", "label": "Product" },
+    { "type": "text", "id": "serum_title_fallback", "label": "Fallback name", "default": "Fade Theory" },
+    { "type": "image_picker", "id": "serum_fallback_image", "label": "Fallback image" },
+    { "type": "text", "id": "serum_tag", "label": "Tag", "default": "The Treatment" },
+    { "type": "text", "id": "serum_subtitle", "label": "Subtitle", "default": "2% Alpha Arbutin + Vitamin C Serum" },
+    { "type": "text", "id": "serum_science_label", "label": "Science card label", "default": "Biological Target" },
+    { "type": "text", "id": "serum_science_title", "label": "Science title", "default": "5-Pathway Tyrosinase Inhibition" },
+    { "type": "textarea", "id": "serum_science_body", "label": "Science body", "default": "Fade Theory doesn't just block pigment; it interrupts the melanin cascade from UV signal to melanosome transfer, utilizing Ethyl Ascorbic Acid, Tranexamic Acid, Alpha-Arbutin, and Licorice Root in synergy." },
+    { "type": "text", "id": "serum_spec_ph", "label": "pH spec", "default": "5.0 — 5.5" },
+    { "type": "text", "id": "serum_spec_stability", "label": "Stability spec", "default": "Thermostable Aqueous System" },
+    { "type": "text", "id": "serum_spec_size", "label": "Size spec", "default": "30ml / 1.0 fl.oz" },
+    { "type": "text", "id": "serum_step1_title", "label": "Step 1 title", "default": "The \"Damp Skin\" Rule" },
+    { "type": "textarea", "id": "serum_step1_body", "label": "Step 1 body", "default": "Apply 3–5 drops to slightly damp, freshly cleansed skin. Hyaluronic acid and Glycerin require this moisture to drive actives into the epidermis efficiently." },
+    { "type": "text", "id": "serum_step2_title", "label": "Step 2 title", "default": "Press Only. No Rubbing." },
+    { "type": "textarea", "id": "serum_step2_body", "label": "Step 2 body", "default": "Rubbing can cause micro-friction. Gently press the serum into your skin using your palms to maximize transdermal delivery." },
+    { "type": "text", "id": "serum_protip_title", "label": "Pro-tip title", "default": "PRO-TIP: Bioavailability" },
+    { "type": "textarea", "id": "serum_protip_body", "label": "Pro-tip body", "default": "Pair with Soft Reset. The Niacinamide in both creates a synergy that speeds up dark spot fading by blocking melanosome transfer twice as effectively." },
+    { "type": "text", "id": "serum_conflict_title", "label": "Conflict title", "default": "CONFLICTS" },
+    { "type": "textarea", "id": "serum_conflict_body", "label": "Conflict body", "default": "Avoid applying alongside L-Ascorbic Acid (Pure Vitamin C) or high-concentration AHA/BHA. The pH shift can destabilize the Alpha-Arbutin, causing it to hydrolyze into hydroquinone." },
+
+    { "type": "header", "content": "Moisturizer — Soft Reset" },
+    { "type": "product", "id": "moist_product", "label": "Product" },
+    { "type": "text", "id": "moist_title_fallback", "label": "Fallback name", "default": "Soft Reset" },
+    { "type": "image_picker", "id": "moist_fallback_image", "label": "Fallback image" },
+    { "type": "text", "id": "moist_tag", "label": "Tag", "default": "The Restoration" },
+    { "type": "text", "id": "moist_subtitle", "label": "Subtitle", "default": "Barrier Renew Moisturizer" },
+    { "type": "text", "id": "moist_science_label", "label": "Science label", "default": "The Molecular Matrix" },
+    { "type": "text", "id": "moist_science_title", "label": "Science title", "default": "Liquid Crystal Delivery (Olivem® 1000)" },
+    { "type": "textarea", "id": "moist_science_body", "label": "Science body", "default": "Unlike standard creams, Soft Reset mimics the skin's lipid structure. It integrates Ceramides EOP, NP, and AP in a 3:1:1 ratio to rebuild the Long Periodicity Phase (LPP) of the skin barrier." },
+    { "type": "text", "id": "moist_spec_active", "label": "Active spec", "default": "Matrikine Peptides" },
+    { "type": "text", "id": "moist_spec_ratio", "label": "Lipid ratio spec", "default": "Physiologic 3:1:1" },
+    { "type": "text", "id": "moist_spec_finish", "label": "Finish spec", "default": "Satin Gel-Cream" },
+    { "type": "text", "id": "moist_step1_title", "label": "Step 1 title", "default": "The AM Seal" },
+    { "type": "textarea", "id": "moist_step1_body", "label": "Step 1 body", "default": "Use 1 pump. Apply as a sheer protective layer to lock in your serum. Niacinamide regulates sebum production while you are active." },
+    { "type": "text", "id": "moist_step2_title", "label": "Step 2 title", "default": "The PM Repair (Sleeping Mask)" },
+    { "type": "textarea", "id": "moist_step2_body", "label": "Step 2 body", "default": "Use 2 pumps. Apply a thicker layer at night when Matrixyl 3000™ works to signal collagen synthesis during your skin's regenerative cycle." },
+    { "type": "text", "id": "moist_protip_title", "label": "Pro-tip title", "default": "PRO-TIP: Barrier Amplification" },
+    { "type": "textarea", "id": "moist_protip_body", "label": "Pro-tip body", "default": "The Niacinamide in this formula boosts your own skin's ceramide production by 4-5x. Soft Reset isn't just replenishing ceramides; it's teaching your skin to make them again." },
+
+    { "type": "header", "content": "SPF — Daylite" },
+    { "type": "product", "id": "spf_product", "label": "Product" },
+    { "type": "text", "id": "spf_title_fallback", "label": "Fallback name", "default": "Daylite" },
+    { "type": "image_picker", "id": "spf_fallback_image", "label": "Fallback image" },
+    { "type": "text", "id": "spf_tag", "label": "Tag", "default": "The Defense" },
+    { "type": "text", "id": "spf_subtitle", "label": "Subtitle", "default": "Matte UV Defence SPF 50+" },
+    { "type": "text", "id": "spf_science_label", "label": "Science label", "default": "Photostability Data" },
+    { "type": "text", "id": "spf_science_title", "label": "Science title", "default": "6-Filter Cross-Ecosystem" },
+    { "type": "textarea", "id": "spf_science_body", "label": "Science body", "default": "Daylite utilizes both Mexoryl SX (L’Oréal Patent) and Tinosorb M (BASF Patent) to cover the entire 280–400nm spectrum. Tinosorb M stabilizes Avobenzone, ensuring 90%+ protection remains after 2 hours of sun exposure." },
+    { "type": "text", "id": "spf_spec_uva", "label": "UVA spec", "default": "PA++++ (PPD 16+)" },
+    { "type": "text", "id": "spf_spec_stab", "label": "Stabilization spec", "default": "Particulate Tech" },
+    { "type": "text", "id": "spf_spec_finish", "label": "Finish spec", "default": "Semi-Matte No White Cast" },
+    { "type": "text", "id": "spf_step1_title", "label": "Step 1 title", "default": "The 2-Finger Mandate" },
+    { "type": "textarea", "id": "spf_step1_body", "label": "Step 1 body", "default": "Apply 2 full finger-lengths (1.25ml) for the face. SPF testing is done at 2mg/cm². Using half the amount equals only SPF 7-10 protection." },
+    { "type": "text", "id": "spf_step2_title", "label": "Step 2 title", "default": "Film Formation Window" },
+    { "type": "textarea", "id": "spf_step2_body", "label": "Step 2 body", "default": "Wait 2–3 minutes for the Aristoflex® polymer film to set before applying makeup. This ensures the filter matrix is uniform and unbroken." },
+    { "type": "text", "id": "spf_warn_title", "label": "Warning title", "default": "WARNING: Protection Math" },
+    { "type": "textarea", "id": "spf_warn_body", "label": "Warning body", "default": "SPF 50 becomes SPF 7 if you under-apply. There are no shortcuts in photoprotection. Redundant spectral coverage requires the full volume." },
+
+    { "type": "header", "content": "Timeline" },
+    { "type": "text", "id": "timeline_tag", "label": "Tag", "default": "Expectations" },
+    { "type": "text", "id": "timeline_title", "label": "Title", "default": "The Skintellectual Timeline" },
+    { "type": "textarea", "id": "timeline_intro", "label": "Intro", "default": "Biology takes time. Here is the realistic cellular roadmap for Glowve systems:" },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Maintain your ritual — Shop Now" },
+    { "type": "url", "id": "cta_url", "label": "CTA url" }
+  ],
+  "blocks": [
+    {
+      "type": "timeline_item",
+      "name": "Timeline Item",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Initial Bio-Hydration" },
+        { "type": "text", "id": "value", "label": "Value", "default": "1 — 2 Weeks" },
+        { "type": "checkbox", "id": "highlight", "label": "Highlight (pink border)", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Product Manual",
+      "blocks": [
+        { "type": "timeline_item", "settings": { "label": "Initial Bio-Hydration", "value": "1 — 2 Weeks" } },
+        { "type": "timeline_item", "settings": { "label": "Barrier Restoration", "value": "2 — 3 Weeks" } },
+        { "type": "timeline_item", "settings": { "label": "Visible Brightening", "value": "4 — 6 Weeks" } },
+        { "type": "timeline_item", "settings": { "label": "Melasma/Hyperpigmentation", "value": "8 — 12 Weeks", "highlight": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}
