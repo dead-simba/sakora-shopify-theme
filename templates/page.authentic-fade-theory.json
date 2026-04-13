@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -16,8 +25,6 @@
         "am_body": "Apply 2-3 drops to clean, dry skin. Press lightly, don't rub. Follow with moisturizer and finish with your daily SPF.",
         "pm_title": "Evening Application",
         "pm_body": "Night offers the longest repair window. Apply after double cleansing and follow up with a thick layer of moisturizer.",
-        "manual_url": "/pages/how-to-use#fade-theory",
-        "manual_label": "Read the full Fade Theory manual",
         "discount_label": "Unlock Your Next Glow ✨",
         "discount_body": "As a verified customer, enjoy 15% off your next purchase to continue your skin journey.",
         "discount_code": "GLOW15",
@@ -28,5 +35,7 @@
       }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
