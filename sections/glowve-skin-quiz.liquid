@@ -5,7 +5,19 @@
       <div class="gv-hero-eyebrow">{{ section.settings.hero_eyebrow }}</div>
       <h1 class="gv-hero-h1">{{ section.settings.hero_title }}</h1>
       <p class="gv-hero-sub">{{ section.settings.hero_desc }}</p>
-      
+
+      <div class="gv-hero-actions">
+        {%- if section.settings.start_btn_text != blank -%}
+          <button class="gv-btn-primary gv-btn-large" onclick="GlowveQuiz.start()">{{ section.settings.start_btn_text }} →</button>
+        {%- endif -%}
+        <p class="gv-hero-meta">{{ section.settings.hero_meta }}</p>
+      </div>
+
+      <div class="gv-hero-social">
+        <span class="gv-stars">★★★★★</span>
+        <span>{{ section.settings.social_proof }}</span>
+      </div>
+
       <div class="gv-hero-trust">
         {%- if section.settings.trust_1 != blank -%}
           <div class="gv-trust-item">
@@ -25,28 +37,6 @@
             {{ section.settings.trust_3 }}
           </div>
         {%- endif -%}
-      </div>
-
-      <div class="gv-hero-img-wrap">
-        {%- if section.settings.hero_image != blank -%}
-          {{ section.settings.hero_image | image_url: width: 1200 | image_tag: loading: 'lazy' }}
-        {%- else -%}
-          <div class="gv-hero-img-placeholder">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"/><path d="M12 8v4l3 3"/></svg>
-          </div>
-        {%- endif -%}
-      </div>
-
-      <div class="gv-hero-social">
-        <span class="gv-stars">★★★★★</span>
-        <span>{{ section.settings.social_proof }}</span>
-      </div>
-
-      <div class="gv-hero-actions">
-        {%- if section.settings.start_btn_text != blank -%}
-          <button class="gv-btn-primary gv-btn-large" onclick="GlowveQuiz.start()">{{ section.settings.start_btn_text }} →</button>
-        {%- endif -%}
-        <p class="gv-hero-meta">{{ section.settings.hero_meta }}</p>
       </div>
     </div>
   </div>
