@@ -1,4 +1,4 @@
-<section class="gv-collection-hero" style="background: {{ section.settings.bg_color }}; padding: {{ section.settings.padding_y }}px 0;">
+<section class="gv-collection-hero" style="background: {{ section.settings.bg_color }}; padding-top: {{ section.settings.padding_y }}px; padding-bottom: {{ section.settings.padding_y }}px;">
   <div class="gv-hero-inner">
     {%- if section.settings.show_back_link -%}
       <a href="{{ section.settings.back_link_url | default: '/collections/all' }}" class="gv-hero-back-link">

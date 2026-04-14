@@ -1,0 +1,42 @@
+<script>
+  if (!window.glowveAddSingleToCart) {
+    window.glowveAddSingleToCart = function(event, btn, variantId) {
+      event.preventDefault();
+      if (!variantId) return;
+
+      var originalText = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = 'Adding…';
+
+      var sectionIds = [];
+      document.querySelectorAll('cart-items-component[data-section-id]').forEach(function(el) {
+        sectionIds.push(el.dataset.sectionId);
+      });
+
+      fetch(window.Shopify.routes.root + 'cart/add.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: variantId, quantity: 1, sections: sectionIds.join(',') })
+      })
+      .then(function(r) { return r.json(); })
+      .then(function(response) {
+        document.dispatchEvent(new CustomEvent('cart:update', {
+          bubbles: true,
+          detail: { data: { sections: response.sections } }
+        }));
+        btn.textContent = 'Added ✓';
+        setTimeout(function() {
+          btn.disabled = false;
+          btn.textContent = originalText;
+        }, 2500);
+      })
+      .catch(function() {
+        btn.disabled = false;
+        btn.textContent = 'Try again';
+        setTimeout(function() {
+          btn.textContent = originalText;
+        }, 2000);
+      });
+    };
+  }
+</script>

@@ -340,7 +340,7 @@
             "title": "All Ingredients",
             "open": true,
             "subtitle": "16 ingredients. Every one listed in order of concentration — highest first. Actives highlighted.",
-            "clean_badge_1": "Fragrance-free",
+            "clean_badge_1": "Signature Scent",
             "clean_badge_2": "Paraben-free",
             "clean_badge_3": "Sulphate-free",
             "clean_badge_4": "Mineral oil-free",
@@ -588,7 +588,7 @@
           "type": "item",
           "settings": {
             "question": "Can I use this if I have sensitive skin?",
-            "answer": "<p>Yes — but start every other night for two weeks. Alpha Arbutin at 2% is generally well-tolerated. If you experience persistent redness or stinging, stop and consult a dermatologist. The fragrance-free formula helps but everyone's skin is different.</p>"
+            "answer": "<p>Yes — but start every other night for two weeks. Alpha Arbutin at 2% is generally well-tolerated. If you experience persistent redness or stinging, stop and consult a dermatologist. Even with our signature scent, everyone's skin is different.</p>"
           }
         },
         "faq_2": {
