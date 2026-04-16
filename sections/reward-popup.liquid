@@ -35,14 +35,14 @@
     background: #ffffff;
     border-radius: 12px;
     width: 90%;
-    max-width: 460px; /* Minimal width */
+    max-width: 460px;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     box-shadow: 0 24px 60px rgba(0,0,0,0.15);
     opacity: 0;
-    transform: translateY(20px) scale(0.98);
-    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translateY(40px) scale(0.9);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); /* Spring bounce physics */
   }
   reward-popup[is-open="true"] .reward-popup-modal {
     opacity: 1;
@@ -94,14 +94,14 @@
   }
   .reward-popup-title {
     font-family: var(--font-heading-family);
-    font-size: 2.8rem; /* Made significantly bigger */
+    font-size: 2.8rem;
     font-weight: 500;
     margin: 0 0 8px 0;
     line-height: 1.1;
     color: #000;
   }
   .reward-popup-text {
-    font-size: 1.1rem; /* Smaller sizing for contrast */
+    font-size: 1.1rem;
     color: #555;
     margin: 0 0 25px 0;
     line-height: 1.4;
@@ -152,25 +152,8 @@
     flex-shrink: 0;
     width: 16px;
     height: 16px;
-    accent-color: #000;
     cursor: pointer;
-  }
-  .reward-popup-btn {
-    width: 100%;
-    padding: 15px;
-    background: #000;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s;
-    font-family: var(--font-body-family);
-    margin-top: 5px;
-  }
-  .reward-popup-btn:hover {
-    background: #333;
+    accent-color: rgb(var(--color-primary-button-background, 0, 0, 0));
   }
   
   .reward-popup-success-block {
@@ -179,7 +162,7 @@
   }
   .reward-popup-code {
     display: inline-block;
-    background: #f7f7f7;
+    background: rgb(var(--color-primary-button-background, 240,240,240), 0.08); /* Faint tint of primary color */
     padding: 15px 25px;
     border-radius: 6px;
     font-weight: bold;
@@ -187,7 +170,7 @@
     font-size: 2rem;
     letter-spacing: 2px;
     margin-top: 15px;
-    border: 1px dashed #ccc;
+    border: 1px dashed rgb(var(--color-primary-button-background, 0, 0, 0));
     color: #000;
   }
   .reward-popup-errors {
@@ -231,6 +214,7 @@
     <div class="reward-popup-content">
       {% form 'customer', id: 'RewardPopupForm' %}
         {% if form.posted_successfully? %}
+          <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
           <div class="reward-popup-success-block">
             <h3 class="reward-popup-title">{{ section.settings.success_heading }}</h3>
             <div class="reward-popup-text">{{ section.settings.success_subtext }}</div>
@@ -259,7 +243,7 @@
               <span>{{ section.settings.consent_text }}</span>
             </label>
             
-            <button type="submit" class="reward-popup-btn">
+            <button type="submit" class="button button--primary" style="width: 100%; margin-top: 5px; height: 50px;">
               {{ section.settings.button_label }}
             </button>
           </div>
@@ -292,7 +276,23 @@
         // If form was just submitted, open immediately
         if (isSuccess || hasErrors) {
           this.show();
-          if (isSuccess) this.setCookie(); // Prevent showing again if they successfully signed up
+          
+          if (isSuccess) {
+            this.setCookie();
+            
+            // Trigger Confetti!
+            if (typeof confetti === 'function') {
+              setTimeout(() => {
+                confetti({
+                  particleCount: 150,
+                  spread: 80,
+                  origin: { y: 0.6 },
+                  zIndex: 999999,
+                  colors: ['#000000', '#ffffff', '#e26284', '#fdf5f8']
+                });
+              }, 400); // Wait for modal to pop in
+            }
+          }
           return;
         }
 
@@ -461,20 +461,20 @@
       "type": "text",
       "id": "success_heading",
       "label": "Success Heading",
-      "default": "You're In!"
+      "default": "You've unlocked something amazing!"
     },
     {
       "type": "richtext",
       "id": "success_subtext",
       "label": "Success Subtext",
-      "default": "<p>Your glow journey begins now.</p>"
+      "default": "<p>Your glow journey begins now. Claim your reward at checkout—valid for exactly 3 days.</p>"
     },
     {
       "type": "text",
       "id": "success_code",
-      "label": "Discount Code (Optional)",
+      "label": "Discount Code",
       "default": "GLOW10",
-      "info": "Code to display on success."
+      "info": "To ensure nobody shares this, create this code in Shopify and check 'Limit to one use per customer'."
     }
   ],
   "presets": [
