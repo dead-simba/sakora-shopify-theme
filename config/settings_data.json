@@ -82,6 +82,24 @@
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
     "button_font_weight_secondary": "default",
+    "sections": {
+      "reward-popup": {
+        "type": "reward-popup",
+        "settings": {
+          "trigger_pattern": "scroll",
+          "timer_delay": 8,
+          "cookie_days": 7,
+          "image": "shopify://shop_images/woman-holds-a-jade-face-massager-to-her-face.jpg",
+          "heading": "A Reward is Waiting",
+          "subtext": "<p>Enter your email & WhatsApp to unlock 20% off your first Glowve routine.</p>",
+          "button_label": "Reveal Reward",
+          "consent_text": "I agree to receive marketing messages. We promise not to disturb.",
+          "success_heading": "You've unlocked something amazing!",
+          "success_subtext": "<p>Your glow journey begins now. Claim your reward at checkout—valid for exactly 3 days.</p>",
+          "success_code": "GLOW-20"
+        }
+      }
+    },
     "content_for_index": [],
     "blocks": {
       "2200952712151285029": {
