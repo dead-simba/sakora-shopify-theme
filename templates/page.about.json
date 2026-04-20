@@ -344,7 +344,7 @@
         "btn_1_label": "Shop the Protocol",
         "btn_1_link": "shopify://collections/all",
         "btn_2_label": "Take the Skin Quiz",
-        "btn_2_link": ""
+        "btn_2_link": "shopify://pages/quiz"
       }
     }
   },
