@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "section": {
       "type": "main-blog-post",
@@ -57,6 +57,7 @@
         "blog-post-image": {
           "type": "_blog-post-featured-image",
           "name": "Featured image",
+          "disabled": true,
           "static": true,
           "settings": {
             "image_ratio": "landscape",
