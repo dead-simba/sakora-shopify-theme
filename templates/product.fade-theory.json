@@ -286,7 +286,7 @@
               "type": "gv-guarantee",
               "settings": {
                 "item_1": "30-day money-back",
-                "item_2": "Free delivery above PKR 2,500",
+                "item_2": "Free delivery till 30 Apr",
                 "item_3": "Cash on delivery"
               },
               "blocks": {}
@@ -346,7 +346,7 @@
             "clean_badge_4": "Mineral oil-free",
             "clean_badge_5": "Cruelty-free",
             "clean_badge_6": "Made in Pakistan",
-            "content": "<p>Aqua, Niacinamide, Alpha-Arbutin, 3-O-Ethyl Ascorbic Acid, Tranexamic Acid, Propanediol, Glycerin, Sodium Hyaluronate, Glycyrrhiza Glabra (Licorice) Root Extract, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin, Citric Acid, Sodium Hydroxide, Fragrance.</p>"
+            "content": "<p>Aqua, Niacinamide, <strong>Alpha-Arbutin</strong>, <strong>3-O-Ethyl Ascorbic Acid</strong>, T<strong>ranexamic Acid</strong>, Propanediol, Glycerin, Sodium Hyaluronate, Glycyrrhiza Glabra (Licorice) Root Extract, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin, Citric Acid, Sodium Hydroxide, Fragrance.</p>"
           }
         },
         "pathways_1": {
