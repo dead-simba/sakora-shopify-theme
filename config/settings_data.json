@@ -86,7 +86,7 @@
       "reward-popup": {
         "type": "reward-popup",
         "settings": {
-          "trigger_pattern": "scroll",
+          "trigger_pattern": "exit",
           "timer_delay": 8,
           "cookie_days": 7,
           "image": "shopify://shop_images/woman-holds-a-jade-face-massager-to-her-face.jpg",

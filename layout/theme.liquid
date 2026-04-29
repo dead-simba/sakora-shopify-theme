@@ -34,9 +34,38 @@
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
-    {% endif %}
+    {% if request.design_mode %}
+      {{ content_for_header }}
+    {% else %}
+      {% capture CFH %}{{ content_for_header }}{% endcapture %}
+      {{ CFH | replace: ' src=', ' data-src=' | replace: '<script', '<script type="text/lazyload"' | replace: 'DOMContentLoaded', 'YETT_DOMContentLoaded' }}
+      <script>
+        (function() {
+          const loadScriptsTimer = setTimeout(loadScripts, 7000);
+          const userInteractionEvents = ['mouseover', 'keydown', 'touchstart', 'touchmove', 'wheel'];
+          
+          function loadScripts() {
+            document.querySelectorAll('script[type="text/lazyload"]').forEach(function(script) {
+              script.setAttribute('type', 'text/javascript');
+              if (script.hasAttribute('data-src')) {
+                script.setAttribute('src', script.getAttribute('data-src'));
+              }
+              let newScript = document.createElement('script');
+              Array.from(script.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value));
+              newScript.innerHTML = script.innerHTML;
+              script.parentNode.replaceChild(newScript, script);
+            });
+            userInteractionEvents.forEach(function(event) {
+              window.removeEventListener(event, loadScripts, { passive: true });
+            });
+          }
 
-    {{ content_for_header }}
+          userInteractionEvents.forEach(function(event) {
+            window.addEventListener(event, loadScripts, { passive: true });
+          });
+        })();
+      </script>
+    {% endif %}
 
     {%- if settings.gtm_id != blank and request.design_mode == false -%}
       <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','{{ settings.gtm_id }}');</script>

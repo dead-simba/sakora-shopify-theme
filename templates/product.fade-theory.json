@@ -154,11 +154,19 @@
                     "padding-inline-end": 0
                   },
                   "blocks": {}
+                },
+                "price_framing": {
+                  "type": "text",
+                  "settings": {
+                    "text": "<p style=\"color: #666; font-size: 0.9rem; margin-top: -4px;\">Rs.73/day for a 30-day supply</p>",
+                    "type_preset": "rte"
+                  }
                 }
               },
               "block_order": [
                 "text_title",
-                "price_main"
+                "price_main",
+                "price_framing"
               ]
             },
             "text_description": {
@@ -461,7 +469,7 @@
           "type": "timeline",
           "settings": {
             "title": "What to actually expect.",
-            "open": false,
+            "open": true,
             "subtitle": "No overnight miracles promised. This is what skin science looks like in weeks, not days.",
             "tl_1_period": "Week 1–2",
             "tl_1_title": "Smoother texture",
@@ -791,11 +799,11 @@
   },
   "order": [
     "main",
+    "pdp_reviews",
     "pdp_accordions",
     "pdp_clinical",
-    "pdp_reviews",
-    "pdp_faq",
     "pdp_upsell",
+    "pdp_faq",
     "pdp_recs"
   ]
 }
