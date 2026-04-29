@@ -159,8 +159,26 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Rs.73/day for a 30-day supply</p>",
-                    "type_preset": "rte"
-                  }
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -337,6 +355,101 @@
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "1777482966b5a68e55": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_review_widget_FKiEFY": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_review_widget_FKiEFY"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "pdp_reviews": {
+      "type": "pdp-reviews-grid",
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "First SPF that doesn't make my skin look grey",
+            "body": "I'm Fitzpatrick V and every sunscreen I've tried in Pakistan — local, Korean, drugstore — leaves me ashy or with a white cast. This one genuinely disappears. Sinks in fast. I look better with it than without, which has never happened with a sunscreen before.",
+            "author": "Sana T. · Karachi",
+            "date": "Apr 2026",
+            "tag1": "Combo skin",
+            "tag2": "Fitzpatrick V"
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "The serum wasn't working. SPF was the missing piece.",
+            "body": "Two months using the Alpha Arbutin serum with zero progress. Then I read the page here about UV reactivating melanin and realised I wasn't applying SPF properly — too little, too late in my routine. Corrected it. Six weeks later my derm noticed the difference.",
+            "author": "Zara M. · Islamabad",
+            "date": "Mar 2026",
+            "tag1": "PIH-prone",
+            "tag2": "Fitzpatrick IV"
+          }
+        },
+        "rev_3": {
+          "type": "review",
+          "settings": {
+            "stars": 4,
+            "title": "Stays matte through 8-hour hospital shifts.",
+            "body": "I'm a doctor in Karachi. Warm environment, long hours, face mask wearing — my old SPF was melting by noon. This one is matte through the full shift. The Zinc PCA is visibly doing something. My only complaint: 50ml runs out in 3 weeks when you apply the right amount daily.",
+            "author": "Dr. Hira M. · Karachi",
+            "date": "Apr 2026",
+            "tag1": "Oily skin",
+            "tag2": "Fitzpatrick IV"
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2",
+        "rev_3"
+      ],
+      "disabled": true,
+      "settings": {
+        "label": "What people are saying",
+        "title": "Reviewed by people who needed it to actually work."
       }
     },
     "pdp_accordions": {
@@ -538,54 +651,24 @@
         "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of our 6-Filter System, Zinc PCA, and Antioxidant Complex."
       }
     },
-    "pdp_reviews": {
-      "type": "pdp-reviews-grid",
-      "blocks": {
-        "rev_1": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "title": "First SPF that doesn't make my skin look grey",
-            "body": "I'm Fitzpatrick V and every sunscreen I've tried in Pakistan — local, Korean, drugstore — leaves me ashy or with a white cast. This one genuinely disappears. Sinks in fast. I look better with it than without, which has never happened with a sunscreen before.",
-            "author": "Sana T. · Karachi",
-            "date": "Apr 2026",
-            "tag1": "Combo skin",
-            "tag2": "Fitzpatrick V"
-          }
-        },
-        "rev_2": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "title": "The serum wasn't working. SPF was the missing piece.",
-            "body": "Two months using the Alpha Arbutin serum with zero progress. Then I read the page here about UV reactivating melanin and realised I wasn't applying SPF properly — too little, too late in my routine. Corrected it. Six weeks later my derm noticed the difference.",
-            "author": "Zara M. · Islamabad",
-            "date": "Mar 2026",
-            "tag1": "PIH-prone",
-            "tag2": "Fitzpatrick IV"
-          }
-        },
-        "rev_3": {
-          "type": "review",
-          "settings": {
-            "stars": 4,
-            "title": "Stays matte through 8-hour hospital shifts.",
-            "body": "I'm a doctor in Karachi. Warm environment, long hours, face mask wearing — my old SPF was melting by noon. This one is matte through the full shift. The Zinc PCA is visibly doing something. My only complaint: 50ml runs out in 3 weeks when you apply the right amount daily.",
-            "author": "Dr. Hira M. · Karachi",
-            "date": "Apr 2026",
-            "tag1": "Oily skin",
-            "tag2": "Fitzpatrick IV"
-          }
-        }
-      },
-      "block_order": [
-        "rev_1",
-        "rev_2",
-        "rev_3"
-      ],
+    "pdp_upsell": {
+      "type": "glowve-pdp-upsell",
       "settings": {
-        "label": "What people are saying",
-        "title": "Reviewed by people who needed it to actually work."
+        "label": "Make SPF work harder",
+        "title": "SPF protects. These two make it work 3× more.",
+        "subtitle": "SPF prevents new damage. Add a brightening serum to fade what's already there and a moisturiser to rebuild what UV has stripped.",
+        "product_1": "fade-theory",
+        "product_1_tag": "Brightening Serum · 30ml",
+        "product_1_why": "Apply before SPF in the morning. Your serum fades existing marks at night. SPF stops new ones forming during the day. Together they break the PIH cycle permanently.",
+        "product_2": "soft-reset-moisturizer",
+        "product_2_tag": "Moisturiser · 50ml",
+        "product_2_why": "SPF filters can sometimes feel drying. Soft Reset restores ceramides overnight so your protective barrier is strong before you even apply SPF.",
+        "bundle_title": "Save with the full protocol",
+        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
+        "bundle_price": "PKR 4,440",
+        "bundle_original": "PKR 5,550",
+        "bundle_product": "complete-glow-bundle",
+        "bundle_url": "/products/glowve-bundle"
       }
     },
     "pdp_faq": {
@@ -637,26 +720,6 @@
       "settings": {
         "label": "Quick answers",
         "title": "Got questions?"
-      }
-    },
-    "pdp_upsell": {
-      "type": "glowve-pdp-upsell",
-      "settings": {
-        "label": "Make SPF work harder",
-        "title": "SPF protects. These two make it work 3× more.",
-        "subtitle": "SPF prevents new damage. Add a brightening serum to fade what's already there and a moisturiser to rebuild what UV has stripped.",
-        "product_1": "fade-theory",
-        "product_1_tag": "Brightening Serum · 30ml",
-        "product_1_why": "Apply before SPF in the morning. Your serum fades existing marks at night. SPF stops new ones forming during the day. Together they break the PIH cycle permanently.",
-        "product_2": "soft-reset-moisturizer",
-        "product_2_tag": "Moisturiser · 50ml",
-        "product_2_why": "SPF filters can sometimes feel drying. Soft Reset restores ceramides overnight so your protective barrier is strong before you even apply SPF.",
-        "bundle_title": "Save with the full protocol",
-        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
-        "bundle_price": "PKR 4,440",
-        "bundle_original": "PKR 5,550",
-        "bundle_product": "complete-glow-bundle",
-        "bundle_url": "/products/glowve-bundle"
       }
     },
     "pdp_recs": {
@@ -798,6 +861,7 @@
   },
   "order": [
     "main",
+    "1777482966b5a68e55",
     "pdp_reviews",
     "pdp_accordions",
     "pdp_clinical",
