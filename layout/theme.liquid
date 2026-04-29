@@ -34,6 +34,8 @@
 
     {% if request.design_mode %}
       {%- render 'theme-editor' -%}
+    {% endif %}
+
     {% if request.design_mode %}
       {{ content_for_header }}
     {% else %}

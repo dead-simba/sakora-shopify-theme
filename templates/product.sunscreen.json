@@ -158,7 +158,7 @@
                 "price_framing": {
                   "type": "text",
                   "settings": {
-                    "text": "<p style=\"color: #666; font-size: 0.9rem; margin-top: -4px;\">Rs.73/day for a 30-day supply</p>",
+                    "text": "<p>Rs.73/day for a 30-day supply</p>",
                     "type_preset": "rte"
                   }
                 }
