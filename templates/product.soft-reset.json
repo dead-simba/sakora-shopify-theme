@@ -12,6 +12,15 @@
     "main": {
       "type": "product-information",
       "blocks": {
+        "judge_me_reviews_review_widget_3NTcDr": {
+          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {
+            "review_data": "real_data",
+            "max_width": 1200,
+            "show_shop_reviews": false,
+            "empty_state": "empty_widget"
+          }
+        },
         "media-gallery": {
           "type": "_product-media-gallery",
           "static": true,
@@ -159,8 +168,26 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Rs.73/day for a 30-day supply</p>",
-                    "type_preset": "rte"
-                  }
+                    "width": "fit-content",
+                    "max_width": "normal",
+                    "alignment": "left",
+                    "type_preset": "rte",
+                    "font": "var(--font-body--family)",
+                    "font_size": "1rem",
+                    "line_height": "normal",
+                    "letter_spacing": "normal",
+                    "case": "none",
+                    "wrap": "pretty",
+                    "color": "var(--color-foreground)",
+                    "background": false,
+                    "background_color": "#00000026",
+                    "corner_radius": 0,
+                    "padding-block-start": 0,
+                    "padding-block-end": 0,
+                    "padding-inline-start": 0,
+                    "padding-inline-end": 0
+                  },
+                  "blocks": {}
                 }
               },
               "block_order": [
@@ -327,6 +354,9 @@
           ]
         }
       },
+      "block_order": [
+        "judge_me_reviews_review_widget_3NTcDr"
+      ],
       "settings": {
         "content_width": "content-center-aligned",
         "desktop_media_position": "left",
@@ -337,6 +367,43 @@
         "color_scheme": "",
         "padding-block-start": 0,
         "padding-block-end": 0
+      }
+    },
+    "pdp_reviews": {
+      "type": "pdp-reviews-grid",
+      "blocks": {
+        "rev_1": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Skin Barrier: Restored. ✨",
+            "body": "Skin Barrier: Restored. ✨\nPichle 2 weeks se LumaLabs Barrier Renew Moisturizer use kar raha hoon aur results ne mujhe impress kar diya hai. Mera skin barrier kaafi kharab ho chuka tha, lekin is gel-cream ne na sirf usey repair kiya balkay excess oil ko bhi control kiya.\nTexture: Super lightweight, non-greasy.\nKey Vibes: Hydrated, calm, and healthy skin.\nJaisa brand ne claim kiya, bilkul waisa hi result mila. Highly recommended for anyone struggling with dehydration or a damaged barrier! 🛡️💧\nH HUZAIFA TEK 🥀",
+            "author": "Huzaifa Tek · Talagang",
+            "date": "Apr 2026",
+            "tag1": "",
+            "tag2": ""
+          }
+        },
+        "rev_2": {
+          "type": "review",
+          "settings": {
+            "stars": 5,
+            "title": "Didn’t cause any irritation or burning at all",
+            "body": "My father had quite severe sunburn damage on his skin, but this moisturizer made a significant difference. His skin improved noticeably, and the best part is that it didn’t cause any irritation or burning at all !!! 🤍",
+            "author": "Ayesha · Shaikhopura",
+            "date": "Apr 2026",
+            "tag1": "",
+            "tag2": ""
+          }
+        }
+      },
+      "block_order": [
+        "rev_1",
+        "rev_2"
+      ],
+      "settings": {
+        "label": "Early reviews",
+        "title": "From people who tried it first."
       }
     },
     "pdp_accordions_aMBCdE": {
@@ -525,41 +592,24 @@
         "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of Triple Ceramides, Niacinamide, and Matrixyl 3000™."
       }
     },
-    "pdp_reviews": {
-      "type": "pdp-reviews-grid",
-      "blocks": {
-        "rev_1": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "title": "Skin Barrier: Restored. ✨",
-            "body": "Skin Barrier: Restored. ✨\nPichle 2 weeks se LumaLabs Barrier Renew Moisturizer use kar raha hoon aur results ne mujhe impress kar diya hai. Mera skin barrier kaafi kharab ho chuka tha, lekin is gel-cream ne na sirf usey repair kiya balkay excess oil ko bhi control kiya.\nTexture: Super lightweight, non-greasy.\nKey Vibes: Hydrated, calm, and healthy skin.\nJaisa brand ne claim kiya, bilkul waisa hi result mila. Highly recommended for anyone struggling with dehydration or a damaged barrier! 🛡️💧\nH HUZAIFA TEK 🥀",
-            "author": "Huzaifa Tek · Talagang",
-            "date": "Apr 2026",
-            "tag1": "",
-            "tag2": ""
-          }
-        },
-        "rev_2": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "title": "Didn’t cause any irritation or burning at all",
-            "body": "My father had quite severe sunburn damage on his skin, but this moisturizer made a significant difference. His skin improved noticeably, and the best part is that it didn’t cause any irritation or burning at all !!! 🤍",
-            "author": "Ayesha · Shaikhopura",
-            "date": "Apr 2026",
-            "tag1": "",
-            "tag2": ""
-          }
-        }
-      },
-      "block_order": [
-        "rev_1",
-        "rev_2"
-      ],
+    "pdp_upsell": {
+      "type": "glowve-pdp-upsell",
       "settings": {
-        "label": "Early reviews",
-        "title": "From people who tried it first."
+        "label": "Complete the Routine",
+        "title": "Works better together.",
+        "subtitle": "Soft Reset rebuilds the barrier. Fade Theory targets pigmentation. Daylite protects everything you've built.",
+        "product_1": "fade-theory",
+        "product_1_tag": "Step 1 · Serum",
+        "product_1_why": "Targeting pigmentation while the barrier is rebuilding produces faster, more stable results.",
+        "product_2": "daylite-spf-50-sunscreen",
+        "product_2_tag": "Step 3 · SPF",
+        "product_2_why": "No barrier work survives unprotected UV exposure. Daylite locks in everything.",
+        "bundle_title": "Save with the full protocol",
+        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
+        "bundle_price": "PKR 4,440",
+        "bundle_original": "PKR 5,550",
+        "bundle_product": "complete-glow-bundle",
+        "bundle_url": "/products/glowve-bundle"
       }
     },
     "pdp_faq": {
@@ -619,26 +669,6 @@
       "settings": {
         "label": "FAQ",
         "title": "Questions answered."
-      }
-    },
-    "pdp_upsell": {
-      "type": "glowve-pdp-upsell",
-      "settings": {
-        "label": "Complete the Routine",
-        "title": "Works better together.",
-        "subtitle": "Soft Reset rebuilds the barrier. Fade Theory targets pigmentation. Daylite protects everything you've built.",
-        "product_1": "fade-theory",
-        "product_1_tag": "Step 1 · Serum",
-        "product_1_why": "Targeting pigmentation while the barrier is rebuilding produces faster, more stable results.",
-        "product_2": "daylite-spf-50-sunscreen",
-        "product_2_tag": "Step 3 · SPF",
-        "product_2_why": "No barrier work survives unprotected UV exposure. Daylite locks in everything.",
-        "bundle_title": "Save with the full protocol",
-        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
-        "bundle_price": "PKR 4,440",
-        "bundle_original": "PKR 5,550",
-        "bundle_product": "complete-glow-bundle",
-        "bundle_url": "/products/glowve-bundle"
       }
     },
     "pdp_recs": {
