@@ -97,19 +97,31 @@
 
 <script>
   (function () {
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+
     function initBASlider(slider) {
-      var range   = slider.querySelector('[data-ba-range]');
-      var before  = slider.querySelector('[data-ba-before]');
-      var handle  = slider.querySelector('[data-ba-handle]');
-      if (!range || !before || !handle) return;
+      var range  = slider.querySelector('[data-ba-range]');
+      var before = slider.querySelector('[data-ba-before]');
+      var handle = slider.querySelector('[data-ba-handle]');
+      if (!before) return;
 
       function update(val) {
         before.style.clipPath = 'inset(0 ' + (100 - val) + '% 0 0)';
-        handle.style.left     = val + '%';
+        if (handle) handle.style.left = val + '%';
       }
 
-      update(range.value);
-      range.addEventListener('input', function () { update(this.value); });
+      if (isMobile) {
+        update(100); // show full After on load
+        var showingAfter = true;
+        slider.addEventListener('click', function () {
+          showingAfter = !showingAfter;
+          update(showingAfter ? 100 : 0);
+        });
+      } else {
+        if (!range) return;
+        update(range.value);
+        range.addEventListener('input', function () { update(this.value); });
+      }
     }
 
     function initAll() {
@@ -342,15 +354,29 @@
 
     .gv-ba-row {
       grid-template-columns: repeat(var(--card-count, 1), min(72vw, 260px));
+      justify-content: start;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       padding-bottom: 8px;
+      /* break out of inner padding so cards scroll edge-to-edge */
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+      scroll-padding-left: 20px;
+      width: auto;
     }
 
     .gv-ba-row::-webkit-scrollbar { display: none; }
     .gv-ba-card { scroll-snap-align: start; }
+
+    /* replace drag with tap-to-toggle on mobile */
+    .gv-ba-range { display: none; }
+    .gv-ba-handle { display: none; }
+    .gv-ba-slider { cursor: pointer; }
+    .gv-ba-img--before { transition: clip-path 0.3s ease; }
   }
 {% endstylesheet %}
 
