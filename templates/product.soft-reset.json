@@ -568,8 +568,6 @@
     },
     "pdp_before_after": {
       "type": "glowve-pdp-before-after",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "Real results",
         "title": "The proof.",

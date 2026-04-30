@@ -331,6 +331,42 @@
         "padding-block-end": 0
       }
     },
+    "glowve_pdp_before_after_A3za7y": {
+      "type": "glowve-pdp-before-after",
+      "blocks": {
+        "before_after_ceEQLk": {
+          "type": "before_after",
+          "settings": {
+            "before_image": "shopify://shop_images/Malesma_-_Before.webp",
+            "after_image": "shopify://shop_images/Malesma_-_After.webp",
+            "reviewer_name": "",
+            "timeframe": "7 Weeks of use with right routine",
+            "skin_type": ""
+          }
+        },
+        "before_after_c9tdaN": {
+          "type": "before_after",
+          "settings": {
+            "before_image": "shopify://shop_images/Post_Acne_Marks_-_Before.webp",
+            "after_image": "shopify://shop_images/Post_Acne_Marks_-_After.webp",
+            "reviewer_name": "",
+            "timeframe": "Week 6",
+            "skin_type": ""
+          }
+        }
+      },
+      "block_order": [
+        "before_after_ceEQLk",
+        "before_after_c9tdaN"
+      ],
+      "name": "Before & After",
+      "settings": {
+        "label": "Real results",
+        "title": "The proof.",
+        "subtitle": "Unedited. Real customers. Consistent use.",
+        "disclaimer": "Individual results may vary. Images are unretouched."
+      }
+    },
     "1777464815268a1afb": {
       "type": "_blocks",
       "blocks": {
@@ -628,8 +664,6 @@
     },
     "pdp_before_after": {
       "type": "glowve-pdp-before-after",
-      "blocks": {},
-      "block_order": [],
       "settings": {
         "label": "Real results",
         "title": "The proof.",
@@ -847,6 +881,7 @@
   },
   "order": [
     "main",
+    "glowve_pdp_before_after_A3za7y",
     "1777464815268a1afb",
     "pdp_reviews",
     "pdp_accordions",
