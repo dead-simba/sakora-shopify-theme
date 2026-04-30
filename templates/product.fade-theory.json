@@ -626,6 +626,17 @@
         "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of Alpha Arbutin, Tranexamic Acid, and Vitamin C."
       }
     },
+    "pdp_before_after": {
+      "type": "glowve-pdp-before-after",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "label": "Real results",
+        "title": "The proof.",
+        "subtitle": "Unedited. Real customers. Consistent use.",
+        "disclaimer": "Individual results may vary. Images are unretouched."
+      }
+    },
     "pdp_upsell": {
       "type": "glowve-pdp-upsell",
       "settings": {
@@ -840,6 +851,7 @@
     "pdp_reviews",
     "pdp_accordions",
     "pdp_clinical",
+    "pdp_before_after",
     "pdp_upsell",
     "pdp_faq",
     "pdp_recs"

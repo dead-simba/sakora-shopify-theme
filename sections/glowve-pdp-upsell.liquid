@@ -79,14 +79,17 @@
         </div>
         {%- if section.settings.bundle_product != blank -%}
           {%- assign bundle_prod_target = all_products[section.settings.bundle_product] -%}
-          <button
-            class="gv-btn-primary gv-upsell-bundle-btn"
-            data-product-id="10662621446449"
-            onclick="glowveAddToCart(event, 10662621446449)"
-          >
-            Shop the Bundle
-            {% render 'gv-icon', icon: 'arrow-right', size: 14 %}
-          </button>
+          {%- assign bundle_variant_id = bundle_prod_target.first_available_variant.id -%}
+          {%- if bundle_variant_id != blank -%}
+            <button
+              class="gv-btn-primary gv-upsell-bundle-btn"
+              data-variant-id="{{ bundle_variant_id }}"
+              onclick="glowveAddToCart(event, {{ bundle_variant_id }})"
+            >
+              Shop the Bundle
+              {% render 'gv-icon', icon: 'arrow-right', size: 14 %}
+            </button>
+          {%- endif -%}
         {%- elsif section.settings.bundle_url != blank -%}
           <a href="{{ section.settings.bundle_url }}" class="gv-btn-primary gv-upsell-bundle-btn">
             Shop the Bundle
