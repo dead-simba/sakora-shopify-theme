@@ -16,8 +16,7 @@
     {%- endif -%}
 
     {%- if section.blocks.size > 0 -%}
-      <div class="gv-ba-carousel-wrap">
-        <div class="gv-ba-row" style="--card-count: {{ section.blocks.size }};" data-ba-row>
+      <div class="gv-ba-row" style="--card-count: {{ section.blocks.size }};">
 
         {%- for block in section.blocks -%}
           {%- if block.settings.before_image != blank and block.settings.after_image != blank -%}
@@ -82,25 +81,8 @@
                 </div>
               </div>
 
-                  </div>
-
-        {%- if section.blocks.size > 1 -%}
-          <div class="gv-ba-nav">
-            <button class="gv-ba-arrow gv-ba-prev" data-ba-prev aria-label="Previous">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 18l-6-6 6-6"/></svg>
-            </button>
-            <div class="gv-ba-dots" data-ba-dots>
-              {%- for block in section.blocks -%}
-                <button class="gv-ba-dot {% if forloop.first %}gv-ba-dot--active{% endif %}" data-index="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
-              {%- endfor -%}
             </div>
-            <button class="gv-ba-arrow gv-ba-next" data-ba-next aria-label="Next">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18l6-6-6-6"/></svg>
-            </button>
-          </div>
-        {%- endif -%}
-      </div>
-    {%- endif -%}
+          {%- endif -%}
         {%- endfor -%}
 
       </div>
@@ -116,70 +98,53 @@
 <script>
   (function () {
     function initBASlider(slider) {
-      var range  = slider.querySelector('[data-ba-range]');
-      var before = slider.querySelector('[data-ba-before]');
-      var handle = slider.querySelector('[data-ba-handle]');
-      if (!before || !range) return;
+      var range     = slider.querySelector('[data-ba-range]');
+      var before    = slider.querySelector('[data-ba-before]');
+      var handle    = slider.querySelector('[data-ba-handle]');
+      var handleBtn = slider.querySelector('.gv-ba-handle-btn');
+      if (!before) return;
 
       function update(val) {
         val = Math.max(0, Math.min(100, val));
         before.style.clipPath = 'inset(0 ' + (100 - val) + '% 0 0)';
         if (handle) handle.style.left = val + '%';
+        if (range) range.value = val;
       }
 
-      update(+range.value);
-      range.addEventListener('input', function () { update(+this.value); });
-    }
-
-    function initCarousel(section) {
-      var row = section.querySelector('[data-ba-row]');
-      var prev = section.querySelector('[data-ba-prev]');
-      var next = section.querySelector('[data-ba-next]');
-      var dots = section.querySelectorAll('.gv-ba-dot');
-      if (!row) return;
-
-      function updateDots() {
-        if (!dots.length) return;
-        var scrollLeft = row.scrollLeft;
-        var cardWidth = row.scrollWidth / dots.length;
-        var index = Math.round(scrollLeft / cardWidth);
-        dots.forEach(function(dot, i) {
-          dot.classList.toggle('gv-ba-dot--active', i === index);
-        });
+      // Desktop: range input lets user click anywhere on the image
+      if (range) {
+        update(+range.value);
+        range.addEventListener('input', function () { update(+this.value); });
+      } else {
+        update(50);
       }
 
-      row.addEventListener('scroll', updateDots, { passive: true });
-
-      if (prev) {
-        prev.addEventListener('click', function() {
-          var cardWidth = row.firstElementChild.offsetWidth + 20;
-          row.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+      // All devices: drag the handle button only (swipe elsewhere = carousel scroll)
+      if (handleBtn) {
+        handleBtn.addEventListener('pointerdown', function (e) {
+          e.preventDefault();
+          handleBtn.setPointerCapture(e.pointerId);
+          function onMove(e) {
+            var rect = slider.getBoundingClientRect();
+            update(((e.clientX - rect.left) / rect.width) * 100);
+          }
+          function onUp() {
+            handleBtn.removeEventListener('pointermove', onMove);
+            handleBtn.removeEventListener('pointerup', onUp);
+            handleBtn.removeEventListener('pointercancel', onUp);
+          }
+          handleBtn.addEventListener('pointermove', onMove);
+          handleBtn.addEventListener('pointerup', onUp);
+          handleBtn.addEventListener('pointercancel', onUp);
         });
       }
-      if (next) {
-        next.addEventListener('click', function() {
-          var cardWidth = row.firstElementChild.offsetWidth + 20;
-          row.scrollBy({ left: cardWidth, behavior: 'smooth' });
-        });
-      }
-      dots.forEach(function(dot) {
-        dot.addEventListener('click', function() {
-          var index = parseInt(dot.getAttribute('data-index'));
-          var cardWidth = row.firstElementChild.offsetWidth + 20;
-          row.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
-        });
-      });
     }
 
     function initAll() {
-      document.querySelectorAll('.gv-ba-section').forEach(function(section) {
-        section.querySelectorAll('[data-ba-slider]').forEach(initBASlider);
-        initCarousel(section);
-      });
+      document.querySelectorAll('[data-ba-slider]').forEach(initBASlider);
     }
 
     document.readyState === 'loading'
-
       ? document.addEventListener('DOMContentLoaded', initAll)
       : initAll();
   })();
@@ -328,7 +293,6 @@
     padding: 0;
     -webkit-appearance: none;
     appearance: none;
-    touch-action: pan-y;
   }
 
   .gv-ba-label {
@@ -398,58 +362,14 @@
     opacity: 0.65;
   }
 
-
-  .gv-ba-nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    margin-top: 32px;
-  }
-
-  .gv-ba-arrow {
-    background: none;
-    border: none;
-    padding: 8px;
-    cursor: pointer;
-    color: #1A1A1A;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s;
-  }
-  .gv-ba-arrow:hover { color: #FF4D8D; }
-
-  .gv-ba-dots {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .gv-ba-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #E0E0E0;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .gv-ba-dot--active {
-    background: #FF4D8D;
-    transform: scale(1.2);
-  }
-
   @media (max-width: 768px) {
-
     .gv-ba-section { padding: 52px 0; }
     .gv-ba-inner { padding: 0 20px; }
     .gv-ba-title { font-size: 28px; }
     .gv-ba-head { margin-bottom: 32px; }
 
     .gv-ba-row {
-      grid-template-columns: repeat(var(--card-count, 1), min(85vw, 320px));
+      grid-template-columns: repeat(var(--card-count, 1), min(72vw, 260px));
       justify-content: start;
       overflow-x: scroll;
       -webkit-overflow-scrolling: touch;
@@ -461,7 +381,10 @@
     .gv-ba-row::-webkit-scrollbar { display: none; }
     .gv-ba-card { scroll-snap-align: start; }
 
-    .gv-ba-handle-btn { width: 44px; height: 44px; pointer-events: none; }
+    /* hide range input — handle drag is the interaction on mobile */
+    .gv-ba-range { display: none; }
+    /* larger handle, prevent page scroll when grabbing it */
+    .gv-ba-handle-btn { width: 44px; height: 44px; touch-action: none; }
   }
 {% endstylesheet %}
 
