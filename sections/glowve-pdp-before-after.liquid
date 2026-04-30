@@ -97,30 +97,46 @@
 
 <script>
   (function () {
-    var isMobile = window.matchMedia('(max-width: 768px)').matches;
-
     function initBASlider(slider) {
-      var range  = slider.querySelector('[data-ba-range]');
-      var before = slider.querySelector('[data-ba-before]');
-      var handle = slider.querySelector('[data-ba-handle]');
+      var range     = slider.querySelector('[data-ba-range]');
+      var before    = slider.querySelector('[data-ba-before]');
+      var handle    = slider.querySelector('[data-ba-handle]');
+      var handleBtn = slider.querySelector('.gv-ba-handle-btn');
       if (!before) return;
 
       function update(val) {
+        val = Math.max(0, Math.min(100, val));
         before.style.clipPath = 'inset(0 ' + (100 - val) + '% 0 0)';
         if (handle) handle.style.left = val + '%';
+        if (range) range.value = val;
       }
 
-      if (isMobile) {
-        update(100); // show full After on load
-        var showingAfter = true;
-        slider.addEventListener('click', function () {
-          showingAfter = !showingAfter;
-          update(showingAfter ? 100 : 0);
-        });
+      // Desktop: range input lets user click anywhere on the image
+      if (range) {
+        update(+range.value);
+        range.addEventListener('input', function () { update(+this.value); });
       } else {
-        if (!range) return;
-        update(range.value);
-        range.addEventListener('input', function () { update(this.value); });
+        update(50);
+      }
+
+      // All devices: drag the handle button only (swipe elsewhere = carousel scroll)
+      if (handleBtn) {
+        handleBtn.addEventListener('pointerdown', function (e) {
+          e.preventDefault();
+          handleBtn.setPointerCapture(e.pointerId);
+          function onMove(e) {
+            var rect = slider.getBoundingClientRect();
+            update(((e.clientX - rect.left) / rect.width) * 100);
+          }
+          function onUp() {
+            handleBtn.removeEventListener('pointermove', onMove);
+            handleBtn.removeEventListener('pointerup', onUp);
+            handleBtn.removeEventListener('pointercancel', onUp);
+          }
+          handleBtn.addEventListener('pointermove', onMove);
+          handleBtn.addEventListener('pointerup', onUp);
+          handleBtn.addEventListener('pointercancel', onUp);
+        });
       }
     }
 
@@ -372,11 +388,10 @@
     .gv-ba-row::-webkit-scrollbar { display: none; }
     .gv-ba-card { scroll-snap-align: start; }
 
-    /* replace drag with tap-to-toggle on mobile */
+    /* hide range input — handle drag is the interaction on mobile */
     .gv-ba-range { display: none; }
-    .gv-ba-handle { display: none; }
-    .gv-ba-slider { cursor: pointer; }
-    .gv-ba-img--before { transition: clip-path 0.3s ease; }
+    /* larger handle, prevent page scroll when grabbing it */
+    .gv-ba-handle-btn { width: 44px; height: 44px; touch-action: none; }
   }
 {% endstylesheet %}
 
