@@ -111,7 +111,7 @@
         if (range) range.value = val;
       }
 
-      // Desktop: range input lets user click anywhere on the image
+      // All devices: range input drives the comparison
       if (range) {
         update(+range.value);
         range.addEventListener('input', function () { update(+this.value); });
@@ -119,23 +119,30 @@
         update(50);
       }
 
-      // All devices: drag the handle button only (swipe elsewhere = carousel scroll)
+      // ── Handle-button drag (pointer capture on the SLIDER so the finger can
+      //    roam freely across the whole image without losing capture) ──────────
       if (handleBtn) {
         handleBtn.addEventListener('pointerdown', function (e) {
+          // Only act on primary pointer (finger / left-click)
+          if (e.button !== 0 && e.pointerType === 'mouse') return;
           e.preventDefault();
-          handleBtn.setPointerCapture(e.pointerId);
-          function onMove(e) {
+          e.stopPropagation(); // don't let carousel steal the event
+
+          // Capture on the slider so moves outside the button still register
+          slider.setPointerCapture(e.pointerId);
+
+          function onMove(ev) {
             var rect = slider.getBoundingClientRect();
-            update(((e.clientX - rect.left) / rect.width) * 100);
+            update(((ev.clientX - rect.left) / rect.width) * 100);
           }
           function onUp() {
-            handleBtn.removeEventListener('pointermove', onMove);
-            handleBtn.removeEventListener('pointerup', onUp);
-            handleBtn.removeEventListener('pointercancel', onUp);
+            slider.removeEventListener('pointermove', onMove);
+            slider.removeEventListener('pointerup', onUp);
+            slider.removeEventListener('pointercancel', onUp);
           }
-          handleBtn.addEventListener('pointermove', onMove);
-          handleBtn.addEventListener('pointerup', onUp);
-          handleBtn.addEventListener('pointercancel', onUp);
+          slider.addEventListener('pointermove', onMove);
+          slider.addEventListener('pointerup', onUp);
+          slider.addEventListener('pointercancel', onUp);
         });
       }
     }
@@ -381,9 +388,14 @@
     .gv-ba-row::-webkit-scrollbar { display: none; }
     .gv-ba-card { scroll-snap-align: start; }
 
-    /* hide range input — handle drag is the interaction on mobile */
-    .gv-ba-range { display: none; }
-    /* larger handle, prevent page scroll when grabbing it */
+    /* Keep range in the DOM on mobile — touch-action:pan-y means horizontal
+       drags update the slider while vertical swipes still scroll the carousel */
+    .gv-ba-range {
+      touch-action: pan-y;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    /* Larger handle; none blocks page-scroll only when dragging the button */
     .gv-ba-handle-btn { width: 44px; height: 44px; touch-action: none; }
   }
 {% endstylesheet %}
