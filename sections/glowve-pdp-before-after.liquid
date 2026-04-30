@@ -167,7 +167,8 @@
 
   .gv-ba-row {
     display: grid;
-    grid-template-columns: repeat(var(--card-count, 1), 1fr);
+    grid-template-columns: repeat(var(--card-count, 1), minmax(0, 300px));
+    justify-content: center;
     gap: 20px;
     align-items: start;
   }
