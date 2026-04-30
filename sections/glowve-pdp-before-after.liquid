@@ -282,6 +282,9 @@
     justify-content: center;
     box-shadow: 0 2px 12px rgba(255, 77, 141, 0.4);
     transition: transform 0.15s ease;
+    /* Re-enable pointer events — parent .gv-ba-handle has pointer-events:none */
+    pointer-events: auto;
+    cursor: col-resize;
   }
 
   .gv-ba-slider:active .gv-ba-handle-btn {
@@ -388,14 +391,10 @@
     .gv-ba-row::-webkit-scrollbar { display: none; }
     .gv-ba-card { scroll-snap-align: start; }
 
-    /* Keep range in the DOM on mobile — touch-action:pan-y means horizontal
-       drags update the slider while vertical swipes still scroll the carousel */
-    .gv-ba-range {
-      touch-action: pan-y;
-      -webkit-appearance: none;
-      appearance: none;
-    }
-    /* Larger handle; none blocks page-scroll only when dragging the button */
+    /* Hide range on mobile — only the pink button should control the slider.
+       Touching the image itself should scroll the carousel, not move the slider. */
+    .gv-ba-range { display: none; }
+    /* Larger tap target; touch-action:none prevents page-scroll when dragging the button */
     .gv-ba-handle-btn { width: 44px; height: 44px; touch-action: none; }
   }
 {% endstylesheet %}
