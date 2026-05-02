@@ -411,43 +411,6 @@
         "padding-block-end": 0
       }
     },
-    "pdp_reviews": {
-      "type": "pdp-reviews-grid",
-      "blocks": {
-        "rev_1": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "title": "Skin Barrier: Restored. ✨",
-            "body": "Skin Barrier: Restored. ✨\nPichle 2 weeks se LumaLabs Barrier Renew Moisturizer use kar raha hoon aur results ne mujhe impress kar diya hai. Mera skin barrier kaafi kharab ho chuka tha, lekin is gel-cream ne na sirf usey repair kiya balkay excess oil ko bhi control kiya.\nTexture: Super lightweight, non-greasy.\nKey Vibes: Hydrated, calm, and healthy skin.\nJaisa brand ne claim kiya, bilkul waisa hi result mila. Highly recommended for anyone struggling with dehydration or a damaged barrier! 🛡️💧\nH HUZAIFA TEK 🥀",
-            "author": "Huzaifa Tek · Talagang",
-            "date": "Apr 2026",
-            "tag1": "",
-            "tag2": ""
-          }
-        },
-        "rev_2": {
-          "type": "review",
-          "settings": {
-            "stars": 5,
-            "title": "Didn’t cause any irritation or burning at all",
-            "body": "My father had quite severe sunburn damage on his skin, but this moisturizer made a significant difference. His skin improved noticeably, and the best part is that it didn’t cause any irritation or burning at all !!! 🤍",
-            "author": "Ayesha · Shaikhopura",
-            "date": "Apr 2026",
-            "tag1": "",
-            "tag2": ""
-          }
-        }
-      },
-      "block_order": [
-        "rev_1",
-        "rev_2"
-      ],
-      "settings": {
-        "label": "Early reviews",
-        "title": "From people who tried it first."
-      }
-    },
     "pdp_accordions_aMBCdE": {
       "type": "pdp-accordions",
       "blocks": {
@@ -632,15 +595,6 @@
         "title": "See the science in action.",
         "subtitle": "We rebuild the barrier at a cellular level. Here is exactly how the actives in Soft Reset interact with your skin's structures to seal and strengthen.",
         "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of Triple Ceramides, Niacinamide, and Matrixyl 3000™."
-      }
-    },
-    "pdp_before_after": {
-      "type": "glowve-pdp-before-after",
-      "settings": {
-        "label": "Real results",
-        "title": "The proof.",
-        "subtitle": "Unedited. Real customers. Consistent use.",
-        "disclaimer": "Individual results may vary. Images are unretouched."
       }
     },
     "pdp_upsell": {
@@ -865,10 +819,8 @@
     "main",
     "glowve_pdp_before_after_JtMfNE",
     "177755844094ddecc5",
-    "pdp_reviews",
     "pdp_accordions_aMBCdE",
     "pdp_clinical",
-    "pdp_before_after",
     "pdp_upsell",
     "pdp_faq",
     "pdp_recs"
