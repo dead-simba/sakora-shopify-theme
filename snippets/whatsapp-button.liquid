@@ -49,28 +49,42 @@
 
 <script>
   (function () {
-    function init() {
-      var btn = document.querySelector('.whatsapp-sticky-button');
-      // Third-party sticky ATC bar (confirmed via devtools: class="gv-bar")
-      var bar = document.querySelector('.gv-bar');
-      if (!btn) return;
+    var btn = document.querySelector('.whatsapp-sticky-button');
+    if (!btn) return;
 
-      function reposition() {
-        if (bar && bar.offsetHeight > 0) {
-          btn.style.bottom = (bar.offsetHeight + 12) + 'px';
-        } else {
-          btn.style.bottom = '';
-        }
-      }
+    var bar = null;
 
-      if (bar) {
-        new MutationObserver(reposition).observe(bar, { attributes: true, childList: true });
+    function reposition() {
+      if (bar && bar.offsetHeight > 0) {
+        btn.style.bottom = (bar.offsetHeight + 12) + 'px';
+      } else {
+        btn.style.bottom = '';
       }
-      reposition();
     }
 
-    document.readyState === 'loading'
-      ? document.addEventListener('DOMContentLoaded', init)
-      : init();
+    function attachBar(el) {
+      bar = el;
+      reposition();
+      // Watch for visibility changes on the bar itself
+      new MutationObserver(reposition).observe(bar, { attributes: true, childList: true, subtree: true });
+    }
+
+    function findBar() {
+      var el = document.querySelector('.gv-bar');
+      if (el) {
+        attachBar(el);
+        return true;
+      }
+      return false;
+    }
+
+    // Try immediately — if third-party app already injected the bar
+    if (!findBar()) {
+      // Watch body for .gv-bar being injected by the third-party app
+      var bodyObserver = new MutationObserver(function () {
+        if (findBar()) bodyObserver.disconnect();
+      });
+      bodyObserver.observe(document.body, { childList: true, subtree: true });
+    }
   })();
 </script>
