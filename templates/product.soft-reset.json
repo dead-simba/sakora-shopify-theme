@@ -229,7 +229,7 @@
             "gv_ship_tracker": {
               "type": "gv-ship-tracker",
               "settings": {
-                "threshold": 0
+                "threshold": 2600
               },
               "blocks": {}
             },
