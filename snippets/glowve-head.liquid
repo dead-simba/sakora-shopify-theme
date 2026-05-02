@@ -25,6 +25,56 @@
 {{ 'glowve-base.css' | asset_url | stylesheet_tag }}
 
 <style>
+  /* ── Judge.me mobile overrides ── */
+  @media (max-width: 767px) {
+    .jdgm-rev {
+      padding: 20px 0 !important;
+    }
+    /* collapse empty review bodies so they don't leave a big gap */
+    .jdgm-rev__body,
+    .jdgm-rev__body p {
+      min-height: 0 !important;
+      margin-bottom: 4px !important;
+      font-size: 14px !important;
+      line-height: 1.6 !important;
+    }
+    .jdgm-rev__icon {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+      font-size: 13px !important;
+      line-height: 36px !important;
+    }
+    .jdgm-rev__author {
+      gap: 8px !important;
+      align-items: center !important;
+    }
+    .jdgm-rev__author-name {
+      font-size: 13px !important;
+    }
+    .jdgm-rev__timestamp {
+      font-size: 11px !important;
+    }
+    .jdgm-rev__rating {
+      font-size: 13px !important;
+    }
+    .jdgm-paginate {
+      margin-top: 16px !important;
+      text-align: center !important;
+    }
+    .jdgm-paginate__load-more-text {
+      display: inline-block !important;
+      padding: 10px 24px !important;
+      border: 1px solid #ECECEC !important;
+      border-radius: 100px !important;
+      font-size: 13px !important;
+      color: #1A1A1A !important;
+      text-decoration: none !important;
+    }
+  }
+</style>
+
+<style>
   :root {
     {%- comment -%} Override with merchant-selected fonts only if set {%- endcomment -%}
     {%- if gv_heading != blank -%}

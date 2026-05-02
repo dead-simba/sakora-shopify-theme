@@ -49,16 +49,23 @@
 
 <script>
   (function () {
-    var btn = document.querySelector('.whatsapp-sticky-button');
-    var bar = document.getElementById('gv-sticky-atc');
-    if (!btn || !bar) return;
+    function init() {
+      var btn = document.querySelector('.whatsapp-sticky-button');
+      // Horizon's sticky bar — visible when data-stuck="true"
+      var bar = document.querySelector('.sticky-add-to-cart__bar');
+      if (!btn || !bar) return;
 
-    function reposition() {
-      var isVisible = bar.classList.contains('gv-sticky-atc--visible');
-      btn.style.bottom = isVisible ? (bar.offsetHeight + 12) + 'px' : '';
+      function reposition() {
+        var isStuck = bar.getAttribute('data-stuck') === 'true';
+        btn.style.bottom = isStuck ? (bar.offsetHeight + 12) + 'px' : '';
+      }
+
+      new MutationObserver(reposition).observe(bar, { attributes: true, attributeFilter: ['data-stuck'] });
+      reposition();
     }
 
-    new MutationObserver(reposition).observe(bar, { attributes: true, attributeFilter: ['class'] });
-    reposition();
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', init)
+      : init();
   })();
 </script>
