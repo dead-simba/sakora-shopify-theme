@@ -12,7 +12,7 @@
     background-color: #25D366;
     border-radius: 50%;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, bottom 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     text-decoration: none;
   }
 
@@ -26,17 +26,24 @@
     fill: #ffffff;
   }
 
-  /* Optional: adjust for mobile */
+  /* Slide up above the sticky ATC bar when it's visible */
+  body:has(.gv-sticky-atc--visible) .whatsapp-sticky-button {
+    bottom: 88px;
+  }
+
   @media screen and (max-width: 767px) {
     .whatsapp-sticky-button {
       bottom: 20px;
-      right: 20px;
+      right: 16px;
       width: 50px;
       height: 50px;
     }
     .whatsapp-sticky-button svg {
       width: 30px;
       height: 30px;
+    }
+    body:has(.gv-sticky-atc--visible) .whatsapp-sticky-button {
+      bottom: 80px;
     }
   }
 </style>
