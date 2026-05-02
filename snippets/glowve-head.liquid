@@ -25,6 +25,12 @@
 {{ 'glowve-base.css' | asset_url | stylesheet_tag }}
 
 <style>
+  /* ── Judge.me: app block wrapper collapses to 0px in flex column — fix ── */
+  .shopify-app-block {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
   /* ── Judge.me revamp widget — mobile overrides ── */
   @media (max-width: 767px) {
     /* Tighten all spacing tokens inside the widget */
