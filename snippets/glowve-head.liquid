@@ -25,51 +25,36 @@
 {{ 'glowve-base.css' | asset_url | stylesheet_tag }}
 
 <style>
-  /* ── Judge.me mobile overrides ── */
+  /* ── Judge.me revamp widget — mobile overrides ── */
   @media (max-width: 767px) {
-    .jdgm-rev {
-      padding: 20px 0 !important;
+    /* Tighten all spacing tokens inside the widget */
+    #judgeme_product_reviews {
+      --jm-space-600: 16px;
+      --jm-space-400: 10px;
+      --jm-space-300: 8px;
+      --jm-space-200: 6px;
     }
-    /* collapse empty review bodies so they don't leave a big gap */
-    .jdgm-rev__body,
-    .jdgm-rev__body p {
-      min-height: 0 !important;
-      margin-bottom: 4px !important;
-      font-size: 14px !important;
-      line-height: 1.6 !important;
+    /* Smaller stars */
+    #judgeme_product_reviews .jm-star-rating__font-icon {
+      font-size: 1em !important;
     }
-    .jdgm-rev__icon {
-      width: 36px !important;
-      height: 36px !important;
-      min-width: 36px !important;
-      font-size: 13px !important;
-      line-height: 36px !important;
+    /* Compact reviewer avatar */
+    #judgeme_product_reviews .jm-reviewer-avatar__initial {
+      width: 32px !important;
+      height: 32px !important;
+      min-width: 32px !important;
     }
-    .jdgm-rev__author {
-      gap: 8px !important;
-      align-items: center !important;
-    }
-    .jdgm-rev__author-name {
+    /* Smaller name + date text */
+    #judgeme_product_reviews .jm-reviewer-info__name {
       font-size: 13px !important;
     }
-    .jdgm-rev__timestamp {
+    #judgeme_product_reviews .jm-reviewer-info__date {
       font-size: 11px !important;
     }
-    .jdgm-rev__rating {
-      font-size: 13px !important;
-    }
-    .jdgm-paginate {
-      margin-top: 16px !important;
-      text-align: center !important;
-    }
-    .jdgm-paginate__load-more-text {
-      display: inline-block !important;
-      padding: 10px 24px !important;
-      border: 1px solid #ECECEC !important;
-      border-radius: 100px !important;
-      font-size: 13px !important;
-      color: #1A1A1A !important;
-      text-decoration: none !important;
+    /* Readable review body */
+    #judgeme_product_reviews .jm-review-item__body-text {
+      font-size: 14px !important;
+      line-height: 1.6 !important;
     }
   }
 </style>

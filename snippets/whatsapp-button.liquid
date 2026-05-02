@@ -51,16 +51,21 @@
   (function () {
     function init() {
       var btn = document.querySelector('.whatsapp-sticky-button');
-      // Horizon's sticky bar — visible when data-stuck="true"
-      var bar = document.querySelector('.sticky-add-to-cart__bar');
-      if (!btn || !bar) return;
+      // Third-party sticky ATC bar (confirmed via devtools: class="gv-bar")
+      var bar = document.querySelector('.gv-bar');
+      if (!btn) return;
 
       function reposition() {
-        var isStuck = bar.getAttribute('data-stuck') === 'true';
-        btn.style.bottom = isStuck ? (bar.offsetHeight + 12) + 'px' : '';
+        if (bar && bar.offsetHeight > 0) {
+          btn.style.bottom = (bar.offsetHeight + 12) + 'px';
+        } else {
+          btn.style.bottom = '';
+        }
       }
 
-      new MutationObserver(reposition).observe(bar, { attributes: true, attributeFilter: ['data-stuck'] });
+      if (bar) {
+        new MutationObserver(reposition).observe(bar, { attributes: true, childList: true });
+      }
       reposition();
     }
 
