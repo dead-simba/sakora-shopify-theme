@@ -98,6 +98,24 @@
           "success_subtext": "<p>Your glow journey begins now. Claim your reward at checkout—valid for exactly 3 days.</p>",
           "success_code": "GLOW-10"
         }
+      },
+      "glowve-mothers-day-popup": {
+        "type": "glowve-mothers-day-popup",
+        "settings": {
+          "start_date": "2026-05-08",
+          "end_date": "2026-05-10",
+          "show_window_dates": true,
+          "window_label": "Offer valid",
+          "timer_delay": 4,
+          "cookie_days": 2,
+          "eyebrow": "Mother's Day · Limited",
+          "heading": "For the women who taught us to glow.",
+          "discount_text": "15% off sitewide.",
+          "subtext": "<p>A small thank-you to the woman behind your first skincare lesson. Pick anything she'd love — your discount is already waiting.</p>",
+          "note_text": "No code needed — 15% applies automatically at checkout.",
+          "cta_label": "Shop the gift",
+          "cta_url": ""
+        }
       }
     },
     "content_for_index": [],
