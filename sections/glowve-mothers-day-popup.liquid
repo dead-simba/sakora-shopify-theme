@@ -252,7 +252,12 @@
 
     <div class="gmd-content">
       <p class="gmd-eyebrow">{{ section.settings.eyebrow }}</p>
-      <h2 class="gmd-title" id="GmdTitle">{{ section.settings.heading }}</h2>
+      <h2 class="gmd-title" id="GmdTitle">
+        {{ section.settings.heading }}
+        {%- if section.settings.discount_text != blank -%}
+          <span class="gmd-percent">{{ section.settings.discount_text }}</span>
+        {%- endif -%}
+      </h2>
       <div class="gmd-text">{{ section.settings.subtext }}</div>
 
       <div class="gmd-note">
@@ -436,11 +441,17 @@
       "default": "Mother's Day · Limited"
     },
     {
-      "type": "richtext",
+      "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "<p>For the women who taught us to glow. <span class=\"gmd-percent\">15% off</span> sitewide.</p>",
-      "info": "Wrap the discount in <span class=\"gmd-percent\">…</span> to highlight in pink."
+      "label": "Heading (before discount)",
+      "default": "For the women who taught us to glow."
+    },
+    {
+      "type": "text",
+      "id": "discount_text",
+      "label": "Discount highlight (shown in pink)",
+      "default": "15% off sitewide.",
+      "info": "Rendered in brand pink immediately after the heading."
     },
     {
       "type": "richtext",
