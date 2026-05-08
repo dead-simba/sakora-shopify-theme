@@ -1,0 +1,476 @@
+{%- comment -%}
+  Glowve — Mother's Day Popup
+  Auto-shows only between start_date and end_date (inclusive).
+  Side-by-side: aesthetic image (left) + 15% messaging (right).
+  No code needed — discount applies automatically at checkout.
+{%- endcomment -%}
+
+{%- liquid
+  assign today_iso = 'now' | date: '%Y-%m-%d'
+  assign start_iso = section.settings.start_date
+  assign end_iso = section.settings.end_date
+  assign is_live = false
+  if start_iso != blank and end_iso != blank
+    if today_iso >= start_iso and today_iso <= end_iso
+      assign is_live = true
+    endif
+  endif
+
+  assign img_alt = section.settings.image.alt | default: section.settings.heading | escape
+-%}
+
+{%- if is_live -%}
+<style>
+  glowve-mothers-day-popup {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  glowve-mothers-day-popup[is-open="true"] { display: flex; }
+
+  .gmd-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(26, 26, 26, 0.45);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  glowve-mothers-day-popup[is-open="true"] .gmd-overlay { opacity: 1; }
+
+  .gmd-modal {
+    position: relative;
+    z-index: 2;
+    background: #FFFFFF;
+    border-radius: 20px;
+    width: 92%;
+    max-width: 820px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    box-shadow: 0 32px 80px rgba(26, 26, 26, 0.25);
+    opacity: 0;
+    transform: translateY(40px) scale(0.92);
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  glowve-mothers-day-popup[is-open="true"] .gmd-modal {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .gmd-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A1A1A;
+    transition: background 0.2s ease, transform 0.2s ease;
+    padding: 0;
+  }
+  .gmd-close:hover { background: #FFFFFF; transform: scale(1.05); }
+  .gmd-close svg { width: 14px; height: 14px; }
+
+  .gmd-image {
+    position: relative;
+    background: #FFF0E6;
+    min-height: 100%;
+    overflow: hidden;
+  }
+  .gmd-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .gmd-image-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #FFF0E6 0%, #FFE4EC 100%);
+  }
+  .gmd-image-fallback svg {
+    width: 60%;
+    max-width: 220px;
+    opacity: 0.55;
+  }
+
+  .gmd-content {
+    padding: 48px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+  }
+  .gmd-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FF4D8D;
+    margin: 0 0 14px 0;
+  }
+  .gmd-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #1A1A1A;
+    margin: 0 0 16px 0;
+  }
+  .gmd-percent {
+    color: #FF4D8D;
+  }
+  .gmd-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #666666;
+    margin: 0 0 24px 0;
+  }
+  .gmd-text p { margin: 0; }
+
+  .gmd-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #FFF0E6;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 24px;
+  }
+  .gmd-note svg {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+    color: #FF4D8D;
+  }
+  .gmd-note-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 1.4;
+    color: #1A1A1A;
+  }
+
+  .gmd-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    padding: 0 28px;
+    background: #FF4D8D;
+    color: #FFFFFF;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .gmd-cta:hover {
+    background: #E63974;
+    transform: translateY(-1px);
+  }
+
+  .gmd-window {
+    margin-top: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #666666;
+    text-align: center;
+  }
+
+  @media screen and (max-width: 740px) {
+    .gmd-modal {
+      grid-template-columns: 1fr;
+      max-width: 420px;
+    }
+    .gmd-image {
+      height: 220px;
+      min-height: 220px;
+    }
+    .gmd-content {
+      padding: 32px 28px 36px 28px;
+    }
+    .gmd-title { font-size: 30px; }
+  }
+</style>
+
+<glowve-mothers-day-popup
+  data-delay="{{ section.settings.timer_delay }}"
+  data-cookie="{{ section.settings.cookie_days }}"
+  data-end="{{ end_iso }}"
+>
+  <div class="gmd-overlay" data-gmd-close></div>
+  <div class="gmd-modal" role="dialog" aria-modal="true" aria-labelledby="GmdTitle">
+    <button class="gmd-close" data-gmd-close aria-label="Close popup">
+      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 1L13 13M1 13L13 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <div class="gmd-image">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 800 | image_tag: loading: 'lazy', alt: img_alt, width: 800, height: 1000 }}
+      {%- else -%}
+        <div class="gmd-image-fallback" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M100 170s-60-32-60-78a32 32 0 0 1 60-16 32 32 0 0 1 60 16c0 46-60 78-60 78z" fill="#FF4D8D"/>
+          </svg>
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="gmd-content">
+      <p class="gmd-eyebrow">{{ section.settings.eyebrow }}</p>
+      <h2 class="gmd-title" id="GmdTitle">{{ section.settings.heading }}</h2>
+      <div class="gmd-text">{{ section.settings.subtext }}</div>
+
+      <div class="gmd-note">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="gmd-note-text">{{ section.settings.note_text }}</span>
+      </div>
+
+      {%- if section.settings.cta_url != blank -%}
+        <a href="{{ section.settings.cta_url }}" class="gmd-cta" data-gmd-close-on-click>
+          {{ section.settings.cta_label }}
+        </a>
+      {%- else -%}
+        <button type="button" class="gmd-cta" data-gmd-close>
+          {{ section.settings.cta_label }}
+        </button>
+      {%- endif -%}
+
+      {%- if section.settings.show_window_dates -%}
+        <p class="gmd-window">
+          {{ section.settings.window_label }} {{ start_iso | date: '%b %-d' }} – {{ end_iso | date: '%b %-d' }}
+        </p>
+      {%- endif -%}
+    </div>
+  </div>
+</glowve-mothers-day-popup>
+
+<script>
+  (function() {
+    if (window.customElements.get('glowve-mothers-day-popup')) return;
+
+    class GlowveMothersDayPopup extends HTMLElement {
+      constructor() {
+        super();
+        this.cookieName = 'glowve_mday_popup_dismissed';
+      }
+
+      connectedCallback() {
+        if (this.hasCookie()) return;
+        if (this.isExpired()) return;
+
+        this.querySelectorAll('[data-gmd-close]').forEach((el) => {
+          el.addEventListener('click', (e) => {
+            e.preventDefault();
+            this.dismiss();
+          });
+        });
+
+        // CTA link should still navigate, but also close + set cookie.
+        const ctaLink = this.querySelector('[data-gmd-close-on-click]');
+        if (ctaLink) {
+          ctaLink.addEventListener('click', () => {
+            this.setCookie();
+          });
+        }
+
+        // Esc to close
+        this.escHandler = (e) => {
+          if (e.key === 'Escape' && this.getAttribute('is-open')) this.dismiss();
+        };
+        document.addEventListener('keydown', this.escHandler);
+
+        const delay = parseInt(this.dataset.delay || '4', 10) * 1000;
+        setTimeout(() => this.show(), delay);
+      }
+
+      disconnectedCallback() {
+        if (this.escHandler) document.removeEventListener('keydown', this.escHandler);
+      }
+
+      isExpired() {
+        const endIso = this.dataset.end;
+        if (!endIso) return false;
+        // Compare as YYYY-MM-DD strings against today (local).
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = String(now.getMonth() + 1).padStart(2, '0');
+        const d = String(now.getDate()).padStart(2, '0');
+        const todayIso = `${y}-${m}-${d}`;
+        return todayIso > endIso;
+      }
+
+      show() {
+        if (this.hasCookie() || this.isExpired()) return;
+        this.setAttribute('is-open', 'true');
+      }
+
+      dismiss() {
+        this.removeAttribute('is-open');
+        this.setCookie();
+      }
+
+      setCookie() {
+        const days = parseInt(this.dataset.cookie || '2', 10);
+        const date = new Date();
+        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+        document.cookie = `${this.cookieName}=true;expires=${date.toUTCString()};path=/`;
+      }
+
+      hasCookie() {
+        return document.cookie.indexOf(`${this.cookieName}=true`) !== -1;
+      }
+    }
+
+    window.customElements.define('glowve-mothers-day-popup', GlowveMothersDayPopup);
+  })();
+</script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Glowve Mother's Day Popup",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Active Window"
+    },
+    {
+      "type": "text",
+      "id": "start_date",
+      "label": "Start date (YYYY-MM-DD)",
+      "default": "2026-05-09",
+      "info": "Popup auto-shows from this date (inclusive)."
+    },
+    {
+      "type": "text",
+      "id": "end_date",
+      "label": "End date (YYYY-MM-DD)",
+      "default": "2026-05-10",
+      "info": "Popup auto-hides after this date (inclusive)."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_window_dates",
+      "label": "Show date window in popup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "window_label",
+      "label": "Date window prefix",
+      "default": "Offer valid"
+    },
+    {
+      "type": "header",
+      "content": "Behavior"
+    },
+    {
+      "type": "range",
+      "id": "timer_delay",
+      "label": "Open delay (seconds)",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "cookie_days",
+      "label": "Hide after dismissal (days)",
+      "min": 1,
+      "max": 7,
+      "step": 1,
+      "default": 2
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Aesthetic image",
+      "info": "Recommended portrait 800×1000. Falls back to a soft pink illustration."
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Mother's Day · Limited"
+    },
+    {
+      "type": "richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "<p>For the women who taught us to glow. <span class=\"gmd-percent\">15% off</span> sitewide.</p>",
+      "info": "Wrap the discount in <span class=\"gmd-percent\">…</span> to highlight in pink."
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>A small thank-you to the woman behind your first skincare lesson. Pick anything she'd love — your discount is already waiting.</p>"
+    },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Note text",
+      "default": "No code needed — 15% applies automatically at checkout."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Button label",
+      "default": "Shop the gift"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Button link",
+      "info": "Leave empty to make the button just close the popup."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Glowve Mother's Day Popup"
+    }
+  ]
+}
+{% endschema %}
