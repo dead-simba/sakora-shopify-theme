@@ -240,7 +240,7 @@
           else
             assign block_visible = true
           endif
-          assign preview_url = block.settings.video_url | replace: '/upload/', '/upload/ar_9:16,c_fill,g_auto,q_70,w_600,f_auto/'
+          assign preview_url = block.settings.video_url | replace: '/upload/', '/upload/q_70,w_600/'
         -%}
         {%- if block_visible -%}
           <div
