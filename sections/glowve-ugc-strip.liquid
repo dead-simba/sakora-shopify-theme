@@ -132,6 +132,8 @@
   .ugc-card:hover::before { background: rgba(0,0,0,0.12); }
 
   .ugc-card video {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -238,7 +240,7 @@
           else
             assign block_visible = true
           endif
-          assign preview_url = block.settings.video_url | replace: '/upload/', '/upload/q_70,w_600,eo_5,f_auto/'
+          assign preview_url = block.settings.video_url | replace: '/upload/', '/upload/q_70,w_600,f_auto/'
         -%}
         {%- if block_visible -%}
           <div
