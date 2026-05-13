@@ -367,6 +367,60 @@
         "disclaimer": "Individual results may vary. Images are unretouched."
       }
     },
+    "glowve_ugc_strip_jV6FmF": {
+      "type": "glowve-ugc-strip",
+      "blocks": {
+        "video_tXCmQA": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_pMg3Y8": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_KQqW6k": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_CyBnqD": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_rcyGUT": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
+            "page_handles": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_tXCmQA",
+        "video_pMg3Y8",
+        "video_KQqW6k",
+        "video_CyBnqD",
+        "video_rcyGUT"
+      ],
+      "name": "UGC Video Strip",
+      "settings": {
+        "eyebrow": "Real results",
+        "heading": "From real skin",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
+    },
     "1777464815268a1afb": {
       "type": "_blocks",
       "blocks": {
@@ -873,6 +927,7 @@
   "order": [
     "main",
     "glowve_pdp_before_after_A3za7y",
+    "glowve_ugc_strip_jV6FmF",
     "1777464815268a1afb",
     "pdp_reviews",
     "pdp_accordions",
