@@ -481,10 +481,89 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "glowve_ugc_strip_jV6FmF": {
+      "type": "glowve-ugc-strip",
+      "blocks": {
+        "video_Krmi4D": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656982/Soft_Reset_-_UGC_2_Final_V3-Compressed_nldbxi.mp4",
+            "page_handles": "soft-reset"
+          }
+        },
+        "video_tXCmQA": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_fBFDUT": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778657296/UGC-1-FInal-V2-Compressed_rildza.mp4",
+            "page_handles": "soft-reset"
+          }
+        },
+        "video_pMg3Y8": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_KQqW6k": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_6XweGx": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656811/UGC_3_-_Final_-_V2-Compressed_epf6qo.mp4",
+            "page_handles": "soft-reset"
+          }
+        },
+        "video_CyBnqD": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_rcyGUT": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
+            "page_handles": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_Krmi4D",
+        "video_tXCmQA",
+        "video_fBFDUT",
+        "video_pMg3Y8",
+        "video_KQqW6k",
+        "video_6XweGx",
+        "video_CyBnqD",
+        "video_rcyGUT"
+      ],
+      "name": "UGC Video Strip",
+      "settings": {
+        "eyebrow": "Real results",
+        "heading": "From real skin",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
+    "glowve_ugc_strip_jV6FmF",
     "1777525655e40a9f07",
     "product_recommendations_qggXJq"
   ]

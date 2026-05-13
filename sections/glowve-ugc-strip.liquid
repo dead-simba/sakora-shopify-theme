@@ -1,6 +1,7 @@
 {%- comment -%}
   Glowve — UGC Video Strip
-  Cloudinary-hosted portrait videos, autoplay muted in-viewport.
+  Preview: first 5s at low quality (Cloudinary transform), lazy-loaded, autoplay muted.
+  Tap: opens full-quality video unmuted in a modal from t=0.
   Each block: Cloudinary URL + optional product handle restriction.
 {%- endcomment -%}
 
@@ -47,7 +48,6 @@
     margin-bottom: 24px;
     gap: 16px;
   }
-  .ugc-strip-meta {}
   .ugc-strip-eyebrow {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
@@ -84,26 +84,10 @@
     color: #1A1A1A;
     transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
     padding: 0;
-    flex-shrink: 0;
   }
-  .ugc-nav-btn:hover {
-    border-color: #FF4D8D;
-    background: #FF4D8D;
-    color: #FFFFFF;
-  }
-  .ugc-nav-btn:disabled {
-    opacity: 0.3;
-    cursor: default;
-    pointer-events: none;
-  }
-  .ugc-nav-btn svg {
-    width: 16px;
-    height: 16px;
-  }
+  .ugc-nav-btn:hover { border-color: #FF4D8D; background: #FF4D8D; color: #FFFFFF; }
+  .ugc-nav-btn svg { width: 16px; height: 16px; }
 
-  .ugc-track-wrap {
-    position: relative;
-  }
   .ugc-track {
     display: flex;
     gap: 12px;
@@ -123,7 +107,7 @@
     overflow: hidden;
     scroll-snap-align: start;
     position: relative;
-    background: #FFF0E6;
+    background: #F5F5F5;
     cursor: pointer;
   }
   .ugc-card::after {
@@ -135,44 +119,84 @@
     pointer-events: none;
     z-index: 2;
   }
+  /* Tap-to-play overlay hint */
+  .ugc-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.2s ease;
+    z-index: 1;
+    border-radius: 16px;
+  }
+  .ugc-card:hover::before { background: rgba(0,0,0,0.12); }
+
   .ugc-card video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
-    border-radius: 16px;
   }
 
-  /* Muted badge */
-  .ugc-mute-badge {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    z-index: 3;
-    background: rgba(26, 26, 26, 0.45);
-    backdrop-filter: blur(4px);
+  /* Skeleton shimmer while video loads */
+  .ugc-card.is-loading video { opacity: 0; }
+  .ugc-card.is-loading::after {
+    background: linear-gradient(90deg, #F5F5F5 25%, #ECECEC 50%, #F5F5F5 75%);
+    background-size: 200% 100%;
+    animation: ugc-shimmer 1.4s ease infinite;
+  }
+  @keyframes ugc-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Full-screen modal */
+  .ugc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.92);
+  }
+  .ugc-modal.is-open { display: flex; }
+  .ugc-modal-video {
+    max-height: 90vh;
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    border-radius: 16px;
+    display: block;
+    background: #000;
+  }
+  .ugc-modal-close {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    width: 28px;
-    height: 28px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: none;
+    cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    border: none;
     color: #fff;
+    transition: background 0.2s ease;
     padding: 0;
+    z-index: 1;
   }
-  .ugc-mute-badge:hover { background: rgba(26,26,26,0.7); }
-  .ugc-mute-badge svg { width: 14px; height: 14px; }
-  .ugc-mute-badge .icon-unmuted { display: none; }
-  .ugc-mute-badge.is-unmuted .icon-muted { display: none; }
-  .ugc-mute-badge.is-unmuted .icon-unmuted { display: block; }
+  .ugc-modal-close:hover { background: rgba(255,255,255,0.28); }
+  .ugc-modal-close svg { width: 18px; height: 18px; }
 
   @media screen and (max-width: 768px) {
     .ugc-strip-inner { padding: 0 20px; }
     .ugc-strip-heading { font-size: 22px; }
-    .ugc-card { width: 150px; }
+    .ugc-card { width: 148px; }
     .ugc-strip-nav { display: none; }
   }
 </style>
@@ -180,7 +204,7 @@
 <section class="ugc-strip" id="UgcStrip-{{ section.id }}">
   <div class="ugc-strip-inner">
     <div class="ugc-strip-header">
-      <div class="ugc-strip-meta">
+      <div>
         {%- if section.settings.eyebrow != blank -%}
           <p class="ugc-strip-eyebrow">{{ section.settings.eyebrow }}</p>
         {%- endif -%}
@@ -190,121 +214,162 @@
       </div>
       <div class="ugc-strip-nav">
         <button class="ugc-nav-btn" id="UgcPrev-{{ section.id }}" aria-label="Previous">
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
         <button class="ugc-nav-btn" id="UgcNext-{{ section.id }}" aria-label="Next">
-          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+          <svg viewBox="0 0 16 16" fill="none"><path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
       </div>
     </div>
 
-    <div class="ugc-track-wrap">
-      <div class="ugc-track" id="UgcTrack-{{ section.id }}">
-        {%- for block in section.blocks -%}
-          {%- if block.settings.video_url == blank -%}{%- continue -%}{%- endif -%}
-          {%- liquid
-            if block.settings.page_handles != blank
-              assign handles_list = block.settings.page_handles | split: ','
-              assign block_visible = false
-              for h in handles_list
-                assign h_trimmed = h | strip
-                if current_handle == h_trimmed
-                  assign block_visible = true
-                endif
-              endfor
-            else
-              assign block_visible = true
-            endif
-          -%}
-          {%- if block_visible -%}
-            <div class="ugc-card" {{ block.shopify_attributes }}>
-              <video
-                src="{{ block.settings.video_url }}"
-                muted
-                loop
-                playsinline
-                preload="metadata"
-                tabindex="-1"
-              ></video>
-              <button class="ugc-mute-badge" aria-label="Toggle sound" type="button">
-                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor"/>
-                  <path d="M23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor"/>
-                  <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-              </button>
-            </div>
-          {%- endif -%}
-        {%- endfor -%}
-      </div>
+    <div class="ugc-track" id="UgcTrack-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.video_url == blank -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          if block.settings.page_handles != blank
+            assign handles_list = block.settings.page_handles | split: ','
+            assign block_visible = false
+            for h in handles_list
+              assign h_trimmed = h | strip
+              if current_handle == h_trimmed
+                assign block_visible = true
+              endif
+            endfor
+          else
+            assign block_visible = true
+          endif
+          assign preview_url = block.settings.video_url | replace: '/upload/', '/upload/q_30,w_400,eo_5,f_auto/'
+        -%}
+        {%- if block_visible -%}
+          <div
+            class="ugc-card is-loading"
+            data-preview="{{ preview_url | escape }}"
+            data-full="{{ block.settings.video_url | escape }}"
+            {{ block.shopify_attributes }}
+          >
+            <video muted loop playsinline preload="none"></video>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
     </div>
   </div>
 </section>
 
+<!-- Shared modal — one per section -->
+<div class="ugc-modal" id="UgcModal-{{ section.id }}" role="dialog" aria-modal="true" aria-label="UGC video">
+  <button class="ugc-modal-close" id="UgcModalClose-{{ section.id }}" aria-label="Close">
+    <svg viewBox="0 0 18 18" fill="none"><path d="M1 1l16 16M1 17L17 1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+  </button>
+  <video
+    class="ugc-modal-video"
+    id="UgcModalVideo-{{ section.id }}"
+    playsinline
+    controls
+    preload="none"
+  ></video>
+</div>
+
 <script>
-(function() {
-  var sectionId = {{ section.id | json }};
-  var track = document.getElementById('UgcTrack-' + sectionId);
-  var prevBtn = document.getElementById('UgcPrev-' + sectionId);
-  var nextBtn = document.getElementById('UgcNext-' + sectionId);
-  if (!track) return;
+(function () {
+  var sid = {{ section.id | json }};
+  var track     = document.getElementById('UgcTrack-' + sid);
+  var modal     = document.getElementById('UgcModal-' + sid);
+  var modalVid  = document.getElementById('UgcModalVideo-' + sid);
+  var modalClose= document.getElementById('UgcModalClose-' + sid);
+  var prevBtn   = document.getElementById('UgcPrev-' + sid);
+  var nextBtn   = document.getElementById('UgcNext-' + sid);
+  if (!track || !modal || !modalVid) return;
 
   var cards = Array.from(track.querySelectorAll('.ugc-card'));
-  var videos = Array.from(track.querySelectorAll('video'));
 
-  // Intersection Observer — play only when in viewport
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        var vid = entry.target;
-        if (entry.isIntersecting) {
-          vid.play().catch(function() {});
-        } else {
-          vid.pause();
+  // ── Lazy load + autoplay preview via IntersectionObserver ──
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var card = entry.target;
+      var vid  = card.querySelector('video');
+      if (!vid) return;
+
+      if (entry.isIntersecting) {
+        // Load preview src on first sight
+        if (!vid.src && card.dataset.preview) {
+          vid.src = card.dataset.preview;
+          vid.load();
+          vid.addEventListener('canplay', function onCanPlay() {
+            card.classList.remove('is-loading');
+            vid.removeEventListener('canplay', onCanPlay);
+          }, { once: true });
         }
-      });
-    }, { threshold: 0.4 });
+        vid.play().catch(function () {});
+      } else {
+        vid.pause();
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '100px' });
 
-    videos.forEach(function(v) { io.observe(v); });
-  } else {
-    // Fallback: just play all
-    videos.forEach(function(v) { v.play().catch(function(){}); });
-  }
+  cards.forEach(function (card) { io.observe(card); });
 
-  // Mute toggle per card
-  cards.forEach(function(card) {
-    var btn = card.querySelector('.ugc-mute-badge');
+  // ── 5-second preview loop (backup for browsers that ignore eo_5) ──
+  cards.forEach(function (card) {
     var vid = card.querySelector('video');
-    if (!btn || !vid) return;
-    btn.addEventListener('click', function() {
-      vid.muted = !vid.muted;
-      btn.classList.toggle('is-unmuted', !vid.muted);
+    if (!vid) return;
+    vid.addEventListener('timeupdate', function () {
+      if (vid.duration && vid.currentTime >= Math.min(5, vid.duration - 0.05)) {
+        vid.currentTime = 0;
+      }
     });
   });
 
-  // Nav arrows
-  function getScrollAmount() {
-    if (!cards.length) return 300;
-    return (cards[0].offsetWidth + 12) * 2;
+  // ── Tap card → open modal ──
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      var fullUrl = card.dataset.full;
+      if (!fullUrl) return;
+      // Pause all preview cards
+      cards.forEach(function (c) {
+        var v = c.querySelector('video');
+        if (v) v.pause();
+      });
+      modalVid.src = fullUrl;
+      modalVid.currentTime = 0;
+      modalVid.muted = false;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      modalVid.play().catch(function () {});
+    });
+  });
+
+  // ── Close modal ──
+  function closeModal() {
+    modalVid.pause();
+    modalVid.src = '';
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    // Resume preview cards in view
+    cards.forEach(function (card) {
+      var vid = card.querySelector('video');
+      if (!vid || !vid.src) return;
+      var rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        vid.play().catch(function () {});
+      }
+    });
   }
 
-  if (prevBtn) {
-    prevBtn.addEventListener('click', function() {
-      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-    });
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  // ── Nav arrows ──
+  function scrollBy(dir) {
+    var cardW = cards.length ? cards[0].offsetWidth + 12 : 300;
+    track.scrollBy({ left: dir * cardW * 2, behavior: 'smooth' });
   }
-  if (nextBtn) {
-    nextBtn.addEventListener('click', function() {
-      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-    });
-  }
+  if (prevBtn) prevBtn.addEventListener('click', function () { scrollBy(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { scrollBy(1); });
 })();
 </script>
 
@@ -356,7 +421,7 @@
           "type": "text",
           "id": "video_url",
           "label": "Cloudinary video URL",
-          "info": "Paste the direct .mp4 URL from Cloudinary. e.g. https://res.cloudinary.com/yourcloud/video/upload/v123/ugc-clip.mp4"
+          "info": "Paste the direct .mp4 URL from Cloudinary. e.g. https://res.cloudinary.com/yourcloud/video/upload/v123/clip.mp4"
         },
         {
           "type": "text",

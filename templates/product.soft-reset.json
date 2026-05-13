@@ -222,7 +222,7 @@
             "gv_urgency": {
               "type": "gv-urgency",
               "settings": {
-                "text": "Order before 2pm PKT — ships today"
+                "text": "Order before 2pm PKT \u2014 ships today"
               },
               "blocks": {}
             },
@@ -268,7 +268,7 @@
             "gv_pk": {
               "type": "gv-pk-callout",
               "settings": {
-                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost — and signals your skin to make more on its own.</p>"
+                "text": "<p><strong>Formulated for Pakistan's hard water and dry winters.</strong> Hard water strips your barrier of ceramides with every wash. Soft Reset replaces exactly what's lost \u2014 and signals your skin to make more on its own.</p>"
               },
               "blocks": {}
             },
@@ -442,7 +442,7 @@
             "endo_2": "<p>Upregulates ceramide synthase</p>",
             "endo_3": "<p>Natural ceramide production begins</p>",
             "endo_result": "Skin becomes independently stronger",
-            "quote": "Your skin barrier — rebuilt from both directions.",
+            "quote": "Your skin barrier \u2014 rebuilt from both directions.",
             "quote_sub": "Most moisturisers do one. This does both.",
             "stat_num": "45%",
             "stat_label": "reduction in deep wrinkle area",
@@ -452,7 +452,7 @@
         "ingredients_kAdMYC": {
           "type": "ingredients",
           "settings": {
-            "title": "What's inside — and why.",
+            "title": "What's inside \u2014 and why.",
             "open": false,
             "subtitle": "No filler. No marketing ingredients. Every active in here has a job, a dose, and a reason.",
             "ing_1_name": "Triple Ceramide Complex",
@@ -469,11 +469,11 @@
             "ing_3_image": "shopify://shop_images/BR_Ing_Panthenol.webp",
             "ing_4_name": "Sodium Hyaluronate",
             "ing_4_badge": "Humectant",
-            "ing_4_benefit": "Holds up to 1,000× its weight in water, drawing moisture from the air into your skin. The deeper-penetrating salt form of hyaluronic acid.",
+            "ing_4_benefit": "Holds up to 1,000\u00d7 its weight in water, drawing moisture from the air into your skin. The deeper-penetrating salt form of hyaluronic acid.",
             "ing_4_image": "shopify://shop_images/BR_Ing_Hyaluronic.webp",
             "ing_5_name": "Allantoin",
             "ing_5_badge": "Skin Soother",
-            "ing_5_benefit": "Derived from comfrey. Softens and soothes — helps skin tolerate actives and recover faster. The unsung hero in barrier formulas.",
+            "ing_5_benefit": "Derived from comfrey. Softens and soothes \u2014 helps skin tolerate actives and recover faster. The unsung hero in barrier formulas.",
             "ing_5_image": "shopify://shop_images/BR_Ing_Allantoin.webp",
             "ing_6_name": "Olivem 1000",
             "ing_6_badge": "Natural Emulsifier",
@@ -488,35 +488,35 @@
             "open": false,
             "subtitle": "Moisturiser goes on after serum, before SPF.",
             "am_1_label": "Cleanser",
-            "am_1_icon": "🫧",
+            "am_1_icon": "\ud83e\udee7",
             "am_1_note": "",
             "am_1_current": false,
             "am_1_spf": false,
             "am_2_label": "Serum",
-            "am_2_icon": "✨",
+            "am_2_icon": "\u2728",
             "am_2_note": "",
             "am_2_current": false,
             "am_2_spf": false,
             "am_3_label": "Moisturizer",
-            "am_3_icon": "💧",
+            "am_3_icon": "\ud83d\udca7",
             "am_3_note": "",
             "am_3_current": true,
             "am_3_spf": false,
             "am_4_label": "SPF",
-            "am_4_icon": "☀️",
+            "am_4_icon": "\u2600\ufe0f",
             "am_4_note": "",
             "am_4_current": false,
             "am_4_spf": true,
             "pm_1_label": "Double Cleanse",
-            "pm_1_icon": "🫧",
+            "pm_1_icon": "\ud83e\udee7",
             "pm_1_note": "",
             "pm_1_current": false,
             "pm_2_label": "Serum",
-            "pm_2_icon": "✨",
+            "pm_2_icon": "\u2728",
             "pm_2_note": "",
             "pm_2_current": false,
             "pm_3_label": "Moisturizer",
-            "pm_3_icon": "💧",
+            "pm_3_icon": "\ud83d\udca7",
             "pm_3_note": "",
             "pm_3_current": true,
             "tip": ""
@@ -528,19 +528,19 @@
             "title": "What to actually expect.",
             "open": true,
             "subtitle": "No overnight miracles.",
-            "tl_1_period": "Day 1–3",
+            "tl_1_period": "Day 1\u20133",
             "tl_1_title": "Immediate comfort",
             "tl_1_body": "Skin feels calmer and less tight within hours of first use. Ceramides start integrating into the barrier from day one. The plumpness is real, not just moisture sitting on top.",
-            "tl_2_period": "Week 1–2",
+            "tl_2_period": "Week 1\u20132",
             "tl_2_title": "Hydration holds longer",
             "tl_2_body": "You stop feeling dry by 3pm. Redness reduces. Skin reacts less to hard water, wind, and temperature changes. Niacinamide starting to stimulate ceramide production internally.",
-            "tl_3_period": "Week 4–8",
+            "tl_3_period": "Week 4\u20138",
             "tl_3_title": "Barrier independence",
-            "tl_3_body": "Skin is noticeably calmer and more resilient. Sensitivity to active ingredients drops — you can now tolerate things that used to sting. Matrixyl 3000™ visibly firming around jaw and eyes.",
-            "tl_4_period": "Week 8–12",
+            "tl_3_body": "Skin is noticeably calmer and more resilient. Sensitivity to active ingredients drops \u2014 you can now tolerate things that used to sting. Matrixyl 3000\u2122 visibly firming around jaw and eyes.",
+            "tl_4_period": "Week 8\u201312",
             "tl_4_title": "Structural change",
-            "tl_4_body": "Wrinkle depth reduced — this is the Matrixyl clinical window. Skin feels structurally different, not just soft. Most customers at this stage say they've stopped looking for a \"better\" moisturiser.",
-            "tip": "Tip for Pakistan winters: Islamabad and upper Punjab can see humidity drop below 30% in January–February. Add an extra pump at night during these months. Your barrier is working harder against cold + dry + heating."
+            "tl_4_body": "Wrinkle depth reduced \u2014 this is the Matrixyl clinical window. Skin feels structurally different, not just soft. Most customers at this stage say they've stopped looking for a \"better\" moisturiser.",
+            "tip": "Tip for Pakistan winters: Islamabad and upper Punjab can see humidity drop below 30% in January\u2013February. Add an extra pump at night during these months. Your barrier is working harder against cold + dry + heating."
           }
         }
       },
@@ -562,7 +562,7 @@
           "settings": {
             "image": "shopify://shop_images/BR_-_Triple_Ceramide_Complex.webp",
             "bg_gradient": "linear-gradient(135deg,#EDE0F5,#D8C8EC)",
-            "title": "Triple Ceramide Complex · Structural Integration",
+            "title": "Triple Ceramide Complex \u00b7 Structural Integration",
             "detail": "Golden lipid molecules physically integrating to seal cracked lipid layers."
           }
         },
@@ -571,7 +571,7 @@
           "settings": {
             "image": "shopify://shop_images/BR_-_Niacinamide_5.webp",
             "bg_gradient": "linear-gradient(135deg,#DDD5EE,#C8BCE0)",
-            "title": "Niacinamide 5% · Cellular Energy",
+            "title": "Niacinamide 5% \u00b7 Cellular Energy",
             "detail": "Upregulating natural ceramide synthase to calm inflammation."
           }
         },
@@ -580,7 +580,7 @@
           "settings": {
             "image": "shopify://shop_images/BR_-_Matrixyl_3000_Sederma.webp",
             "bg_gradient": "linear-gradient(135deg,#CDBFE0,#B8A8D0)",
-            "title": "Matrixyl 3000™ · Collagen Support",
+            "title": "Matrixyl 3000\u2122 \u00b7 Collagen Support",
             "detail": "Signaling the dermal matrix to rebuild structural scaffolding."
           }
         }
@@ -594,7 +594,7 @@
         "label": "Biochemical mechanisms",
         "title": "See the science in action.",
         "subtitle": "We rebuild the barrier at a cellular level. Here is exactly how the actives in Soft Reset interact with your skin's structures to seal and strengthen.",
-        "note": "⚗️ 3D microscopic visualizations representing the documented biochemical pathways of Triple Ceramides, Niacinamide, and Matrixyl 3000™."
+        "note": "\u2697\ufe0f 3D microscopic visualizations representing the documented biochemical pathways of Triple Ceramides, Niacinamide, and Matrixyl 3000\u2122."
       }
     },
     "pdp_upsell": {
@@ -604,13 +604,13 @@
         "title": "Works better together.",
         "subtitle": "Soft Reset rebuilds the barrier. Fade Theory targets pigmentation. Daylite protects everything you've built.",
         "product_1": "fade-theory",
-        "product_1_tag": "Step 1 · Serum",
+        "product_1_tag": "Step 1 \u00b7 Serum",
         "product_1_why": "Targeting pigmentation while the barrier is rebuilding produces faster, more stable results.",
         "product_2": "daylite-spf-50-sunscreen",
-        "product_2_tag": "Step 3 · SPF",
+        "product_2_tag": "Step 3 \u00b7 SPF",
         "product_2_why": "No barrier work survives unprotected UV exposure. Daylite locks in everything.",
         "bundle_title": "Save with the full protocol",
-        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
+        "bundle_desc": "All 3 products \u2014 serum, moisturiser, and SPF \u2014 bundled at a better price.",
         "bundle_price": "PKR 4,440",
         "bundle_original": "PKR 5,550",
         "bundle_product": "complete-glow-bundle",
@@ -623,7 +623,7 @@
         "faq_1": {
           "type": "item",
           "settings": {
-            "question": "What is barrier damage — and do I have it?",
+            "question": "What is barrier damage \u2014 and do I have it?",
             "answer": "<p>Your skin barrier is a protective layer of ceramides and lipids that keeps moisture in and irritants out. When it's damaged, skin feels tight after washing, looks dull, and becomes reactive to products it previously tolerated. <strong>Common triggers</strong>: over-cleansing, harsh actives, prolonged sun exposure, pollution, and dry weather.</p>"
           }
         },
@@ -631,35 +631,35 @@
           "type": "item",
           "settings": {
             "question": "Can I use Soft Reset with retinol or acids?",
-            "answer": "<p>Yes — Soft Reset was formulated with this in mind. Apply your active (retinol, AHA, BHA) first, wait 60 seconds for it to absorb, then layer Soft Reset on top. It won't dilute your actives; it helps your skin tolerate them better and reduces the irritation that causes people to quit actives prematurely.</p>"
+            "answer": "<p>Yes \u2014 Soft Reset was formulated with this in mind. Apply your active (retinol, AHA, BHA) first, wait 60 seconds for it to absorb, then layer Soft Reset on top. It won't dilute your actives; it helps your skin tolerate them better and reduces the irritation that causes people to quit actives prematurely.</p>"
           }
         },
         "faq_3": {
           "type": "item",
           "settings": {
             "question": "Is Soft Reset suitable for oily or acne-prone skin?",
-            "answer": "<p>Yes. Olivem 1000 is non-comedogenic and Niacinamide 5% actively reduces oiliness and visible pore size. <strong>Oily skin can have a damaged barrier too</strong> — it's often overlooked because people assume sebum production equals healthy skin. A damaged, oily barrier is a real and common condition.</p>"
+            "answer": "<p>Yes. Olivem 1000 is non-comedogenic and Niacinamide 5% actively reduces oiliness and visible pore size. <strong>Oily skin can have a damaged barrier too</strong> \u2014 it's often overlooked because people assume sebum production equals healthy skin. A damaged, oily barrier is a real and common condition.</p>"
           }
         },
         "faq_4": {
           "type": "item",
           "settings": {
             "question": "How is Soft Reset different from other moisturisers?",
-            "answer": "<p>Most moisturisers are occlusive films — they slow water loss but don't repair the barrier itself. Soft Reset contains <strong>ceramides identical to those found in human skin</strong>, plus Matrixyl 3000 for structural collagen support. It's designed to repair, not just cover over the problem.</p>"
+            "answer": "<p>Most moisturisers are occlusive films \u2014 they slow water loss but don't repair the barrier itself. Soft Reset contains <strong>ceramides identical to those found in human skin</strong>, plus Matrixyl 3000 for structural collagen support. It's designed to repair, not just cover over the problem.</p>"
           }
         },
         "faq_5": {
           "type": "item",
           "settings": {
             "question": "Does it work in Pakistan's climate?",
-            "answer": "<p>Yes — it was formulated with the Pakistani climate in mind. The ceramide complex is protective in dry winters, and the non-greasy Olivem 1000 base keeps it comfortable in humid summers. <strong>For peak winter dryness</strong>, use a slightly more generous amount and consider layering a face oil at night to seal it in.</p>"
+            "answer": "<p>Yes \u2014 it was formulated with the Pakistani climate in mind. The ceramide complex is protective in dry winters, and the non-greasy Olivem 1000 base keeps it comfortable in humid summers. <strong>For peak winter dryness</strong>, use a slightly more generous amount and consider layering a face oil at night to seal it in.</p>"
           }
         },
         "faq_6": {
           "type": "item",
           "settings": {
             "question": "How long does one jar last?",
-            "answer": "<p>With once-daily use (pea-sized amount), one 50ml jar lasts approximately 2–3 months. For twice-daily use, expect around 6–8 weeks. The <strong>2-bottle protocol</strong> is designed around one complete barrier repair cycle — enough time to see structural change.</p>"
+            "answer": "<p>With once-daily use (pea-sized amount), one 50ml jar lasts approximately 2\u20133 months. For twice-daily use, expect around 6\u20138 weeks. The <strong>2-bottle protocol</strong> is designed around one complete barrier repair cycle \u2014 enough time to see structural change.</p>"
           }
         }
       },
@@ -813,10 +813,89 @@
         "padding-block-start": 48,
         "padding-block-end": 48
       }
+    },
+    "glowve_ugc_strip_jV6FmF": {
+      "type": "glowve-ugc-strip",
+      "blocks": {
+        "video_Krmi4D": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656982/Soft_Reset_-_UGC_2_Final_V3-Compressed_nldbxi.mp4",
+            "page_handles": "soft-reset"
+          }
+        },
+        "video_tXCmQA": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_fBFDUT": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778657296/UGC-1-FInal-V2-Compressed_rildza.mp4",
+            "page_handles": "soft-reset"
+          }
+        },
+        "video_pMg3Y8": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_KQqW6k": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_6XweGx": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656811/UGC_3_-_Final_-_V2-Compressed_epf6qo.mp4",
+            "page_handles": "soft-reset"
+          }
+        },
+        "video_CyBnqD": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_rcyGUT": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
+            "page_handles": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_Krmi4D",
+        "video_tXCmQA",
+        "video_fBFDUT",
+        "video_pMg3Y8",
+        "video_KQqW6k",
+        "video_6XweGx",
+        "video_CyBnqD",
+        "video_rcyGUT"
+      ],
+      "name": "UGC Video Strip",
+      "settings": {
+        "eyebrow": "Real results",
+        "heading": "From real skin",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     }
   },
   "order": [
     "main",
+    "glowve_ugc_strip_jV6FmF",
     "glowve_pdp_before_after_JtMfNE",
     "177755844094ddecc5",
     "pdp_accordions_aMBCdE",
