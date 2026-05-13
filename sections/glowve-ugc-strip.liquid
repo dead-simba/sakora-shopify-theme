@@ -1,0 +1,377 @@
+{%- comment -%}
+  Glowve — UGC Video Strip
+  Cloudinary-hosted portrait videos, autoplay muted in-viewport.
+  Each block: Cloudinary URL + optional product handle restriction.
+{%- endcomment -%}
+
+{%- liquid
+  assign current_handle = product.handle | default: ''
+  assign visible_count = 0
+  for block in section.blocks
+    if block.settings.video_url == blank
+      continue
+    endif
+    if block.settings.page_handles != blank
+      assign handles_list = block.settings.page_handles | split: ','
+      assign block_visible = false
+      for h in handles_list
+        assign h_trimmed = h | strip
+        if current_handle == h_trimmed
+          assign block_visible = true
+        endif
+      endfor
+    else
+      assign block_visible = true
+    endif
+    if block_visible
+      assign visible_count = visible_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_count > 0 -%}
+
+<style>
+  .ugc-strip {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+  }
+  .ugc-strip-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+  .ugc-strip-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 16px;
+  }
+  .ugc-strip-meta {}
+  .ugc-strip-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #FF4D8D;
+    margin: 0 0 8px 0;
+  }
+  .ugc-strip-heading {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    color: #1A1A1A;
+    margin: 0;
+    line-height: 1.1;
+  }
+  .ugc-strip-nav {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .ugc-nav-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1.5px solid #ECECEC;
+    background: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A1A1A;
+    transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .ugc-nav-btn:hover {
+    border-color: #FF4D8D;
+    background: #FF4D8D;
+    color: #FFFFFF;
+  }
+  .ugc-nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+  .ugc-nav-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .ugc-track-wrap {
+    position: relative;
+  }
+  .ugc-track {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+  .ugc-track::-webkit-scrollbar { display: none; }
+
+  .ugc-card {
+    flex-shrink: 0;
+    width: 180px;
+    aspect-ratio: 9 / 16;
+    border-radius: 16px;
+    overflow: hidden;
+    scroll-snap-align: start;
+    position: relative;
+    background: #FFF0E6;
+    cursor: pointer;
+  }
+  .ugc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .ugc-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 16px;
+  }
+
+  /* Muted badge */
+  .ugc-mute-badge {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 3;
+    background: rgba(26, 26, 26, 0.45);
+    backdrop-filter: blur(4px);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: none;
+    color: #fff;
+    padding: 0;
+  }
+  .ugc-mute-badge:hover { background: rgba(26,26,26,0.7); }
+  .ugc-mute-badge svg { width: 14px; height: 14px; }
+  .ugc-mute-badge .icon-unmuted { display: none; }
+  .ugc-mute-badge.is-unmuted .icon-muted { display: none; }
+  .ugc-mute-badge.is-unmuted .icon-unmuted { display: block; }
+
+  @media screen and (max-width: 768px) {
+    .ugc-strip-inner { padding: 0 20px; }
+    .ugc-strip-heading { font-size: 22px; }
+    .ugc-card { width: 150px; }
+    .ugc-strip-nav { display: none; }
+  }
+</style>
+
+<section class="ugc-strip" id="UgcStrip-{{ section.id }}">
+  <div class="ugc-strip-inner">
+    <div class="ugc-strip-header">
+      <div class="ugc-strip-meta">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="ugc-strip-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="ugc-strip-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      <div class="ugc-strip-nav">
+        <button class="ugc-nav-btn" id="UgcPrev-{{ section.id }}" aria-label="Previous">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 12L6 8l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="ugc-nav-btn" id="UgcNext-{{ section.id }}" aria-label="Next">
+          <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="ugc-track-wrap">
+      <div class="ugc-track" id="UgcTrack-{{ section.id }}">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.video_url == blank -%}{%- continue -%}{%- endif -%}
+          {%- liquid
+            if block.settings.page_handles != blank
+              assign handles_list = block.settings.page_handles | split: ','
+              assign block_visible = false
+              for h in handles_list
+                assign h_trimmed = h | strip
+                if current_handle == h_trimmed
+                  assign block_visible = true
+                endif
+              endfor
+            else
+              assign block_visible = true
+            endif
+          -%}
+          {%- if block_visible -%}
+            <div class="ugc-card" {{ block.shopify_attributes }}>
+              <video
+                src="{{ block.settings.video_url }}"
+                muted
+                loop
+                playsinline
+                preload="metadata"
+                tabindex="-1"
+              ></video>
+              <button class="ugc-mute-badge" aria-label="Toggle sound" type="button">
+                <svg class="icon-muted" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor"/>
+                  <path d="M23 9l-6 6M17 9l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                <svg class="icon-unmuted" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M11 5L6 9H2v6h4l5 4V5z" fill="currentColor"/>
+                  <path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+              </button>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var sectionId = {{ section.id | json }};
+  var track = document.getElementById('UgcTrack-' + sectionId);
+  var prevBtn = document.getElementById('UgcPrev-' + sectionId);
+  var nextBtn = document.getElementById('UgcNext-' + sectionId);
+  if (!track) return;
+
+  var cards = Array.from(track.querySelectorAll('.ugc-card'));
+  var videos = Array.from(track.querySelectorAll('video'));
+
+  // Intersection Observer — play only when in viewport
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        var vid = entry.target;
+        if (entry.isIntersecting) {
+          vid.play().catch(function() {});
+        } else {
+          vid.pause();
+        }
+      });
+    }, { threshold: 0.4 });
+
+    videos.forEach(function(v) { io.observe(v); });
+  } else {
+    // Fallback: just play all
+    videos.forEach(function(v) { v.play().catch(function(){}); });
+  }
+
+  // Mute toggle per card
+  cards.forEach(function(card) {
+    var btn = card.querySelector('.ugc-mute-badge');
+    var vid = card.querySelector('video');
+    if (!btn || !vid) return;
+    btn.addEventListener('click', function() {
+      vid.muted = !vid.muted;
+      btn.classList.toggle('is-unmuted', !vid.muted);
+    });
+  });
+
+  // Nav arrows
+  function getScrollAmount() {
+    if (!cards.length) return 300;
+    return (cards[0].offsetWidth + 12) * 2;
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', function() {
+      track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+    });
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', function() {
+      track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+    });
+  }
+})();
+</script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "UGC Video Strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Real results"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From real skin"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "UGC Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Cloudinary video URL",
+          "info": "Paste the direct .mp4 URL from Cloudinary. e.g. https://res.cloudinary.com/yourcloud/video/upload/v123/ugc-clip.mp4"
+        },
+        {
+          "type": "text",
+          "id": "page_handles",
+          "label": "Restrict to product handles (optional)",
+          "info": "Comma-separated handles, e.g. fade-theory, soft-reset. Leave blank to show on all pages."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "UGC Video Strip"
+    }
+  ]
+}
+{% endschema %}
