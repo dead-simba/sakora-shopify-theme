@@ -24,6 +24,39 @@
       padding: 5rem 4rem 5rem 3rem;
     }
   }
+  .sakora-hero__card {
+    width: 100%;
+    z-index: 3;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .sakora-hero__content--has-bg {
+    padding: 2.5rem 1.5rem;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero__content--has-bg {
+      padding: 5rem 4rem;
+    }
+  }
+  .sakora-hero__content--has-bg .sakora-hero__card {
+    background-color: rgba(250, 250, 245, 0.96);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 3.5rem 2.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(28, 28, 26, 0.08);
+    box-shadow: 0 15px 45px rgba(28, 28, 26, 0.04);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+  @media screen and (min-width: 990px) {
+    .sakora-hero__content--has-bg .sakora-hero__card {
+      padding: 5rem 4.5rem;
+      margin: 0;
+    }
+  }
   .sakora-hero__bg-img {
     position: absolute;
     inset: 0;
@@ -215,44 +248,46 @@
       }}
       <div class="sakora-hero__bg-overlay" style="--overlay-op: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
     {%- endif -%}
-    <p class="sakora-hero__eyebrow">{{ section.settings.eyebrow }}</p>
-    <h1 class="sakora-hero__title">
-      {{ section.settings.title }}
-    </h1>
-    <p class="sakora-hero__text">
-      {{ section.settings.text }}
-    </p>
-    <div class="sakora-hero__buttons">
-      {%- if section.settings.primary_button_label != blank -%}
-        <a href="{{ section.settings.primary_button_link }}" class="sakora-hero__btn sakora-hero__btn--primary">
-          {{ section.settings.primary_button_label }}
-        </a>
-      {%- endif -%}
-      {%- if section.settings.secondary_button_label != blank -%}
-        <a href="{{ section.settings.secondary_button_link }}" class="sakora-hero__btn sakora-hero__btn--secondary">
-          {{ section.settings.secondary_button_label }}
-        </a>
-      {%- endif -%}
-    </div>
-    <div class="sakora-hero__stats">
-      {%- if section.settings.stat1_val != blank -%}
-        <div>
-          <div class="sakora-hero__stat-val">{{ section.settings.stat1_val }}</div>
-          <div class="sakora-hero__stat-label">{{ section.settings.stat1_label }}</div>
-        </div>
-      {%- endif -%}
-      {%- if section.settings.stat2_val != blank -%}
-        <div>
-          <div class="sakora-hero__stat-val">{{ section.settings.stat2_val }}</div>
-          <div class="sakora-hero__stat-label">{{ section.settings.stat2_label }}</div>
-        </div>
-      {%- endif -%}
-      {%- if section.settings.stat3_val != blank -%}
-        <div>
-          <div class="sakora-hero__stat-val">{{ section.settings.stat3_val }}</div>
-          <div class="sakora-hero__stat-label">{{ section.settings.stat3_label }}</div>
-        </div>
-      {%- endif -%}
+    <div class="sakora-hero__card">
+      <p class="sakora-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 class="sakora-hero__title">
+        {{ section.settings.title }}
+      </h1>
+      <p class="sakora-hero__text">
+        {{ section.settings.text }}
+      </p>
+      <div class="sakora-hero__buttons">
+        {%- if section.settings.primary_button_label != blank -%}
+          <a href="{{ section.settings.primary_button_link }}" class="sakora-hero__btn sakora-hero__btn--primary">
+            {{ section.settings.primary_button_label }}
+          </a>
+        {%- endif -%}
+        {%- if section.settings.secondary_button_label != blank -%}
+          <a href="{{ section.settings.secondary_button_link }}" class="sakora-hero__btn sakora-hero__btn--secondary">
+            {{ section.settings.secondary_button_label }}
+          </a>
+        {%- endif -%}
+      </div>
+      <div class="sakora-hero__stats">
+        {%- if section.settings.stat1_val != blank -%}
+          <div>
+            <div class="sakora-hero__stat-val">{{ section.settings.stat1_val }}</div>
+            <div class="sakora-hero__stat-label">{{ section.settings.stat1_label }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat2_val != blank -%}
+          <div>
+            <div class="sakora-hero__stat-val">{{ section.settings.stat2_val }}</div>
+            <div class="sakora-hero__stat-label">{{ section.settings.stat2_label }}</div>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.stat3_val != blank -%}
+          <div>
+            <div class="sakora-hero__stat-val">{{ section.settings.stat3_val }}</div>
+            <div class="sakora-hero__stat-label">{{ section.settings.stat3_label }}</div>
+          </div>
+        {%- endif -%}
+      </div>
     </div>
   </div>
 
