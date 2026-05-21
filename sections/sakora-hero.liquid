@@ -9,6 +9,14 @@
       grid-template-columns: 55% 45%;
     }
   }
+  .sakora-hero--full-width {
+    grid-template-columns: 1fr !important;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero--full-width {
+      grid-template-columns: 1fr !important;
+    }
+  }
   .sakora-hero__content {
     position: relative;
     display: flex;
@@ -22,6 +30,19 @@
   @media screen and (min-width: 750px) {
     .sakora-hero__content {
       padding: 5rem 4rem 5rem 3rem;
+    }
+  }
+  .sakora-hero--full-width .sakora-hero__content {
+    justify-content: flex-end;
+    align-items: center;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero--full-width .sakora-hero__content {
+      align-items: flex-start;
+      padding: 6rem;
+    }
+    .sakora-hero--full-width .sakora-hero__card {
+      margin: 0;
     }
   }
   .sakora-hero__card {
@@ -81,6 +102,17 @@
     -webkit-backdrop-filter: blur(calc(6px + 8px * var(--overlay-op)));
     z-index: 2;
     pointer-events: none;
+  }
+  .sakora-hero--full-width .sakora-hero__bg-overlay {
+    background: linear-gradient(
+      0deg,
+      rgba(250, 250, 245, calc(0.90 + 0.10 * var(--overlay-op))) 0%,
+      rgba(250, 250, 245, calc(0.70 + 0.25 * var(--overlay-op))) 30%,
+      rgba(250, 250, 245, calc(0.20 + 0.40 * var(--overlay-op))) 60%,
+      rgba(250, 250, 245, 0) 100%
+    );
+    backdrop-filter: blur(calc(3px + 4px * var(--overlay-op)));
+    -webkit-backdrop-filter: blur(calc(3px + 4px * var(--overlay-op)));
   }
   /* Ensure hero content overlays on top of background visual */
   .sakora-hero__eyebrow,
@@ -235,7 +267,7 @@
   }
 {%- endstyle -%}
 
-<section class="sakora-hero">
+<section class="sakora-hero sakora-hero--{{ section.settings.layout_style | default: 'split' }}">
   <div class="sakora-hero__content{% if section.settings.hero_image != blank %} sakora-hero__content--has-bg{% endif %}">
     {%- if section.settings.hero_image != blank -%}
       {{ section.settings.hero_image | image_url: width: 1500 | image_tag:
@@ -291,38 +323,56 @@
     </div>
   </div>
 
-  <div class="sakora-hero__strips">
-    {%- for block in section.blocks -%}
-      {%- case block.type -%}
-        {%- when 'product_strip' -%}
-          {%- liquid
-            assign product = block.settings.product
-            assign title = block.settings.title | default: product.title
-            assign subtitle = block.settings.subtitle
-            assign bg_color = block.settings.bg_color
-            assign text_color = block.settings.text_color
-            assign size = block.settings.size
-            assign price = block.settings.price | default: product.price | money_without_trailing_zeros
-            assign url = block.settings.link | default: product.url
-          -%}
-          <a href="{{ url }}" class="sakora-hero__strip" style="background-color: {{ bg_color }}; color: {{ text_color }};">
-            <div>
-              <div class="sakora-hero__strip-name" style="color: {{ text_color }};">{{ title }}</div>
-              <div class="sakora-hero__strip-type" style="color: {{ text_color }};">{{ subtitle }}</div>
-            </div>
-            <div class="sakora-hero__strip-meta" style="color: {{ text_color }};">
-              {%- if size != blank -%}{{ size }} · {% endif %}{{ price }}
-            </div>
-          </a>
-      {%- endcase -%}
-    {%- endfor -%}
-  </div>
+  {%- if section.settings.layout_style == 'split' or section.settings.layout_style == blank -%}
+    <div class="sakora-hero__strips">
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'product_strip' -%}
+            {%- liquid
+              assign product = block.settings.product
+              assign title = block.settings.title | default: product.title
+              assign subtitle = block.settings.subtitle
+              assign bg_color = block.settings.bg_color
+              assign text_color = block.settings.text_color
+              assign size = block.settings.size
+              assign price = block.settings.price | default: product.price | money_without_trailing_zeros
+              assign url = block.settings.link | default: product.url
+            -%}
+            <a href="{{ url }}" class="sakora-hero__strip" style="background-color: {{ bg_color }}; color: {{ text_color }};">
+              <div>
+                <div class="sakora-hero__strip-name" style="color: {{ text_color }};">{{ title }}</div>
+                <div class="sakora-hero__strip-type" style="color: {{ text_color }};">{{ subtitle }}</div>
+              </div>
+              <div class="sakora-hero__strip-meta" style="color: {{ text_color }};">
+                {%- if size != blank -%}{{ size }} · {% endif %}{{ price }}
+              </div>
+            </a>
+        {%- endcase -%}
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
 </section>
 
 {% schema %}
 {
-  "name": "Sakora Split Hero",
+  "name": "Sakora Hero",
   "settings": [
+    {
+      "type": "select",
+      "id": "layout_style",
+      "label": "Layout Style",
+      "options": [
+        {
+          "value": "split",
+          "label": "Split Hero (Image + 3 Product Strips)"
+        },
+        {
+          "value": "full_width",
+          "label": "Full Width Hero (Full Image with Floating Card)"
+        }
+      ],
+      "default": "split"
+    },
     {
       "type": "image_picker",
       "id": "hero_image",
@@ -479,7 +529,7 @@
   ],
   "presets": [
     {
-      "name": "Sakora Split Hero",
+      "name": "Sakora Hero",
       "blocks": [
         {
           "type": "product_strip",
