@@ -1,8 +1,8 @@
-<footer class="sk-footer sk-dot-grid" aria-label="Site footer">
+<footer class="sk-footer" aria-label="Site footer">
   <div class="sk-container">
     <div class="sk-footer-inner">
 
-      <!-- COLUMN 1: Brand Spec -->
+      <!-- COLUMN 1: Brand details -->
       <div class="sk-footer-brand">
         {%- if section.settings.logo != blank -%}
           <a href="{{ routes.root_url }}" class="sk-footer-logo-link" aria-label="{{ shop.name }}">
@@ -19,11 +19,11 @@
           <p class="sk-footer-tagline">{{ section.settings.tagline }}</p>
         {%- endif -%}
 
-        <!-- Technical Registry Info -->
+        <!-- Friendly registry information -->
         <div class="sk-footer-registry sk-inci-mono">
-          <span>REGISTRY: PK-KHI-2026</span><br>
-          <span>CURRENCY: PKR (PAKISTANI RUPEES) ONLY</span><br>
-          <span>STANDARDS: ISO 22716 / CGMP</span>
+          <span>Formulated under dermatologist supervision</span><br>
+          <span>100% Vegan &amp; Cruelty-Free</span><br>
+          <span>Made with love in Pakistan</span>
         </div>
 
         {%- assign has_social = false -%}
@@ -67,9 +67,9 @@
               <ul class="sk-footer-col-list" role="list">
                 {%- for link in nav_menu.links -%}
                   <li>
-                    <a href="{{ link.url }}" class="sk-footer-col-link sk-inci-mono"
+                    <a href="{{ link.url }}" class="sk-footer-col-link"
                       {%- if link.active %} aria-current="page"{%- endif -%}>
-                      {{ link.title | upcase }}
+                      {{ link.title }}
                     </a>
                   </li>
                 {%- endfor -%}
@@ -81,24 +81,24 @@
 
     </div>
 
-    <!-- BOTTOM BAR: Absolute Transparency claims -->
+    <!-- BOTTOM BAR -->
     <div class="sk-footer-bottom">
       <div class="sk-footer-bottom-inner">
         <p class="sk-footer-copy sk-inci-mono">
-          &copy; {{ 'now' | date: '%Y' }} SAKORA LABS.
+          &copy; {{ 'now' | date: '%Y' }} SAKORA.
           {%- if section.settings.bottom_note != blank -%}
-            &nbsp;{{ section.settings.bottom_note | upcase }}
+            &nbsp;{{ section.settings.bottom_note }}
           {%- endif -%}
         </p>
         
         <div class="sk-footer-compliance sk-inci-mono">
-          STRICT PKR COMPLIANCE // ZERO FAIRY-DUST DECLARED
+          100% INGREDIENT TRANSPARENCY // FORMULATED FOR SOUTH ASIAN SKIN
         </div>
 
         {%- if shop.enabled_policies.size > 0 -%}
           <ul class="sk-footer-legal" role="list">
             {%- for policy in shop.enabled_policies -%}
-              <li><a href="{{ policy.url }}" class="sk-footer-legal-link sk-inci-mono">{{ policy.title | upcase }}</a></li>
+              <li><a href="{{ policy.url }}" class="sk-footer-legal-link sk-inci-mono">{{ policy.title }}</a></li>
             {%- endfor -%}
           </ul>
         {%- endif -%}
@@ -110,9 +110,10 @@
 
 {% stylesheet %}
   .sk-footer {
-    background-color: var(--void);
-    padding-top: 100px;
-    border-top: 1px solid var(--border-gray);
+    background-color: #F7F7F2; /* Warm Cream background */
+    color: var(--charcoal);
+    padding-top: 80px;
+    border-top: 1px solid var(--light-border);
   }
 
   /* ── Main grid ─────────────────────────────── */
@@ -121,57 +122,57 @@
     grid-template-columns: 2fr 1fr 1fr 1fr;
     gap: 60px;
     align-items: start;
-    padding-bottom: 80px;
+    padding-bottom: 60px;
   }
 
   /* ── Brand column ──────────────────────────── */
   .sk-footer-logo-link {
     display: inline-block;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
   .sk-footer-logo {
     display: block;
     max-height: 40px;
     width: auto;
-    filter: brightness(0) invert(1);
+    filter: none; /* Charcoal / Natural rendering */
   }
 
   .sk-footer-wordmark {
     display: inline-block;
     font-family: var(--font-heading);
     font-size: 32px;
-    font-weight: 800;
-    color: var(--stark-white);
+    font-weight: 700;
+    color: var(--charcoal);
     text-decoration: none;
-    margin-bottom: 24px;
-    letter-spacing: -0.02em;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
   }
 
   .sk-footer-wordmark sup {
     font-size: 10px;
     top: -1em;
-    color: var(--neon-mint);
+    color: var(--fade-accent);
   }
 
   .sk-footer-tagline {
     font-family: var(--font-body);
     font-size: 14px;
     line-height: 1.6;
-    color: var(--subtext);
+    color: var(--subtext-gray);
     margin-bottom: 24px;
     max-width: 320px;
   }
 
   .sk-footer-registry {
-    color: var(--subtext);
-    font-size: 10px !important;
+    color: var(--subtext-gray);
+    font-size: 11px !important;
     line-height: 1.8 !important;
     margin-bottom: 28px;
-    border-left: 2px solid var(--border-gray);
+    border-left: 2px solid var(--fade-accent);
     padding-left: 12px;
   }
 
-  /* Social buttons */
+  /* Social buttons (Soft circular elements) */
   .sk-footer-social {
     display: flex;
     gap: 10px;
@@ -181,28 +182,32 @@
   .sk-footer-social-btn {
     width: 38px;
     height: 38px;
-    border-radius: 6px;
-    background: var(--near-black);
-    border: 1px solid var(--border-gray);
+    border-radius: 50% !important; /* Soft circular buttons */
+    background: var(--pure-white);
+    border: 1px solid var(--ui-border);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--subtext);
+    color: var(--charcoal);
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
     flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
   }
   .sk-footer-social-btn:hover {
-    background: var(--void);
-    border-color: var(--sakora-yellow);
-    color: var(--sakora-yellow);
+    background: var(--fade-bg);
+    border-color: var(--fade-accent);
+    color: var(--fade-accent);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(255, 92, 138, 0.15);
   }
 
   /* ── Nav columns ───────────────────────────── */
   .sk-footer-col-title {
-    color: var(--stark-white);
+    color: var(--charcoal);
     margin-bottom: 24px;
     font-size: 11px;
+    font-weight: 600;
   }
 
   .sk-footer-col-list {
@@ -213,16 +218,17 @@
   .sk-footer-col-list li { margin-bottom: 12px; }
 
   .sk-footer-col-link {
-    font-size: 12px !important;
-    color: var(--subtext) !important;
+    font-size: 13px !important;
+    color: var(--subtext-gray) !important;
     text-decoration: none;
     transition: color 0.2s;
+    font-weight: 500;
   }
-  .sk-footer-col-link:hover { color: var(--sakora-yellow) !important; }
+  .sk-footer-col-link:hover { color: var(--fade-accent) !important; }
 
   /* ── Bottom bar ────────────────────────────── */
   .sk-footer-bottom {
-    border-top: 1px solid var(--border-gray);
+    border-top: 1px solid var(--light-border);
   }
 
   .sk-footer-bottom-inner {
@@ -235,13 +241,13 @@
   }
 
   .sk-footer-copy {
-    font-size: 11px !important;
-    color: var(--subtext);
+    font-size: 12px !important;
+    color: var(--subtext-gray);
   }
 
   .sk-footer-compliance {
-    font-size: 10px !important;
-    color: var(--neon-mint);
+    font-size: 11px !important;
+    color: var(--reset-accent);
     font-weight: 600;
   }
 
@@ -255,12 +261,12 @@
   }
 
   .sk-footer-legal-link {
-    font-size: 11px !important;
-    color: var(--subtext) !important;
+    font-size: 12px !important;
+    color: var(--subtext-gray) !important;
     text-decoration: none;
     transition: color 0.2s;
   }
-  .sk-footer-legal-link:hover { color: var(--stark-white) !important; }
+  .sk-footer-legal-link:hover { color: var(--charcoal) !important; }
 
   /* ── Responsive ────────────────────────────── */
   @media (max-width: 1024px) {
@@ -313,19 +319,19 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo",
-      "info": "Technical white version recommended. If blank, SAKORA text wordmark is displayed."
+      "info": "Technical version recommended. If blank, SAKORA text wordmark is displayed."
     },
     {
       "type": "text",
       "id": "tagline",
       "label": "Tagline",
-      "default": "Ingredient maximum. Formulated under technical audits for South Asian skin barriers."
+      "default": "Ingredient maximum. Formulated under strict dermatologist supervision for South Asian skin barriers."
     },
     {
       "type": "text",
       "id": "bottom_note",
       "label": "Copyright Suffix",
-      "default": "ENGINEERED IN PAKISTAN.",
+      "default": "Formulated for South Asian skin.",
       "info": "Appears after copyright text"
     },
     {

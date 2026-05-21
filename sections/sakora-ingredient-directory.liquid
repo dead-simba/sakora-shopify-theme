@@ -1,4 +1,4 @@
-<section class="sk-ing-dir sk-dot-grid" aria-labelledby="sk-ing-dir-title">
+<section class="sk-ing-dir" aria-labelledby="sk-ing-dir-title">
   <div class="sk-container">
     <div class="sk-ing-dir-layout">
       <!-- LEFT: Text & Controls -->
@@ -8,15 +8,15 @@
         <p class="sk-body-normal sk-ing-dir-desc">{{ section.settings.description }}</p>
         
         <div class="sk-ing-search-wrap">
-          <input type="text" id="sk-ing-search" placeholder="SEARCH ACTIVE INGREDIENTS..." aria-label="Search ingredients">
+          <input type="text" id="sk-ing-search" placeholder="Search active ingredients..." aria-label="Search ingredients">
           <svg class="sk-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
         </div>
 
         <div class="sk-ing-filters" role="group" aria-label="Filter ingredients">
-          <button class="sk-ing-filter-btn active" data-filter="all">ALL ACTIVES</button>
-          <button class="sk-ing-filter-btn" data-filter="brightening">BRIGHTENING</button>
-          <button class="sk-ing-filter-btn" data-filter="barrier">BARRIER REPAIR</button>
-          <button class="sk-ing-filter-btn" data-filter="sunscreen">UV DEFENSE</button>
+          <button class="sk-ing-filter-btn active" data-filter="all">All Actives</button>
+          <button class="sk-ing-filter-btn" data-filter="brightening">Brightening</button>
+          <button class="sk-ing-filter-btn" data-filter="barrier">Barrier Repair</button>
+          <button class="sk-ing-filter-btn" data-filter="sunscreen">UV Defense</button>
         </div>
 
         {%- if section.settings.cta_label != blank -%}
@@ -35,7 +35,7 @@
             <div class="sk-ing-card" data-category="{{ category }}" data-name="{{ block.settings.name | downcase }}" data-inci="{{ block.settings.inci | downcase }}">
               <div class="sk-ing-card-header">
                 <span class="sk-inci-mono sk-ing-inci" style="color: {{ block.settings.active_color }};">{{ block.settings.inci }}</span>
-                <span class="sk-label-caps sk-ing-cat-tag" style="background-color: {{ block.settings.active_color | color_modify: 'alpha', 0.15 }}; color: {{ block.settings.active_color }}; border: 1px solid {{ block.settings.active_color | color_modify: 'alpha', 0.3 }};">{{ category }}</span>
+                <span class="sk-badge-pill sk-ing-cat-tag" style="background-color: {{ block.settings.active_color | color_modify: 'alpha', 0.1 }}; color: {{ block.settings.active_color }};">{{ category }}</span>
               </div>
               
               <h3 class="sk-ing-name">{{ block.settings.name }}</h3>
@@ -45,17 +45,17 @@
               <div class="sk-ing-spec-bar">
                 <div class="sk-ing-spec-labels">
                   <span class="sk-inci-mono">CONCENTRATION: {{ block.settings.concentration }}</span>
-                  <span class="sk-inci-mono text-sub">INDUSTRY TYP.: {{ block.settings.industry_typical }}</span>
+                  <span class="sk-inci-mono text-sub">TYPICAL: {{ block.settings.industry_typical }}</span>
                 </div>
                 <div class="sk-ing-progress-bg">
-                  <div class="sk-ing-progress-fill" style="width: {{ block.settings.percentage }}%; background-color: {{ block.settings.active_color | default: 'var(--sakora-yellow)' }}; box-shadow: 0 0 10px {{ block.settings.active_color | color_modify: 'alpha', 0.5 }};"></div>
+                  <div class="sk-ing-progress-fill" style="width: {{ block.settings.percentage }}%; background-color: {{ block.settings.active_color | default: 'var(--fade-accent)' }};"></div>
                 </div>
               </div>
 
               {%- if block.settings.study_ref != blank -%}
                 <div class="sk-ing-clinical-ref">
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                  <a href="{{ block.settings.study_url | default: '#' }}" target="_blank" rel="noopener" class="sk-inci-mono sk-ing-study-link">
+                  <a href="{{ block.settings.study_url | default: '#' }}" target="_blank" rel="noopener" class="sk-inci-mono sk-ing-study-link" style="color: {{ block.settings.active_color }} !important;">
                     {{ block.settings.study_ref }}
                   </a>
                 </div>
@@ -65,7 +65,7 @@
         </div>
 
         <div id="sk-ing-empty" class="sk-ing-empty-state" style="display: none;">
-          <p class="sk-inci-mono">ZERO RESULTS MATCHING CURRENT FILTER PARAMETERS.</p>
+          <p class="sk-inci-mono">Zero results matching search terms.</p>
         </div>
       </div>
     </div>
@@ -126,10 +126,10 @@
 
 {% stylesheet %}
   .sk-ing-dir {
-    background-color: var(--void);
-    color: var(--stark-white);
-    padding: 120px 0;
-    border-bottom: 1px solid var(--border-gray);
+    background-color: var(--chalk);
+    color: var(--charcoal);
+    padding: 100px 0;
+    border-bottom: 1px solid var(--light-border);
   }
 
   .sk-ing-dir-layout {
@@ -141,18 +141,18 @@
 
   /* LEFT: Text & Controls */
   .sk-ing-dir-eyebrow {
-    color: var(--neon-mint);
+    color: var(--fade-accent);
     margin-bottom: 16px;
   }
 
   .sk-ing-dir-desc {
-    color: var(--subtext);
+    color: var(--subtext-gray);
     margin-top: 18px;
     margin-bottom: 32px;
     line-height: 1.6;
   }
 
-  /* Search Input */
+  /* Search Input (Pill Shaped & Luminous White) */
   .sk-ing-search-wrap {
     position: relative;
     margin-bottom: 24px;
@@ -161,64 +161,66 @@
 
   #sk-ing-search {
     width: 100%;
-    background-color: var(--near-black);
-    border: 1px solid var(--border-gray);
-    color: var(--stark-white);
+    background-color: var(--pure-white);
+    border: 1px solid var(--ui-border);
+    color: var(--charcoal);
     padding: 14px 20px;
     padding-right: 44px;
-    border-radius: 6px;
-    font-family: var(--font-mono);
-    font-size: 12px;
+    border-radius: 50px; /* Pill shape */
+    font-family: var(--font-body);
+    font-size: 13px;
     outline: none;
     transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
   }
 
   #sk-ing-search:focus {
-    border-color: var(--sakora-yellow);
-    box-shadow: 0 0 0 2px rgba(255, 224, 51, 0.1);
+    border-color: var(--fade-accent);
+    box-shadow: 0 4px 15px rgba(255, 92, 138, 0.1);
   }
 
   .sk-search-icon {
     position: absolute;
-    right: 16px;
+    right: 18px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--subtext);
+    color: var(--subtext-gray);
     pointer-events: none;
   }
 
-  /* Filters */
+  /* Filters (Pill Shaped) */
   .sk-ing-filters {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
     margin-bottom: 36px;
   }
 
   .sk-ing-filter-btn {
-    background: transparent;
-    border: 1px solid var(--border-gray);
-    color: var(--subtext);
-    padding: 12px 18px;
-    border-radius: 6px;
+    background: var(--pure-white);
+    border: 1px solid var(--ui-border);
+    color: var(--subtext-gray);
+    padding: 12px 20px;
+    border-radius: 50px; /* Pill shaped */
     text-align: left;
     font-family: var(--font-ui);
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.08em;
     cursor: pointer;
     transition: all 0.2s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.01);
   }
 
   .sk-ing-filter-btn:hover {
-    color: var(--stark-white);
-    border-color: var(--subtext);
+    color: var(--charcoal);
+    border-color: var(--charcoal);
   }
 
   .sk-ing-filter-btn.active {
-    background-color: var(--border-gray);
-    color: var(--sakora-yellow);
-    border-color: var(--sakora-yellow);
+    background-color: var(--fade-accent);
+    color: var(--pure-white);
+    border-color: var(--fade-accent);
+    box-shadow: 0 4px 12px rgba(255, 92, 138, 0.25);
   }
 
   .sk-ing-cta {
@@ -236,24 +238,25 @@
   .sk-ing-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 20px;
   }
 
   .sk-ing-card {
-    background-color: var(--near-black);
-    border: 1px solid var(--border-gray);
-    border-radius: 6px;
+    background-color: var(--pure-white);
+    border: 1px solid var(--ui-border);
+    border-radius: 20px; /* Rounded 20px curves */
     padding: 28px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    box-shadow: 0 8px 24px rgba(44, 44, 53, 0.02);
   }
 
   .sk-ing-card:hover {
     transform: translateY(-4px);
-    border-color: var(--electric-violet);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    border-color: var(--fade-accent);
+    box-shadow: 0 12px 32px rgba(44, 44, 53, 0.05);
   }
 
   .sk-ing-card-header {
@@ -271,33 +274,32 @@
   }
 
   .sk-ing-cat-tag {
-    font-size: 8px !important;
-    padding: 3px 8px;
-    border-radius: 4px;
+    font-size: 9px !important;
     font-weight: 600;
   }
 
   .sk-ing-name {
     font-family: var(--font-heading) !important;
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    color: var(--stark-white) !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    color: var(--charcoal) !important;
     margin-bottom: 12px !important;
-    line-height: 1.2 !important;
+    line-height: 1.25 !important;
   }
 
   .sk-ing-function {
     font-family: var(--font-body);
     font-size: 14px;
-    color: var(--subtext);
-    line-height: 1.5;
+    color: var(--charcoal);
+    opacity: 0.85;
+    line-height: 1.55;
     margin-bottom: 24px;
     flex-grow: 1;
   }
 
   /* Spec Bar */
   .sk-ing-spec-bar {
-    border-top: 1px dashed var(--border-gray);
+    border-top: 1px dashed var(--light-border);
     padding-top: 18px;
     margin-bottom: 16px;
   }
@@ -309,23 +311,24 @@
   }
 
   .sk-ing-spec-labels span {
-    font-size: 10px !important;
+    font-size: 11px !important;
+    font-weight: 600;
   }
 
   .sk-ing-spec-labels .text-sub {
-    color: var(--subtext);
+    color: var(--subtext-gray);
   }
 
   .sk-ing-progress-bg {
-    height: 6px;
-    background-color: var(--border-gray);
-    border-radius: 3px;
+    height: 8px;
+    background-color: var(--ui-gray-bg);
+    border-radius: 6px;
     overflow: hidden;
   }
 
   .sk-ing-progress-fill {
     height: 100%;
-    border-radius: 3px;
+    border-radius: 6px;
   }
 
   /* Clinical Ref */
@@ -333,7 +336,6 @@
     display: flex;
     align-items: center;
     gap: 8px;
-    color: var(--neon-mint);
   }
 
   .sk-ing-clinical-ref svg {
@@ -341,24 +343,24 @@
   }
 
   .sk-ing-study-link {
-    font-size: 10px !important;
-    color: var(--neon-mint) !important;
+    font-size: 11px !important;
+    font-weight: 600;
     text-decoration: none;
     border-bottom: 1px solid transparent;
     transition: all 0.2s ease;
   }
 
   .sk-ing-study-link:hover {
-    color: var(--stark-white) !important;
-    border-color: var(--stark-white);
+    opacity: 0.8;
+    border-bottom-color: currentColor;
   }
 
   .sk-ing-empty-state {
     padding: 60px 0;
     text-align: center;
-    border: 1px dashed var(--border-gray);
-    border-radius: 6px;
-    color: var(--subtext);
+    border: 1px dashed var(--ui-border);
+    border-radius: 20px;
+    color: var(--subtext-gray);
   }
 
   /* Responsive styling */
@@ -398,25 +400,25 @@
       "type": "text",
       "id": "label",
       "label": "Section Label",
-      "default": "RADICAL EVIDENCE"
+      "default": "Botanical Science"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Title",
-      "default": "THE INGREDIENT REGISTRY"
+      "default": "Meet Our Active Ingredients"
     },
     {
       "type": "textarea",
       "id": "description",
       "label": "Description",
-      "default": "Every percentage. Every INCI registry name. Full disclosure, backed by published clinical trials. We do not use filler ingredients."
+      "default": "Every percentage disclosed. Full chemical and botanical transparency, backed by peer-reviewed clinical studies. No fillers, just glowing skin."
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "CTA Label",
-      "default": "VIEW FULL CLINICAL METHODOLOGY"
+      "default": "Explore Our Formulation Ethics"
     },
     {
       "type": "url",
@@ -456,7 +458,7 @@
           "type": "color",
           "id": "active_color",
           "label": "Active Indicator Color",
-          "default": "#B8ECFF"
+          "default": "#FF5C8A"
         },
         {
           "type": "text",
@@ -506,10 +508,10 @@
         {
           "type": "star_card",
           "settings": {
-            "name": "Alpha Arbutin",
+            "name": "Alpha Arbutin + Strawberry",
             "inci": "ALPHA-ARBUTIN",
             "category": "brightening",
-            "active_color": "#B8ECFF",
+            "active_color": "#FF5C8A",
             "concentration": "2.0%",
             "industry_typical": "0.5%–1.0%",
             "percentage": 85,
@@ -523,7 +525,7 @@
             "name": "Triple Ceramide Complex",
             "inci": "CERAMIDE NP · AP · EOP",
             "category": "barrier",
-            "active_color": "#8DA8C4",
+            "active_color": "#3E8E75",
             "concentration": "1.5% Pure",
             "industry_typical": "0.1%–0.2%",
             "percentage": 95,
@@ -534,7 +536,7 @@
         {
           "type": "star_card",
           "settings": {
-            "name": "Matte UV Filters",
+            "name": "Daylite Sunscreen Filters",
             "inci": "TINOSORB S + M · UVINUL A PLUS",
             "category": "sunscreen",
             "active_color": "#FFB800",
@@ -548,10 +550,10 @@
         {
           "type": "star_card",
           "settings": {
-            "name": "Niacinamide",
+            "name": "Niacinamide + Green Tea",
             "inci": "NIACINAMIDE (VITAMIN B3)",
             "category": "barrier",
-            "active_color": "#C2F970",
+            "active_color": "#3E8E75",
             "concentration": "5.0%",
             "industry_typical": "2.0%",
             "percentage": 75,

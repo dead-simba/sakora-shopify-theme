@@ -1,8 +1,8 @@
-<section class="sk-email-capture sk-dot-grid">
+<section class="sk-email-capture">
   <div class="sk-container">
     <div class="sk-email-inner">
 
-      <div class="sk-email-badge sk-label-caps">SAKORA REGISTRY ACCESS</div>
+      <div class="sk-email-badge sk-label-caps">{{ section.settings.badge }}</div>
 
       <h2 class="sk-display-title sk-email-title">{{ section.settings.title | replace: '<em>', '<span class="sk-highlight-active">' | replace: '</em>', '</span>' }}</h2>
       <p class="sk-body-normal sk-email-desc">{{ section.settings.description }}</p>
@@ -15,7 +15,7 @@
             type="email"
             name="contact[email]"
             id="sk-email-input"
-            class="sk-email-input sk-inci-mono"
+            class="sk-email-input"
             placeholder="{{ section.settings.placeholder }}"
             required
             autocomplete="email"
@@ -37,78 +37,93 @@
 
 {% stylesheet %}
   .sk-email-capture {
-    background-color: var(--void);
-    color: var(--stark-white);
+    background-color: var(--chalk);
+    color: var(--charcoal);
     padding: 100px 0;
-    border-bottom: 1px solid var(--border-gray);
+    border-bottom: 1px solid var(--light-border);
   }
 
   .sk-email-inner {
-    max-width: 680px;
+    max-width: 780px;
     margin: 0 auto;
     text-align: center;
+    background-color: var(--fade-bg); /* Warm sweet pink backdrop */
+    padding: 60px 40px;
+    border-radius: 24px; /* Generous 24px curves */
+    border: 1px solid rgba(255, 92, 138, 0.1);
+    box-shadow: 0 10px 30px rgba(255, 92, 138, 0.04);
   }
 
   .sk-email-badge {
-    color: var(--neon-mint);
-    margin-bottom: 24px;
+    color: var(--fade-accent);
+    margin-bottom: 20px;
   }
 
   .sk-email-title {
-    font-size: 42px !important;
-    text-transform: uppercase;
+    font-size: 38px !important;
+    text-transform: none !important;
     margin-bottom: 16px !important;
-    color: var(--stark-white) !important;
+    color: var(--charcoal) !important;
   }
 
   .sk-email-desc {
-    color: var(--subtext);
-    margin: 0 auto 36px;
+    color: var(--subtext-gray);
+    margin: 0 auto 32px;
     line-height: 1.6;
+    max-width: 520px;
   }
 
   .sk-email-form {
     display: flex;
-    background-color: var(--near-black);
-    border: 1px solid var(--border-gray);
-    border-radius: 6px;
+    background-color: var(--pure-white);
+    border: 1px solid var(--ui-border);
+    border-radius: 50px; /* Pill-shaped input wrap */
     padding: 6px;
     align-items: center;
     gap: 12px;
-    max-width: 580px;
+    max-width: 500px;
     margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .sk-email-form:focus-within {
+    border-color: var(--fade-accent);
+    box-shadow: 0 4px 18px rgba(255, 92, 138, 0.1);
   }
 
   .sk-email-input {
     flex: 1;
     border: none;
     background: transparent;
-    color: var(--stark-white);
+    color: var(--charcoal);
     outline: none;
-    padding: 10px 16px;
-    font-size: 13px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-family: var(--font-body);
   }
   
   .sk-email-input::placeholder { 
-    color: var(--subtext); 
+    color: var(--subtext-gray); 
   }
 
   .sk-email-form .sk-btn-primary {
     flex-shrink: 0;
+    padding: 12px 28px;
+    box-shadow: none;
   }
 
   .sk-email-success {
-    color: var(--neon-mint);
+    color: var(--reset-accent);
     margin-top: 16px;
     font-weight: 600;
   }
 
   .sk-email-fine {
-    font-size: 10px !important;
-    color: var(--subtext);
+    font-size: 11px !important;
+    color: var(--subtext-gray);
     margin-top: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-weight: 500;
   }
 
   .visually-hidden {
@@ -121,13 +136,15 @@
     border: 0;
   }
 
-  @media (max-width: 568px) {
+  @media (max-width: 768px) {
     .sk-email-capture { padding: 80px 0; }
+    .sk-email-inner { padding: 40px 20px; border-radius: 20px; }
     .sk-email-title { font-size: 32px !important; }
     .sk-email-form {
       flex-direction: column;
       padding: 12px;
       gap: 12px;
+      border-radius: 24px;
     }
     .sk-email-input { 
       width: 100%; 
@@ -147,40 +164,46 @@
   "class": "sakora-email-capture-wrapper",
   "settings": [
     {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge label",
+      "default": "JOIN OUR LUMINOUS CIRCLE"
+    },
+    {
       "type": "richtext",
       "id": "title",
       "label": "Title",
-      "default": "<p>JOIN THE SAKORA <em>PROTOCOL</em> DATABASE.</p>"
+      "default": "<p>Let's glow <em>together</em></p>"
     },
     {
       "type": "text",
       "id": "description",
       "label": "Description",
-      "default": "No spam, no soft marketing. Get raw clinical trial summaries, active concentration insights, and priority access to new formulations."
+      "default": "Sign up for gentle skincare secrets, fresh formulation drops, and warm, ingredient-led guidance straight to your inbox."
     },
     {
       "type": "text",
       "id": "placeholder",
       "label": "Input placeholder",
-      "default": "ENTER CHEMICAL / EMAIL ADDRESS"
+      "default": "your.email@address.com"
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "Button label",
-      "default": "REGISTER FOR DATA ACCESS"
+      "default": "Subscribe"
     },
     {
       "type": "text",
       "id": "success_message",
       "label": "Success message",
-      "default": "REGISTRATION APPROVED // ENCRYPTED INBOX VERIFICATION INITIATED."
+      "default": "Welcome to the family! Fresh skin guidance is on its way."
     },
     {
       "type": "text",
       "id": "fine_print",
       "label": "Fine print",
-      "default": "DATA TRANSPARENCY ASSURED. YOU MAY DE-REGISTER FROM DATA LISTS AT ANY TIME."
+      "default": "We believe in gentle communication. Unsubscribe whenever you wish."
     }
   ],
   "presets": [

@@ -12,10 +12,10 @@
 
 {% stylesheet %}
   .sk-announcement-bar {
-    background-color: var(--void);
-    color: var(--sakora-yellow);
-    border-bottom: 1px solid var(--border-gray);
-    padding: 10px 0;
+    background-color: var(--fade-bg);
+    color: var(--charcoal);
+    border-bottom: 1px solid var(--light-border);
+    padding: 8px 0;
     position: relative;
     z-index: 10;
   }
@@ -38,31 +38,30 @@
   }
 
   .sk-announcement-tag {
-    background-color: var(--electric-violet);
-    color: var(--stark-white);
+    background-color: var(--fade-accent);
+    color: var(--pure-white);
     font-size: 9px;
-    padding: 3px 8px;
-    border-radius: 4px;
+    padding: 3px 10px;
+    border-radius: 50px; /* Pill-shaped */
     font-weight: 600;
   }
 
   .sk-announcement-link {
-    color: var(--neon-mint);
+    color: var(--fade-accent);
     text-decoration: none;
     font-weight: 600;
-    transition: color 0.2s ease;
-    border-bottom: 1px solid transparent;
+    transition: opacity 0.2s ease;
+    border-bottom: 1px solid var(--fade-accent);
     padding-bottom: 1px;
   }
 
   .sk-announcement-link:hover {
-    color: var(--stark-white);
-    border-color: var(--stark-white);
+    opacity: 0.8;
   }
 
   @media (max-width: 768px) {
     .sk-announcement-bar {
-      padding: 12px 0;
+      padding: 10px 0;
     }
     .sk-announcement-message {
       flex-direction: column;
@@ -70,7 +69,7 @@
     }
     .sk-announcement-tag {
       font-size: 8px;
-      padding: 2px 6px;
+      padding: 2px 8px;
     }
   }
 {% endstylesheet %}

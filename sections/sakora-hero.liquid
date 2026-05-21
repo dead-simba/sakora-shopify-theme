@@ -2,7 +2,7 @@
 {%- assign slide_count = slide_blocks | size -%}
 
 <section
-  class="sk-hero sk-dot-grid"
+  class="sk-hero"
   data-autoplay="{{ section.settings.autoplay }}"
   data-speed="{{ section.settings.autoplay_speed | times: 1000 }}"
   aria-label="Sakora Hero Banner"
@@ -142,33 +142,41 @@
 {% stylesheet %}
   .sk-hero { 
     position: relative; 
-    background-color: var(--void); 
+    background-color: var(--chalk); 
     overflow: hidden; 
   }
 
   /* Slides */
-  .sk-hero-slides { position: relative; min-height: 700px; }
+  .sk-hero-slides { position: relative; min-height: 650px; }
   .sk-hero-slide {
     position: absolute; inset: 0;
     opacity: 0; transition: opacity 0.8s ease; pointer-events: none;
   }
   .sk-hero-slide.active { opacity: 1; position: relative; pointer-events: auto; }
 
-  .sk-hero-bg-img { width: 100%; min-height: 700px; object-fit: cover; object-position: center top; display: block; filter: brightness(0.65) contrast(1.1); }
+  .sk-hero-bg-img { 
+    width: 100%; 
+    min-height: 650px; 
+    object-fit: cover; 
+    object-position: center top; 
+    display: block; 
+    filter: brightness(0.96) contrast(1.02); 
+  }
   @media (max-width: 768px) { .sk-hero-bg-img { object-position: center center; } }
-  .sk-hero-bg-placeholder { position: absolute; inset: 0; min-height: 700px; }
-  .sk-hero-bg-placeholder--1 { background: linear-gradient(135deg, #111122, #07070F); }
-  .sk-hero-bg-placeholder--2 { background: linear-gradient(135deg, #0A141A, #050A0E); }
-  .sk-hero-bg-placeholder--3 { background: linear-gradient(135deg, #150F1E, #0A070F); }
+  
+  .sk-hero-bg-placeholder { position: absolute; inset: 0; min-height: 650px; }
+  .sk-hero-bg-placeholder--1 { background: linear-gradient(135deg, var(--fade-bg), var(--chalk)); }
+  .sk-hero-bg-placeholder--2 { background: linear-gradient(135deg, var(--reset-bg), var(--chalk)); }
+  .sk-hero-bg-placeholder--3 { background: linear-gradient(135deg, var(--sun-bg), var(--chalk)); }
   
   .sk-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(to right, rgba(10, 10, 20, 0.8) 0%, rgba(10, 10, 20, 0.4) 50%, rgba(10, 10, 20, 0.1) 100%);
+    background: linear-gradient(to right, rgba(253, 253, 249, 0.7) 0%, rgba(253, 253, 249, 0.3) 50%, rgba(253, 253, 249, 0) 100%);
     pointer-events: none;
   }
 
-  /* Cards */
+  /* Cards (Soft 24px Curves & Clean drop shadow) */
   .sk-hero-cards { 
     position: absolute; 
     top: 50%; 
@@ -179,80 +187,81 @@
   }
   .sk-hero-card {
     display: none;
-    background: rgba(15, 15, 28, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: 44px;
-    border-radius: 6px;
-    border: 1px solid var(--border-gray);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    border-radius: 24px; /* Soft 24px curves */
+    border: 1px solid var(--light-border);
+    box-shadow: 0 12px 40px rgba(44, 44, 53, 0.05);
   }
   .sk-hero-card.active { display: block; animation: sk-card-in 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
   @keyframes sk-card-in { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
   .sk-hero-eyebrow { 
-    color: var(--neon-mint); 
+    color: var(--fade-accent); 
     margin-bottom: 16px; 
   }
   
   .sk-hero-headline { 
-    font-size: 46px !important; 
-    font-weight: 800 !important; 
-    line-height: 1.05 !important; 
-    color: var(--stark-white) !important; 
+    font-size: 44px !important; 
+    font-weight: 600 !important; 
+    line-height: 1.2 !important; 
+    color: var(--charcoal) !important; 
     margin-bottom: 18px !important; 
-    text-transform: uppercase;
+    text-transform: none !important; /* Elegant natural casing */
     font-family: var(--font-heading) !important;
   }
   .sk-hero-subline { 
     font-family: var(--font-body); 
     font-size: 15px; 
-    color: var(--subtext); 
+    color: var(--subtext-gray); 
     line-height: 1.6; 
     margin-bottom: 32px; 
   }
   .sk-hero-ctas { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 28px; }
-  .sk-hero-trust { display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid var(--border-gray); }
-  .sk-hero-trust-text { font-family: var(--font-body); font-size: 13px; color: var(--subtext); }
-  .sk-hero-trust-text strong { color: var(--stark-white); font-weight: 600; }
+  .sk-hero-trust { display: flex; align-items: center; gap: 12px; padding-top: 24px; border-top: 1px solid var(--light-border); }
+  .sk-hero-trust-text { font-family: var(--font-body); font-size: 13px; color: var(--subtext-gray); }
+  .sk-hero-trust-text strong { color: var(--charcoal); font-weight: 600; }
 
   /* Dots */
   .sk-hero-dots { position: absolute; bottom: 30px; right: 8%; display: flex; gap: 8px; z-index: 5; }
   .sk-hero-dot { 
-    width: 6px; 
-    height: 6px; 
-    border-radius: 0; /* Geometric styling */
+    width: 8px; 
+    height: 8px; 
+    border-radius: 50% !important; /* Soft circular dots */
     border: none; 
-    background: rgba(250,250,245,0.3); 
+    background: rgba(44,44,53,0.2); 
     cursor: pointer; 
-    padding: 6px; 
-    box-sizing: content-box; 
+    padding: 0;
     transition: background 0.3s, transform 0.3s; 
   }
-  .sk-hero-dot.active { background: var(--sakora-yellow); transform: scale(1.2); }
+  .sk-hero-dot.active { background: var(--fade-accent); transform: scale(1.2); }
 
-  /* Arrows */
+  /* Arrows (Circular & Soft styles) */
   .sk-hero-arrow { 
     position: absolute; 
     top: 50%; 
     transform: translateY(-50%); 
     z-index: 5; 
-    background: rgba(10, 10, 20, 0.7); 
-    border: 1px solid var(--border-gray); 
-    border-radius: 6px; 
+    background: rgba(255, 255, 255, 0.85); 
+    border: 1px solid var(--ui-border); 
+    border-radius: 50% !important; /* Pure circle */
     width: 48px; 
     height: 48px; 
     display: flex; 
     align-items: center; 
     justify-content: center; 
     cursor: pointer; 
-    color: var(--stark-white); 
+    color: var(--charcoal); 
     transition: all 0.2s; 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
   }
   .sk-hero-arrow:hover { 
-    background: var(--void); 
-    border-color: var(--sakora-yellow);
-    color: var(--sakora-yellow);
+    background: var(--pure-white); 
+    border-color: var(--fade-accent);
+    color: var(--fade-accent);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
   }
   .sk-hero-arrow--prev { left: 24px; }
   .sk-hero-arrow--next { right: 24px; }
@@ -268,16 +277,16 @@
 
   /* Mobile — card drops below image, full width */
   @media (max-width: 768px) {
-    .sk-hero-slides, .sk-hero-bg-img, .sk-hero-bg-placeholder { min-height: 440px; }
+    .sk-hero-slides, .sk-hero-bg-img, .sk-hero-bg-placeholder { min-height: 380px; }
     .sk-hero-overlay {
-      background: linear-gradient(to bottom, rgba(10, 10, 20, 0.2) 0%, rgba(10, 10, 20, 0.8) 100%);
+      background: linear-gradient(to bottom, rgba(253, 253, 249, 0.1) 0%, rgba(253, 253, 249, 0.7) 100%);
     }
     .sk-hero-cards { position: relative; bottom: auto; left: auto; width: 100%; top: auto; transform: none; padding: 0; }
-    .sk-hero-card { border-radius: 0; box-shadow: none; border: none; border-top: 3px solid var(--sakora-yellow); padding: 36px 20px; background: var(--void); backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .sk-hero-card { border-radius: 0; box-shadow: none; border: none; border-top: 4px solid var(--fade-accent); padding: 36px 20px; background: var(--fade-bg); backdrop-filter: none; -webkit-backdrop-filter: none; }
     .sk-hero-headline { font-size: 32px !important; letter-spacing: -0.01em !important; }
     .sk-hero-subline { font-size: 14px; margin-bottom: 24px; }
     .sk-hero-arrow { display: none; }
-    .sk-hero-dots { position: absolute; top: 400px; right: 20px; bottom: auto; }
+    .sk-hero-dots { position: absolute; top: 340px; right: 20px; bottom: auto; }
     .sk-hero-ctas { gap: 12px; }
     .sk-hero-trust { flex-wrap: wrap; gap: 8px; padding-top: 20px; }
   }
@@ -317,25 +326,25 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "CLINICAL TRANSLATION FOR REAL SKIN."
+      "default": "Fresh skincare. Luminous results."
     },
     {
       "type": "richtext",
       "id": "headline",
       "label": "Headline",
-      "default": "<p>THE SERUM YOUR DARK SPOTS HAVE BEEN <em>DREADING.</em></p>"
+      "default": "<p>Fresh ingredients. Luminous skin. <em>Lived-in glow.</em></p>"
     },
     {
       "type": "text",
       "id": "subline",
       "label": "Sub-headline",
-      "default": "No fillers, no fairy-dust percentages. Just high-dose actives engineered for South Asian skin barriers."
+      "default": "Formulated at clinical strength, blended with calming botanicals. Targeted skincare for South Asian skin."
     },
     {
       "type": "text",
       "id": "cta_primary_label",
       "label": "Primary CTA label",
-      "default": "SHOP PROTOCOLS"
+      "default": "EXPLORE ROUTINES"
     },
     {
       "type": "url",
@@ -346,7 +355,7 @@
       "type": "text",
       "id": "cta_secondary_label",
       "label": "Secondary CTA label",
-      "default": "INGREDIENT DIRECTORY"
+      "default": "MEET THE ACTIVES"
     },
     {
       "type": "url",
@@ -367,7 +376,7 @@
       "type": "text",
       "id": "trust_reviews",
       "label": "Review count",
-      "default": "across 1,480+ clinical audits in Pakistan"
+      "default": "across 1,480+ customer skin audits in Pakistan"
     }
   ],
   "blocks": [
@@ -379,7 +388,7 @@
           "type": "image_picker",
           "id": "image",
           "label": "Desktop image",
-          "info": "Recommended: 2000x900px landscape, cool studio lighting."
+          "info": "Recommended: 2000x900px landscape, bright and airy morning lighting."
         },
         {
           "type": "image_picker",
@@ -391,25 +400,25 @@
           "type": "text",
           "id": "eyebrow",
           "label": "Eyebrow text",
-          "default": "CLINICAL TRANSLATION FOR REAL SKIN."
+          "default": "Fresh skincare. Luminous results."
         },
         {
           "type": "richtext",
           "id": "headline",
           "label": "Headline",
-          "default": "<p>THE SERUM YOUR DARK SPOTS HAVE BEEN <em>DREADING.</em></p>"
+          "default": "<p>Fresh ingredients. Luminous skin. <em>Lived-in glow.</em></p>"
         },
         {
           "type": "text",
           "id": "subline",
           "label": "Sub-headline",
-          "default": "No fillers, no fairy-dust percentages. Just high-dose actives engineered for South Asian skin barriers."
+          "default": "Formulated at clinical strength, blended with calming botanicals. Targeted skincare for South Asian skin."
         },
         {
           "type": "text",
           "id": "cta_primary_label",
           "label": "Primary button label",
-          "default": "SHOP PROTOCOLS"
+          "default": "EXPLORE ROUTINES"
         },
         {
           "type": "url",
@@ -420,7 +429,7 @@
           "type": "text",
           "id": "cta_secondary_label",
           "label": "Secondary button label",
-          "default": "INGREDIENT DIRECTORY"
+          "default": "MEET THE ACTIVES"
         },
         {
           "type": "url",

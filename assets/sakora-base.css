@@ -1,43 +1,43 @@
 /* ============================================================
    SAKORA DESIGN SYSTEM — BASE TOKENS & SHARED UTILITIES
-   Version 1.0 | May 2026
-   Skin science. No filter.
+   Version 2.0 | May 2026
+   Dot & Key Vibe — Fresh Skincare. Luminous Glow.
    ============================================================ */
 
 :root {
-  /* ---- Primary Palette ---- */
-  --void:            #0A0A14; /* Dark background */
-  --chalk:           #F7F7F2; /* Light background */
-  --sakora-yellow:   #FFE033; /* CTAs, high focus highlights */
-  --electric-violet: #7B3FFF; /* Secondary accents, hover highlights */
-  --neon-mint:       #00FFC4; /* Data points, fresh indicators, success */
-  --stark-white:     #FAFAF5; /* Body text on dark */
-  --carbon:          #111118; /* Body text on light */
+  /* ---- Luminous Base Canvas ---- */
+  --chalk:           #FDFDF9; /* Soft Warm Cream Canvas */
+  --pure-white:      #FFFFFF; /* Luminous White Panels */
+  --charcoal:        #2C2C35; /* Soft readable text (instead of harsh black) */
+  --subtext-gray:    #7A7A85; /* Secondary labels and captions */
+  --light-border:    #E9E9E2; /* Delicate separator borders */
 
-  /* ---- Ingredient / Category Palette ---- */
-  --arbutin-arc:     #B8ECFF; /* Alpha Arbutin / Brightening */
-  --niacinamide-volt: #C2F970; /* Niacinamide / Barrier */
-  --ceramide-slate:  #8DA8C4; /* Ceramides / Repair */
-  --uv-amber:        #FFB800; /* Sunscreen / SPF */
-  --peptide-dusk:    #C29EFF; /* Advanced / Peptides */
-  --c-charge:        #FF9500; /* Vitamin C */
+  /* ---- Product Line Color-Coding (Pastels & Vibrant Accents) ---- */
+  /* Fade Theory (Brightening / Strawberry) */
+  --fade-bg:         #FFF0F2; /* Sweet Pastel Pink */
+  --fade-accent:     #FF5C8A; /* Vibrant Rose Pink */
 
-  /* ---- Neutrals ---- */
-  --near-black:      #0F0F1C; /* Main alternative dark bg */
-  --deep-gray:       #1E1E2E; /* Card background on dark */
-  --border-gray:     #2E2E3E; /* Heavy borders / grids on dark */
-  --light-border:    #E2E2DC; /* Dividers / grids on light */
-  --subtext:         #9A9AB0; /* Secondary text, metadata */
+  /* Soft Reset (Repair / Aloe & Cica) */
+  --reset-bg:        #F3F9F5; /* Calm Pastel Mint */
+  --reset-accent:    #3E8E75; /* Deep Sage Green */
+
+  /* Daylite SPF 50 (Sun Protection & Vitamin C) */
+  --sun-bg:          #FFFDF0; /* Creamy Butter Yellow */
+  --sun-accent:      #FFB800; /* Warm Solar Amber */
+
+  /* UI Neutral Pastels */
+  --ui-gray-bg:      #F5F5F0; /* Soft tint backdrop */
+  --ui-border:       #E0E0D5; /* Subtle borders */
 
   /* ---- Typography Stacks ---- */
-  --font-display:    'Syne', 'Outfit', sans-serif;
-  --font-heading:    'Syne', sans-serif;
+  --font-display:    'Playfair Display', 'Outfit', serif;
+  --font-heading:    'Playfair Display', serif;
   --font-body:       'Outfit', sans-serif;
   --font-ui:         'Outfit', sans-serif;
-  --font-mono:       'Space Mono', monospace;
-  
+  --font-label:      'Outfit', sans-serif;
+
   /* ---- Layout Guidelines ---- */
-  --sk-container-width: 1280px;
+  --sk-container-width: 1200px;
 }
 
 /* ============================================================
@@ -50,79 +50,84 @@ h1, h2, h3, h4, h5, h6,
 .sk-hero-headline,
 .sk-product-name {
   font-family: var(--font-heading) !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   letter-spacing: -0.01em !important;
-  font-style: normal !important;
-  line-height: 1.1 !important;
+  color: var(--charcoal);
+  line-height: 1.25 !important;
 }
 
 body {
   font-family: var(--font-body);
-  color: var(--carbon);
+  color: var(--charcoal);
   background-color: var(--chalk);
   -webkit-font-smoothing: antialiased;
 }
 
-.bg-void body,
-body.bg-void,
-.sk-dark-mode {
-  color: var(--stark-white);
-  background-color: var(--void);
+/* Bold Display Highlights */
+.sk-highlight-active {
+  color: var(--fade-accent) !important;
+  font-style: italic;
 }
 
-/* Specific styling for technical INCI data */
-.sk-inci-mono {
-  font-family: var(--font-mono) !important;
-  font-size: 12px !important;
-  line-height: 1.5 !important;
-  letter-spacing: normal !important;
-  text-transform: none !important;
+.sk-highlight-reset {
+  color: var(--reset-accent) !important;
+  font-style: italic;
 }
 
-/* Badges and tags style rule: Outfit 600, uppercase, +0.12em tracking */
+.sk-highlight-sun {
+  color: var(--sun-accent) !important;
+  font-style: italic;
+}
+
+/* Labels and badges styling: Outfit 600, uppercase, +0.08em tracking */
 .sk-label-caps {
   font-family: var(--font-ui);
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
+  color: var(--subtext-gray);
 }
 
-/* Body Large restriction rule to avoid long lines */
+/* Body copy formatting for ideal readability */
 .sk-body-large {
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.65;
+  color: var(--charcoal);
   max-width: 620px;
 }
 
 .sk-body-normal {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--charcoal);
   max-width: 620px;
 }
 
-/* Highlight tags with no soft pastels */
-.sk-highlight-active {
-  font-style: normal !important;
-  color: var(--sakora-yellow) !important;
-  font-weight: inherit;
+/* Technical text - soft, friendly mono alternative using Outfit semi-bold */
+.sk-inci-mono {
+  font-family: var(--font-body) !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em !important;
+  color: var(--subtext-gray);
 }
 
 /* ============================================================
-   SHARED GEOMETRIC BUTTON STYLES (Radius: 6px)
+   SHARED GEOMETRIC BUTTON STYLES (Radius: 50px - Pill)
    ============================================================ */
 
 .sk-btn-primary {
-  background-color: var(--sakora-yellow) !important;
-  color: var(--carbon) !important;
+  background-color: var(--fade-accent) !important;
+  color: var(--pure-white) !important;
   font-family: var(--font-ui);
   font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 14px 28px;
-  border-radius: 6px !important; /* Strictly 6px border-radius */
-  border: 1px solid var(--sakora-yellow) !important;
+  padding: 14px 32px;
+  border-radius: 50px !important; /* Full pill-shape */
+  border: 1px solid var(--fade-accent) !important;
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
               background-color 0.2s ease, 
@@ -132,26 +137,54 @@ body.bg-void,
   text-align: center;
   text-decoration: none;
   width: fit-content;
-  box-shadow: 0 0 0 0 transparent;
+  box-shadow: 0 4px 15px rgba(255, 92, 138, 0.25);
 }
 
 .sk-btn-primary:hover {
-  transform: scale(1.02);
-  background-color: var(--sakora-yellow);
-  box-shadow: 0 4px 0 0 var(--electric-violet); /* Electric Violet bottom highlight */
+  transform: translateY(-2px);
+  background-color: #e04a74 !important;
+  border-color: #e04a74 !important;
+  box-shadow: 0 6px 20px rgba(255, 92, 138, 0.35);
+}
+
+/* Green primary variation for Soft Reset PDP */
+.sk-btn-primary-green {
+  background-color: var(--reset-accent) !important;
+  border-color: var(--reset-accent) !important;
+  box-shadow: 0 4px 15px rgba(62, 142, 117, 0.25);
+}
+
+.sk-btn-primary-green:hover {
+  background-color: #327560 !important;
+  border-color: #327560 !important;
+  box-shadow: 0 6px 20px rgba(62, 142, 117, 0.35);
+}
+
+/* Sun yellow primary variation for SPF PDP */
+.sk-btn-primary-sun {
+  background-color: var(--sun-accent) !important;
+  border-color: var(--sun-accent) !important;
+  color: var(--charcoal) !important;
+  box-shadow: 0 4px 15px rgba(255, 184, 0, 0.2);
+}
+
+.sk-btn-primary-sun:hover {
+  background-color: #e0a200 !important;
+  border-color: #e0a200 !important;
+  box-shadow: 0 6px 20px rgba(255, 184, 0, 0.3);
 }
 
 .sk-btn-secondary {
   background-color: transparent !important;
-  color: var(--stark-white) !important;
+  color: var(--charcoal) !important;
   font-family: var(--font-ui);
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  padding: 13px 26px;
-  border-radius: 6px !important;
-  border: 1px solid var(--stark-white) !important;
+  padding: 13px 28px;
+  border-radius: 50px !important; /* Full pill-shape */
+  border: 1px solid var(--charcoal) !important;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-block;
@@ -160,46 +193,34 @@ body.bg-void,
   width: fit-content;
 }
 
-/* Dark-on-light theme variations for secondary CTA */
-.sk-light-theme .sk-btn-secondary {
-  color: var(--carbon) !important;
-  border-color: var(--carbon) !important;
-}
-
 .sk-btn-secondary:hover {
-  background-color: rgba(250, 250, 245, 0.1) !important;
-  border-color: var(--sakora-yellow) !important;
-  color: var(--sakora-yellow) !important;
-}
-
-.sk-light-theme .sk-btn-secondary:hover {
-  background-color: rgba(17, 17, 24, 0.05) !important;
-  border-color: var(--electric-violet) !important;
-  color: var(--electric-violet) !important;
+  background-color: var(--charcoal) !important;
+  color: var(--pure-white) !important;
 }
 
 .sk-btn-ghost {
-  background-color: var(--deep-gray) !important;
-  color: var(--subtext) !important;
+  background-color: var(--pure-white) !important;
+  color: var(--charcoal) !important;
   font-family: var(--font-ui);
   font-size: 12px;
   font-weight: 500;
   padding: 10px 20px;
-  border-radius: 6px !important;
-  border: 1px solid var(--border-gray) !important;
+  border-radius: 50px !important; /* Pill-shape */
+  border: 1px solid var(--ui-border) !important;
   cursor: pointer;
   transition: all 0.2s ease;
   display: inline-block;
   text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
 .sk-btn-ghost:hover {
-  color: var(--stark-white) !important;
-  border-color: var(--subtext) !important;
+  border-color: var(--charcoal) !important;
+  background-color: var(--chalk) !important;
 }
 
 /* ============================================================
-   STRUCTURAL UTILITIES & DESIGN PATTERNS
+   STRUCTURAL UTILITIES & DESIGN PATTERNS (Soft 20px Curves)
    ============================================================ */
 
 /* Container wrapper rules */
@@ -215,34 +236,29 @@ body.bg-void,
   }
 }
 
-/* dot-matrix grid background texture */
-.sk-dot-grid {
-  position: relative;
+/* Soft drop shadow and curves for products/content containers */
+.sk-product-card {
+  background-color: var(--pure-white);
+  border-radius: 20px !important; /* Generous 20px curves */
+  border: 1px solid #ECECE5 !important;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(44, 44, 53, 0.03);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
-.sk-dot-grid::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  background-image: radial-gradient(var(--border-gray) 1px, transparent 1px);
-  background-size: 24px 24px;
-  opacity: 0.15;
-  z-index: 1;
+.sk-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(44, 44, 53, 0.06);
 }
 
-.sk-light-theme .sk-dot-grid::before {
-  background-image: radial-gradient(var(--light-border) 1px, transparent 1px);
-  opacity: 0.4;
-}
-
-/* Scientific scale comparison bar block styling */
+/* Redesigned comparison bar container */
 .sk-spec-scale {
-  background: var(--deep-gray);
-  border: 1px solid var(--border-gray);
-  border-radius: 6px;
-  padding: 20px;
-  margin-top: 15px;
+  background: var(--pure-white);
+  border: 1px solid var(--ui-border);
+  border-radius: 20px !important; /* Generous 20px curves */
+  padding: 24px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+  margin-top: 20px;
 }
 
 .sk-spec-scale__header {
@@ -253,36 +269,54 @@ body.bg-void,
 }
 
 .sk-spec-scale__bar-container {
-  height: 8px;
-  background-color: var(--border-gray);
-  border-radius: 4px;
+  height: 10px;
+  background-color: var(--ui-gray-bg);
+  border-radius: 50px;
   overflow: hidden;
   position: relative;
 }
 
 .sk-spec-scale__bar-fill {
   height: 100%;
-  border-radius: 4px;
-  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 50px;
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Rating component styles */
 .sk-rating-stars {
-  color: var(--sakora-yellow);
+  color: #FFC857; /* Soft golden yellow */
   letter-spacing: 2px;
 }
 
-/* Standard divider lines */
-.sk-divider-dark {
-  height: 1px;
-  background-color: var(--border-gray);
-  border: none;
-  margin: 40px 0;
-}
-
+/* Standard dividers */
 .sk-divider-light {
   height: 1px;
   background-color: var(--light-border);
   border: none;
   margin: 40px 0;
+}
+
+/* Clean, organic backdrop wraps for soft background colors */
+.sk-bg-fade {
+  background-color: var(--fade-bg);
+}
+
+.sk-bg-reset {
+  background-color: var(--reset-bg);
+}
+
+.sk-bg-sun {
+  background-color: var(--sun-bg);
+}
+
+.sk-badge-pill {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 4px 12px;
+  border-radius: 50px !important; /* Pill-shape badge */
+  display: inline-block;
+  width: fit-content;
 }

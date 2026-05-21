@@ -1,4 +1,4 @@
-<section class="sk-pdp-ing sk-dot-grid">
+<section class="sk-pdp-ing">
   <div class="sk-container">
     <div class="sk-pdp-ing-layout">
       
@@ -15,8 +15,8 @@
             {%- for block in spec_blocks -%}
               <div class="sk-pdp-ing-card" {{ block.shopify_attributes }}>
                 <div class="sk-pdp-ing-card-header">
-                  <span class="sk-inci-mono" style="color: {{ block.settings.active_color | default: 'var(--sakora-yellow)' }}">{{ block.settings.inci }}</span>
-                  <span class="sk-label-caps sk-ing-badge" style="background-color: {{ block.settings.active_color | color_modify: 'alpha', 0.1 }}; color: {{ block.settings.active_color }};">{{ block.settings.badge }}</span>
+                  <span class="sk-inci-mono" style="color: {{ block.settings.active_color | default: 'var(--fade-accent)' }}">{{ block.settings.inci }}</span>
+                  <span class="sk-badge-pill sk-ing-badge" style="background-color: {{ block.settings.active_color | color_modify: 'alpha', 0.1 }}; color: {{ block.settings.active_color }};">{{ block.settings.badge }}</span>
                 </div>
                 <h3 class="sk-ing-card-name">{{ block.settings.name }}</h3>
                 <p class="sk-ing-card-function">{{ block.settings.benefit }}</p>
@@ -24,11 +24,11 @@
                 <!-- Concentration Comparison Scale -->
                 <div class="sk-spec-scale">
                   <div class="sk-spec-scale__header">
-                    <span class="sk-inci-mono text-focus" style="color: var(--sakora-yellow);">SAKORA: {{ block.settings.concentration }}</span>
+                    <span class="sk-inci-mono text-focus" style="color: {{ block.settings.active_color | default: 'var(--fade-accent)' }};">SAKORA: {{ block.settings.concentration }}</span>
                     <span class="sk-inci-mono text-sub">TYPICAL: {{ block.settings.industry_typical }}</span>
                   </div>
                   <div class="sk-spec-scale__bar-container">
-                    <div class="sk-spec-scale__bar-fill" style="width: {{ block.settings.percentage }}%; background-color: {{ block.settings.active_color | default: 'var(--sakora-yellow)' }};"></div>
+                    <div class="sk-spec-scale__bar-fill" style="width: {{ block.settings.percentage }}%; background-color: {{ block.settings.active_color | default: 'var(--fade-accent)' }};"></div>
                   </div>
                 </div>
               </div>
@@ -37,19 +37,19 @@
             <!-- Fallback design static blocks -->
             <div class="sk-pdp-ing-card">
               <div class="sk-pdp-ing-card-header">
-                <span class="sk-inci-mono" style="color: var(--arbutin-arc);">ALPHA-ARBUTIN</span>
-                <span class="sk-label-caps sk-ing-badge" style="background-color: rgba(184, 236, 255, 0.1); color: var(--arbutin-arc);">Active</span>
+                <span class="sk-inci-mono" style="color: var(--fade-accent);">ALPHA-ARBUTIN</span>
+                <span class="sk-badge-pill sk-ing-badge" style="background-color: rgba(255, 92, 138, 0.1); color: var(--fade-accent);">Active</span>
               </div>
               <h3 class="sk-ing-card-name">Alpha Arbutin 2%</h3>
               <p class="sk-ing-card-function">Blocks hyperactive melanocytes at the enzymatic level. Rapidly dissolves stubborn dark spots and acne blemishes.</p>
               
               <div class="sk-spec-scale">
                 <div class="sk-spec-scale__header">
-                  <span class="sk-inci-mono text-focus" style="color: var(--sakora-yellow);">SAKORA: 2.0%</span>
+                  <span class="sk-inci-mono text-focus" style="color: var(--fade-accent);">SAKORA: 2.0%</span>
                   <span class="sk-inci-mono text-sub">TYPICAL: 0.5%</span>
                 </div>
                 <div class="sk-spec-scale__bar-container">
-                  <div class="sk-spec-scale__bar-fill" style="width: 90%; background-color: var(--arbutin-arc);"></div>
+                  <div class="sk-spec-scale__bar-fill" style="width: 90%; background-color: var(--fade-accent);"></div>
                 </div>
               </div>
             </div>
@@ -66,7 +66,7 @@
             <span class="sk-inci-claim sk-inci-mono">✓ 100% TRANSPARENT ACTIVE LEVEL</span>
             <span class="sk-inci-claim sk-inci-mono">✓ FRAGRANCE-FREE</span>
             <span class="sk-inci-claim sk-inci-mono">✓ CRUELTY-FREE & VEGAN</span>
-            <span class="sk-inci-claim sk-inci-mono">✓ HUMIDITY-STABLE VEHICLE</span>
+            <span class="sk-inci-claim sk-inci-mono">✓ HUMIDITY-STABLE FORMULATION</span>
           </div>
 
           <div class="sk-inci-disclosure-text">
@@ -74,7 +74,7 @@
           </div>
 
           <div class="sk-inci-caution">
-            <div class="sk-inci-caution-heading sk-label-caps">CLINICAL STABILITY GUIDANCE</div>
+            <div class="sk-inci-caution-heading sk-label-caps">Gentle Stability Guidance</div>
             <p class="sk-inci-caution-body">Keep isolated from direct sunlight. Storage below 30°C recommended. Highly active formula—patch test behind the ear for 24 hours prior to facial introduction.</p>
           </div>
         </div>
@@ -86,10 +86,10 @@
 
 {% stylesheet %}
   .sk-pdp-ing {
-    background-color: var(--void);
-    color: var(--stark-white);
+    background-color: var(--chalk);
+    color: var(--charcoal);
     padding: 100px 0;
-    border-bottom: 1px solid var(--border-gray);
+    border-bottom: 1px solid var(--light-border);
   }
 
   .sk-pdp-ing-layout {
@@ -100,34 +100,35 @@
   }
 
   .sk-pdp-ing-eyebrow {
-    color: var(--neon-mint);
+    color: var(--fade-accent);
     margin-bottom: 16px;
   }
 
   .sk-pdp-ing-title {
     font-size: 38px !important;
-    text-transform: uppercase;
+    text-transform: none !important;
   }
 
   .sk-pdp-ing-sub {
-    color: var(--subtext);
+    color: var(--subtext-gray);
     margin-top: 14px;
     margin-bottom: 40px;
     line-height: 1.6;
   }
 
-  /* Spec Blocks Grid */
+  /* Spec Blocks Grid (Soft 20px curves & shadows) */
   .sk-pdp-ing-cards {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
   }
 
   .sk-pdp-ing-card {
-    background-color: var(--near-black);
-    border: 1px solid var(--border-gray);
-    border-radius: 6px;
+    background-color: var(--pure-white);
+    border: 1px solid var(--ui-border);
+    border-radius: 20px;
     padding: 24px;
+    box-shadow: 0 8px 24px rgba(44, 44, 53, 0.02);
   }
 
   .sk-pdp-ing-card-header {
@@ -138,41 +139,41 @@
   }
 
   .sk-ing-badge {
-    font-size: 8px !important;
-    padding: 3px 8px;
-    border-radius: 4px;
+    font-size: 9px !important;
     font-weight: 600;
   }
 
   .sk-ing-card-name {
     font-family: var(--font-heading) !important;
-    font-size: 20px !important;
-    font-weight: 700 !important;
-    color: var(--stark-white) !important;
+    font-size: 22px !important;
+    font-weight: 600 !important;
+    color: var(--charcoal) !important;
     margin-bottom: 8px !important;
   }
 
   .sk-ing-card-function {
     font-family: var(--font-body);
     font-size: 14px;
-    color: var(--subtext);
+    color: var(--charcoal);
+    opacity: 0.85;
     line-height: 1.5;
     margin-bottom: 20px;
   }
 
   /* RIGHT: INCI Box */
   .sk-pdp-inci-box {
-    background-color: var(--near-black);
-    border: 1px solid var(--border-gray);
-    border-radius: 6px;
+    background-color: var(--pure-white);
+    border: 1px solid var(--ui-border);
+    border-radius: 20px;
     padding: 40px;
+    box-shadow: 0 8px 24px rgba(44, 44, 53, 0.02);
   }
 
   .sk-inci-title {
-    font-size: 24px !important;
-    text-transform: uppercase;
+    font-size: 26px !important;
+    text-transform: none !important;
     margin-bottom: 24px !important;
-    color: var(--stark-white);
+    color: var(--charcoal) !important;
   }
 
   .sk-inci-claims {
@@ -180,13 +181,13 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 28px;
-    border-bottom: 1px dashed var(--border-gray);
+    border-bottom: 1px dashed var(--light-border);
     padding-bottom: 20px;
   }
 
   .sk-inci-claim {
-    font-size: 10px !important;
-    color: var(--neon-mint);
+    font-size: 11px !important;
+    color: var(--fade-accent) !important;
     font-weight: 600;
   }
 
@@ -196,21 +197,22 @@
 
   .sk-inci-list {
     font-size: 12px !important;
-    line-height: 2 !important;
-    color: var(--subtext);
+    line-height: 2.1 !important;
+    color: var(--charcoal);
+    opacity: 0.85;
     word-break: break-word;
   }
 
   .sk-inci-caution {
-    background-color: rgba(255, 224, 51, 0.03);
-    border: 1px solid rgba(255, 224, 51, 0.2);
-    border-radius: 6px;
+    background-color: var(--fade-bg);
+    border: 1px solid var(--fade-accent);
+    border-radius: 16px;
     padding: 20px;
   }
 
   .sk-inci-caution-heading {
-    color: var(--sakora-yellow);
-    font-size: 10px;
+    color: var(--fade-accent);
+    font-size: 11px;
     font-weight: 700;
     margin-bottom: 6px;
   }
@@ -219,7 +221,8 @@
     font-family: var(--font-body);
     font-size: 12px;
     line-height: 1.5;
-    color: var(--subtext);
+    color: var(--charcoal);
+    opacity: 0.85;
     margin: 0;
   }
 
@@ -253,25 +256,25 @@
       "type": "text",
       "id": "label",
       "label": "Section Label",
-      "default": "FORMULA SPECIFICATIONS"
+      "default": "Active Ingredients"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Section Title",
-      "default": "THE INGREDIENT INVENTORY"
+      "default": "Explore Our Formulation Ethics"
     },
     {
       "type": "textarea",
       "id": "subtitle",
       "label": "Section Subtitle",
-      "default": "We measure active components under clinical laboratory protocols. What we declare is what your skin barriers receive."
+      "default": "Disclosed percentages, gentle botanical bases, and clinically proven results. Your skin barrier's best friend."
     },
     {
       "type": "text",
       "id": "inci_title",
       "label": "INCI Title",
-      "default": "FULL INCI INVENTORY"
+      "default": "Full Ingredient List"
     },
     {
       "type": "textarea",
@@ -307,7 +310,7 @@
           "type": "color",
           "id": "active_color",
           "label": "Action Accent Color",
-          "default": "#B8ECFF"
+          "default": "#FF5C8A"
         },
         {
           "type": "text",
@@ -349,7 +352,7 @@
             "name": "Alpha Arbutin 2%",
             "inci": "ALPHA-ARBUTIN",
             "badge": "BRIGHTENING",
-            "active_color": "#B8ECFF",
+            "active_color": "#FF5C8A",
             "concentration": "2.0%",
             "industry_typical": "0.5%",
             "percentage": 90,
