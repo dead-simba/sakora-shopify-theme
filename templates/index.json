@@ -1,331 +1,210 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "glowve_hero": {
-      "type": "sakora-hero",
+    "image_banner": {
+      "type": "image-banner",
       "blocks": {
-        "slide_1": {
-          "type": "slide",
-          "name": "Zara's Confident Focus",
+        "heading": {
+          "type": "heading",
           "settings": {
-            "image": "shopify://shop_images/Banner1-Horizontal.webp",
-            "mobile_image": "shopify://shop_images/Banner1-Square.webp",
-            "eyebrow": "CLINICAL TRANSLATION FOR REAL SKIN.",
-            "headline": "<p>THE SERUM YOUR DARK SPOTS HAVE BEEN <em>DREADING.</em></p>",
-            "subline": "No fillers, no fairy-dust percentages. Just high-dose actives engineered for South Asian skin barriers.",
-            "cta_primary_label": "SHOP PROTOCOLS",
-            "cta_primary_url": "/collections/all",
-            "cta_secondary_label": "INGREDIENT DIRECTORY",
-            "cta_secondary_url": "/pages/ingredients"
+            "heading": "Image banner",
+            "heading_size": "h0"
           }
         },
-        "slide_2": {
-          "type": "slide",
-          "name": "Daylite SPF PA++++",
+        "text": {
+          "type": "text",
           "settings": {
-            "image": "shopify://shop_images/Banner2-Horizontal.webp",
-            "mobile_image": "shopify://shop_images/Banner2-Square.webp",
-            "eyebrow": "NEW SCIENTIFIC DROP.",
-            "headline": "<p>SPF THAT <em>DISAPPEARS.</em> PROTECTION THAT SEALS.</p>",
-            "subline": "Matte UV Defence SPF 50 PA++++ — zero white cast, sebum-resistant, engineered for Pakistan's UV index 10+.",
-            "cta_primary_label": "SHOP SPF",
-            "cta_primary_url": "/collections/sunscreen",
-            "cta_secondary_label": "VIEW THE INCI LIST",
-            "cta_secondary_url": "/pages/ingredients"
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
           }
         },
-        "slide_3": {
-          "type": "slide",
-          "name": "Soft Reset Barrier Repair",
+        "button": {
+          "type": "buttons",
           "settings": {
-            "image": "shopify://shop_images/Banner3-Horizontal_72187c39-87b9-4b1d-806e-41950b8cec32.webp",
-            "mobile_image": "shopify://shop_images/Banner3-Square_ede8facb-0874-479e-9f10-1e57f0cbdfea.webp",
-            "eyebrow": "BARRIER SEAL SYSTEM.",
-            "headline": "<p>REBUILD. <em>RESTORE.</em> RESIST HUMIDITY.</p>",
-            "subline": "Triple Ceramide Complex + Matrixyl 3000™ — formulated to lock hydration and repair compromised local skin barriers.",
-            "cta_primary_label": "SHOP MOISTURIZERS",
-            "cta_primary_url": "/collections/moisturizer",
-            "cta_secondary_label": "INGREDIENT INVENTORY",
-            "cta_secondary_url": "/pages/ingredients"
+            "button_label_1": "Shop all",
+            "button_link_1": "shopify://collections/all",
+            "button_style_secondary_1": true,
+            "button_label_2": "",
+            "button_link_2": "",
+            "button_style_secondary_2": false
           }
         }
       },
       "block_order": [
-        "slide_1",
-        "slide_2",
-        "slide_3"
+        "heading",
+        "text",
+        "button"
       ],
-      "name": "Sakora Hero",
       "settings": {
-        "autoplay": true,
-        "autoplay_speed": 3,
-        "eyebrow": "CLINICAL TRANSLATION FOR REAL SKIN.",
-        "headline": "<p>THE SERUM YOUR DARK SPOTS HAVE BEEN <em>DREADING.</em></p>",
-        "subline": "No fillers, no fairy-dust percentages. Just high-dose actives engineered for South Asian skin barriers.",
-        "cta_primary_label": "SHOP PROTOCOLS",
-        "cta_primary_url": "",
-        "cta_secondary_label": "INGREDIENT DIRECTORY",
-        "cta_secondary_url": "",
-        "trust_rating": "4.9 stars",
-        "trust_reviews": "across 1,480+ clinical audits in Pakistan"
+        "image_overlay_opacity": 40,
+        "image_height": "large",
+        "desktop_content_position": "bottom-center",
+        "show_text_box": false,
+        "desktop_content_alignment": "center",
+        "color_scheme": "scheme-3",
+        "mobile_content_alignment": "center",
+        "stack_images_on_mobile": false,
+        "show_text_below": false
       }
     },
-    "glowve_ing_directory": {
-      "type": "sakora-ingredient-directory",
+    "rich_text": {
+      "type": "rich-text",
       "blocks": {
-        "star_card_xYFG4J": {
-          "type": "star_card",
+        "heading": {
+          "type": "heading",
           "settings": {
-            "name": "Alpha Arbutin 2%",
-            "inci": "ALPHA-ARBUTIN",
-            "category": "brightening",
-            "active_color": "#B8ECFF",
-            "concentration": "2.0%",
-            "industry_typical": "0.5%–1.0%",
-            "percentage": 85,
-            "function": "Blocks enzymatic synthesis of melanin pigment. Specifically chosen at maximum safe concentration of 2.0% for hyperpigmentation correction in Fitzpatrick IV-VI skin profiles.",
-            "study_ref": "Derm. Ther. Vol 33, Iss 4"
+            "heading": "Talk about your brand",
+            "heading_size": "h1"
           }
         },
-        "star_card_6VUEK6": {
-          "type": "star_card",
+        "text": {
+          "type": "text",
           "settings": {
-            "name": "Triple Ceramide Complex",
-            "inci": "CERAMIDE NP · AP · EOP",
-            "category": "barrier",
-            "active_color": "#8DA8C4",
-            "concentration": "1.5% Pure",
-            "industry_typical": "0.1%–0.2%",
-            "percentage": 95,
-            "function": "Bio-identical lipid matrix mimicking skin's natural structure. Interlocking matrix that seals transepidermal water loss and restores compromised skin barriers.",
-            "study_ref": "Int. Journal of Molecular Sci. Vol 22"
-          }
-        },
-        "star_card_YWHeKc": {
-          "type": "star_card",
-          "settings": {
-            "name": "Matte UV Filters",
-            "inci": "TINOSORB S + M · UVINUL A PLUS",
-            "category": "sunscreen",
-            "active_color": "#FFB800",
-            "concentration": "SPF 50 / PA++++",
-            "industry_typical": "SPF 30 / PA+++",
-            "percentage": 100,
-            "function": "Broad spectrum hybrid physical/organic sunscreen network. Specifically optimized for stable protection in extreme temperature climates and sebum-resistant matte finish.",
-            "study_ref": "Photochem. & Photobiol. Vol 88"
+            "text": "<p>Share information about your brand with your customers. Describe a product, make announcements, or welcome customers to your store.<\/p>"
           }
         }
       },
       "block_order": [
-        "star_card_xYFG4J",
-        "star_card_6VUEK6",
-        "star_card_YWHeKc"
+        "heading",
+        "text"
       ],
-      "name": "Sakora Ingredient Registry",
       "settings": {
-        "label": "RADICAL EVIDENCE",
-        "title": "THE INGREDIENT REGISTRY",
-        "description": "Every percentage. Every INCI registry name. Full disclosure, backed by published clinical trials. We do not use filler ingredients.",
-        "cta_label": "VIEW FULL CLINICAL METHODOLOGY",
-        "cta_url": "/pages/ingredients"
+        "color_scheme": "scheme-1",
+        "full_width": true,
+        "padding_top": 40,
+        "padding_bottom": 0
       }
     },
-    "glowve_bundle": {
-      "type": "sakora-bundle",
-      "name": "Sakora Bundle",
+    "featured_collection": {
+      "type": "featured-collection",
       "settings": {
-        "label": "CLINICAL REGIMEN SYSTEM",
-        "title": "<p>THE COMPLETE PROTOCOL: <em>3 STEPS</em></p>",
-        "subtitle": "Designed as an interlocking system: Fade Theory controls melanin pathways, Soft Reset locks dynamic hydration complexes, and Daylite SPF prevents UV reactivation.",
-        "bundle_product": "complete-glow-bundle",
-        "product_1": "fade-theory",
-        "name_1": "Fade Theory Brightening Serum",
-        "price_1": "PKR 1,480",
-        "step_1": "01 // APPLICATION PM",
-        "product_2": "soft-reset-moisturizer",
-        "name_2": "Soft Reset Triple Ceramide",
-        "price_2": "PKR 1,880",
-        "step_2": "02 // HYDRATE AM + PM",
-        "product_3": "daylite-spf-50-sunscreen",
-        "name_3": "Daylite SPF 50 PA++++",
-        "price_3": "PKR 1,780",
-        "step_3": "03 // PROTECT AM ONLY",
-        "bundle_price": "PKR 4,440",
-        "original_price": "PKR 5,140",
-        "saving_text": "CLINICAL AUDIT DISCOUNT Applied: SAVE PKR 700 // Free delivery included",
-        "cta_label": "ADD COMPLETE SYSTEM TO BAG",
-        "cta_url": "/collections/all",
-        "note": "EXPRESS SHIPPING WITHIN PAKISTAN // 7-DAY PRODUCT QUALITY AUDITS GUARANTEED"
+        "title": "Featured products",
+        "heading_size": "h2",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "show_view_all": false,
+        "swipe_on_mobile": false,
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 28,
+        "padding_bottom": 36
       }
     },
-    "glowve_email": {
-      "type": "sakora-email-capture",
-      "name": "Sakora Email Capture",
-      "settings": {
-        "title": "<p>JOIN THE SAKORA <em>PROTOCOL</em> DATABASE.</p>",
-        "description": "No spam, no soft marketing. Get raw clinical trial summaries, active concentration insights, and priority access to new formulations.",
-        "placeholder": "ENTER CHEMICAL / EMAIL ADDRESS",
-        "cta_label": "REGISTER FOR DATA ACCESS",
-        "success_message": "REGISTRATION APPROVED // ENCRYPTED INBOX VERIFICATION INITIATED.",
-        "fine_print": "DATA TRANSPARENCY ASSURED. YOU MAY DE-REGISTER FROM DATA LISTS AT ANY TIME."
-      }
-    },
-    "featured_blog_posts_PwjMRE": {
-      "type": "featured-blog-posts",
+    "collage": {
+      "type": "collage",
       "blocks": {
-        "static-blog-title": {
-          "type": "_featured-blog-posts-title",
-          "name": "t:names.title",
-          "static": true,
+        "collection-0": {
+          "type": "collection",
           "settings": {
-            "text": "<h3>{{ closest.blog.title }}</h3>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "rte",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "color": "var(--color-foreground)",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "collection": ""
+          }
         },
-        "static-blog-post-card": {
-          "type": "_featured-blog-posts-card",
-          "name": "t:names.blog_card",
-          "static": true,
+        "product": {
+          "type": "product",
           "settings": {
-            "alignment": "left",
-            "gap": 8,
-            "inherit_color_scheme": true,
-            "color_scheme": "",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "image": {
-              "type": "_featured-blog-posts-image",
-              "static": true,
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0
-              },
-              "blocks": {}
-            },
-            "title": {
-              "type": "_heading",
-              "name": "t:names.title",
-              "static": true,
-              "settings": {
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "text": "<h4>{{ closest.article.title }}</h4>",
-                "read_only": false,
-                "alignment": "left",
-                "show_alignment": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "blog-post-info-text": {
-              "type": "_blog-post-info-text",
-              "name": "t:names.details",
-              "static": true,
-              "settings": {
-                "show_date": true,
-                "show_author": true,
-                "type_preset": "",
-                "alignment": "left",
-                "show_alignment": false,
-                "padding-block-start": 0,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            },
-            "blog-post-description": {
-              "type": "_blog-post-description",
-              "name": "t:names.excerpt",
-              "static": true,
-              "settings": {
-                "type_preset": "rte",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "color": "var(--color-foreground)",
-                "padding-block-start": 8,
-                "padding-block-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": []
+            "product": "",
+            "second_image": false
+          }
+        },
+        "collection-1": {
+          "type": "collection",
+          "settings": {
+            "collection": ""
+          }
         }
       },
-      "name": "t:names.blog_posts_grid",
+      "block_order": [
+        "collection-0",
+        "product",
+        "collection-1"
+      ],
       "settings": {
-        "blog": "news",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "post_limit": 3,
-        "columns": 3,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 8,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
-        "gap": 12,
-        "color_scheme": "",
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "heading": "Multimedia collage",
+        "heading_size": "h2",
+        "desktop_layout": "left",
+        "mobile_layout": "collage",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "video": {
+      "type": "video",
+      "settings": {
+        "heading": "",
+        "video_url": "https://www.youtube.com/watch?v=_9VUPq3SxOc",
+        "heading_size": "h1",
+        "description": "",
+        "full_width": false,
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column1": {
+          "type": "column",
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column2": {
+          "type": "column",
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "column3": {
+          "type": "column",
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column1",
+        "column2",
+        "column3"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "none",
+        "button_label": "",
+        "button_link": "",
+        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
+        "columns_mobile": "1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
-    "glowve_hero",
-    "glowve_ing_directory",
-    "glowve_bundle",
-    "glowve_email",
-    "featured_blog_posts_PwjMRE"
+    "image_banner",
+    "rich_text",
+    "featured_collection",
+    "collage",
+    "video",
+    "multicolumn"
   ]
 }

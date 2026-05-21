@@ -1,156 +1,32 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "shop_hero": {
-      "type": "glowve-shop-hero",
-      "blocks": {
-        "pill_1": {
-          "type": "pill",
-          "settings": {
-            "label": "Shop All",
-            "link": "/pages/shop",
-            "is_active": true
-          }
-        },
-        "pill_2": {
-          "type": "pill",
-          "settings": {
-            "label": "Serums",
-            "link": "shopify://collections/serum",
-            "is_active": false
-          }
-        },
-        "pill_3": {
-          "type": "pill",
-          "settings": {
-            "label": "Moisturisers",
-            "link": "shopify://collections/moisturizer",
-            "is_active": false
-          }
-        },
-        "pill_4": {
-          "type": "pill",
-          "settings": {
-            "label": "Sunscreens",
-            "link": "shopify://collections/sunscreen",
-            "is_active": false
-          }
-        }
-      },
-      "block_order": [
-        "pill_1",
-        "pill_2",
-        "pill_3",
-        "pill_4"
-      ],
+    "banner": {
+      "type": "main-collection-banner",
       "settings": {
-        "eyebrow": "The Full Range",
-        "title": "The <em>collection</em>",
-        "subtitle": "Clinically-proven solutions for South Asian skin. Re-engineered from the ground up for our climate."
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "scheme-1"
       }
     },
-    "shop_grid": {
-      "type": "glowve-shop-grid",
-      "blocks": {
-        "prod_1": {
-          "type": "product_card",
-          "settings": {
-            "product": "fade-theory",
-            "custom_title": "",
-            "ingredient_tag": "Alpha Arbutin · Vitamin C · Tranexamic Acid",
-            "concern_text": "Targets dark spots, PIH, and uneven tone from three angles simultaneously.",
-            "review_count": "4.9 (3 reviews)",
-            "img_bg_gradient": "linear-gradient(135deg, #FFF3EE 0%, #FFE4D6 100%)",
-            "badge_text": "Brightening · Best Choice",
-            "badge_bg_color": "#fff0e6",
-            "badge_text_color": "#ff4d8d"
-          }
-        },
-        "prod_2": {
-          "type": "product_card",
-          "settings": {
-            "product": "soft-reset-moisturizer",
-            "custom_title": "",
-            "ingredient_tag": "Ceramides · Niacinamide · Hyaluronic Acid",
-            "concern_text": "Rebuilds depleted skin barrier, calms sensitivity, and locks in moisture.",
-            "review_count": "5 (4 reviews)",
-            "img_bg_gradient": "linear-gradient(135deg, #E2F5EE 0%, #B8E8D4 100%)",
-            "badge_text": "Barrier Care · Cult Choice",
-            "badge_bg_color": "#e2f5ee",
-            "badge_text_color": "#ff4d8d"
-          }
-        },
-        "prod_3": {
-          "type": "product_card",
-          "settings": {
-            "product": "daylite-spf-50-sunscreen",
-            "custom_title": "",
-            "ingredient_tag": "SPF 50+ · Zinc Oxide · Niacinamide",
-            "concern_text": "Broad-spectrum daily protection formulated for Pakistan's UV index.",
-            "review_count": "4.9 (5 reviews)",
-            "img_bg_gradient": "linear-gradient(135deg, #FFF8D6 0%, #FFE08A 100%)",
-            "badge_text": "SPF Protection · High Def",
-            "badge_bg_color": "#fff8d6",
-            "badge_text_color": "#ff4d8d"
-          }
-        }
-      },
-      "block_order": [
-        "prod_1",
-        "prod_2",
-        "prod_3"
-      ],
-      "settings": {}
-    },
-    "bundle": {
-      "type": "glowve-bundle",
+    "product-grid": {
+      "type": "main-collection-product-grid",
       "settings": {
-        "label": "The Complete Protocol",
-        "title": "<p>Everything your skin needs.<br/>Nothing it doesn't.</p>",
-        "subtitle": "Morning and night, covered. The serum fades. The moisturizer repairs.The SPF protects — so the first two can actually work.",
-        "bundle_product": "complete-glow-bundle",
-        "product_1": "fade-theory",
-        "name_1": "Fade Theory Brightening Serum",
-        "price_1": "PKR 1,400",
-        "step_1": "Step 1 · PM",
-        "product_2": "soft-reset-moisturizer",
-        "name_2": "Soft Reset Barrier Renew Moisturizer",
-        "price_2": "PKR 1,999",
-        "step_2": "Step 2 · AM + PM",
-        "product_3": "daylite-spf-50-sunscreen",
-        "name_3": "Daylite Sunscreen SPF 50+",
-        "price_3": "PKR 1,600",
-        "step_3": "Step 3 · AM Only",
-        "bundle_price": "PKR 4,440",
-        "original_price": "PKR 5,550",
-        "saving_text": "Save PKR 1,110 vs buying separately (PKR 4,440)",
-        "cta_label": "Add Bundle to Bag",
-        "cta_url": "",
-        "note": "Free delivery included · Dermatologist tested"
-      }
-    },
-    "quiz_cta": {
-      "type": "glowve-quiz-cta",
-      "settings": {
-        "title": "Not sure which one is right for you?",
-        "text": "Answer 5 questions and we'll tell you exactly where to start.",
-        "btn_label": "Take the Skin Quiz →",
-        "btn_link": "/pages/quiz"
+        "products_per_page": 16,
+        "columns_desktop": 4,
+        "image_ratio": "adapt",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
-    "shop_hero",
-    "shop_grid",
-    "bundle",
-    "quiz_cta"
+    "banner",
+    "product-grid"
   ]
 }

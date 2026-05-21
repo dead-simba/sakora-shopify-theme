@@ -1,197 +1,25 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "contact_hero": {
-      "type": "glowve-page-hero",
+    "main": {
+      "type": "main-page",
       "settings": {
-        "bg_color": "#fff0e6",
-        "eyebrow": "Get in Touch",
-        "eyebrow_color": "#ff4d8d",
-        "title": "we're <em>here.</em>",
-        "title_color": "#1a1a1a",
-        "description": "<p>Every message gets a real reply. Not a bot. We reply within 24 hours, Monday to Saturday.</p>",
-        "text_color": "#666666"
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
-    "contact_grid": {
-      "type": "glowve-contact-grid",
-      "blocks": {
-        "email": {
-          "type": "contact_method",
-          "settings": {
-            "icon_type": "email",
-            "icon_bg": "linear-gradient(135deg, #FFE8D6, #F4845F22)",
-            "label": "Email",
-            "text_1": "",
-            "text_1_color": "#666666",
-            "link_text": "hello@glowve.pk",
-            "link_url": "mailto:hello@glowve.pk"
-          }
-        },
-        "whatsapp": {
-          "type": "contact_method",
-          "settings": {
-            "icon_type": "whatsapp",
-            "icon_bg": "linear-gradient(135deg, #E8F5E4, #A8C5A022)",
-            "label": "WhatsApp",
-            "text_1": "+92 327 7771047",
-            "text_1_color": "#1a1a1a",
-            "link_text": "Message us on WhatsApp →",
-            "link_url": "https://wa.me/923277771047"
-          }
-        },
-        "response_time": {
-          "type": "contact_method",
-          "settings": {
-            "icon_type": "clock",
-            "icon_bg": "linear-gradient(135deg, #FFF3D6, #FFC85C22)",
-            "label": "Response Time",
-            "text_1": "Within 24 hours<br>Monday to Saturday",
-            "text_1_color": "#666666",
-            "link_text": "",
-            "link_url": ""
-          }
-        },
-        "location": {
-          "type": "contact_method",
-          "settings": {
-            "icon_type": "location",
-            "icon_bg": "linear-gradient(135deg, #F0EBF8, #9B72AA22)",
-            "label": "Location",
-            "text_1": "Pakistan 🇵🇰",
-            "text_1_color": "#666666",
-            "link_text": "",
-            "link_url": ""
-          }
-        },
-        "quick_links": {
-          "type": "quick_links",
-          "settings": {
-            "title": "Quick links",
-            "menu": ""
-          }
-        }
-      },
-      "block_order": [
-        "email",
-        "whatsapp",
-        "response_time",
-        "location",
-        "quick_links"
-      ],
+    "form": {
+      "type": "contact-form",
       "settings": {
-        "bg_color": "#ffffff",
-        "form_note": "We reply within 24 hours, Monday–Saturday.",
-        "info_title": "Other ways to<br><em>reach us.</em>"
-      }
-    },
-    "contact_faq": {
-      "type": "glowve-page-faq",
-      "blocks": {
-        "faq_1": {
-          "type": "item",
-          "settings": {
-            "question": "Can I change my order after placing it?",
-            "answer": "<p>Yes — if your order hasn't been dispatched yet. Message us on WhatsApp or email hello@glowve.pk as soon as possible with your order number. We process orders quickly, so the sooner the better.</p>"
-          }
-        },
-        "faq_2": {
-          "type": "item",
-          "settings": {
-            "question": "What if my product arrives damaged?",
-            "answer": "<p>Send us a photo of the damage at hello@glowve.pk or via WhatsApp. We'll send a replacement within 48 hours. No questions, no returns needed — we just fix it.</p>"
-          }
-        },
-        "faq_3": {
-          "type": "item",
-          "settings": {
-            "question": "Do you ship to my city?",
-            "answer": "<p>We deliver to all major cities across Pakistan — including Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Hyderabad, Peshawar, Quetta, Sialkot, Gujranwala, and Abbottabad. Don't see your city? Message us and we'll work it out.</p>"
-          }
-        },
-        "faq_4": {
-          "type": "item",
-          "settings": {
-            "question": "Can I return a product I've opened?",
-            "answer": "<p>Unfortunately we can only accept returns on unopened products in original packaging within 7 days of delivery. If a product is reacting with your skin, message us — we want to understand what happened and help you find what works.</p>"
-          }
-        },
-        "faq_5": {
-          "type": "item",
-          "settings": {
-            "question": "How do I track my order?",
-            "answer": "<p>Use our order tracking page — just enter your order number and email. You'll also receive tracking updates by email once your order is dispatched.</p>"
-          }
-        }
-      },
-      "block_order": [
-        "faq_1",
-        "faq_2",
-        "faq_3",
-        "faq_4",
-        "faq_5"
-      ],
-      "settings": {
-        "bg_color": "#ffffff",
-        "eyebrow": "— Frequently Asked —",
-        "eyebrow_color": "#ff4d8d",
-        "title": "Quick <em>answers.</em>",
-        "title_color": "#1a1a1a"
-      }
-    },
-    "contact_trust": {
-      "type": "glowve-trust-strip",
-      "blocks": {
-        "trust_1": {
-          "type": "trust_item",
-          "settings": {
-            "icon_type": "lightning",
-            "title": "Fast Replies",
-            "desc": "Within 24 hours, Mon–Sat"
-          }
-        },
-        "trust_2": {
-          "type": "trust_item",
-          "settings": {
-            "icon_type": "support",
-            "title": "Friendly Support",
-            "desc": "Real people, not bots"
-          }
-        },
-        "trust_3": {
-          "type": "trust_item",
-          "settings": {
-            "icon_type": "shield",
-            "title": "Made for Pakistan",
-            "desc": "We understand your skin"
-          }
-        }
-      },
-      "block_order": [
-        "trust_1",
-        "trust_2",
-        "trust_3"
-      ],
-      "settings": {
-        "bg_color": "#ffffff",
-        "border_top": true,
-        "text_color": "#1a1a1a",
-        "desc_color": "#666666"
+        "heading": "",
+        "heading_size": "h1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     }
   },
   "order": [
-    "contact_hero",
-    "contact_grid",
-    "contact_faq",
-    "contact_trust"
+    "main",
+    "form"
   ]
 }
