@@ -56,15 +56,22 @@
       justify-content: flex-start;
       align-items: stretch;
     }
-    .sakora-hero--full_width .sakora-hero__bg-img {
+    .sakora-hero--full_width .sakora-hero__bg-picture {
       position: relative !important;
       inset: auto !important;
       width: 100% !important;
       height: auto !important;
       aspect-ratio: 1 / 1 !important;
-      object-fit: cover !important;
       display: block !important;
       z-index: 1 !important;
+    }
+    .sakora-hero--full_width .sakora-hero__bg-img {
+      position: absolute !important;
+      inset: 0 !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
     }
     .sakora-hero--full_width .sakora-hero__bg-overlay {
       display: none !important;
@@ -114,6 +121,15 @@
       padding: 5rem 4.5rem;
       margin: 0;
     }
+  }
+  .sakora-hero__bg-picture {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 1;
+    pointer-events: none;
   }
   .sakora-hero__bg-img {
     position: absolute;
@@ -307,14 +323,19 @@
 <section class="sakora-hero sakora-hero--{{ section.settings.layout_style | default: 'split' }}">
   <div class="sakora-hero__content{% if section.settings.hero_image != blank %} sakora-hero__content--has-bg{% endif %}">
     {%- if section.settings.hero_image != blank -%}
-      {{ section.settings.hero_image | image_url: width: 1500 | image_tag:
-        loading: 'eager',
-        fetchpriority: 'high',
-        preload: true,
-        class: 'sakora-hero__bg-img',
-        widths: '375, 550, 750, 1100, 1500',
-        alt: section.settings.hero_image.alt | default: 'American Pakistani model displaying glowing dewy skin'
-      }}
+      <picture class="sakora-hero__bg-picture">
+        {%- if section.settings.hero_image_mobile != blank -%}
+          <source media="(max-width: 749px)" srcset="{{ section.settings.hero_image_mobile | image_url: width: 375 }} 375w, {{ section.settings.hero_image_mobile | image_url: width: 550 }} 550w, {{ section.settings.hero_image_mobile | image_url: width: 750 }} 750w" sizes="(max-width: 749px) 100vw, 100vw">
+        {%- endif -%}
+        {{ section.settings.hero_image | image_url: width: 1500 | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          preload: true,
+          class: 'sakora-hero__bg-img',
+          widths: '375, 550, 750, 1100, 1500',
+          alt: section.settings.hero_image.alt | default: 'American Pakistani model displaying glowing dewy skin'
+        }}
+      </picture>
       <div class="sakora-hero__bg-overlay" style="--overlay-op: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
     {%- endif -%}
     <div class="sakora-hero__card">
@@ -415,6 +436,12 @@
       "id": "hero_image",
       "label": "Hero Background Image",
       "info": "Upload an editorial image (e.g. American-Pakistani beauty model) to override the solid cream canvas."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image_mobile",
+      "label": "Hero Background Image (Mobile)",
+      "info": "Upload a square or portrait image optimized for mobile viewports. If left blank, the main background image will be used on all screens."
     },
     {
       "type": "range",
