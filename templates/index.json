@@ -58,7 +58,9 @@
         "dawn_drops_strip"
       ],
       "settings": {
-        "hero_image": "shopify://shop_images/Hero-Sakora.webp",
+        "layout_style": "full_width",
+        "hero_image": "shopify://shop_images/Hero-Sakora2.webp",
+        "hero_image_mobile": "shopify://shop_images/Hero-Sakora.webp",
         "overlay_opacity": 70,
         "eyebrow": "Skin rituals, reimagined",
         "title": "Nature's <em>best kept</em> secrets.",
