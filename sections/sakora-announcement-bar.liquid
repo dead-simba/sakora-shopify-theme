@@ -12,9 +12,9 @@
 
 {% stylesheet %}
   .sk-announcement-bar {
-    background-color: var(--fade-bg);
-    color: var(--charcoal);
-    border-bottom: 1px solid var(--light-border);
+    background-color: var(--sakora-stone);
+    color: var(--sakora-charcoal);
+    border-bottom: 1px solid rgba(28, 28, 26, 0.05);
     padding: 8px 0;
     position: relative;
     z-index: 10;
@@ -38,20 +38,21 @@
   }
 
   .sk-announcement-tag {
-    background-color: var(--fade-accent);
-    color: var(--pure-white);
+    background-color: var(--pure-white);
+    color: var(--sakora-charcoal);
     font-size: 9px;
     padding: 3px 10px;
     border-radius: 50px; /* Pill-shaped */
-    font-weight: 600;
+    font-weight: 500; /* Strictly medium weight */
+    border: 1px solid rgba(28, 28, 26, 0.08);
   }
 
   .sk-announcement-link {
-    color: var(--fade-accent);
+    color: var(--sakora-emerald);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500; /* Strictly medium weight */
     transition: opacity 0.2s ease;
-    border-bottom: 1px solid var(--fade-accent);
+    border-bottom: 1px solid var(--sakora-emerald);
     padding-bottom: 1px;
   }
 
@@ -84,7 +85,7 @@
       "type": "text",
       "id": "badge",
       "label": "Badge label",
-      "default": "CLINICAL RELEASE"
+      "default": "DAILY RESET"
     },
     {
       "type": "text",

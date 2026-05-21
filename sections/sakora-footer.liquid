@@ -11,7 +11,7 @@
           </a>
         {%- else -%}
           <a href="{{ routes.root_url }}" class="sk-footer-wordmark">
-            SAKORA<sup>&reg;</sup>
+            sakora<sup>&reg;</sup>
           </a>
         {%- endif -%}
 
@@ -85,7 +85,7 @@
     <div class="sk-footer-bottom">
       <div class="sk-footer-bottom-inner">
         <p class="sk-footer-copy sk-inci-mono">
-          &copy; {{ 'now' | date: '%Y' }} SAKORA.
+          &copy; {{ 'now' | date: '%Y' }} sakora.
           {%- if section.settings.bottom_note != blank -%}
             &nbsp;{{ section.settings.bottom_note }}
           {%- endif -%}
@@ -110,7 +110,7 @@
 
 {% stylesheet %}
   .sk-footer {
-    background-color: #F7F7F2; /* Warm Cream background */
+    background-color: var(--sakora-stone); /* Warm minimalist Stone backdrop */
     color: var(--charcoal);
     padding-top: 80px;
     border-top: 1px solid var(--light-border);
@@ -139,19 +139,20 @@
 
   .sk-footer-wordmark {
     display: inline-block;
-    font-family: var(--font-heading);
+    font-family: var(--font-body);
     font-size: 32px;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--charcoal);
     text-decoration: none;
     margin-bottom: 20px;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.03em;
+    text-transform: lowercase;
   }
 
   .sk-footer-wordmark sup {
     font-size: 10px;
     top: -1em;
-    color: var(--fade-accent);
+    color: var(--sakora-emerald);
   }
 
   .sk-footer-tagline {
@@ -168,7 +169,7 @@
     font-size: 11px !important;
     line-height: 1.8 !important;
     margin-bottom: 28px;
-    border-left: 2px solid var(--fade-accent);
+    border-left: 2px solid var(--sakora-emerald);
     padding-left: 12px;
   }
 
@@ -195,11 +196,11 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
   }
   .sk-footer-social-btn:hover {
-    background: var(--fade-bg);
-    border-color: var(--fade-accent);
-    color: var(--fade-accent);
+    background: var(--sakora-cream);
+    border-color: var(--sakora-emerald);
+    color: var(--sakora-emerald);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(255, 92, 138, 0.15);
+    box-shadow: 0 4px 10px rgba(29, 158, 117, 0.15);
   }
 
   /* ── Nav columns ───────────────────────────── */
@@ -224,7 +225,7 @@
     transition: color 0.2s;
     font-weight: 500;
   }
-  .sk-footer-col-link:hover { color: var(--fade-accent) !important; }
+  .sk-footer-col-link:hover { color: var(--sakora-emerald) !important; }
 
   /* ── Bottom bar ────────────────────────────── */
   .sk-footer-bottom {
@@ -247,7 +248,7 @@
 
   .sk-footer-compliance {
     font-size: 11px !important;
-    color: var(--reset-accent);
+    color: var(--sakora-emerald);
     font-weight: 600;
   }
 

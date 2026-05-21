@@ -5,36 +5,51 @@
    ============================================================ */
 
 :root {
-  /* ---- Luminous Base Canvas ---- */
-  --chalk:           #FDFDF9; /* Soft Warm Cream Canvas */
-  --pure-white:      #FFFFFF; /* Luminous White Panels */
-  --charcoal:        #2C2C35; /* Soft readable text (instead of harsh black) */
-  --subtext-gray:    #7A7A85; /* Secondary labels and captions */
-  --light-border:    #E9E9E2; /* Delicate separator borders */
+  /* ---- V1.0 Brand Guidelines (2025) Warm Neutrals ---- */
+  --sakora-cream:    #FAFAF5; /* Primary background canvas */
+  --sakora-stone:    #F3EFE8; /* Section backgrounds / raw stone cards */
+  --sakora-charcoal: #1C1C1A; /* Primary warm charcoal text & dark panels */
+  --sakora-dust:     #B0A898; /* Muted captions, subtexts, and borders */
+  --sakora-emerald:  #1D9E75; /* Nature-coded accent, italic highlights */
+  --pure-white:      #FFFFFF; /* White overlays / card highlights */
 
-  /* ---- Product Line Color-Coding (Pastels & Vibrant Accents) ---- */
-  /* Fade Theory (Brightening / Strawberry) */
-  --fade-bg:         #FFF0F2; /* Sweet Pastel Pink */
-  --fade-accent:     #FF5C8A; /* Vibrant Rose Pink */
+  /* ---- Product Specific Brand Tints & Dark Text pairs ---- */
+  /* 🌸 Petal Melt (Moisturiser) */
+  --petal-bg:        #E8A0A0; /* Blush Pink */
+  --petal-text:      #5C2020;
+  
+  /* ☀️ Sol Veil (Sunscreen) */
+  --sol-bg:          #E8B84B; /* Golden Yellow */
+  --sol-text:        #4A2E00;
 
-  /* Soft Reset (Repair / Aloe & Cica) */
-  --reset-bg:        #F3F9F5; /* Calm Pastel Mint */
-  --reset-accent:    #3E8E75; /* Deep Sage Green */
+  /* 🌿 Dawn Drops (Serum) */
+  --dawn-bg:         #1D9E75; /* Emerald Green */
+  --dawn-text:       #0D3828;
 
-  /* Daylite SPF 50 (Sun Protection & Vitamin C) */
-  --sun-bg:          #FFFDF0; /* Creamy Butter Yellow */
-  --sun-accent:      #FFB800; /* Warm Solar Amber */
+  /* ---- Legacy Compatibility Aliases (Ensures layout continuity) ---- */
+  --chalk:           var(--sakora-cream);
+  --charcoal:        var(--sakora-charcoal);
+  --subtext-gray:    var(--sakora-dust);
+  --light-border:    var(--sakora-stone);
+  
+  --fade-bg:         var(--petal-bg);
+  --fade-accent:     var(--petal-bg);
+  
+  --reset-bg:        var(--dawn-bg);
+  --reset-accent:     var(--dawn-bg);
+  
+  --sun-bg:          var(--sol-bg);
+  --sun-accent:      var(--sol-bg);
 
-  /* UI Neutral Pastels */
-  --ui-gray-bg:      #F5F5F0; /* Soft tint backdrop */
-  --ui-border:       #E0E0D5; /* Subtle borders */
+  --ui-gray-bg:      var(--sakora-stone);
+  --ui-border:       var(--sakora-stone);
 
   /* ---- Typography Stacks ---- */
-  --font-display:    'Playfair Display', 'Outfit', serif;
-  --font-heading:    'Playfair Display', serif;
-  --font-body:       'Outfit', sans-serif;
-  --font-ui:         'Outfit', sans-serif;
-  --font-label:      'Outfit', sans-serif;
+  --font-display:    Georgia, 'Playfair Display', serif;
+  --font-heading:    Georgia, 'Playfair Display', serif;
+  --font-body:       'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-ui:         'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-label:      'Helvetica Neue', Helvetica, Arial, sans-serif;
 
   /* ---- Layout Guidelines ---- */
   --sk-container-width: 1200px;
@@ -58,32 +73,26 @@ h1, h2, h3, h4, h5, h6,
 
 body {
   font-family: var(--font-body);
+  font-weight: 400; /* Strictly regular weight */
   color: var(--charcoal);
   background-color: var(--chalk);
   -webkit-font-smoothing: antialiased;
 }
 
 /* Bold Display Highlights */
-.sk-highlight-active {
-  color: var(--fade-accent) !important;
+.sk-highlight-active,
+.sk-highlight-reset,
+.sk-highlight-sun,
+em {
+  color: var(--sakora-emerald) !important;
   font-style: italic;
 }
 
-.sk-highlight-reset {
-  color: var(--reset-accent) !important;
-  font-style: italic;
-}
-
-.sk-highlight-sun {
-  color: var(--sun-accent) !important;
-  font-style: italic;
-}
-
-/* Labels and badges styling: Outfit 600, uppercase, +0.08em tracking */
+/* Labels and badges styling: Helvetica 500, uppercase, +0.08em tracking */
 .sk-label-caps {
   font-family: var(--font-ui);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500; /* Strictly medium weight */
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--subtext-gray);
@@ -93,6 +102,7 @@ body {
 .sk-body-large {
   font-size: 17px;
   line-height: 1.65;
+  font-weight: 400; /* Strictly regular weight */
   color: var(--charcoal);
   max-width: 620px;
 }
@@ -100,15 +110,16 @@ body {
 .sk-body-normal {
   font-size: 15px;
   line-height: 1.6;
+  font-weight: 400; /* Strictly regular weight */
   color: var(--charcoal);
   max-width: 620px;
 }
 
-/* Technical text - soft, friendly mono alternative using Outfit semi-bold */
+/* Technical text - soft, friendly mono alternative using Helvetica 500 */
 .sk-inci-mono {
   font-family: var(--font-body) !important;
   font-size: 12px !important;
-  font-weight: 500 !important;
+  font-weight: 500 !important; /* Strictly medium weight */
   letter-spacing: 0.02em !important;
   color: var(--subtext-gray);
 }
@@ -119,10 +130,10 @@ body {
 
 .sk-btn-primary {
   background-color: var(--fade-accent) !important;
-  color: var(--pure-white) !important;
+  color: var(--petal-text) !important; /* Coordinated dark text */
   font-family: var(--font-ui);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500; /* Strictly medium weight */
   letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 14px 32px;
@@ -137,41 +148,42 @@ body {
   text-align: center;
   text-decoration: none;
   width: fit-content;
-  box-shadow: 0 4px 15px rgba(255, 92, 138, 0.25);
+  box-shadow: 0 4px 15px rgba(232, 160, 160, 0.25);
 }
 
 .sk-btn-primary:hover {
   transform: translateY(-2px);
-  background-color: #e04a74 !important;
-  border-color: #e04a74 !important;
-  box-shadow: 0 6px 20px rgba(255, 92, 138, 0.35);
+  background-color: #d88f8f !important; /* Soft dark blush */
+  border-color: #d88f8f !important;
+  box-shadow: 0 6px 20px rgba(232, 160, 160, 0.35);
 }
 
-/* Green primary variation for Soft Reset PDP */
+/* Green (Emerald) primary variation for Dawn Drops */
 .sk-btn-primary-green {
   background-color: var(--reset-accent) !important;
   border-color: var(--reset-accent) !important;
-  box-shadow: 0 4px 15px rgba(62, 142, 117, 0.25);
+  color: var(--dawn-text) !important; /* Coordinated dark emerald text */
+  box-shadow: 0 4px 15px rgba(29, 158, 117, 0.2);
 }
 
 .sk-btn-primary-green:hover {
-  background-color: #327560 !important;
-  border-color: #327560 !important;
-  box-shadow: 0 6px 20px rgba(62, 142, 117, 0.35);
+  background-color: #158360 !important;
+  border-color: #158360 !important;
+  box-shadow: 0 6px 20px rgba(29, 158, 117, 0.3);
 }
 
-/* Sun yellow primary variation for SPF PDP */
+/* Golden yellow primary variation for Sol Veil */
 .sk-btn-primary-sun {
   background-color: var(--sun-accent) !important;
   border-color: var(--sun-accent) !important;
-  color: var(--charcoal) !important;
-  box-shadow: 0 4px 15px rgba(255, 184, 0, 0.2);
+  color: var(--sol-text) !important; /* Coordinated dark gold text */
+  box-shadow: 0 4px 15px rgba(232, 184, 75, 0.2);
 }
 
 .sk-btn-primary-sun:hover {
-  background-color: #e0a200 !important;
-  border-color: #e0a200 !important;
-  box-shadow: 0 6px 20px rgba(255, 184, 0, 0.3);
+  background-color: #d4a337 !important;
+  border-color: #d4a337 !important;
+  box-shadow: 0 6px 20px rgba(232, 184, 75, 0.3);
 }
 
 .sk-btn-secondary {
@@ -179,7 +191,7 @@ body {
   color: var(--charcoal) !important;
   font-family: var(--font-ui);
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500; /* Strictly medium weight */
   letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 13px 28px;
@@ -195,7 +207,7 @@ body {
 
 .sk-btn-secondary:hover {
   background-color: var(--charcoal) !important;
-  color: var(--pure-white) !important;
+  color: var(--chalk) !important;
 }
 
 .sk-btn-ghost {
@@ -203,7 +215,7 @@ body {
   color: var(--charcoal) !important;
   font-family: var(--font-ui);
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 500; /* Strictly medium weight */
   padding: 10px 20px;
   border-radius: 50px !important; /* Pill-shape */
   border: 1px solid var(--ui-border) !important;
@@ -220,7 +232,7 @@ body {
 }
 
 /* ============================================================
-   STRUCTURAL UTILITIES & DESIGN PATTERNS (Soft 20px Curves)
+   STRUCTURAL UTILITIES & DESIGN PATTERNS (Soft 24px Curves)
    ============================================================ */
 
 /* Container wrapper rules */
@@ -239,25 +251,25 @@ body {
 /* Soft drop shadow and curves for products/content containers */
 .sk-product-card {
   background-color: var(--pure-white);
-  border-radius: 20px !important; /* Generous 20px curves */
-  border: 1px solid #ECECE5 !important;
+  border-radius: 24px !important; /* Generous 24px curves */
+  border: 1px solid var(--sakora-stone) !important;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(44, 44, 53, 0.03);
+  box-shadow: 0 8px 24px rgba(28, 28, 26, 0.02);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
 }
 
 .sk-product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(44, 44, 53, 0.06);
+  box-shadow: 0 12px 32px rgba(28, 28, 26, 0.05);
 }
 
 /* Redesigned comparison bar container */
 .sk-spec-scale {
   background: var(--pure-white);
   border: 1px solid var(--ui-border);
-  border-radius: 20px !important; /* Generous 20px curves */
+  border-radius: 24px !important; /* Generous 24px curves */
   padding: 24px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.01);
   margin-top: 20px;
 }
 
@@ -284,7 +296,7 @@ body {
 
 /* Rating component styles */
 .sk-rating-stars {
-  color: #FFC857; /* Soft golden yellow */
+  color: #E8B84B; /* Golden yellow matching Sol Veil */
   letter-spacing: 2px;
 }
 
@@ -312,7 +324,7 @@ body {
 .sk-badge-pill {
   font-family: var(--font-ui);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500; /* Strictly medium weight */
   text-transform: uppercase;
   letter-spacing: 0.04em;
   padding: 4px 12px;

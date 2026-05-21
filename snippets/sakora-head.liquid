@@ -1,12 +1,12 @@
 {% comment %}
   Sakora — Global head assets
-  Loads Syne, Outfit, and Space Mono from Google Fonts as the core brand font stack.
+  Loads Georgia display serif backup (Playfair Display) from Google Fonts.
   Loaded globally in layouts/theme.liquid.
 {% endcomment %}
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 
 {{ 'sakora-base.css' | asset_url | stylesheet_tag }}
 
@@ -53,8 +53,8 @@
 <style>
   /* Base settings mappings for generic blocks using CSS variable overrides */
   :root {
-    --font-heading-family: 'Playfair Display', serif;
-    --font-body-family: 'Outfit', sans-serif;
-    --font-accent-family: 'Outfit', sans-serif;
+    --font-heading-family: Georgia, 'Playfair Display', serif;
+    --font-body-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-accent-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 </style>

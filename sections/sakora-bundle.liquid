@@ -16,8 +16,8 @@
 
     <div class="sk-bundle-products">
 
-      {%- comment -%} Product 1 - FADE THEORY (Pink) {%- endcomment -%}
-      <div class="sk-bundle-product sk-bundle-product--fade">
+      {%- comment -%} Product 1 - DAWN DROPS (Emerald) {%- endcomment -%}
+      <div class="sk-bundle-product sk-bundle-product--dawn">
         <div class="sk-bundle-product-img-wrap">
           {%- if bundle_product_1.featured_image -%}
             <img
@@ -28,14 +28,14 @@
               class="sk-bundle-product-img"
             >
           {%- else -%}
-            <div class="sk-bundle-no-img sk-inci-mono" style="color: var(--fade-accent);">FT-GLOW-01</div>
+            <div class="sk-bundle-no-img sk-inci-mono" style="color: var(--dawn-text);">DAWN DROPS</div>
           {%- endif -%}
         </div>
-        <div class="sk-bundle-step" style="color: var(--fade-accent);">{{ section.settings.step_1 }}</div>
+        <div class="sk-bundle-step" style="color: var(--dawn-text);">{{ section.settings.step_1 }}</div>
         <h3 class="sk-bundle-product-name">
           {%- if section.settings.name_1 != blank -%}{{ section.settings.name_1 }}{%- elsif bundle_product_1 != empty -%}{{ bundle_product_1.title }}{%- endif -%}
         </h3>
-        <p class="sk-bundle-product-spec sk-inci-mono" style="color: var(--fade-accent);">9.0% GLOW ACTIVES</p>
+        <p class="sk-bundle-product-spec sk-inci-mono" style="color: var(--dawn-text);">{{ section.settings.spec_1 }}</p>
         <div class="sk-bundle-product-price sk-inci-mono">
           {%- if bundle_product_1 != empty -%}
             {{ bundle_product_1.price | money }}
@@ -47,8 +47,8 @@
 
       <div class="sk-bundle-plus" aria-hidden="true">&rarr;</div>
 
-      {%- comment -%} Product 2 - SOFT RESET (Green - Featured) {%- endcomment -%}
-      <div class="sk-bundle-product sk-bundle-product--featured sk-bundle-product--reset">
+      {%- comment -%} Product 2 - PETAL MELT (Pink - Featured) {%- endcomment -%}
+      <div class="sk-bundle-product sk-bundle-product--featured sk-bundle-product--petal">
         <div class="sk-bundle-product-img-wrap">
           {%- if bundle_product_2.featured_image -%}
             <img
@@ -59,14 +59,14 @@
               class="sk-bundle-product-img"
             >
           {%- else -%}
-            <div class="sk-bundle-no-img sk-inci-mono" style="color: var(--reset-accent);">SR-REPAIR-02</div>
+            <div class="sk-bundle-no-img sk-inci-mono" style="color: var(--petal-text);">PETAL MELT</div>
           {%- endif -%}
         </div>
-        <div class="sk-bundle-step" style="color: var(--reset-accent);">{{ section.settings.step_2 }}</div>
+        <div class="sk-bundle-step" style="color: var(--petal-text);">{{ section.settings.step_2 }}</div>
         <h3 class="sk-bundle-product-name">
           {%- if section.settings.name_2 != blank -%}{{ section.settings.name_2 }}{%- elsif bundle_product_2 != empty -%}{{ bundle_product_2.title }}{%- endif -%}
         </h3>
-        <p class="sk-bundle-product-spec sk-inci-mono" style="color: var(--reset-accent);">1.5% TRIPLE CERAMIDES</p>
+        <p class="sk-bundle-product-spec sk-inci-mono" style="color: var(--petal-text);">{{ section.settings.spec_2 }}</p>
         <div class="sk-bundle-product-price sk-inci-mono">
           {%- if bundle_product_2 != empty -%}
             {{ bundle_product_2.price | money }}
@@ -78,8 +78,8 @@
 
       <div class="sk-bundle-plus" aria-hidden="true">&rarr;</div>
 
-      {%- comment -%} Product 3 - DAYLITE SPF 50 (Yellow) {%- endcomment -%}
-      <div class="sk-bundle-product sk-bundle-product--sun">
+      {%- comment -%} Product 3 - SOL VEIL (Yellow) {%- endcomment -%}
+      <div class="sk-bundle-product sk-bundle-product--sol">
         <div class="sk-bundle-product-img-wrap">
           {%- if bundle_product_3.featured_image -%}
             <img
@@ -90,14 +90,14 @@
               class="sk-bundle-product-img"
             >
           {%- else -%}
-            <div class="sk-bundle-no-img sk-inci-mono" style="color: var(--sun-accent);">DL-SHIELD-03</div>
+            <div class="sk-bundle-no-img sk-inci-mono" style="color: var(--sol-text);">SOL VEIL</div>
           {%- endif -%}
         </div>
-        <div class="sk-bundle-step" style="color: var(--sun-accent);">{{ section.settings.step_3 }}</div>
+        <div class="sk-bundle-step" style="color: var(--sol-text);">{{ section.settings.step_3 }}</div>
         <h3 class="sk-bundle-product-name">
           {%- if section.settings.name_3 != blank -%}{{ section.settings.name_3 }}{%- elsif bundle_product_3 != empty -%}{{ bundle_product_3.title }}{%- endif -%}
         </h3>
-        <p class="sk-bundle-product-spec sk-inci-mono" style="color: var(--sun-accent);">SPF 50 PA++++ BARRIER</p>
+        <p class="sk-bundle-product-spec sk-inci-mono" style="color: var(--sol-text);">{{ section.settings.spec_3 }}</p>
         <div class="sk-bundle-product-price sk-inci-mono">
           {%- if bundle_product_3 != empty -%}
             {{ bundle_product_3.price | money }}
@@ -184,7 +184,7 @@
   }
 
   .sk-bundle-eyebrow {
-    color: var(--fade-accent);
+    color: var(--sakora-emerald);
     margin-bottom: 16px;
   }
 
@@ -220,34 +220,34 @@
     box-shadow: 0 8px 30px rgba(44, 44, 53, 0.02);
   }
 
-  .sk-bundle-product--fade {
-    background-color: var(--fade-bg);
-    border-color: rgba(255, 92, 138, 0.12);
+  .sk-bundle-product--dawn {
+    background-color: var(--dawn-bg);
+    border-color: rgba(29, 158, 117, 0.12);
   }
-  .sk-bundle-product--fade:hover {
+  .sk-bundle-product--dawn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(255, 92, 138, 0.1);
-    border-color: var(--fade-accent);
+    box-shadow: 0 12px 36px rgba(29, 158, 117, 0.1);
+    border-color: var(--dawn-text);
   }
 
-  .sk-bundle-product--reset {
-    background-color: var(--reset-bg);
-    border-color: rgba(62, 142, 118, 0.12);
+  .sk-bundle-product--petal {
+    background-color: var(--petal-bg);
+    border-color: rgba(232, 160, 160, 0.12);
   }
-  .sk-bundle-product--reset:hover {
+  .sk-bundle-product--petal:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(62, 142, 118, 0.1);
-    border-color: var(--reset-accent);
+    box-shadow: 0 12px 36px rgba(232, 160, 160, 0.1);
+    border-color: var(--petal-text);
   }
 
-  .sk-bundle-product--sun {
-    background-color: var(--sun-bg);
-    border-color: rgba(255, 184, 0, 0.12);
+  .sk-bundle-product--sol {
+    background-color: var(--sol-bg);
+    border-color: rgba(232, 184, 75, 0.12);
   }
-  .sk-bundle-product--sun:hover {
+  .sk-bundle-product--sol:hover {
     transform: translateY(-4px);
-    box-shadow: 0 12px 36px rgba(255, 184, 0, 0.1);
-    border-color: var(--sun-accent);
+    box-shadow: 0 12px 36px rgba(232, 184, 75, 0.1);
+    border-color: var(--sol-text);
   }
 
   .sk-bundle-product--featured {
@@ -343,7 +343,7 @@
   }
 
   .sk-bundle-sale-price {
-    color: var(--fade-accent);
+    color: var(--sakora-emerald);
   }
 
   .sk-bundle-orig-price {
@@ -355,7 +355,7 @@
 
   .sk-bundle-saving {
     font-size: 12px !important;
-    color: var(--reset-accent);
+    color: var(--sakora-emerald);
     margin-bottom: 32px;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -401,19 +401,19 @@
       "type": "text",
       "id": "label",
       "label": "Label",
-      "default": "CLINICAL REGIMEN SYSTEM"
+      "default": "MORNING SKIN RITUAL"
     },
     {
       "type": "richtext",
       "id": "title",
       "label": "Title",
-      "default": "<p>THE COMPLETE PROTOCOL: <em>3 STEPS</em></p>"
+      "default": "<p>THE DAILY RESET: <em>3 STEPS</em></p>"
     },
     {
       "type": "text",
       "id": "subtitle",
       "label": "Subtitle",
-      "default": "Designed as an interlocking system: Fade Theory controls melanin pathways, Soft Reset locks dynamic hydration complexes, and Daylite SPF prevents UV reactivation."
+      "default": "An interlocking nature-coded ritual: Dawn Drops brightens skin tone, Petal Melt repairs ceramide barrier, and Sol Veil blocks UV rays."
     },
     {
       "type": "header",
@@ -438,7 +438,7 @@
       "type": "text",
       "id": "name_1",
       "label": "Display name (overrides product title)",
-      "default": "Fade Theory Brightening Serum"
+      "default": "Dawn Drops Brightening Serum"
     },
     {
       "type": "text",
@@ -450,7 +450,13 @@
       "type": "text",
       "id": "step_1",
       "label": "Step label",
-      "default": "01 // APPLICATION PM"
+      "default": "01 // GLOW"
+    },
+    {
+      "type": "text",
+      "id": "spec_1",
+      "label": "Product 1 Specification",
+      "default": "5-Active Brightening Serum"
     },
     {
       "type": "header",
@@ -465,7 +471,7 @@
       "type": "text",
       "id": "name_2",
       "label": "Display name (overrides product title)",
-      "default": "Soft Reset Triple Ceramide"
+      "default": "Petal Melt Barrier Moisturiser"
     },
     {
       "type": "text",
@@ -477,7 +483,13 @@
       "type": "text",
       "id": "step_2",
       "label": "Step label",
-      "default": "02 // HYDRATE AM + PM"
+      "default": "02 // REPAIR"
+    },
+    {
+      "type": "text",
+      "id": "spec_2",
+      "label": "Product 2 Specification",
+      "default": "Triple Ceramide + Peptide"
     },
     {
       "type": "header",
@@ -492,7 +504,7 @@
       "type": "text",
       "id": "name_3",
       "label": "Display name (overrides product title)",
-      "default": "Daylite SPF 50 PA++++"
+      "default": "Sol Veil Matte Sunscreen"
     },
     {
       "type": "text",
@@ -504,7 +516,13 @@
       "type": "text",
       "id": "step_3",
       "label": "Step label",
-      "default": "03 // PROTECT AM ONLY"
+      "default": "03 // PROTECT"
+    },
+    {
+      "type": "text",
+      "id": "spec_3",
+      "label": "Product 3 Specification",
+      "default": "Matte SPF 50 PA++++"
     },
     {
       "type": "header",
@@ -526,13 +544,13 @@
       "type": "text",
       "id": "saving_text",
       "label": "Saving text",
-      "default": "CLINICAL AUDIT DISCOUNT Applied: SAVE PKR 700 // Free delivery included"
+      "default": "DAILY RESET DISCOUNT Applied: SAVE PKR 700 // Free delivery included"
     },
     {
       "type": "text",
       "id": "cta_label",
       "label": "CTA label",
-      "default": "ADD COMPLETE SYSTEM TO BAG"
+      "default": "ADD COMPLETE RITUAL TO BAG"
     },
     {
       "type": "url",
@@ -543,7 +561,7 @@
       "type": "text",
       "id": "note",
       "label": "Fine print",
-      "default": "EXPRESS SHIPPING WITHIN PAKISTAN // 7-DAY PRODUCT QUALITY AUDITS GUARANTEED"
+      "default": "EXPRESS SHIPPING WITHIN PAKISTAN // 100% CLEAN & VEGAN SKINCARE"
     }
   ],
   "presets": [

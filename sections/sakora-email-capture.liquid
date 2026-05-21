@@ -47,15 +47,15 @@
     max-width: 780px;
     margin: 0 auto;
     text-align: center;
-    background-color: var(--fade-bg); /* Warm sweet pink backdrop */
+    background-color: var(--petal-bg); /* Warm sweet pink backdrop */
     padding: 60px 40px;
     border-radius: 24px; /* Generous 24px curves */
-    border: 1px solid rgba(255, 92, 138, 0.1);
-    box-shadow: 0 10px 30px rgba(255, 92, 138, 0.04);
+    border: 1px solid rgba(92, 32, 32, 0.1);
+    box-shadow: 0 10px 30px rgba(92, 32, 32, 0.04);
   }
 
   .sk-email-badge {
-    color: var(--fade-accent);
+    color: var(--petal-text);
     margin-bottom: 20px;
   }
 
@@ -67,7 +67,8 @@
   }
 
   .sk-email-desc {
-    color: var(--subtext-gray);
+    color: var(--petal-text);
+    opacity: 0.85;
     margin: 0 auto 32px;
     line-height: 1.6;
     max-width: 520px;
@@ -88,8 +89,8 @@
   }
   
   .sk-email-form:focus-within {
-    border-color: var(--fade-accent);
-    box-shadow: 0 4px 18px rgba(255, 92, 138, 0.1);
+    border-color: var(--petal-text);
+    box-shadow: 0 4px 18px rgba(92, 32, 32, 0.1);
   }
 
   .sk-email-input {
@@ -108,20 +109,29 @@
   }
 
   .sk-email-form .sk-btn-primary {
+    background-color: var(--sakora-charcoal) !important;
+    border-color: var(--sakora-charcoal) !important;
+    color: var(--sakora-cream) !important;
     flex-shrink: 0;
     padding: 12px 28px;
     box-shadow: none;
   }
+  .sk-email-form .sk-btn-primary:hover {
+    background-color: var(--sakora-emerald) !important;
+    border-color: var(--sakora-emerald) !important;
+    color: var(--pure-white) !important;
+  }
 
   .sk-email-success {
-    color: var(--reset-accent);
+    color: var(--petal-text);
     margin-top: 16px;
     font-weight: 600;
   }
 
   .sk-email-fine {
     font-size: 11px !important;
-    color: var(--subtext-gray);
+    color: var(--petal-text);
+    opacity: 0.7;
     margin-top: 20px;
     font-weight: 500;
   }
