@@ -10,50 +10,50 @@
 {
   "sections": {
     "glowve_hero": {
-      "type": "glowve-hero",
+      "type": "sakora-hero",
       "blocks": {
         "slide_1": {
           "type": "slide",
-          "name": "Glow Your Way",
+          "name": "Zara's Confident Focus",
           "settings": {
             "image": "shopify://shop_images/Banner1-Horizontal.webp",
             "mobile_image": "shopify://shop_images/Banner1-Square.webp",
-            "eyebrow": "Glow your way.",
-            "headline": "<p>Skin that <em>glows,</em><br/>from ingredients that earn it.</p>",
-            "subline": "No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
-            "cta_primary_label": "Shop Bestsellers",
+            "eyebrow": "CLINICAL TRANSLATION FOR REAL SKIN.",
+            "headline": "<p>THE SERUM YOUR DARK SPOTS HAVE BEEN <em>DREADING.</em></p>",
+            "subline": "No fillers, no fairy-dust percentages. Just high-dose actives engineered for South Asian skin barriers.",
+            "cta_primary_label": "SHOP PROTOCOLS",
             "cta_primary_url": "/collections/all",
-            "cta_secondary_label": "",
-            "cta_secondary_url": "/pages/skin-quiz"
+            "cta_secondary_label": "INGREDIENT DIRECTORY",
+            "cta_secondary_url": "/pages/ingredients"
           }
         },
         "slide_2": {
           "type": "slide",
-          "name": "SPF",
+          "name": "Daylite SPF PA++++",
           "settings": {
             "image": "shopify://shop_images/Banner2-Horizontal.webp",
             "mobile_image": "shopify://shop_images/Banner2-Square.webp",
-            "eyebrow": "New drop.",
-            "headline": "<p>SPF that <em>disappears.</em><br/>Skin that doesn't.</p>",
-            "subline": "Matte UV Defence SPF 50+ — zero white cast, formulated for Pakistan's UV index.",
-            "cta_primary_label": "Shop SPF",
-            "cta_primary_url": "shopify://collections/sunscreen",
-            "cta_secondary_label": "See ingredients",
+            "eyebrow": "NEW SCIENTIFIC DROP.",
+            "headline": "<p>SPF THAT <em>DISAPPEARS.</em> PROTECTION THAT SEALS.</p>",
+            "subline": "Matte UV Defence SPF 50 PA++++ — zero white cast, sebum-resistant, engineered for Pakistan's UV index 10+.",
+            "cta_primary_label": "SHOP SPF",
+            "cta_primary_url": "/collections/sunscreen",
+            "cta_secondary_label": "VIEW THE INCI LIST",
             "cta_secondary_url": "/pages/ingredients"
           }
         },
         "slide_3": {
           "type": "slide",
-          "name": "Barrier Repair",
+          "name": "Soft Reset Barrier Repair",
           "settings": {
             "image": "shopify://shop_images/Banner3-Horizontal_72187c39-87b9-4b1d-806e-41950b8cec32.webp",
             "mobile_image": "shopify://shop_images/Banner3-Square_ede8facb-0874-479e-9f10-1e57f0cbdfea.webp",
-            "eyebrow": "Barrier repair.",
-            "headline": "<p>Rebuild. <em>Restore.</em><br/>Repeat.</p>",
-            "subline": "Triple ceramide complex + Matrixyl 3000™ — the moisturizer your skin was waiting for.",
-            "cta_primary_label": "Shop Moisturizers",
-            "cta_primary_url": "shopify://collections/moisturizer",
-            "cta_secondary_label": "Learn more",
+            "eyebrow": "BARRIER SEAL SYSTEM.",
+            "headline": "<p>REBUILD. <em>RESTORE.</em> RESIST HUMIDITY.</p>",
+            "subline": "Triple Ceramide Complex + Matrixyl 3000™ — formulated to lock hydration and repair compromised local skin barriers.",
+            "cta_primary_label": "SHOP MOISTURIZERS",
+            "cta_primary_url": "/collections/moisturizer",
+            "cta_secondary_label": "INGREDIENT INVENTORY",
             "cta_secondary_url": "/pages/ingredients"
           }
         }
@@ -63,484 +63,119 @@
         "slide_2",
         "slide_3"
       ],
-      "name": "Glowve Hero",
+      "name": "Sakora Hero",
       "settings": {
         "autoplay": true,
         "autoplay_speed": 3,
-        "eyebrow": "Glow your way.",
-        "headline": "<p>Skin that <em>glows,</em><br/>from ingredients that earn it.</p>",
-        "subline": "No fluff, no filler. Just real actives at real concentrations — made for Pakistan.",
-        "cta_primary_label": "Shop Bestsellers",
+        "eyebrow": "CLINICAL TRANSLATION FOR REAL SKIN.",
+        "headline": "<p>THE SERUM YOUR DARK SPOTS HAVE BEEN <em>DREADING.</em></p>",
+        "subline": "No fillers, no fairy-dust percentages. Just high-dose actives engineered for South Asian skin barriers.",
+        "cta_primary_label": "SHOP PROTOCOLS",
         "cta_primary_url": "",
-        "cta_secondary_label": "Build My Routine",
+        "cta_secondary_label": "INGREDIENT DIRECTORY",
         "cta_secondary_url": "",
-        "trust_rating": "4.8 stars",
-        "trust_reviews": "across 120+ verified reviews"
-      }
-    },
-    "glowve_category_bubbles": {
-      "type": "glowve-category-bubbles",
-      "blocks": {
-        "bubble_spf": {
-          "type": "bubble",
-          "settings": {
-            "label": "Sunscreens",
-            "link": "shopify://collections/sunscreen",
-            "image": "shopify://shop_images/Daylite_Clear_BG.jpg",
-            "emoji": "☀️",
-            "bg_color": "var(--accent-yellow)"
-          }
-        },
-        "bubble_moisturizer": {
-          "type": "bubble",
-          "settings": {
-            "label": "Moisturizer",
-            "link": "shopify://collections/moisturizer",
-            "image": "shopify://shop_images/Soft_Reset_Clear_BG.jpg",
-            "emoji": "🌿",
-            "bg_color": "var(--accent-mint)"
-          }
-        },
-        "bubble_serums": {
-          "type": "bubble",
-          "settings": {
-            "label": "Serums",
-            "link": "shopify://collections/serum",
-            "image": "shopify://shop_images/Fade_Theory_Clear_BG.jpg",
-            "emoji": "💧",
-            "bg_color": "var(--accent-peach)"
-          }
-        }
-      },
-      "block_order": [
-        "bubble_spf",
-        "bubble_moisturizer",
-        "bubble_serums"
-      ],
-      "name": "Glowve Category Bubbles",
-      "settings": {}
-    },
-    "glowve_social_proof": {
-      "type": "glowve-social-proof",
-      "blocks": {
-        "rev_1": {
-          "type": "review",
-          "settings": {
-            "review": "\"My PIH is visibly lighter after 6 weeks\" — Nida, Lahore"
-          }
-        },
-        "rev_2": {
-          "type": "review",
-          "settings": {
-            "review": "\"Finally a brand that shows ingredient %s\" — Sana, Karachi"
-          }
-        },
-        "rev_3": {
-          "type": "review",
-          "settings": {
-            "review": "\"The SPF has zero white cast — I wear it every day\" — Zara, Islamabad"
-          }
-        },
-        "rev_4": {
-          "type": "review",
-          "settings": {
-            "review": "\"My skin barrier is actually healed\" — Ayesha, Lahore"
-          }
-        }
-      },
-      "block_order": [
-        "rev_1",
-        "rev_2",
-        "rev_3",
-        "rev_4"
-      ],
-      "name": "Glowve Social Proof Ticker",
-      "settings": {}
-    },
-    "glowve_bestsellers": {
-      "type": "glowve-bestsellers",
-      "blocks": {
-        "tab_all": {
-          "type": "tab",
-          "settings": {
-            "label": "All"
-          }
-        },
-        "tab_serums": {
-          "type": "tab",
-          "settings": {
-            "label": "Serums"
-          }
-        },
-        "tab_moisturisers": {
-          "type": "tab",
-          "settings": {
-            "label": "Moisturisers"
-          }
-        },
-        "tab_spf": {
-          "type": "tab",
-          "settings": {
-            "label": "SPF"
-          }
-        }
-      },
-      "block_order": [
-        "tab_all",
-        "tab_serums",
-        "tab_moisturisers",
-        "tab_spf"
-      ],
-      "name": "Glowve Bestsellers",
-      "settings": {
-        "label": "Community Favourites",
-        "title": "Our bestsellers",
-        "collection": "frontpage",
-        "products_to_show": 3,
-        "view_all_url": "/collections/all",
-        "show_tabs": false
-      }
-    },
-    "glowve_promise": {
-      "type": "glowve-promise",
-      "blocks": {
-        "p1": {
-          "type": "promise",
-          "settings": {
-            "icon": "leaf",
-            "title": "100% Cruelty Free",
-            "description": "No animal testing. Ever. Every Glowve product is certified cruelty-free and kind to every living thing."
-          }
-        },
-        "p2": {
-          "type": "promise",
-          "settings": {
-            "icon": "shield",
-            "title": "No Nasty Chemicals",
-            "description": "No parabens, no sulphates, no steroids or mercury, no hidden fillers. Clean ingredients you can actually read and trust."
-          }
-        },
-        "p3": {
-          "type": "promise",
-          "settings": {
-            "icon": "sun",
-            "title": "Made for Pakistan",
-            "description": "Formulated for Pakistan's UV index, humidity, and South Asian skin — not adapted from foreign markets."
-          }
-        },
-        "p4": {
-          "type": "promise",
-          "settings": {
-            "icon": "science",
-            "title": "Study-Backed",
-            "description": "Every active ingredient is supported by published clinical research. We link to studies, not marketing copy."
-          }
-        }
-      },
-      "block_order": [
-        "p1",
-        "p2",
-        "p3",
-        "p4"
-      ],
-      "name": "Glowve Promise",
-      "settings": {
-        "label": "What we stand for",
-        "title": "The <em>Glowve</em> promise"
-      }
-    },
-    "glowve_shop_concern": {
-      "type": "glowve-shop-concern",
-      "blocks": {
-        "concern_1": {
-          "type": "concern",
-          "settings": {
-            "image": "shopify://shop_images/Fade_Theory_-_Pigmentation.webp",
-            "icon": "✨",
-            "name": "Brightening",
-            "description": "Dark spots · PIH · Uneven tone",
-            "link": "/collections/brightening"
-          }
-        },
-        "concern_2": {
-          "type": "concern",
-          "settings": {
-            "image": "shopify://shop_images/Soft_Reset_-_Redness_Damaged_Barrier.webp",
-            "icon": "🛡️",
-            "name": "Barrier Repair",
-            "description": "Dryness · Sensitivity · Redness",
-            "link": "/collections/barrier-repair"
-          }
-        },
-        "concern_3": {
-          "type": "concern",
-          "settings": {
-            "image": "shopify://shop_images/Daylite_-_Sundamage.webp",
-            "icon": "☀️",
-            "name": "Sun Protection",
-            "description": "Pakistan UV index · Matte finish",
-            "link": "/collections/spf"
-          }
-        }
-      },
-      "block_order": [
-        "concern_1",
-        "concern_2",
-        "concern_3"
-      ],
-      "disabled": true,
-      "name": "Glowve Shop by Concern",
-      "settings": {
-        "label": "Personalised for You",
-        "title": "Shop by concern"
+        "trust_rating": "4.9 stars",
+        "trust_reviews": "across 1,480+ clinical audits in Pakistan"
       }
     },
     "glowve_ing_directory": {
-      "type": "glowve-ingredient-directory",
+      "type": "sakora-ingredient-directory",
       "blocks": {
-        "chip_a3VFBC": {
-          "type": "chip",
-          "settings": {
-            "name": "Niacinamide"
-          }
-        },
-        "chip_YwHxgq": {
-          "type": "chip",
-          "settings": {
-            "name": "Tranexamic Acid"
-          }
-        },
-        "chip_rANX3k": {
-          "type": "chip",
-          "settings": {
-            "name": "Hyaluronic Acid"
-          }
-        },
-        "chip_mciqPJ": {
-          "type": "chip",
-          "settings": {
-            "name": "Panthenol B5"
-          }
-        },
-        "chip_9DwXQV": {
-          "type": "chip",
-          "settings": {
-            "name": "Zinc PCA"
-          }
-        },
-        "chip_D6Ryng": {
-          "type": "chip",
-          "settings": {
-            "name": "Licorice Extract"
-          }
-        },
-        "chip_983Paz": {
-          "type": "chip",
-          "settings": {
-            "name": "Matrixyl Peptides"
-          }
-        },
-        "chip_RTMKcj": {
-          "type": "chip",
-          "settings": {
-            "name": "Tocopherol"
-          }
-        },
         "star_card_xYFG4J": {
           "type": "star_card",
           "settings": {
-            "image": "shopify://shop_images/Alpha_Arbutin.webp",
-            "color": "peach",
-            "product_tag": "Fade Theory",
-            "name": "Alpha-Arbutin 2%",
-            "function": "Blocks melanin production at the source. Zero irritation."
+            "name": "Alpha Arbutin 2%",
+            "inci": "ALPHA-ARBUTIN",
+            "category": "brightening",
+            "active_color": "#B8ECFF",
+            "concentration": "2.0%",
+            "industry_typical": "0.5%–1.0%",
+            "percentage": 85,
+            "function": "Blocks enzymatic synthesis of melanin pigment. Specifically chosen at maximum safe concentration of 2.0% for hyperpigmentation correction in Fitzpatrick IV-VI skin profiles.",
+            "study_ref": "Derm. Ther. Vol 33, Iss 4"
           }
         },
         "star_card_6VUEK6": {
           "type": "star_card",
           "settings": {
-            "image": "shopify://shop_images/Caramides.webp",
-            "color": "mint",
-            "product_tag": "Soft Reset",
             "name": "Triple Ceramide Complex",
-            "function": "NP · AP · EOP — rebuilds your barrier the way your skin does it."
+            "inci": "CERAMIDE NP · AP · EOP",
+            "category": "barrier",
+            "active_color": "#8DA8C4",
+            "concentration": "1.5% Pure",
+            "industry_typical": "0.1%–0.2%",
+            "percentage": 95,
+            "function": "Bio-identical lipid matrix mimicking skin's natural structure. Interlocking matrix that seals transepidermal water loss and restores compromised skin barriers.",
+            "study_ref": "Int. Journal of Molecular Sci. Vol 22"
           }
         },
         "star_card_YWHeKc": {
           "type": "star_card",
           "settings": {
-            "image": "shopify://shop_images/Sunscreen.webp",
-            "color": "yellow",
-            "product_tag": "Daylite",
-            "name": "6-Filter UV System",
-            "function": "Full spectrum UVA + UVB. Built for Pakistan's UV index 10+."
+            "name": "Matte UV Filters",
+            "inci": "TINOSORB S + M · UVINUL A PLUS",
+            "category": "sunscreen",
+            "active_color": "#FFB800",
+            "concentration": "SPF 50 / PA++++",
+            "industry_typical": "SPF 30 / PA+++",
+            "percentage": 100,
+            "function": "Broad spectrum hybrid physical/organic sunscreen network. Specifically optimized for stable protection in extreme temperature climates and sebum-resistant matte finish.",
+            "study_ref": "Photochem. & Photobiol. Vol 88"
           }
         }
       },
       "block_order": [
-        "chip_a3VFBC",
-        "chip_YwHxgq",
-        "chip_rANX3k",
-        "chip_mciqPJ",
-        "chip_9DwXQV",
-        "chip_D6Ryng",
-        "chip_983Paz",
-        "chip_RTMKcj",
         "star_card_xYFG4J",
         "star_card_6VUEK6",
         "star_card_YWHeKc"
       ],
-      "name": "Glowve Ingredient Directory",
+      "name": "Sakora Ingredient Registry",
       "settings": {
-        "label": "Radical Transparency",
-        "title": "<p>Know every<br/><em>ingredient</em><br/>we use.</p>",
-        "description": "No hidden complexes, no marketing names. Every active, every concentration — exactly what goes on your skin and why.",
-        "cta_label": "Explore Ingredient Directory",
-        "cta_url": "/pages/ingredients",
-        "chips_label": "Also in our formulas"
+        "label": "RADICAL EVIDENCE",
+        "title": "THE INGREDIENT REGISTRY",
+        "description": "Every percentage. Every INCI registry name. Full disclosure, backed by published clinical trials. We do not use filler ingredients.",
+        "cta_label": "VIEW FULL CLINICAL METHODOLOGY",
+        "cta_url": "/pages/ingredients"
       }
     },
     "glowve_bundle": {
-      "type": "glowve-bundle",
-      "name": "Glowve Bundle",
+      "type": "sakora-bundle",
+      "name": "Sakora Bundle",
       "settings": {
-        "label": "The Complete Protocol",
-        "title": "<p>Three products. <em>One routine.</em></p>",
-        "subtitle": "The serum brightens. The moisturizer rebuilds. The SPF protects. Together, they cover every step of a complete skincare protocol.",
+        "label": "CLINICAL REGIMEN SYSTEM",
+        "title": "<p>THE COMPLETE PROTOCOL: <em>3 STEPS</em></p>",
+        "subtitle": "Designed as an interlocking system: Fade Theory controls melanin pathways, Soft Reset locks dynamic hydration complexes, and Daylite SPF prevents UV reactivation.",
         "bundle_product": "complete-glow-bundle",
         "product_1": "fade-theory",
-        "name_1": "Fade Theory Serum",
-        "price_1": "PKR 1,400",
-        "step_1": "Step 1 · PM",
+        "name_1": "Fade Theory Brightening Serum",
+        "price_1": "PKR 1,480",
+        "step_1": "01 // APPLICATION PM",
         "product_2": "soft-reset-moisturizer",
-        "name_2": "Soft Reset Moisturizer",
-        "price_2": "PKR 1,999",
-        "step_2": "Step 2 · AM + PM",
+        "name_2": "Soft Reset Triple Ceramide",
+        "price_2": "PKR 1,880",
+        "step_2": "02 // HYDRATE AM + PM",
         "product_3": "daylite-spf-50-sunscreen",
-        "name_3": "Daylite Sunscreen",
-        "price_3": "PKR 1,600",
-        "step_3": "Step 3 · AM Only",
-        "bundle_price": "PKR 4440",
-        "original_price": "PKR 5550",
-        "saving_text": "Save PKR 1,200 vs buying separately · Free delivery included",
-        "cta_label": "Add Bundle to Bag",
+        "name_3": "Daylite SPF 50 PA++++",
+        "price_3": "PKR 1,780",
+        "step_3": "03 // PROTECT AM ONLY",
+        "bundle_price": "PKR 4,440",
+        "original_price": "PKR 5,140",
+        "saving_text": "CLINICAL AUDIT DISCOUNT Applied: SAVE PKR 700 // Free delivery included",
+        "cta_label": "ADD COMPLETE SYSTEM TO BAG",
         "cta_url": "/collections/all",
-        "note": "Free delivery across Pakistan · 7-day returns"
-      }
-    },
-    "glowve_routine": {
-      "type": "glowve-routine-builder",
-      "blocks": {
-        "step_1": {
-          "type": "step",
-          "settings": {
-            "title": "Tell us your skin type",
-            "description": "Dry, oily, combination, sensitive"
-          }
-        },
-        "step_2": {
-          "type": "step",
-          "settings": {
-            "title": "Pick your concern",
-            "description": "Dullness, dryness, acne, ageing"
-          }
-        },
-        "step_3": {
-          "type": "step",
-          "settings": {
-            "title": "Get your routine",
-            "description": "AM + PM, step by step"
-          }
-        }
-      },
-      "block_order": [
-        "step_1",
-        "step_2",
-        "step_3"
-      ],
-      "name": "Glowve Routine Builder",
-      "settings": {
-        "eyebrow": "✦ Personalised Skincare",
-        "title": "<p>Not sure where<br/>to <em>start?</em></p>",
-        "description": "Answer 5 quick questions and we'll build a custom routine for your skin type, concerns, and budget. No fluff — just the products that will actually work for you.",
-        "cta_label": "Take the Skin Quiz",
-        "cta_url": "shopify://pages/quiz"
-      }
-    },
-    "glowve_ugc": {
-      "type": "glowve-ugc",
-      "blocks": {
-        "ugc_1": {
-          "type": "photo",
-          "settings": {
-            "handle": "@nida.skincare"
-          }
-        },
-        "ugc_2": {
-          "type": "photo",
-          "settings": {
-            "handle": "@sanabeauty.pk"
-          }
-        },
-        "ugc_3": {
-          "type": "photo",
-          "settings": {
-            "handle": "@zara.glow"
-          }
-        },
-        "ugc_4": {
-          "type": "photo",
-          "settings": {
-            "handle": "@ayesha.skin"
-          }
-        },
-        "ugc_5": {
-          "type": "photo",
-          "settings": {
-            "handle": "@maha.glows"
-          }
-        },
-        "ugc_6": {
-          "type": "photo",
-          "settings": {
-            "handle": "@hira.routine"
-          }
-        },
-        "ugc_7": {
-          "type": "photo",
-          "settings": {
-            "handle": "@amna.beauty"
-          }
-        }
-      },
-      "block_order": [
-        "ugc_1",
-        "ugc_2",
-        "ugc_3",
-        "ugc_4",
-        "ugc_5",
-        "ugc_6",
-        "ugc_7"
-      ],
-      "disabled": true,
-      "name": "Glowve UGC Grid",
-      "settings": {
-        "label": "Real People, Real Skin",
-        "title": "Glowve in the wild",
-        "social_handle": "@glowve.pk",
-        "social_url": ""
+        "note": "EXPRESS SHIPPING WITHIN PAKISTAN // 7-DAY PRODUCT QUALITY AUDITS GUARANTEED"
       }
     },
     "glowve_email": {
-      "type": "glowve-email-capture",
-      "name": "Glowve Email Capture",
+      "type": "sakora-email-capture",
+      "name": "Sakora Email Capture",
       "settings": {
-        "title": "<p>Get <em>10% off</em><br/>your first order.</p>",
-        "description": "Plus: early access to new launches, ingredient deep-dives, and honest skincare advice — straight to your inbox.",
-        "placeholder": "your@email.com",
-        "cta_label": "Subscribe",
-        "success_message": "You're in! Check your inbox for your 10% off code.",
-        "fine_print": "No spam. Unsubscribe any time. We take your privacy seriously."
+        "title": "<p>JOIN THE SAKORA <em>PROTOCOL</em> DATABASE.</p>",
+        "description": "No spam, no soft marketing. Get raw clinical trial summaries, active concentration insights, and priority access to new formulations.",
+        "placeholder": "ENTER CHEMICAL / EMAIL ADDRESS",
+        "cta_label": "REGISTER FOR DATA ACCESS",
+        "success_message": "REGISTRATION APPROVED // ENCRYPTED INBOX VERIFICATION INITIATED.",
+        "fine_print": "DATA TRANSPARENCY ASSURED. YOU MAY DE-REGISTER FROM DATA LISTS AT ANY TIME."
       }
     },
     "featured_blog_posts_PwjMRE": {
@@ -688,15 +323,8 @@
   },
   "order": [
     "glowve_hero",
-    "glowve_category_bubbles",
-    "glowve_social_proof",
-    "glowve_bestsellers",
-    "glowve_promise",
-    "glowve_shop_concern",
     "glowve_ing_directory",
     "glowve_bundle",
-    "glowve_routine",
-    "glowve_ugc",
     "glowve_email",
     "featured_blog_posts_PwjMRE"
   ]

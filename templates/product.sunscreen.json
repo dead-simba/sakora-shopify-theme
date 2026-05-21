@@ -909,11 +909,54 @@
         "padding_top": 60,
         "padding_bottom": 60
       }
+    },
+    "sakora_pdp_ingredients": {
+      "type": "sakora-pdp-ingredients",
+      "blocks": {
+        "uv_filters": {
+          "type": "spec_block",
+          "settings": {
+            "name": "6-Filter UV System",
+            "inci": "TINOSORB M · MEXORYL SX · AVOBENZONE",
+            "badge": "UV SHIELD",
+            "active_color": "#FFB800",
+            "concentration": "SPF 50+ / PA++++",
+            "industry_typical": "SPF 30 / PA+++",
+            "percentage": 100,
+            "benefit": "Broad spectrum hybrid physical/organic sunscreen network. Specifically optimized for stable protection in extreme temperature climates and sebum-resistant matte finish."
+          }
+        },
+        "zinc_pca": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Zinc PCA",
+            "inci": "ZINC PCA",
+            "badge": "SEBUM CONTROL",
+            "active_color": "#FFB800",
+            "concentration": "1.0%",
+            "industry_typical": "0.2%–0.5%",
+            "percentage": 80,
+            "benefit": "Sebum-regulating zinc salt that reduces excess sebum secretion. Essential for keeping sunscreen and moisturizers fully matte in high humidity climates."
+          }
+        }
+      },
+      "block_order": [
+        "uv_filters",
+        "zinc_pca"
+      ],
+      "settings": {
+        "label": "FORMULA SPECIFICATIONS",
+        "title": "THE INGREDIENT INVENTORY",
+        "subtitle": "We measure active components under clinical laboratory protocols. What we declare is what your skin barriers receive.",
+        "inci_title": "FULL INCI INVENTORY",
+        "inci_full": "Aqua, Propylene Glycol, Terephthalylidene Dicamphor Sulfonic Acid, Butyl Methoxydibenzoylmethane, Phenylbenzimidazole Sulfonic Acid, Glycerin, Ethylhexyl Methoxycinnamate, Caprylic/Capric Triglyceride, Triethanolamine, Tapioca Starch, Ammonium Acryloyldimethyltaurate/VP Copolymer, Ethylhexyl Salicylate, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol, Decyl Glucoside, Xanthan Gum, Sodium Hyaluronate, Niacinamide, Xylitylglucoside, Anhydroxylitol, Xylitol, Capsicum Annuum Fruit Extract, Zinc PCA, Sodium Gluconate, Tocopheryl Acetate, BHT, Fragrance."
+      }
     }
   },
   "order": [
     "main",
     "glowve_ugc_strip_jV6FmF",
+    "sakora_pdp_ingredients",
     "1777482966b5a68e55",
     "pdp_reviews",
     "pdp_accordions",

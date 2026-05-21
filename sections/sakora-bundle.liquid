@@ -1,0 +1,519 @@
+{%- liquid
+  assign bundle_product_1 = all_products[section.settings.product_1]
+  assign bundle_product_2 = all_products[section.settings.product_2]
+  assign bundle_product_3 = all_products[section.settings.product_3]
+  assign bundle_product    = all_products[section.settings.bundle_product]
+-%}
+
+<section class="sk-bundle sk-dot-grid" id="protocol">
+  <div class="sk-container">
+
+    <div class="sk-bundle-header">
+      <div class="sk-label-caps sk-bundle-eyebrow">{{ section.settings.label }}</div>
+      <h2 class="sk-display-title sk-bundle-title">{{ section.settings.title | replace: '<em>', '<span class="sk-highlight-active">' | replace: '</em>', '</span>' }}</h2>
+      <p class="sk-body-large sk-bundle-subtitle">{{ section.settings.subtitle }}</p>
+    </div>
+
+    <div class="sk-bundle-products">
+
+      {%- comment -%} Product 1 - FADE THEORY {%- endcomment -%}
+      <div class="sk-bundle-product">
+        <div class="sk-bundle-product-img-wrap">
+          {%- if bundle_product_1.featured_image -%}
+            <img
+              src="{{ bundle_product_1.featured_image | image_url: width: 400 }}"
+              alt="{{ bundle_product_1.title | escape }}"
+              width="200" height="200"
+              loading="lazy"
+              class="sk-bundle-product-img"
+            >
+          {%- else -%}
+            <div class="sk-bundle-no-img sk-inci-mono">SK-FADE-01</div>
+          {%- endif -%}
+        </div>
+        <div class="sk-inci-mono sk-bundle-step" style="color: var(--arbutin-arc);">{{ section.settings.step_1 }}</div>
+        <h3 class="sk-bundle-product-name">
+          {%- if section.settings.name_1 != blank -%}{{ section.settings.name_1 }}{%- elsif bundle_product_1 != empty -%}{{ bundle_product_1.title }}{%- endif -%}
+        </h3>
+        <p class="sk-bundle-product-spec sk-inci-mono">ACTIVE LEVEL: 9.0%</p>
+        <div class="sk-bundle-product-price sk-inci-mono">
+          {%- if bundle_product_1 != empty -%}
+            {{ bundle_product_1.price | money }}
+          {%- else -%}
+            {{ section.settings.price_1 }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="sk-bundle-plus sk-inci-mono" aria-hidden="true">&rarr;</div>
+
+      {%- comment -%} Product 2 - SOFT RESET {%- endcomment -%}
+      <div class="sk-bundle-product sk-bundle-product--featured">
+        <div class="sk-bundle-product-img-wrap">
+          {%- if bundle_product_2.featured_image -%}
+            <img
+              src="{{ bundle_product_2.featured_image | image_url: width: 400 }}"
+              alt="{{ bundle_product_2.title | escape }}"
+              width="240" height="240"
+              loading="lazy"
+              class="sk-bundle-product-img"
+            >
+          {%- else -%}
+            <div class="sk-bundle-no-img sk-bundle-no-img--2 sk-inci-mono">SK-BARRIER-02</div>
+          {%- endif -%}
+        </div>
+        <div class="sk-inci-mono sk-bundle-step" style="color: var(--ceramide-slate);">{{ section.settings.step_2 }}</div>
+        <h3 class="sk-bundle-product-name">
+          {%- if section.settings.name_2 != blank -%}{{ section.settings.name_2 }}{%- elsif bundle_product_2 != empty -%}{{ bundle_product_2.title }}{%- endif -%}
+        </h3>
+        <p class="sk-bundle-product-spec sk-inci-mono">ACTIVE LEVEL: 1.5% CERAMIDES</p>
+        <div class="sk-bundle-product-price sk-inci-mono">
+          {%- if bundle_product_2 != empty -%}
+            {{ bundle_product_2.price | money }}
+          {%- else -%}
+            {{ section.settings.price_2 }}
+          {%- endif -%}
+        </div>
+      </div>
+
+      <div class="sk-bundle-plus sk-inci-mono" aria-hidden="true">&rarr;</div>
+
+      {%- comment -%} Product 3 - DAYLITE SPF 50 {%- endcomment -%}
+      <div class="sk-bundle-product">
+        <div class="sk-bundle-product-img-wrap">
+          {%- if bundle_product_3.featured_image -%}
+            <img
+              src="{{ bundle_product_3.featured_image | image_url: width: 400 }}"
+              alt="{{ bundle_product_3.title | escape }}"
+              width="200" height="200"
+              loading="lazy"
+              class="sk-bundle-product-img"
+            >
+          {%- else -%}
+            <div class="sk-bundle-no-img sk-bundle-no-img--3 sk-inci-mono">SK-PROTECT-03</div>
+          {%- endif -%}
+        </div>
+        <div class="sk-inci-mono sk-bundle-step" style="color: var(--uv-amber);">{{ section.settings.step_3 }}</div>
+        <h3 class="sk-bundle-product-name">
+          {%- if section.settings.name_3 != blank -%}{{ section.settings.name_3 }}{%- elsif bundle_product_3 != empty -%}{{ bundle_product_3.title }}{%- endif -%}
+        </h3>
+        <p class="sk-bundle-product-spec sk-inci-mono">ACTIVE LEVEL: PA++++ SHIELD</p>
+        <div class="sk-bundle-product-price sk-inci-mono">
+          {%- if bundle_product_3 != empty -%}
+            {{ bundle_product_3.price | money }}
+          {%- else -%}
+            {{ section.settings.price_3 }}
+          {%- endif -%}
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sk-bundle-cta">
+      <div class="sk-bundle-pricing sk-inci-mono">
+        <span class="sk-bundle-sale-price">{{ section.settings.bundle_price }}</span>
+        <span class="sk-bundle-orig-price">{{ section.settings.original_price }}</span>
+      </div>
+      <div class="sk-bundle-saving sk-inci-mono">{{ section.settings.saving_text }}</div>
+      {%- if section.settings.cta_label != blank -%}
+        <button
+          class="sk-btn-primary sk-btn-primary--lg"
+          onclick="sakoraAddBundle(event, this)"
+          data-variant="{{ bundle_product.first_available_variant.id }}"
+          data-label="{{ section.settings.cta_label | escape }}"
+        >
+          {{ section.settings.cta_label }}
+        </button>
+      {%- endif -%}
+      <p class="sk-bundle-note sk-inci-mono">{{ section.settings.note }}</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  window.sakoraAddBundle = function(event, btn) {
+    event.preventDefault();
+    var variantId = parseInt(btn.dataset.variant);
+    if (!variantId) return;
+
+    btn.disabled = true;
+    btn.textContent = 'EXECUTING TRANSACTION…';
+
+    var sectionIds = [];
+    document.querySelectorAll('cart-items-component[data-section-id]').forEach(function(el) {
+      sectionIds.push(el.dataset.sectionId);
+    });
+
+    fetch('/cart/add.js', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: variantId, quantity: 1, sections: sectionIds.join(',') })
+    })
+    .then(function(r) { return r.json(); })
+    .then(function(response) {
+      document.dispatchEvent(new CustomEvent('cart:update', {
+        bubbles: true,
+        detail: { data: { sections: response.sections } }
+      }));
+      btn.textContent = 'PROTOCOL ADDED ✓';
+      setTimeout(function() {
+        btn.disabled = false;
+        btn.textContent = btn.getAttribute('data-label') || 'ADD COMPLETE SYSTEM TO BAG';
+      }, 2500);
+    })
+    .catch(function() {
+      btn.disabled = false;
+      btn.textContent = 'TRANSACTION ERROR';
+    });
+  };
+</script>
+
+{% stylesheet %}
+  .sk-bundle {
+    background-color: var(--void);
+    color: var(--stark-white);
+    padding: 120px 0;
+    position: relative;
+    border-bottom: 1px solid var(--border-gray);
+  }
+
+  .sk-bundle-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .sk-bundle-eyebrow {
+    color: var(--neon-mint);
+    margin-bottom: 16px;
+  }
+
+  .sk-bundle-title {
+    font-size: 42px !important;
+    text-transform: uppercase;
+    margin-bottom: 18px !important;
+    color: var(--stark-white) !important;
+  }
+
+  .sk-bundle-subtitle {
+    color: var(--subtext);
+    margin: 0 auto;
+    max-width: 680px !important;
+  }
+
+  .sk-bundle-products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    margin-bottom: 72px;
+    flex-wrap: wrap;
+  }
+
+  .sk-bundle-product { 
+    text-align: center; 
+    background-color: var(--near-black);
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    padding: 36px 28px;
+    width: 260px;
+    transition: all 0.3s ease;
+  }
+
+  .sk-bundle-product:hover {
+    border-color: var(--electric-violet);
+  }
+
+  .sk-bundle-product--featured {
+    width: 290px;
+    border-color: var(--sakora-yellow);
+    box-shadow: 0 10px 30px rgba(255, 224, 51, 0.05);
+  }
+
+  .sk-bundle-product-img-wrap {
+    background: var(--void);
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    padding: 20px;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sk-bundle-product--featured .sk-bundle-product-img-wrap {
+    width: 180px;
+    height: 180px;
+  }
+
+  .sk-bundle-product-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    filter: brightness(0.9) contrast(1.1);
+  }
+
+  .sk-bundle-no-img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--near-black);
+    color: var(--subtext);
+    font-size: 11px;
+  }
+
+  .sk-bundle-step {
+    font-size: 10px !important;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .sk-bundle-product-name {
+    font-family: var(--font-heading) !important;
+    font-size: 18px !important;
+    color: var(--stark-white) !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .sk-bundle-product-spec {
+    font-size: 10px !important;
+    color: var(--neon-mint);
+    margin-bottom: 12px;
+  }
+
+  .sk-bundle-product-price {
+    font-size: 13px !important;
+    color: var(--subtext);
+  }
+
+  .sk-bundle-plus {
+    font-size: 24px !important;
+    color: var(--border-gray);
+    font-weight: 600;
+  }
+
+  .sk-bundle-cta { text-align: center; }
+
+  .sk-bundle-pricing {
+    font-size: 38px !important;
+    font-weight: 700;
+    color: var(--stark-white);
+    margin-bottom: 8px;
+  }
+
+  .sk-bundle-sale-price {
+    color: var(--sakora-yellow);
+  }
+
+  .sk-bundle-orig-price {
+    font-size: 20px;
+    color: var(--subtext);
+    text-decoration: line-through;
+    margin-left: 12px;
+  }
+
+  .sk-bundle-saving {
+    font-size: 11px !important;
+    color: var(--neon-mint);
+    margin-bottom: 32px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .sk-btn-primary--lg {
+    font-size: 14px !important;
+    padding: 16px 44px !important;
+  }
+
+  .sk-bundle-note {
+    font-size: 11px !important;
+    color: var(--subtext);
+    margin-top: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 900px) {
+    .sk-bundle-plus {
+      transform: rotate(90deg);
+      margin: 12px 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sk-bundle { padding: 80px 0; }
+    .sk-bundle-title { font-size: 32px !important; }
+    .sk-bundle-products { gap: 16px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sakora Bundle",
+  "tag": "section",
+  "class": "sakora-bundle-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "CLINICAL REGIMEN SYSTEM"
+    },
+    {
+      "type": "richtext",
+      "id": "title",
+      "label": "Title",
+      "default": "<p>THE COMPLETE PROTOCOL: <em>3 STEPS</em></p>"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Designed as an interlocking system: Fade Theory controls melanin pathways, Soft Reset locks dynamic hydration complexes, and Daylite SPF prevents UV reactivation."
+    },
+    {
+      "type": "header",
+      "content": "Bundle Product (for Add to Cart)"
+    },
+    {
+      "type": "product",
+      "id": "bundle_product",
+      "label": "Sakora Bundle product",
+      "info": "The actual bundle product customers add to cart"
+    },
+    {
+      "type": "header",
+      "content": "Product 1 (display only)"
+    },
+    {
+      "type": "product",
+      "id": "product_1",
+      "label": "Product 1"
+    },
+    {
+      "type": "text",
+      "id": "name_1",
+      "label": "Display name (overrides product title)",
+      "default": "Fade Theory Brightening Serum"
+    },
+    {
+      "type": "text",
+      "id": "price_1",
+      "label": "Fallback price",
+      "default": "PKR 1,480"
+    },
+    {
+      "type": "text",
+      "id": "step_1",
+      "label": "Step label",
+      "default": "01 // APPLICATION PM"
+    },
+    {
+      "type": "header",
+      "content": "Product 2"
+    },
+    {
+      "type": "product",
+      "id": "product_2",
+      "label": "Product 2"
+    },
+    {
+      "type": "text",
+      "id": "name_2",
+      "label": "Display name (overrides product title)",
+      "default": "Soft Reset Triple Ceramide"
+    },
+    {
+      "type": "text",
+      "id": "price_2",
+      "label": "Fallback price",
+      "default": "PKR 1,880"
+    },
+    {
+      "type": "text",
+      "id": "step_2",
+      "label": "Step label",
+      "default": "02 // HYDRATE AM + PM"
+    },
+    {
+      "type": "header",
+      "content": "Product 3"
+    },
+    {
+      "type": "product",
+      "id": "product_3",
+      "label": "Product 3"
+    },
+    {
+      "type": "text",
+      "id": "name_3",
+      "label": "Display name (overrides product title)",
+      "default": "Daylite SPF 50 PA++++"
+    },
+    {
+      "type": "text",
+      "id": "price_3",
+      "label": "Fallback price",
+      "default": "PKR 1,780"
+    },
+    {
+      "type": "text",
+      "id": "step_3",
+      "label": "Step label",
+      "default": "03 // PROTECT AM ONLY"
+    },
+    {
+      "type": "header",
+      "content": "Pricing & CTA"
+    },
+    {
+      "type": "text",
+      "id": "bundle_price",
+      "label": "Bundle price",
+      "default": "PKR 4,440"
+    },
+    {
+      "type": "text",
+      "id": "original_price",
+      "label": "Original price",
+      "default": "PKR 5,140"
+    },
+    {
+      "type": "text",
+      "id": "saving_text",
+      "label": "Saving text",
+      "default": "CLINICAL AUDIT DISCOUNT Applied: SAVE PKR 700 // Free delivery included"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "ADD COMPLETE SYSTEM TO BAG"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Fine print",
+      "default": "EXPRESS SHIPPING WITHIN PAKISTAN // 7-DAY PRODUCT QUALITY AUDITS GUARANTEED"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Bundle"
+    }
+  ]
+}
+{% endschema %}

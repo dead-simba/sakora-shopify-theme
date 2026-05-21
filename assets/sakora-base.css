@@ -1,0 +1,288 @@
+/* ============================================================
+   SAKORA DESIGN SYSTEM — BASE TOKENS & SHARED UTILITIES
+   Version 1.0 | May 2026
+   Skin science. No filter.
+   ============================================================ */
+
+:root {
+  /* ---- Primary Palette ---- */
+  --void:            #0A0A14; /* Dark background */
+  --chalk:           #F7F7F2; /* Light background */
+  --sakora-yellow:   #FFE033; /* CTAs, high focus highlights */
+  --electric-violet: #7B3FFF; /* Secondary accents, hover highlights */
+  --neon-mint:       #00FFC4; /* Data points, fresh indicators, success */
+  --stark-white:     #FAFAF5; /* Body text on dark */
+  --carbon:          #111118; /* Body text on light */
+
+  /* ---- Ingredient / Category Palette ---- */
+  --arbutin-arc:     #B8ECFF; /* Alpha Arbutin / Brightening */
+  --niacinamide-volt: #C2F970; /* Niacinamide / Barrier */
+  --ceramide-slate:  #8DA8C4; /* Ceramides / Repair */
+  --uv-amber:        #FFB800; /* Sunscreen / SPF */
+  --peptide-dusk:    #C29EFF; /* Advanced / Peptides */
+  --c-charge:        #FF9500; /* Vitamin C */
+
+  /* ---- Neutrals ---- */
+  --near-black:      #0F0F1C; /* Main alternative dark bg */
+  --deep-gray:       #1E1E2E; /* Card background on dark */
+  --border-gray:     #2E2E3E; /* Heavy borders / grids on dark */
+  --light-border:    #E2E2DC; /* Dividers / grids on light */
+  --subtext:         #9A9AB0; /* Secondary text, metadata */
+
+  /* ---- Typography Stacks ---- */
+  --font-display:    'Syne', 'Outfit', sans-serif;
+  --font-heading:    'Syne', sans-serif;
+  --font-body:       'Outfit', sans-serif;
+  --font-ui:         'Outfit', sans-serif;
+  --font-mono:       'Space Mono', monospace;
+  
+  /* ---- Layout Guidelines ---- */
+  --sk-container-width: 1280px;
+}
+
+/* ============================================================
+   GLOBAL TYPOGRAPHY OVERRIDES
+   ============================================================ */
+
+h1, h2, h3, h4, h5, h6,
+.sk-display-title,
+.sk-section-title,
+.sk-hero-headline,
+.sk-product-name {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+  font-style: normal !important;
+  line-height: 1.1 !important;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--carbon);
+  background-color: var(--chalk);
+  -webkit-font-smoothing: antialiased;
+}
+
+.bg-void body,
+body.bg-void,
+.sk-dark-mode {
+  color: var(--stark-white);
+  background-color: var(--void);
+}
+
+/* Specific styling for technical INCI data */
+.sk-inci-mono {
+  font-family: var(--font-mono) !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
+}
+
+/* Badges and tags style rule: Outfit 600, uppercase, +0.12em tracking */
+.sk-label-caps {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Body Large restriction rule to avoid long lines */
+.sk-body-large {
+  font-size: 18px;
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+.sk-body-normal {
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+/* Highlight tags with no soft pastels */
+.sk-highlight-active {
+  font-style: normal !important;
+  color: var(--sakora-yellow) !important;
+  font-weight: inherit;
+}
+
+/* ============================================================
+   SHARED GEOMETRIC BUTTON STYLES (Radius: 6px)
+   ============================================================ */
+
+.sk-btn-primary {
+  background-color: var(--sakora-yellow) !important;
+  color: var(--carbon) !important;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  border-radius: 6px !important; /* Strictly 6px border-radius */
+  border: 1px solid var(--sakora-yellow) !important;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+              background-color 0.2s ease, 
+              border-color 0.2s ease,
+              box-shadow 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  width: fit-content;
+  box-shadow: 0 0 0 0 transparent;
+}
+
+.sk-btn-primary:hover {
+  transform: scale(1.02);
+  background-color: var(--sakora-yellow);
+  box-shadow: 0 4px 0 0 var(--electric-violet); /* Electric Violet bottom highlight */
+}
+
+.sk-btn-secondary {
+  background-color: transparent !important;
+  color: var(--stark-white) !important;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 13px 26px;
+  border-radius: 6px !important;
+  border: 1px solid var(--stark-white) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  width: fit-content;
+}
+
+/* Dark-on-light theme variations for secondary CTA */
+.sk-light-theme .sk-btn-secondary {
+  color: var(--carbon) !important;
+  border-color: var(--carbon) !important;
+}
+
+.sk-btn-secondary:hover {
+  background-color: rgba(250, 250, 245, 0.1) !important;
+  border-color: var(--sakora-yellow) !important;
+  color: var(--sakora-yellow) !important;
+}
+
+.sk-light-theme .sk-btn-secondary:hover {
+  background-color: rgba(17, 17, 24, 0.05) !important;
+  border-color: var(--electric-violet) !important;
+  color: var(--electric-violet) !important;
+}
+
+.sk-btn-ghost {
+  background-color: var(--deep-gray) !important;
+  color: var(--subtext) !important;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 10px 20px;
+  border-radius: 6px !important;
+  border: 1px solid var(--border-gray) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.sk-btn-ghost:hover {
+  color: var(--stark-white) !important;
+  border-color: var(--subtext) !important;
+}
+
+/* ============================================================
+   STRUCTURAL UTILITIES & DESIGN PATTERNS
+   ============================================================ */
+
+/* Container wrapper rules */
+.sk-container {
+  max-width: var(--sk-container-width);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+@media (max-width: 768px) {
+  .sk-container {
+    padding: 0 20px;
+  }
+}
+
+/* dot-matrix grid background texture */
+.sk-dot-grid {
+  position: relative;
+}
+
+.sk-dot-grid::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background-image: radial-gradient(var(--border-gray) 1px, transparent 1px);
+  background-size: 24px 24px;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+.sk-light-theme .sk-dot-grid::before {
+  background-image: radial-gradient(var(--light-border) 1px, transparent 1px);
+  opacity: 0.4;
+}
+
+/* Scientific scale comparison bar block styling */
+.sk-spec-scale {
+  background: var(--deep-gray);
+  border: 1px solid var(--border-gray);
+  border-radius: 6px;
+  padding: 20px;
+  margin-top: 15px;
+}
+
+.sk-spec-scale__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+}
+
+.sk-spec-scale__bar-container {
+  height: 8px;
+  background-color: var(--border-gray);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.sk-spec-scale__bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Rating component styles */
+.sk-rating-stars {
+  color: var(--sakora-yellow);
+  letter-spacing: 2px;
+}
+
+/* Standard divider lines */
+.sk-divider-dark {
+  height: 1px;
+  background-color: var(--border-gray);
+  border: none;
+  margin: 40px 0;
+}
+
+.sk-divider-light {
+  height: 1px;
+  background-color: var(--light-border);
+  border: none;
+  margin: 40px 0;
+}

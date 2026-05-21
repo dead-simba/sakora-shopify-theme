@@ -1,0 +1,566 @@
+<section class="sk-ing-dir sk-dot-grid" aria-labelledby="sk-ing-dir-title">
+  <div class="sk-container">
+    <div class="sk-ing-dir-layout">
+      <!-- LEFT: Text & Controls -->
+      <div class="sk-ing-dir-controls">
+        <div class="sk-label-caps sk-ing-dir-eyebrow">{{ section.settings.label }}</div>
+        <h2 id="sk-ing-dir-title" class="sk-display-title">{{ section.settings.title }}</h2>
+        <p class="sk-body-normal sk-ing-dir-desc">{{ section.settings.description }}</p>
+        
+        <div class="sk-ing-search-wrap">
+          <input type="text" id="sk-ing-search" placeholder="SEARCH ACTIVE INGREDIENTS..." aria-label="Search ingredients">
+          <svg class="sk-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+        </div>
+
+        <div class="sk-ing-filters" role="group" aria-label="Filter ingredients">
+          <button class="sk-ing-filter-btn active" data-filter="all">ALL ACTIVES</button>
+          <button class="sk-ing-filter-btn" data-filter="brightening">BRIGHTENING</button>
+          <button class="sk-ing-filter-btn" data-filter="barrier">BARRIER REPAIR</button>
+          <button class="sk-ing-filter-btn" data-filter="sunscreen">UV DEFENSE</button>
+        </div>
+
+        {%- if section.settings.cta_label != blank -%}
+          <a href="{{ section.settings.cta_url }}" class="sk-btn-primary sk-ing-cta">
+            {{ section.settings.cta_label }}
+          </a>
+        {%- endif -%}
+      </div>
+
+      <!-- RIGHT: Interactive Directory Cards -->
+      <div class="sk-ing-dir-grid-wrap">
+        <div class="sk-ing-grid" id="sk-ing-grid">
+          {%- assign star_blocks = section.blocks | where: 'type', 'star_card' -%}
+          {%- for block in star_blocks -%}
+            {%- assign category = block.settings.category | default: 'brightening' -%}
+            <div class="sk-ing-card" data-category="{{ category }}" data-name="{{ block.settings.name | downcase }}" data-inci="{{ block.settings.inci | downcase }}">
+              <div class="sk-ing-card-header">
+                <span class="sk-inci-mono sk-ing-inci" style="color: {{ block.settings.active_color }};">{{ block.settings.inci }}</span>
+                <span class="sk-label-caps sk-ing-cat-tag" style="background-color: {{ block.settings.active_color | color_modify: 'alpha', 0.15 }}; color: {{ block.settings.active_color }}; border: 1px solid {{ block.settings.active_color | color_modify: 'alpha', 0.3 }};">{{ category }}</span>
+              </div>
+              
+              <h3 class="sk-ing-name">{{ block.settings.name }}</h3>
+              <p class="sk-ing-function">{{ block.settings.function }}</p>
+
+              <!-- Technical Spec Progress Bar -->
+              <div class="sk-ing-spec-bar">
+                <div class="sk-ing-spec-labels">
+                  <span class="sk-inci-mono">CONCENTRATION: {{ block.settings.concentration }}</span>
+                  <span class="sk-inci-mono text-sub">INDUSTRY TYP.: {{ block.settings.industry_typical }}</span>
+                </div>
+                <div class="sk-ing-progress-bg">
+                  <div class="sk-ing-progress-fill" style="width: {{ block.settings.percentage }}%; background-color: {{ block.settings.active_color | default: 'var(--sakora-yellow)' }}; box-shadow: 0 0 10px {{ block.settings.active_color | color_modify: 'alpha', 0.5 }};"></div>
+                </div>
+              </div>
+
+              {%- if block.settings.study_ref != blank -%}
+                <div class="sk-ing-clinical-ref">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                  <a href="{{ block.settings.study_url | default: '#' }}" target="_blank" rel="noopener" class="sk-inci-mono sk-ing-study-link">
+                    {{ block.settings.study_ref }}
+                  </a>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+
+        <div id="sk-ing-empty" class="sk-ing-empty-state" style="display: none;">
+          <p class="sk-inci-mono">ZERO RESULTS MATCHING CURRENT FILTER PARAMETERS.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var wrap = document.currentScript.closest('.sakora-ing-dir-wrapper');
+  if (!wrap) return;
+  var searchInput = wrap.querySelector('#sk-ing-search');
+  var filterBtns = wrap.querySelectorAll('.sk-ing-filter-btn');
+  var cards = wrap.querySelectorAll('.sk-ing-card');
+  var emptyState = wrap.querySelector('#sk-ing-empty');
+  var activeFilter = 'all';
+
+  function filter() {
+    var query = searchInput.value.toLowerCase().trim();
+    var visibleCount = 0;
+
+    cards.forEach(function(card) {
+      var cat = card.dataset.category;
+      var name = card.dataset.name;
+      var inci = card.dataset.inci;
+
+      var matchesFilter = (activeFilter === 'all' || cat === activeFilter);
+      var matchesSearch = (!query || name.indexOf(query) !== -1 || inci.indexOf(query) !== -1);
+
+      if (matchesFilter && matchesSearch) {
+        card.style.display = 'flex';
+        visibleCount++;
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    if (visibleCount === 0) {
+      emptyState.style.display = 'block';
+    } else {
+      emptyState.style.display = 'none';
+    }
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', filter);
+  }
+
+  filterBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      filterBtns.forEach(function(b) { b.classList.remove('active'); });
+      this.classList.add('active');
+      activeFilter = this.dataset.filter;
+      filter();
+    });
+  });
+})();
+</script>
+
+{% stylesheet %}
+  .sk-ing-dir {
+    background-color: var(--void);
+    color: var(--stark-white);
+    padding: 120px 0;
+    border-bottom: 1px solid var(--border-gray);
+  }
+
+  .sk-ing-dir-layout {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  /* LEFT: Text & Controls */
+  .sk-ing-dir-eyebrow {
+    color: var(--neon-mint);
+    margin-bottom: 16px;
+  }
+
+  .sk-ing-dir-desc {
+    color: var(--subtext);
+    margin-top: 18px;
+    margin-bottom: 32px;
+    line-height: 1.6;
+  }
+
+  /* Search Input */
+  .sk-ing-search-wrap {
+    position: relative;
+    margin-bottom: 24px;
+    max-width: 100%;
+  }
+
+  #sk-ing-search {
+    width: 100%;
+    background-color: var(--near-black);
+    border: 1px solid var(--border-gray);
+    color: var(--stark-white);
+    padding: 14px 20px;
+    padding-right: 44px;
+    border-radius: 6px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  #sk-ing-search:focus {
+    border-color: var(--sakora-yellow);
+    box-shadow: 0 0 0 2px rgba(255, 224, 51, 0.1);
+  }
+
+  .sk-search-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--subtext);
+    pointer-events: none;
+  }
+
+  /* Filters */
+  .sk-ing-filters {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .sk-ing-filter-btn {
+    background: transparent;
+    border: 1px solid var(--border-gray);
+    color: var(--subtext);
+    padding: 12px 18px;
+    border-radius: 6px;
+    text-align: left;
+    font-family: var(--font-ui);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .sk-ing-filter-btn:hover {
+    color: var(--stark-white);
+    border-color: var(--subtext);
+  }
+
+  .sk-ing-filter-btn.active {
+    background-color: var(--border-gray);
+    color: var(--sakora-yellow);
+    border-color: var(--sakora-yellow);
+  }
+
+  .sk-ing-cta {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  /* RIGHT: Directory Grid */
+  .sk-ing-dir-grid-wrap {
+    position: relative;
+    min-height: 400px;
+  }
+
+  .sk-ing-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  .sk-ing-card {
+    background-color: var(--near-black);
+    border: 1px solid var(--border-gray);
+    border-radius: 6px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .sk-ing-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--electric-violet);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+  }
+
+  .sk-ing-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .sk-ing-inci {
+    font-size: 11px !important;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .sk-ing-cat-tag {
+    font-size: 8px !important;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .sk-ing-name {
+    font-family: var(--font-heading) !important;
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: var(--stark-white) !important;
+    margin-bottom: 12px !important;
+    line-height: 1.2 !important;
+  }
+
+  .sk-ing-function {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--subtext);
+    line-height: 1.5;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+
+  /* Spec Bar */
+  .sk-ing-spec-bar {
+    border-top: 1px dashed var(--border-gray);
+    padding-top: 18px;
+    margin-bottom: 16px;
+  }
+
+  .sk-ing-spec-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+
+  .sk-ing-spec-labels span {
+    font-size: 10px !important;
+  }
+
+  .sk-ing-spec-labels .text-sub {
+    color: var(--subtext);
+  }
+
+  .sk-ing-progress-bg {
+    height: 6px;
+    background-color: var(--border-gray);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .sk-ing-progress-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+
+  /* Clinical Ref */
+  .sk-ing-clinical-ref {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--neon-mint);
+  }
+
+  .sk-ing-clinical-ref svg {
+    flex-shrink: 0;
+  }
+
+  .sk-ing-study-link {
+    font-size: 10px !important;
+    color: var(--neon-mint) !important;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+  }
+
+  .sk-ing-study-link:hover {
+    color: var(--stark-white) !important;
+    border-color: var(--stark-white);
+  }
+
+  .sk-ing-empty-state {
+    padding: 60px 0;
+    text-align: center;
+    border: 1px dashed var(--border-gray);
+    border-radius: 6px;
+    color: var(--subtext);
+  }
+
+  /* Responsive styling */
+  @media (max-width: 1024px) {
+    .sk-ing-dir-layout {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .sk-ing-filters {
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+    .sk-ing-filter-btn {
+      flex-grow: 1;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .sk-ing-dir {
+      padding: 80px 0;
+    }
+    .sk-ing-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sakora Ingredient Dir",
+  "tag": "section",
+  "class": "sakora-ing-dir-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section Label",
+      "default": "RADICAL EVIDENCE"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "THE INGREDIENT REGISTRY"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Every percentage. Every INCI registry name. Full disclosure, backed by published clinical trials. We do not use filler ingredients."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA Label",
+      "default": "VIEW FULL CLINICAL METHODOLOGY"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "star_card",
+      "name": "Star Ingredient",
+      "settings": [
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Common Name",
+          "default": "Alpha Arbutin"
+        },
+        {
+          "type": "text",
+          "id": "inci",
+          "label": "INCI/Chemical Registry Name",
+          "default": "Alpha-Arbutin"
+        },
+        {
+          "type": "select",
+          "id": "category",
+          "label": "Category / Skin Action",
+          "options": [
+            { "value": "brightening", "label": "Brightening" },
+            { "value": "barrier", "label": "Barrier Repair" },
+            { "value": "sunscreen", "label": "UV Defense" }
+          ],
+          "default": "brightening"
+        },
+        {
+          "type": "color",
+          "id": "active_color",
+          "label": "Active Indicator Color",
+          "default": "#B8ECFF"
+        },
+        {
+          "type": "text",
+          "id": "concentration",
+          "label": "Concentration (Sakora)",
+          "default": "2.0%"
+        },
+        {
+          "type": "text",
+          "id": "industry_typical",
+          "label": "Typical Industry Range",
+          "default": "0.5%–1.0%"
+        },
+        {
+          "type": "range",
+          "id": "percentage",
+          "label": "Progress Bar Fill Percentage",
+          "min": 10,
+          "max": 100,
+          "step": 5,
+          "default": 80
+        },
+        {
+          "type": "textarea",
+          "id": "function",
+          "label": "Clinical Function",
+          "default": "Inhibits tyrosinase activity to shut down melanin pathway synthesis. Exceeds standard cosmetic doses for rapid hyperpigmentation correction."
+        },
+        {
+          "type": "text",
+          "id": "study_ref",
+          "label": "Clinical Study Reference",
+          "default": "PMID: 32014902 / Journal of Cos. Derm."
+        },
+        {
+          "type": "url",
+          "id": "study_url",
+          "label": "Study Hyperlink"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Ingredient Dir",
+      "blocks": [
+        {
+          "type": "star_card",
+          "settings": {
+            "name": "Alpha Arbutin",
+            "inci": "ALPHA-ARBUTIN",
+            "category": "brightening",
+            "active_color": "#B8ECFF",
+            "concentration": "2.0%",
+            "industry_typical": "0.5%–1.0%",
+            "percentage": 85,
+            "function": "Blocks enzymatic synthesis of melanin pigment. Specifically chosen at maximum safe concentration of 2.0% for hyperpigmentation correction in Fitzpatrick IV-VI skin profiles.",
+            "study_ref": "Derm. Ther. Vol 33, Iss 4"
+          }
+        },
+        {
+          "type": "star_card",
+          "settings": {
+            "name": "Triple Ceramide Complex",
+            "inci": "CERAMIDE NP · AP · EOP",
+            "category": "barrier",
+            "active_color": "#8DA8C4",
+            "concentration": "1.5% Pure",
+            "industry_typical": "0.1%–0.2%",
+            "percentage": 95,
+            "function": "Bio-identical lipid matrix mimicking skin's natural structure. Interlocking matrix that seals transepidermal water loss and restores compromised skin barriers.",
+            "study_ref": "Int. Journal of Molecular Sci. Vol 22"
+          }
+        },
+        {
+          "type": "star_card",
+          "settings": {
+            "name": "Matte UV Filters",
+            "inci": "TINOSORB S + M · UVINUL A PLUS",
+            "category": "sunscreen",
+            "active_color": "#FFB800",
+            "concentration": "SPF 50 / PA++++",
+            "industry_typical": "SPF 30 / PA+++",
+            "percentage": 100,
+            "function": "Broad spectrum hybrid physical/organic sunscreen network. Specifically optimized for stable protection in extreme temperature climates and sebum-resistant matte finish.",
+            "study_ref": "Photochem. & Photobiol. Vol 88"
+          }
+        },
+        {
+          "type": "star_card",
+          "settings": {
+            "name": "Niacinamide",
+            "inci": "NIACINAMIDE (VITAMIN B3)",
+            "category": "barrier",
+            "active_color": "#C2F970",
+            "concentration": "5.0%",
+            "industry_typical": "2.0%",
+            "percentage": 75,
+            "function": "Clinical amide compound that suppresses pigment transfer from melanocytes to outer skin cells. Regulates sebum production to control acne flare-ups in humid Pakistani summers.",
+            "study_ref": "Journal of Clinical Derm. Vol 19"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

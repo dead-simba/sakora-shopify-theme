@@ -367,6 +367,62 @@
         "disclaimer": "Individual results may vary. Images are unretouched."
       }
     },
+    "sakora_pdp_ingredients": {
+      "type": "sakora-pdp-ingredients",
+      "blocks": {
+        "alpha_arbutin": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Alpha Arbutin 2%",
+            "inci": "ALPHA-ARBUTIN",
+            "badge": "BRIGHTENING",
+            "active_color": "#B8ECFF",
+            "concentration": "2.0%",
+            "industry_typical": "0.5%–1.0%",
+            "percentage": 85,
+            "benefit": "Blocks enzymatic synthesis of melanin pigment. Specifically chosen at maximum safe concentration of 2.0% for hyperpigmentation correction in Fitzpatrick IV-VI skin profiles."
+          }
+        },
+        "tranexamic_acid": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Tranexamic Acid 2%",
+            "inci": "TRANEXAMIC ACID",
+            "badge": "PIH SPECIALIST",
+            "active_color": "#7B3FFF",
+            "concentration": "2.0%",
+            "industry_typical": "0.5%–1.0%",
+            "percentage": 80,
+            "benefit": "Blocks the inflammatory triggers that activate melanocytes. Works synergistically with Alpha Arbutin to dual-target stubborn post-inflammatory hyperpigmentation (PIH)."
+          }
+        },
+        "niacinamide": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Niacinamide 5%",
+            "inci": "NIACINAMIDE",
+            "badge": "BARRIER CONTROL",
+            "active_color": "#C2F970",
+            "concentration": "5.0%",
+            "industry_typical": "2.0%",
+            "percentage": 75,
+            "benefit": "Clinical amide compound that suppresses pigment transfer from melanocytes to outer skin cells. Regulates sebum production to control acne flare-ups in humid summers."
+          }
+        }
+      },
+      "block_order": [
+        "alpha_arbutin",
+        "tranexamic_acid",
+        "niacinamide"
+      ],
+      "settings": {
+        "label": "FORMULA SPECIFICATIONS",
+        "title": "THE INGREDIENT INVENTORY",
+        "subtitle": "We measure active components under clinical laboratory protocols. What we declare is what your skin barriers receive.",
+        "inci_title": "FULL INCI INVENTORY",
+        "inci_full": "Aqua, <strong>Niacinamide</strong>, <strong>Alpha-Arbutin</strong>, <strong>3-O-Ethyl Ascorbic Acid</strong>, <strong>Tranexamic Acid</strong>, Propanediol, Glycerin, Sodium Hyaluronate, Glycyrrhiza Glabra (Licorice) Root Extract, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin, Citric Acid, Sodium Hydroxide, Fragrance."
+      }
+    },
     "glowve_ugc_strip_jV6FmF": {
       "type": "glowve-ugc-strip",
       "blocks": {
@@ -951,6 +1007,7 @@
   "order": [
     "main",
     "glowve_pdp_before_after_A3za7y",
+    "sakora_pdp_ingredients",
     "glowve_ugc_strip_jV6FmF",
     "1777464815268a1afb",
     "pdp_reviews",

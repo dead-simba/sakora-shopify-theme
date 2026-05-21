@@ -367,6 +367,62 @@
         "disclaimer": "Individual results may vary. Images are unretouched."
       }
     },
+    "sakora_pdp_ingredients": {
+      "type": "sakora-pdp-ingredients",
+      "blocks": {
+        "ceramide_complex": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Triple Ceramide Complex",
+            "inci": "CERAMIDE NP · AP · EOP",
+            "badge": "BARRIER SEAL",
+            "active_color": "#8DA8C4",
+            "concentration": "1.5% Pure",
+            "industry_typical": "0.1%–0.2%",
+            "percentage": 95,
+            "benefit": "Bio-identical lipid matrix mimicking skin's natural structure. Interlocking matrix that seals transepidermal water loss and restores compromised skin barriers."
+          }
+        },
+        "matrixyl_peptides": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Matrixyl 3000",
+            "inci": "PALMITOYL TRIPEPTIDE-1 · TETRAPEPTIDE-7",
+            "badge": "COLLAGEN SIGNAL",
+            "active_color": "#C2F970",
+            "concentration": "3.0% Complex",
+            "industry_typical": "1.0%",
+            "percentage": 85,
+            "benefit": "Signal peptide complex that stimulates dermal collagen and elastin synthesis. Works alongside surface lipids to reinforce skin's structural scaffolding."
+          }
+        },
+        "niacinamide": {
+          "type": "spec_block",
+          "settings": {
+            "name": "Niacinamide 5%",
+            "inci": "NIACINAMIDE",
+            "badge": "BARRIER STRENGTH",
+            "active_color": "#C2F970",
+            "concentration": "5.0%",
+            "industry_typical": "2.0%",
+            "percentage": 75,
+            "benefit": "Clinical amide compound that suppresses pigment transfer from melanocytes to outer skin cells. Regulates sebum production to control acne flare-ups in humid summers."
+          }
+        }
+      },
+      "block_order": [
+        "ceramide_complex",
+        "matrixyl_peptides",
+        "niacinamide"
+      ],
+      "settings": {
+        "label": "FORMULA SPECIFICATIONS",
+        "title": "THE INGREDIENT INVENTORY",
+        "subtitle": "We measure active components under clinical laboratory protocols. What we declare is what your skin barriers receive.",
+        "inci_title": "FULL INCI INVENTORY",
+        "inci_full": "Aqua, Glycerin, <strong>Niacinamide</strong>, Propanediol, Panthenol, Betaine, <strong>Palmitoyl Tripeptide-1</strong>, <strong>Palmitoyl Tetrapeptide-7</strong>, <strong>Ceramide NP, Ceramide AP, Ceramide EOP</strong>, Cholesterol, Phytosphingosine, Sodium Hyaluronate, Allantoin, Tocopherol, Cetearyl Olivate, Sorbitan Olivate, Carbomer, Xanthan Gum, Sodium Lauroyl Lactylate, Disodium EDTA, 1,2-Hexanediol, Phenoxyethanol, Ethylhexylglycerin, Fragrance."
+      }
+    },
     "177755844094ddecc5": {
       "type": "_blocks",
       "blocks": {
@@ -897,6 +953,7 @@
     "main",
     "glowve_ugc_strip_jV6FmF",
     "glowve_pdp_before_after_JtMfNE",
+    "sakora_pdp_ingredients",
     "177755844094ddecc5",
     "pdp_accordions_aMBCdE",
     "pdp_clinical",

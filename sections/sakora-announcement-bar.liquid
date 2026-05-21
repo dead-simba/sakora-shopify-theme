@@ -1,0 +1,114 @@
+<div class="sk-announcement-bar">
+  <div class="sk-announcement-container sk-container">
+    <div class="sk-announcement-message">
+      <span class="sk-announcement-tag sk-label-caps">{{ section.settings.badge }}</span>
+      <span class="sk-announcement-text">{{ section.settings.text }}</span>
+      {%- if section.settings.link != blank -%}
+        <a href="{{ section.settings.link }}" class="sk-announcement-link">{{ section.settings.link_label }} &rarr;</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .sk-announcement-bar {
+    background-color: var(--void);
+    color: var(--sakora-yellow);
+    border-bottom: 1px solid var(--border-gray);
+    padding: 10px 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .sk-announcement-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sk-announcement-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .sk-announcement-tag {
+    background-color: var(--electric-violet);
+    color: var(--stark-white);
+    font-size: 9px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+
+  .sk-announcement-link {
+    color: var(--neon-mint);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s ease;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 1px;
+  }
+
+  .sk-announcement-link:hover {
+    color: var(--stark-white);
+    border-color: var(--stark-white);
+  }
+
+  @media (max-width: 768px) {
+    .sk-announcement-bar {
+      padding: 12px 0;
+    }
+    .sk-announcement-message {
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sk-announcement-tag {
+      font-size: 8px;
+      padding: 2px 6px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sakora Announcement Bar",
+  "tag": "div",
+  "class": "sakora-announcement-bar-wrapper",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge label",
+      "default": "CLINICAL RELEASE"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Announcement Text",
+      "default": "Free delivery across Pakistan on orders above PKR 2,500."
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label",
+      "default": "Shop Bestsellers"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Announcement Bar"
+    }
+  ]
+}
+{% endschema %}
