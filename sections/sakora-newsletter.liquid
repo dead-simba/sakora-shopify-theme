@@ -1,0 +1,188 @@
+{%- style -%}
+  .sakora-newsletter {
+    background-color: #E8A0A0;
+    padding: 5.5rem 1.5rem;
+    text-align: center;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-newsletter {
+      padding: 6.5rem 3rem;
+    }
+  }
+  .sakora-newsletter__eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #7A3030;
+    margin: 0 0 1rem;
+  }
+  .sakora-newsletter__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2rem, 3.5vw, 3.8rem);
+    font-weight: 400;
+    color: #2A0A0A;
+    margin: 0 0 0.8rem;
+    line-height: 1.2;
+  }
+  .sakora-newsletter__title em {
+    font-style: italic;
+  }
+  .sakora-newsletter__text {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    color: #7A3030;
+    margin: 0 0 2.5rem;
+  }
+  .sakora-newsletter__form-wrapper {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .sakora-newsletter__input-group {
+    display: flex;
+    border-radius: 50px !important;
+    overflow: hidden;
+    border: 0.5px solid rgba(90,20,20,0.25);
+    background-color: rgba(250,245,240,0.85);
+    padding: 3px;
+  }
+  .sakora-newsletter__input {
+    flex: 1;
+    padding: 1.2rem 1.8rem;
+    border: none !important;
+    background: transparent !important;
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    outline: none !important;
+    color: #1C1C1A !important;
+    box-shadow: none !important;
+  }
+  .sakora-newsletter__btn {
+    background-color: #2A0A0A !important;
+    color: #FAF5F0 !important;
+    border: none !important;
+    padding: 1.2rem 2.2rem;
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+    border-radius: 50px !important;
+    font-weight: 500;
+  }
+  .sakora-newsletter__btn:hover {
+    opacity: 0.9;
+  }
+  .sakora-newsletter__footer {
+    font-family: var(--font-body-family);
+    font-size: 0.95rem;
+    color: #7A3030;
+    margin-top: 1.2rem;
+    opacity: 0.7;
+  }
+  .sakora-newsletter .form__message {
+    justify-content: center;
+    margin-top: 1.5rem;
+    color: #2A0A0A;
+    font-size: 1.2rem;
+  }
+{%- endstyle -%}
+
+<section class="sakora-newsletter">
+  <p class="sakora-newsletter__eyebrow">{{ section.settings.eyebrow }}</p>
+  <h2 class="sakora-newsletter__title">
+    {{ section.settings.title }}
+  </h2>
+  <p class="sakora-newsletter__text">
+    {{ section.settings.text }}
+  </p>
+  
+  <div class="sakora-newsletter__form-wrapper">
+    {%- form 'customer', class: 'sakora-newsletter-form' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <div class="sakora-newsletter__input-group">
+        <input
+          id="NewsletterForm--{{ section.id }}"
+          type="email"
+          name="contact[email]"
+          class="sakora-newsletter__input"
+          value="{{ form.email }}"
+          aria-required="true"
+          autocorrect="off"
+          autocapitalize="off"
+          autocomplete="email"
+          {% if form.errors %}
+            autofocus
+            aria-invalid="true"
+            aria-describedby="Newsletter-error--{{ section.id }}"
+          {% elsif form.posted_successfully? %}
+            aria-describedby="Newsletter-success--{{ section.id }}"
+          {% endif %}
+          placeholder="your@email.com"
+          required
+        >
+        <button
+          type="submit"
+          class="sakora-newsletter__btn sakora-btn"
+          name="commit"
+          id="Subscribe--{{ section.id }}"
+          aria-label="Subscribe"
+        >
+          Join Us
+        </button>
+      </div>
+      {%- if form.errors -%}
+        <small class="form__message" id="Newsletter-error--{{ section.id }}">
+          {{- form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email -}}
+        </small>
+      {%- endif -%}
+      {%- if form.posted_successfully? -%}
+        <h3 class="form__message" id="Newsletter-success--{{ section.id }}" tabindex="-1" autofocus>
+          ✓ Thanks for joining! Let's walk the journey together.
+        </h3>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+
+  <p class="sakora-newsletter__footer">{{ section.settings.footer }}</p>
+</section>
+
+{% schema %}
+{
+  "name": "Sakora Newsletter Panel",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "The Sakora Circle"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Good skin is a journey.<br><em>Let's walk it together.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Subdescription",
+      "default": "Skin tips, launch alerts, and early access — straight to your inbox."
+    },
+    {
+      "type": "text",
+      "id": "footer",
+      "label": "Footer Text",
+      "default": "No spam. Unsubscribe anytime. Promise."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Newsletter Panel"
+    }
+  ]
+}
+{% endschema %}

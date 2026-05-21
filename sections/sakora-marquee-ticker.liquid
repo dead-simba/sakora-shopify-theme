@@ -1,0 +1,98 @@
+{%- style -%}
+  .sakora-ticker-wrapper {
+    background-color: var(--sakora-charcoal);
+    padding: 1.2rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 0.5px solid #333;
+    display: flex;
+  }
+  .sakora-ticker {
+    display: inline-block;
+    padding-left: 100%;
+    animation: sakora-ticker {{ section.settings.speed }}s linear infinite;
+  }
+  .sakora-ticker__item {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 3rem;
+    display: inline-block;
+  }
+  .sakora-ticker__item span {
+    color: var(--sakora-emerald);
+    margin-left: 1.5rem;
+  }
+  @keyframes sakora-ticker {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    100% {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+{%- endstyle -%}
+
+<div class="sakora-ticker-wrapper">
+  {%- capture ticker_content -%}
+    {%- for block in section.blocks -%}
+      <div class="sakora-ticker__item" {{ block.shopify_attributes }}>
+        {{ block.settings.text }} <span>·</span>
+      </div>
+    {%- endfor -%}
+  {%- endcapture -%}
+  
+  <div class="sakora-ticker">
+    {{ ticker_content }}{{ ticker_content }}{{ ticker_content }}{{ ticker_content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Sakora Marquee Ticker",
+  "settings": [
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 2,
+      "unit": "s",
+      "label": "Scrolling Speed (seconds)",
+      "default": 30
+    }
+  ],
+  "blocks": [
+    {
+      "type": "ticker_item",
+      "name": "Ticker Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text Item",
+          "default": "Barrier Repair"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Marquee Ticker",
+      "blocks": [
+        { "type": "ticker_item", "settings": { "text": "Barrier Repair" } },
+        { "type": "ticker_item", "settings": { "text": "SPF 50 PA++++" } },
+        { "type": "ticker_item", "settings": { "text": "Brightening Actives" } },
+        { "type": "ticker_item", "settings": { "text": "Ceramides + Peptides" } },
+        { "type": "ticker_item", "settings": { "text": "Zinc PCA" } },
+        { "type": "ticker_item", "settings": { "text": "Alpha Arbutin 2%" } },
+        { "type": "ticker_item", "settings": { "text": "Niacinamide" } },
+        { "type": "ticker_item", "settings": { "text": "No White Cast" } },
+        { "type": "ticker_item", "settings": { "text": "Made for South Asian Skin" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

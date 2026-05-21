@@ -1,0 +1,422 @@
+{%- style -%}
+  .sakora-hero {
+    display: grid;
+    grid-template-columns: 1fr;
+    min-height: 90vh;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero {
+      grid-template-columns: 55% 45%;
+    }
+  }
+  .sakora-hero__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 4rem 2rem;
+    animation: fadeUp 0.8s ease both;
+    background-color: var(--sakora-cream);
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero__content {
+      padding: 5rem 4rem 5rem 3rem;
+    }
+  }
+  .sakora-hero__eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 0 1.5rem;
+  }
+  .sakora-hero__title {
+    font-size: clamp(3.5rem, 5vw, 6.5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 0 0 1.6rem;
+    color: var(--sakora-charcoal);
+    letter-spacing: -0.01em;
+  }
+  .sakora-hero__title em {
+    font-style: italic;
+    color: var(--sakora-emerald);
+  }
+  .sakora-hero__text {
+    font-family: var(--font-body-family);
+    font-size: 1.4rem;
+    line-height: 1.75;
+    color: #7A7268;
+    max-width: 380px;
+    margin: 0 0 2.5rem;
+  }
+  .sakora-hero__buttons {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+  }
+  .sakora-hero__btn {
+    text-transform: uppercase;
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.14em;
+    padding: 1.4rem 2.8rem;
+    cursor: pointer;
+    border-radius: 50px !important;
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+  }
+  .sakora-hero__btn--primary {
+    background-color: var(--sakora-charcoal);
+    color: var(--sakora-cream);
+    border: none;
+  }
+  .sakora-hero__btn--primary:hover {
+    opacity: 0.85;
+  }
+  .sakora-hero__btn--secondary {
+    background-color: transparent;
+    color: var(--sakora-charcoal);
+    border: 0.5px solid var(--sakora-charcoal);
+  }
+  .sakora-hero__btn--secondary:hover {
+    background-color: var(--sakora-charcoal);
+    color: var(--sakora-cream);
+  }
+  .sakora-hero__stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 0.5px solid #E0DCD4;
+  }
+  .sakora-hero__stat-val {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    font-style: italic;
+    color: var(--sakora-charcoal);
+    line-height: 1;
+  }
+  .sakora-hero__stat-label {
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin-top: 0.4rem;
+  }
+  .sakora-hero__strips {
+    display: flex;
+    flex-direction: column;
+    min-height: 45vh;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero__strips {
+      height: auto;
+      min-height: 90vh;
+    }
+  }
+  .sakora-hero__strip {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 2.5rem 2.2rem;
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-decoration: none;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-hero__strip:hover {
+      transform: translateX(10px);
+    }
+  }
+  .sakora-hero__strip-name {
+    font-family: var(--font-heading-family);
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .sakora-hero__strip-type {
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin-top: 0.4rem;
+  }
+  .sakora-hero__strip-meta {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    align-self: flex-end;
+  }
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+{%- endstyle -%}
+
+<section class="sakora-hero">
+  <div class="sakora-hero__content">
+    <p class="sakora-hero__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h1 class="sakora-hero__title">
+      {{ section.settings.title }}
+    </h1>
+    <p class="sakora-hero__text">
+      {{ section.settings.text }}
+    </p>
+    <div class="sakora-hero__buttons">
+      {%- if section.settings.primary_button_label != blank -%}
+        <a href="{{ section.settings.primary_button_link }}" class="sakora-hero__btn sakora-hero__btn--primary">
+          {{ section.settings.primary_button_label }}
+        </a>
+      {%- endif -%}
+      {%- if section.settings.secondary_button_label != blank -%}
+        <a href="{{ section.settings.secondary_button_link }}" class="sakora-hero__btn sakora-hero__btn--secondary">
+          {{ section.settings.secondary_button_label }}
+        </a>
+      {%- endif -%}
+    </div>
+    <div class="sakora-hero__stats">
+      {%- if section.settings.stat1_val != blank -%}
+        <div>
+          <div class="sakora-hero__stat-val">{{ section.settings.stat1_val }}</div>
+          <div class="sakora-hero__stat-label">{{ section.settings.stat1_label }}</div>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.stat2_val != blank -%}
+        <div>
+          <div class="sakora-hero__stat-val">{{ section.settings.stat2_val }}</div>
+          <div class="sakora-hero__stat-label">{{ section.settings.stat2_label }}</div>
+        </div>
+      {%- endif -%}
+      {%- if section.settings.stat3_val != blank -%}
+        <div>
+          <div class="sakora-hero__stat-val">{{ section.settings.stat3_val }}</div>
+          <div class="sakora-hero__stat-label">{{ section.settings.stat3_label }}</div>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="sakora-hero__strips">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'product_strip' -%}
+          {%- liquid
+            assign product = block.settings.product
+            assign title = block.settings.title | default: product.title
+            assign subtitle = block.settings.subtitle
+            assign bg_color = block.settings.bg_color
+            assign text_color = block.settings.text_color
+            assign size = block.settings.size
+            assign price = block.settings.price | default: product.price | money_without_trailing_zeros
+            assign url = block.settings.link | default: product.url
+          -%}
+          <a href="{{ url }}" class="sakora-hero__strip" style="background-color: {{ bg_color }}; color: {{ text_color }};">
+            <div>
+              <div class="sakora-hero__strip-name" style="color: {{ text_color }};">{{ title }}</div>
+              <div class="sakora-hero__strip-type" style="color: {{ text_color }};">{{ subtitle }}</div>
+            </div>
+            <div class="sakora-hero__strip-meta" style="color: {{ text_color }};">
+              {%- if size != blank -%}{{ size }} · {% endif %}{{ price }}
+            </div>
+          </a>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sakora Split Hero",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Skin rituals, reimagined"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Nature's <em>best kept</em> secrets."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Body Text",
+      "default": "Three products. Each one obsessed with one thing: making your skin feel exactly like it's supposed to."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary Button Label",
+      "default": "Shop the Collection"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary Button Link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary Button Label",
+      "default": "Our Story →"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary Button Link"
+    },
+    {
+      "type": "header",
+      "content": "Ritual Statistics"
+    },
+    {
+      "type": "text",
+      "id": "stat1_val",
+      "label": "Stat 1 Value",
+      "default": "100%"
+    },
+    {
+      "type": "text",
+      "id": "stat1_label",
+      "label": "Stat 1 Label",
+      "default": "No Parabens"
+    },
+    {
+      "type": "text",
+      "id": "stat2_val",
+      "label": "Stat 2 Value",
+      "default": "PA++++"
+    },
+    {
+      "type": "text",
+      "id": "stat2_label",
+      "label": "Stat 2 Label",
+      "default": "UV Protection"
+    },
+    {
+      "type": "text",
+      "id": "stat3_val",
+      "label": "Stat 3 Value",
+      "default": "3"
+    },
+    {
+      "type": "text",
+      "id": "stat3_label",
+      "label": "Stat 3 Label",
+      "default": "Powerful Actives"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_strip",
+      "name": "Product Banner Strip",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Override Product Title",
+          "info": "Leave blank to use dynamic Shopify product title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Product Category / Active ingredients",
+          "default": "TRIPLE CERAMIDE + PEPTIDE"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Size Display",
+          "default": "50ml"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Override Price Display",
+          "info": "Leave blank to use Shopify variant price"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Override Product Link",
+          "info": "Leave blank to link directly to chosen Shopify PDP"
+        },
+        {
+          "type": "color",
+          "id": "bg_color",
+          "label": "Strip Background Color",
+          "default": "#E8A0A0"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Strip Text Color",
+          "default": "#5C2020"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Split Hero",
+      "blocks": [
+        {
+          "type": "product_strip",
+          "settings": {
+            "title": "Petal Melt",
+            "subtitle": "Triple Ceramide + Peptide Barrier Moisturiser",
+            "size": "50ml",
+            "price": "PKR 1,800",
+            "bg_color": "#E8A0A0",
+            "text_color": "#5C2020"
+          }
+        },
+        {
+          "type": "product_strip",
+          "settings": {
+            "title": "Sol Veil",
+            "subtitle": "Matte SPF 50 PA++++ Broad Spectrum Sunscreen",
+            "size": "50ml",
+            "price": "PKR 2,200",
+            "bg_color": "#E8B84B",
+            "text_color": "#4A2E00"
+          }
+        },
+        {
+          "type": "product_strip",
+          "settings": {
+            "title": "Dawn Drops",
+            "subtitle": "5-Active Brightening Glow Serum",
+            "size": "30ml",
+            "price": "PKR 2,500",
+            "bg_color": "#1D9E75",
+            "text_color": "#0D3828"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

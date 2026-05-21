@@ -1,0 +1,224 @@
+{%- style -%}
+  .sakora-philosophy {
+    display: grid;
+    grid-template-columns: 1fr;
+    background-color: var(--sakora-charcoal);
+    color: var(--sakora-cream);
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-philosophy {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .sakora-philosophy__content {
+    padding: 4rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-philosophy__content {
+      padding: 6rem 3.5rem;
+    }
+  }
+  .sakora-philosophy__eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #666;
+    margin: 0 0 1.5rem;
+  }
+  .sakora-philosophy__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.5rem, 3vw, 4.2rem);
+    font-weight: 400;
+    line-height: 1.15;
+    margin: 0 0 1.5rem;
+    color: var(--sakora-cream);
+  }
+  .sakora-philosophy__title em {
+    font-style: italic;
+    color: #E8A0A0;
+  }
+  .sakora-philosophy__text {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    line-height: 1.8;
+    color: #888;
+    margin: 0 0 1.5rem;
+  }
+  .sakora-philosophy__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    color: #E8A0A0;
+    border: 0.5px solid #4A3030;
+    padding: 1.2rem 2.4rem;
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 50px !important;
+    width: fit-content;
+    transition: opacity 0.2s, background-color 0.2s, color 0.2s;
+    text-decoration: none;
+  }
+  .sakora-philosophy__btn:hover {
+    background-color: #E8A0A0;
+    color: #5C2020;
+    border-color: #E8A0A0;
+  }
+  .sakora-philosophy__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    min-height: 40vh;
+  }
+  .sakora-philosophy__grid-box {
+    border-top: 0.5px solid #2A2A28;
+    border-left: 0.5px solid #2A2A28;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .sakora-philosophy__grid-val {
+    font-family: var(--font-heading-family);
+    font-size: 3.5rem;
+    font-style: italic;
+    color: var(--sakora-cream);
+    margin-bottom: 0.6rem;
+    line-height: 1;
+  }
+  .sakora-philosophy__grid-label {
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 0.4rem;
+  }
+  .sakora-philosophy__grid-desc {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.5;
+  }
+{%- endstyle -%}
+
+<section class="sakora-philosophy">
+  <div class="sakora-philosophy__content">
+    <p class="sakora-philosophy__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="sakora-philosophy__title">
+      {{ section.settings.title }}
+    </h2>
+    <div class="sakora-philosophy__text">
+      {{ section.settings.text1 }}
+    </div>
+    <div class="sakora-philosophy__text" style="margin-bottom: 2.5rem;">
+      {{ section.settings.text2 }}
+    </div>
+    {%- if section.settings.btn_label != blank -%}
+      <a href="{{ section.settings.btn_link }}" class="sakora-philosophy__btn">
+        {{ section.settings.btn_label }}
+      </a>
+    {%- endif -%}
+  </div>
+
+  <div class="sakora-philosophy__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'stat_box' -%}
+          <div class="sakora-philosophy__grid-box" {{ block.shopify_attributes }}>
+            <div class="sakora-philosophy__grid-val">{{ block.settings.value }}</div>
+            <div class="sakora-philosophy__grid-label">{{ block.settings.label }}</div>
+            <div class="sakora-philosophy__grid-desc">{{ block.settings.desc }}</div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sakora Philosophy Split",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "Our Philosophy"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Skin that thrives,<br><em>not just survives.</em>"
+    },
+    {
+      "type": "textarea",
+      "id": "text1",
+      "label": "Body Paragraph 1",
+      "default": "Sakora was built from a simple frustration: why does skincare have to be complicated? Your routine should feel like a ritual — not a science experiment."
+    },
+    {
+      "type": "textarea",
+      "id": "text2",
+      "label": "Body Paragraph 2",
+      "default": "Three products. No fluff. Just what your skin actually needs — formulated for South Asian skin, built for real life."
+    },
+    {
+      "type": "text",
+      "id": "btn_label",
+      "label": "Button Label",
+      "default": "Read Our Story →"
+    },
+    {
+      "type": "url",
+      "id": "btn_link",
+      "label": "Button Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "stat_box",
+      "name": "Statistic Box",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "value",
+          "label": "Stat Value / Integer",
+          "default": "3"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Stat Label",
+          "default": "Products"
+        },
+        {
+          "type": "text",
+          "id": "desc",
+          "label": "Stat Subdescription",
+          "default": "Nothing more, nothing less"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Philosophy Split",
+      "blocks": [
+        { "type": "stat_box", "settings": { "value": "3", "label": "Products", "desc": "Nothing more, nothing less" } },
+        { "type": "stat_box", "settings": { "value": "Clean", "label": "Formulation", "desc": "No parabens, no BS" } },
+        { "type": "stat_box", "settings": { "value": "All", "label": "Skin types", "desc": "Made for everyone" } },
+        { "type": "stat_box", "settings": { "value": "Zero", "label": "Compromises", "desc": "Ever." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,4 +1,23 @@
 :root {
+  /* Brand Neutrals */
+  --sakora-cream: #FAFAF5;
+  --sakora-stone: #F3EFE8;
+  --sakora-charcoal: #1C1C1A;
+  --sakora-dust: #B0A898;
+  --sakora-emerald: #1D9E75;
+
+  /* Product Colors */
+  --petal-bg: #E8A0A0;
+  --petal-text: #5C2020;
+  --sol-bg: #E8B84B;
+  --sol-text: #4A2E00;
+  --dawn-bg: #1D9E75;
+  --dawn-text: #0D3828;
+
+  /* Typography Override */
+  --font-body-family: 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  --font-heading-family: 'Playfair Display', Georgia, serif !important;
+
   --alpha-button-background: 1;
   --alpha-button-border: 1;
   --alpha-link: 0.85;
@@ -7,6 +26,72 @@
   --focused-base-outline-offset: 0.3rem;
   --focused-base-box-shadow: 0 0 0 0.3rem rgb(var(--color-background)), 0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
+
+/* Global Reset overrides */
+body {
+  background-color: var(--sakora-cream) !important;
+  color: var(--sakora-charcoal) !important;
+}
+
+/* Logo Styling */
+.header__heading-link .h2,
+.header__heading-link span,
+.header__heading,
+.footer__heading-link .h2,
+.footer__heading-link span {
+  font-family: var(--font-body-family) !important;
+  font-weight: 800 !important;
+  text-transform: lowercase !important;
+  letter-spacing: 0.12em !important;
+  font-size: 2.4rem !important;
+  color: var(--sakora-charcoal) !important;
+  text-decoration: none !important;
+}
+
+/* Navbar Link Styles */
+.header__inline-menu .list-menu__item {
+  font-family: var(--font-body-family) !important;
+  font-weight: 500 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase !important;
+  color: #888 !important;
+  transition: color 0.25s ease !important;
+  text-decoration: none !important;
+}
+.header__inline-menu .list-menu__item:hover {
+  color: var(--sakora-charcoal) !important;
+  background: transparent !important;
+}
+
+/* Card and Panel Geometry */
+.card, 
+.product-card-wrapper, 
+.collection-card-wrapper,
+.content-container,
+.global-media-settings,
+.prod-card {
+  border-radius: 24px !important;
+}
+
+/* Pill Profile Form Elements & CTAs */
+.button,
+.btn,
+.customer .field input,
+.customer select,
+.field__input,
+.select__select {
+  border-radius: 50px !important;
+}
+
+/* Enforce font weights on utility elements */
+body, button, input, select, textarea, a, span, p, label {
+  font-weight: 400;
+}
+.button, .btn, strong, b {
+  font-weight: 500;
+}
+
 
 .product-card-wrapper .card,
 .contains-card--product {

@@ -1,0 +1,194 @@
+{%- style -%}
+  .sakora-routine {
+    padding: 6rem 1.5rem;
+    background-color: var(--sakora-stone);
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-routine {
+      padding: 6rem 3rem;
+    }
+  }
+  .sakora-routine__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+  .sakora-routine__eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 0 0.8rem;
+  }
+  .sakora-routine__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.2rem, 3vw, 4rem);
+    font-weight: 400;
+    margin: 0;
+    color: var(--sakora-charcoal);
+  }
+  .sakora-routine__title em {
+    font-style: italic;
+    color: var(--sakora-emerald);
+  }
+  .sakora-routine__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background-color: #D8D2C8;
+    border-radius: 24px !important;
+    overflow: hidden;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-routine__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .sakora-routine__step {
+    background-color: var(--sakora-cream);
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-routine__step {
+      padding: 3.5rem 3rem;
+    }
+  }
+  .sakora-routine__step-num {
+    font-family: var(--font-heading-family);
+    font-size: 4.5rem;
+    font-style: italic;
+    color: #E0DCD4;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+  }
+  .sakora-routine__step-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .sakora-routine__step-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .sakora-routine__step-product {
+    font-family: var(--font-body-family);
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+  }
+  .sakora-routine__step-title {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    fontWeight: 400;
+    color: var(--sakora-charcoal);
+    margin: 0 0 1rem;
+  }
+  .sakora-routine__step-detail {
+    font-family: var(--font-body-family);
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: #7A7268;
+    margin: 0;
+  }
+{%- endstyle -%}
+
+<section class="sakora-routine">
+  <div class="sakora-routine__header">
+    <p class="sakora-routine__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="sakora-routine__title">
+      {{ section.settings.title }}
+    </h2>
+  </div>
+
+  <div class="sakora-routine__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'step' -%}
+          <div class="sakora-routine__step" {{ block.shopify_attributes }}>
+            <div class="sakora-routine__step-num">{{ block.settings.step_num }}</div>
+            <div class="sakora-routine__step-meta">
+              <div class="sakora-routine__step-dot" style="background-color: {{ block.settings.color }};"></div>
+              <span class="sakora-routine__step-product">{{ block.settings.product }}</span>
+            </div>
+            <h3 class="sakora-routine__step-title">{{ block.settings.title }}</h3>
+            <p class="sakora-routine__step-detail">{{ block.settings.detail }}</p>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sakora 3-Step Routine",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow Text",
+      "default": "The Routine"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Three steps. <em>Every day.</em>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "step",
+      "name": "Routine Step",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "step_num",
+          "label": "Step Number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "product",
+          "label": "Product Reference Name",
+          "default": "Petal Melt"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step Title",
+          "default": "Repair"
+        },
+        {
+          "type": "textarea",
+          "id": "detail",
+          "label": "Step Instruction Details",
+          "default": "Start with your barrier. Apply morning and evening on clean, damp skin."
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Indicator Color",
+          "default": "#E8A0A0"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora 3-Step Routine",
+      "blocks": [
+        { "type": "step", "settings": { "step_num": "01", "product": "Petal Melt", "title": "Repair", "detail": "Start with your barrier. Apply morning and evening on clean, damp skin.", "color": "#E8A0A0" } },
+        { "type": "step", "settings": { "step_num": "02", "product": "Dawn Drops", "title": "Brighten", "detail": "3–5 drops, press gently into skin. Wait 30 seconds. Let the actives work.", "color": "#1D9E75" } },
+        { "type": "step", "settings": { "step_num": "03", "product": "Sol Veil", "title": "Protect", "detail": "Two finger-lengths, every morning — the last step of your AM routine.", "color": "#E8B84B" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

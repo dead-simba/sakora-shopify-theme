@@ -1,545 +1,299 @@
-{% comment %}theme-check-disable UndefinedObject{% endcomment %}
-{{ 'section-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{% comment %}
+  Sakora Custom Footer Section
+  Warm charcoal background, unhurried typography, and lowercase geometric brand wordmark.
+{% endcomment %}
 
 {%- style -%}
-  .footer {
-    margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
+  .sakora-footer {
+    background-color: var(--sakora-charcoal) !important;
+    color: #888888;
+    padding: 5rem 2rem 3rem;
+    font-family: var(--font-body-family) !important;
+    border-top: none !important;
   }
-
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-
   @media screen and (min-width: 750px) {
-    .footer {
-      margin-top: {{ section.settings.margin_top }}px;
+    .sakora-footer {
+      padding: 6rem 5rem 4rem;
     }
-
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  .sakora-footer__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding-bottom: 4rem;
+    border-bottom: 0.5px solid #2A2A28;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-footer__grid {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 4rem;
     }
+  }
+  .sakora-footer__brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .sakora-footer__logo {
+    font-family: var(--font-body-family) !important;
+    font-weight: 800 !important;
+    font-size: 2.2rem !important;
+    color: var(--sakora-cream) !important;
+    letter-spacing: 0.12em !important;
+    text-transform: lowercase !important;
+    margin: 0;
+    line-height: 1;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .sakora-footer__bio {
+    font-family: var(--font-body-family) !important;
+    font-size: 1.15rem !important;
+    line-height: 1.75 !important;
+    color: #666666 !important;
+    max-width: 260px;
+    margin: 0;
+    font-weight: 400 !important;
+  }
+  .sakora-footer__socials {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+  }
+  .sakora-footer__social-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body-family) !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 0.1em;
+    color: #666666 !important;
+    cursor: pointer;
+    border: 0.5px solid #2A2A28 !important;
+    padding: 0.5rem 1rem !important;
+    border-radius: 50px !important;
+    text-decoration: none;
+    transition: color 0.25s, border-color 0.25s, background-color 0.25s;
+    font-weight: 500 !important;
+  }
+  .sakora-footer__social-link:hover {
+    color: var(--sakora-cream) !important;
+    border-color: var(--sakora-cream) !important;
+  }
+  .sakora-footer__menu-col {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .sakora-footer__menu-title {
+    font-family: var(--font-body-family) !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: var(--sakora-cream) !important;
+    font-weight: 500 !important;
+    margin: 0;
+  }
+  .sakora-footer__menu-links {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .sakora-footer__link {
+    font-family: var(--font-body-family) !important;
+    font-size: 1.1rem !important;
+    color: #666666 !important;
+    text-decoration: none !important;
+    transition: color 0.25s;
+    cursor: pointer;
+    font-weight: 400 !important;
+  }
+  .sakora-footer__link:hover {
+    color: var(--sakora-cream) !important;
+  }
+  .sakora-footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding-top: 2rem;
+    font-size: 0.9rem;
+    color: #444444;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-footer__bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+  .sakora-footer__bottom-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+  .sakora-footer__bottom-link {
+    font-family: var(--font-body-family) !important;
+    color: #444444 !important;
+    text-decoration: none !important;
+    transition: color 0.25s;
+    font-size: 0.9rem !important;
+  }
+  .sakora-footer__bottom-link:hover {
+    color: #888888 !important;
   }
 {%- endstyle -%}
 
-<footer class="footer color-{{ section.settings.color_scheme }} gradient section-{{ section.id }}-padding">
-  {%- liquid
-    assign has_social_icons = true
-    if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
-      assign has_social_icons = false
-    endif
-
-    if settings.brand_image == blank and settings.brand_headline == blank and settings.brand_description == blank
-      assign brand_empty = true
-    endif
-
-    if section.blocks.size == 1 and section.blocks[0].type == 'brand_information' and brand_empty and has_social_icons == false and section.settings.newsletter_enable == false and section.settings.enable_follow_on_shop == false
-      assign only_empty_brand = true
-    endif
-  -%}
-  {%- if section.blocks.size > 0
-    or section.settings.newsletter_enable
-    or section.settings.show_social
-    and has_social_icons == true
-    or section.settings.enable_follow_on_shop
-  -%}
-    {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width">
-        {%- if section.blocks.size > 0 -%}
-          {%- liquid
-            if section.blocks.size == 9
-              assign footer_grid_class = 'grid--3-col-tablet'
-            elsif section.blocks.size > 6
-              assign footer_grid_class = 'grid--4-col-desktop'
-            elsif section.blocks.size > 4
-              assign footer_grid_class = 'grid--3-col-tablet'
-            endif
-          -%}
-          <div
-            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-            {% if settings.animations_reveal_on_scroll %}
-              data-cascade
-            {% endif %}
-          >
-            {%- for block in section.blocks -%}
-              <div
-                class="footer-block grid__item{% if block.type == 'link_list' %} footer-block--menu{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-                {{ block.shopify_attributes }}
-                {% if settings.animations_reveal_on_scroll %}
-                  data-cascade
-                  style="--animation-order: {{ forloop.index }};"
-                {% endif %}
-              >
-                {%- if block.settings.heading != blank -%}
-                  <h2 class="footer-block__heading inline-richtext">{{- block.settings.heading -}}</h2>
-                {%- endif -%}
-
-                {%- case block.type -%}
-                  {%- when '@app' -%}
-                    {% render block %}
-                  {%- when 'text' -%}
-                    <div class="footer-block__details-content rte">
-                      {{ block.settings.subtext }}
-                    </div>
-                  {%- when 'link_list' -%}
-                    {%- if block.settings.menu != blank -%}
-                      <ul class="footer-block__details-content list-unstyled">
-                        {%- for link in block.settings.menu.links -%}
-                          <li>
-                            <a
-                              href="{{ link.url }}"
-                              class="link link--text list-menu__item list-menu__item--link{% if link.active %} list-menu__item--active{% endif %}"
-                            >
-                              {{ link.title | escape }}
-                            </a>
-                          </li>
-                        {%- endfor -%}
-                      </ul>
-                    {%- endif -%}
-                  {%- when 'brand_information' -%}
-                    <div class="footer-block__brand-info">
-                      {%- if settings.brand_image != blank -%}
-                        {%- assign brand_image_height = settings.brand_image_width
-                          | divided_by: settings.brand_image.aspect_ratio
-                        -%}
-                        <div
-                          class="footer-block__image-wrapper"
-                          style="max-width: min(100%, {{ settings.brand_image_width }}px);"
-                        >
-                          {{
-                            settings.brand_image
-                            | image_url: width: 1100
-                            | image_tag:
-                              loading: 'lazy',
-                              widths: '50, 100, 150, 200, 300, 400, 550, 800, 1100',
-                              height: brand_image_height,
-                              width: settings.brand_image_width
-                          }}
-                        </div>
-                      {%- endif -%}
-                      {%- if settings.brand_headline != blank -%}
-                        <h2 class="footer-block__heading rte">{{ settings.brand_headline }}</h2>
-                      {%- endif -%}
-                      {%- if settings.brand_description != blank -%}
-                        <div class="rte">{{ settings.brand_description }}</div>
-                      {%- endif -%}
-                      {%- if block.settings.show_social and has_social_icons -%}
-                        {%- render 'social-icons', class: 'footer__list-social' -%}
-                      {%- endif -%}
-                    </div>
-                  {%- when 'image' -%}
-                    <div class="footer-block__details-content footer-block-image {{ block.settings.alignment }}">
-                      {%- if block.settings.image != blank -%}
-                        {%- assign image_size_2x = block.settings.image_width | times: 2 | at_most: 5760 -%}
-                        <div
-                          class="footer-block__image-wrapper"
-                          style="max-width: min(100%, {{ block.settings.image_width }}px);"
-                        >
-                          <img
-                            srcset="{{ block.settings.image | image_url: width: block.settings.image_width }}, {{ block.settings.image | image_url: width: image_size_2x }} 2x"
-                            src="{{ block.settings.image | image_url: width: 760 }}"
-                            alt="{{ block.settings.image.alt | escape }}"
-                            loading="lazy"
-                            width="{{ block.settings.image.width }}"
-                            height="{{ block.settings.image.height }}"
-                          >
-                        </div>
-                      {%- else -%}
-                        {{ 'image' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-                      {%- endif -%}
-                    </div>
-                {%- endcase -%}
-              </div>
-            {%- endfor -%}
-          </div>
+<footer class="sakora-footer">
+  <div class="sakora-footer__grid">
+    
+    <!-- Brand Column (2fr) -->
+    <div class="sakora-footer__brand-col">
+      <a href="{{ routes.root_url }}" class="sakora-footer__logo">sakora</a>
+      <p class="sakora-footer__bio">
+        {{ section.settings.bio_text | default: "Skin rituals rooted in nature. Formulated for real people living real lives." }}
+      </p>
+      
+      <div class="sakora-footer__socials">
+        {%- if settings.social_instagram_link != blank or section.settings.fallback_socials -%}
+          <a href="{{ settings.social_instagram_link | default: '#' }}" class="sakora-footer__social-link" target="_blank">IG</a>
         {%- endif -%}
-
-        <div
-          class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          {% if settings.animations_reveal_on_scroll %}
-            data-cascade
-          {% endif %}
-        >
-          {%- if section.settings.newsletter_enable -%}
-            <div class="footer-block__newsletter">
-              {%- if section.settings.newsletter_heading != blank -%}
-                <h2 class="footer-block__heading inline-richtext">{{ section.settings.newsletter_heading }}</h2>
-              {%- endif -%}
-              {%- form 'customer', id: 'ContactFooter', class: 'footer__newsletter newsletter-form' -%}
-                <input type="hidden" name="contact[tags]" value="newsletter">
-                <div class="newsletter-form__field-wrapper">
-                  <div class="field">
-                    <input
-                      id="NewsletterForm--{{ section.id }}"
-                      type="email"
-                      name="contact[email]"
-                      class="field__input"
-                      value="{{ form.email }}"
-                      aria-required="true"
-                      autocorrect="off"
-                      autocapitalize="off"
-                      autocomplete="email"
-                      {% if form.errors %}
-                        autofocus
-                        aria-invalid="true"
-                        aria-describedby="ContactFooter-error"
-                      {% elsif form.posted_successfully? %}
-                        aria-describedby="ContactFooter-success"
-                      {% endif %}
-                      placeholder="{{ 'newsletter.label' | t }}"
-                      required
-                    >
-                    <label class="field__label" for="NewsletterForm--{{ section.id }}">
-                      {{ 'newsletter.label' | t }}
-                    </label>
-                    <button
-                      type="submit"
-                      class="newsletter-form__button field__button"
-                      name="commit"
-                      id="Subscribe"
-                      aria-label="{{ 'newsletter.button_label' | t }}"
-                    >
-                      <span class="svg-wrapper">
-                        {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      </span>
-                    </button>
-                  </div>
-                  {%- if form.errors -%}
-                    <small class="newsletter-form__message form__message" id="ContactFooter-error">
-                      <span class="svg-wrapper">
-                        {{- 'icon-error.svg' | inline_asset_content -}}
-                      </span>
-                      {{- form.errors.translated_fields.email | capitalize }}
-                      {{ form.errors.messages.email -}}
-                    </small>
-                  {%- endif -%}
-                </div>
-                {%- if form.posted_successfully? -%}
-                  <h3
-                    class="newsletter-form__message newsletter-form__message--success form__message"
-                    id="ContactFooter-success"
-                    tabindex="-1"
-                    autofocus
-                  >
-                    <span class="svg-wrapper">
-                      {{- 'icon-success.svg' | inline_asset_content -}}
-                    </span>
-                    {{- 'newsletter.success' | t }}
-                  </h3>
-                {%- endif -%}
-              {%- endform -%}
-            </div>
-          {%- endif -%}
-
-          {%- if shop.features.follow_on_shop? and section.settings.enable_follow_on_shop -%}
-            <div class="footer__follow-on-shop">
-              {{ shop | login_button: action: 'follow' }}
-            </div>
-          {%- endif -%}
-
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
-        </div>
-      </div>
-    {%- endunless -%}
-  {%- endif -%}
-
-  <div
-    class="footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-    {% if settings.animations_reveal_on_scroll %}
-      data-cascade
-    {% endif %}
-  >
-    <div class="footer__content-bottom-wrapper page-width">
-      <div class="footer__column footer__localization isolate">
-        {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterCountryForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterCountryLabel">{{ 'localization.country_label' | t }}</h2>
-                {%- render 'country-localization', localPosition: 'FooterCountry' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
+        {%- if settings.social_tiktok_link != blank or section.settings.fallback_socials -%}
+          <a href="{{ settings.social_tiktok_link | default: '#' }}" class="sakora-footer__social-link" target="_blank">TT</a>
         {%- endif -%}
-
-        {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form>
-            {%- form 'localization', id: 'FooterLanguageForm', class: 'localization-form' -%}
-              <div>
-                <h2 class="caption-large text-body" id="FooterLanguageLabel">
-                  {{ 'localization.language_label' | t }}
-                </h2>
-                {%- render 'language-localization', localPosition: 'FooterLanguage' -%}
-              </div>
-            {%- endform -%}
-          </localization-form>
-        {%- endif -%}
-      </div>
-      <div class="footer__column footer__column--info">
-        {%- if section.settings.payment_enable -%}
-          <div class="footer__payment">
-            <span class="visually-hidden">{{ 'sections.footer.payment' | t }}</span>
-            <ul class="list list-payment" role="list">
-              {%- for type in shop.enabled_payment_types -%}
-                <li class="list-payment__item">
-                  {{ type | payment_type_svg_tag: class: 'icon icon--full-color' }}
-                </li>
-              {%- endfor -%}
-            </ul>
-          </div>
+        {%- if settings.social_facebook_link != blank or section.settings.fallback_socials -%}
+          <a href="{{ settings.social_facebook_link | default: '#' }}" class="sakora-footer__social-link" target="_blank">FB</a>
         {%- endif -%}
       </div>
     </div>
-    <div class="footer__content-bottom-wrapper page-width{% if section.settings.enable_country_selector == false and section.settings.enable_language_selector == false %} footer__content-bottom-wrapper--center{% endif %}">
-      <div class="footer__copyright caption">
-        <small class="copyright__content"
-          >&copy; {{ 'now' | date: '%Y' }}, {{ shop.name | link_to: routes.root_url -}}
-        </small>
-        <small class="copyright__content">{{ powered_by_link }}</small>
-        {%- if section.settings.show_policy -%}
-          <ul class="policies list-unstyled">
-            {%- for policy in shop.policies -%}
-              {%- if policy != blank -%}
-                <li>
-                  <small class="copyright__content"
-                    ><a href="{{ policy.url }}">{{ policy.title | escape }}</a></small
-                  >
-                </li>
+
+    <!-- Dynamic or Fallback Navigation Columns -->
+    {%- if section.blocks.size > 0 -%}
+      {%- for block in section.blocks -%}
+        {%- case block.type -%}
+          {%- when 'link_list' -%}
+            <div class="sakora-footer__menu-col" {{ block.shopify_attributes }}>
+              {%- if block.settings.heading != blank -%}
+                <h3 class="sakora-footer__menu-title">{{ block.settings.heading }}</h3>
               {%- endif -%}
-            {%- endfor -%}
-          </ul>
-        {%- endif -%}
+              {%- if block.settings.menu != blank -%}
+                <ul class="sakora-footer__menu-links">
+                  {%- for link in block.settings.menu.links -%}
+                    <li>
+                      <a href="{{ link.url }}" class="sakora-footer__link">{{ link.title }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
+            </div>
+        {%- endcase -%}
+      {%- endfor -%}
+    {%- else -%}
+      <!-- Mockup Fallback Menu 1: Shop -->
+      <div class="sakora-footer__menu-col">
+        <h3 class="sakora-footer__menu-title">Shop</h3>
+        <ul class="sakora-footer__menu-links">
+          <li><a href="#" class="sakora-footer__link">Petal Melt</a></li>
+          <li><a href="#" class="sakora-footer__link">Sol Veil</a></li>
+          <li><a href="#" class="sakora-footer__link">Dawn Drops</a></li>
+          <li><a href="#" class="sakora-footer__link">Bundles</a></li>
+        </ul>
       </div>
+
+      <!-- Mockup Fallback Menu 2: Help -->
+      <div class="sakora-footer__menu-col">
+        <h3 class="sakora-footer__menu-title">Help</h3>
+        <ul class="sakora-footer__menu-links">
+          <li><a href="#" class="sakora-footer__link">Skin Guide</a></li>
+          <li><a href="#" class="sakora-footer__link">Track Order</a></li>
+          <li><a href="#" class="sakora-footer__link">Returns</a></li>
+          <li><a href="#" class="sakora-footer__link">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Mockup Fallback Menu 3: Sakora -->
+      <div class="sakora-footer__menu-col">
+        <h3 class="sakora-footer__menu-title">Sakora</h3>
+        <ul class="sakora-footer__menu-links">
+          <li><a href="#" class="sakora-footer__link">Our Story</a></li>
+          <li><a href="#" class="sakora-footer__link">Ingredients</a></li>
+          <li><a href="#" class="sakora-footer__link">Sustainability</a></li>
+          <li><a href="#" class="sakora-footer__link">Press</a></li>
+        </ul>
+      </div>
+    {%- endif -%}
+
+  </div>
+
+  <!-- Bottom Row: Copyright and Policies -->
+  <div class="sakora-footer__bottom">
+    <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</span>
+    
+    <div class="sakora-footer__bottom-links">
+      {%- if section.settings.show_policies and shop.policies.size > 0 -%}
+        {%- for policy in shop.policies -%}
+          {%- if policy != blank -%}
+            <a href="{{ policy.url }}" class="sakora-footer__bottom-link">{{ policy.title }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      {%- else -%}
+        <a href="#" class="sakora-footer__bottom-link">Privacy</a>
+        <a href="#" class="sakora-footer__bottom-link">Terms</a>
+        <a href="#" class="sakora-footer__bottom-link">Refund Policy</a>
+      {%- endif -%}
     </div>
   </div>
 </footer>
 
 {% schema %}
 {
-  "name": "t:sections.footer.name",
-  "blocks": [
+  "name": "Sakora Custom Footer",
+  "settings": [
     {
-      "type": "@app"
+      "type": "textarea",
+      "id": "bio_text",
+      "label": "Brand Description / Bio",
+      "default": "Skin rituals rooted in nature. Formulated for real people living real lives."
     },
     {
+      "type": "checkbox",
+      "id": "fallback_socials",
+      "label": "Show IG/TT/FB Fallback Icons",
+      "default": true,
+      "info": "Display fallback social buttons if social links are empty"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_policies",
+      "label": "Show Dynamic Shop Policies",
+      "default": false,
+      "info": "Use Shopify's active legal policies instead of mock links"
+    }
+  ],
+  "blocks": [
+    {
       "type": "link_list",
-      "name": "t:sections.footer.blocks.link_list.name",
+      "name": "Navigation Menu",
       "settings": [
         {
-          "type": "inline_richtext",
+          "type": "text",
           "id": "heading",
-          "default": "t:sections.footer.blocks.link_list.settings.heading.default",
-          "label": "t:sections.footer.blocks.link_list.settings.heading.label"
+          "label": "Column Title",
+          "default": "Menu"
         },
         {
           "type": "link_list",
           "id": "menu",
-          "default": "footer",
-          "label": "t:sections.footer.blocks.link_list.settings.menu.label"
-        }
-      ]
-    },
-    {
-      "type": "brand_information",
-      "name": "t:sections.footer.blocks.brand_information.name",
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "t:sections.footer.blocks.brand_information.settings.paragraph.content"
-        },
-        {
-          "type": "checkbox",
-          "id": "show_social",
-          "default": true,
-          "label": "t:sections.footer.blocks.brand_information.settings.show_social.label",
-          "info": "t:sections.footer.blocks.brand_information.settings.show_social.info"
-        }
-      ]
-    },
-    {
-      "type": "text",
-      "name": "t:sections.footer.blocks.text.name",
-      "settings": [
-        {
-          "type": "inline_richtext",
-          "id": "heading",
-          "default": "t:sections.footer.blocks.text.settings.heading.default",
-          "label": "t:sections.footer.blocks.text.settings.heading.label"
-        },
-        {
-          "type": "richtext",
-          "id": "subtext",
-          "default": "t:sections.footer.blocks.text.settings.subtext.default",
-          "label": "t:sections.footer.blocks.text.settings.subtext.label"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "name": "Image",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "range",
-          "id": "image_width",
-          "min": 50,
-          "max": 550,
-          "step": 5,
-          "unit": "px",
-          "label": "Width",
-          "default": 100
-        },
-        {
-          "type": "select",
-          "id": "alignment",
-          "label": "Alignment",
-          "options": [
-            {
-              "value": "",
-              "label": "Left"
-            },
-            {
-              "value": "center",
-              "label": "Center"
-            },
-            {
-              "value": "right",
-              "label": "Right"
-            }
-          ],
-          "default": "center"
+          "label": "Select Menu"
         }
       ]
     }
   ],
-  "settings": [
+  "presets": [
     {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.footer.settings.header__1.content",
-      "info": "t:sections.footer.settings.header__1.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "newsletter_enable",
-      "default": true,
-      "label": "t:sections.footer.settings.newsletter_enable.label"
-    },
-    {
-      "type": "inline_richtext",
-      "id": "newsletter_heading",
-      "default": "t:sections.footer.settings.newsletter_heading.default",
-      "label": "t:sections.footer.settings.newsletter_heading.label"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.footer.settings.header__9.content"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_follow_on_shop",
-      "default": true,
-      "label": "t:sections.footer.settings.enable_follow_on_shop.label",
-      "info": "t:sections.footer.settings.enable_follow_on_shop.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_social",
-      "default": true,
-      "label": "t:sections.footer.settings.show_social.label",
-      "info": "t:sections.footer.settings.show_social.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_country_selector",
-      "default": true,
-      "label": "t:sections.footer.settings.enable_country_selector.label",
-      "info": "t:sections.footer.settings.enable_country_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_language_selector",
-      "default": true,
-      "label": "t:sections.footer.settings.enable_language_selector.label",
-      "info": "t:sections.footer.settings.enable_language_selector.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "payment_enable",
-      "default": true,
-      "label": "t:sections.footer.settings.payment_enable.label"
-    },
-    {
-      "type": "checkbox",
-      "id": "show_policy",
-      "default": true,
-      "label": "t:sections.footer.settings.show_policy.label",
-      "info": "t:sections.footer.settings.show_policy.info"
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.spacing"
-    },
-    {
-      "type": "range",
-      "id": "margin_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.footer.settings.margin_top.label",
-      "default": 0
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.padding.section_padding_heading"
-    },
-    {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 36
-    },
-    {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 36
+      "name": "Sakora Custom Footer"
     }
-  ],
-  "default": {
-    "blocks": [
-      {
-        "type": "link_list"
-      },
-      {
-        "type": "text"
-      }
-    ]
-  }
+  ]
 }
 {% endschema %}

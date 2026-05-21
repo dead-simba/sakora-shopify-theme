@@ -1,0 +1,481 @@
+{%- style -%}
+  .sakora-collection {
+    padding: 6rem 1.5rem;
+    background-color: var(--sakora-cream);
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-collection {
+      padding: 6rem 2.5rem;
+    }
+  }
+  .sakora-collection__header {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+  .sakora-collection__eyebrow {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 0 0.8rem;
+  }
+  .sakora-collection__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.5rem, 3.5vw, 4.5rem);
+    font-weight: 400;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--sakora-charcoal);
+  }
+  .sakora-collection__title em {
+    font-style: italic;
+    color: var(--sakora-emerald);
+  }
+  .sakora-collection__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-collection__grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+  .sakora-collection__card {
+    border-radius: 24px !important;
+    overflow: hidden;
+    border: 0.5px solid #E0DCD4;
+    background: #ffffff;
+    cursor: pointer;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .sakora-collection__card:hover {
+    box-shadow: 0 8px 32px rgba(28,28,26,0.08);
+    transform: translateY(-2px);
+  }
+  .sakora-collection__card-img-wrapper {
+    height: 280px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sakora-collection__card-inner {
+    transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 2;
+  }
+  .sakora-collection__card:hover .sakora-collection__card-inner {
+    transform: scale(1.04);
+  }
+  .sakora-collection__label-sheet {
+    background: rgba(250,250,245,0.93);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 16px !important;
+    padding: 1.6rem 2.2rem;
+    text-align: center;
+    min-width: 160px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    border: 0.5px solid rgba(255, 255, 255, 0.3);
+  }
+  .sakora-collection__label-brand {
+    font-family: var(--font-heading-family);
+    font-size: 1rem;
+    letter-spacing: 0.18em;
+    text-transform: lowercase;
+    opacity: 0.55;
+    margin-bottom: 0.4rem;
+  }
+  .sakora-collection__label-title {
+    font-family: var(--font-heading-family);
+    font-size: 2.2rem;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  .sakora-collection__label-subtitle {
+    font-family: var(--font-body-family);
+    font-size: 0.9rem;
+    opacity: 0.55;
+    margin-top: 0.4rem;
+    letter-spacing: 0.06em;
+  }
+  .sakora-collection__label-divider {
+    width: 28px;
+    height: 1.5px;
+    margin: 0.8rem auto 0.6rem;
+  }
+  .sakora-collection__label-size {
+    font-family: var(--font-body-family);
+    font-size: 0.9rem;
+    opacity: 0.4;
+    letter-spacing: 0.04em;
+  }
+  .sakora-collection__badge {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: rgba(250,250,245,0.85);
+    border-radius: 50px !important;
+    padding: 0.4rem 1rem;
+    z-index: 3;
+    border: 0.5px solid rgba(0,0,0,0.05);
+  }
+  .sakora-collection__badge-text {
+    font-family: var(--font-body-family);
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    opacity: 0.8;
+  }
+  .sakora-collection__details {
+    padding: 1.8rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  .sakora-collection__details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.8rem;
+  }
+  .sakora-collection__details-title {
+    font-family: var(--font-heading-family);
+    font-size: 1.8rem;
+    color: var(--sakora-charcoal);
+    font-weight: 700;
+  }
+  .sakora-collection__details-type {
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    color: var(--sakora-dust);
+    letter-spacing: 0.06em;
+    margin-top: 0.2rem;
+  }
+  .sakora-collection__details-price {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--sakora-charcoal);
+  }
+  .sakora-collection__details-desc {
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    line-height: 1.65;
+    color: #7A7268;
+    margin: 0 0 1.2rem;
+  }
+  .sakora-collection__details-ingredients {
+    font-family: var(--font-body-family);
+    font-size: 0.95rem;
+    color: var(--sakora-dust);
+    letter-spacing: 0.03em;
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+  }
+  .sakora-collection__card-btn {
+    width: 100%;
+    border: none;
+    padding: 1.2rem;
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 50px !important;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s, opacity 0.2s;
+    text-align: center;
+    margin-top: auto;
+  }
+  .sakora-collection__card-btn:hover {
+    opacity: 0.9;
+  }
+  .sakora-collection__card-btn.added {
+    background-color: var(--sakora-charcoal) !important;
+    color: var(--sakora-cream) !important;
+  }
+{%- endstyle -%}
+
+<section class="sakora-collection">
+  <div class="sakora-collection__header">
+    <p class="sakora-collection__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="sakora-collection__title">
+      {{ section.settings.title }}
+    </h2>
+  </div>
+
+  <div class="sakora-collection__grid">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'product_card' -%}
+          {%- liquid
+            assign product = block.settings.product
+            assign name = block.settings.name | default: product.title
+            assign subtitle = block.settings.subtitle
+            assign type = block.settings.type
+            assign desc = block.settings.desc | default: product.description | strip_html | truncatewords: 25
+            assign ingredients = block.settings.ingredients
+            assign size = block.settings.size
+            assign price = block.settings.price | default: product.price | money_without_trailing_zeros
+            assign color = block.settings.color
+            assign text_color = block.settings.text_color
+            assign badge = block.settings.badge
+            assign form_id = 'product-form-' | append: block.id
+          -%}
+          <div class="sakora-collection__card" {{ block.shopify_attributes }}>
+            <div class="sakora-collection__card-img-wrapper" style="background-color: {{ color }};">
+              <div class="sakora-collection__card-inner">
+                <div class="sakora-collection__label-sheet">
+                  <div class="sakora-collection__label-brand" style="color: {{ text_color }};">sakora</div>
+                  <div class="sakora-collection__label-title" style="color: {{ text_color }};">{{ name }}</div>
+                  <div class="sakora-collection__label-subtitle" style="color: {{ text_color }};">{{ subtitle }}</div>
+                  <div class="sakora-collection__label-divider" style="background-color: {{ color }};"></div>
+                  <div class="sakora-collection__label-size" style="color: {{ text_color }};">{{ size }}</div>
+                </div>
+              </div>
+              {%- if badge != blank -%}
+                <div class="sakora-collection__badge">
+                  <span class="sakora-collection__badge-text" style="color: {{ text_color }};">{{ badge }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+
+            <div class="sakora-collection__details">
+              <div class="sakora-collection__details-header">
+                <div>
+                  <div class="sakora-collection__details-title">{{ name }}</div>
+                  <div class="sakora-collection__details-type">{{ type }}</div>
+                </div>
+                <div class="sakora-collection__details-price">{{ price }}</div>
+              </div>
+              <p class="sakora-collection__details-desc">{{ desc }}</p>
+              <p class="sakora-collection__details-ingredients">{{ ingredients }}</p>
+
+              {%- if product != blank -%}
+                {%- form 'product', product, id: form_id, class: 'sakora-product-form' -%}
+                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                  <button type="submit" name="add" class="sakora-collection__card-btn sakora-btn" style="background-color: {{ color }}; color: {{ text_color }};">
+                    Add to Cart
+                  </button>
+                {%- endform -%}
+              {%- else -%}
+                <button type="button" class="sakora-collection__card-btn sakora-btn" style="background-color: {{ color }}; color: {{ text_color }};">
+                  Add to Cart
+                </button>
+              {%- endif -%}
+            </div>
+          </div>
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.sakora-product-form').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const submitBtn = form.querySelector('.sakora-collection__card-btn');
+        if (submitBtn.classList.contains('added')) return;
+        
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Adding...';
+        
+        try {
+          const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
+            method: 'POST',
+            body: new FormData(form)
+          });
+          
+          if (response.ok) {
+            submitBtn.textContent = '✓ Added to Cart';
+            submitBtn.classList.add('added');
+            
+            // Try to update Dawn's cart count bubble
+            const cartResponse = await fetch(window.Shopify.routes.root + 'cart.js');
+            const cartData = await cartResponse.json();
+            
+            // Update cart bubble counts in DOM
+            document.querySelectorAll('.cart-count-bubble').forEach(bubble => {
+              bubble.classList.remove('hidden');
+              const span = bubble.querySelector('span:not(.visually-hidden)');
+              if (span) {
+                span.textContent = cartData.item_count;
+              }
+            });
+            
+            // Dispatch dynamic update events for other components
+            document.dispatchEvent(new CustomEvent('cart:updated', { detail: cartData }));
+            
+            setTimeout(() => {
+              submitBtn.textContent = originalText;
+              submitBtn.classList.remove('added');
+            }, 1800);
+          } else {
+            submitBtn.textContent = 'Error';
+            setTimeout(() => { submitBtn.textContent = originalText; }, 1800);
+          }
+        } catch (err) {
+          submitBtn.textContent = 'Error';
+          setTimeout(() => { submitBtn.textContent = originalText; }, 1800);
+        }
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "Sakora Featured Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "The Collection"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "title",
+      "label": "Heading",
+      "default": "Three rituals. <br><em>One decision.</em>"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product_card",
+      "name": "Product Card",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Choose Product"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Product Name",
+          "info": "Leave blank to use Shopify product title"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Floating Label Subtitle",
+          "default": "Barrier Moisturiser"
+        },
+        {
+          "type": "text",
+          "id": "type",
+          "label": "Ingredients Subtitle",
+          "default": "Triple Ceramide + Peptide"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Short Description",
+          "default": "Your skin's daily reset. Rich ceramides that rebuild, smooth, and hold everything together — softly."
+        },
+        {
+          "type": "text",
+          "id": "ingredients",
+          "label": "Ingredients List",
+          "default": "Ceramide NP · AP · EOP · Matrixyl 3000 · Niacinamide"
+        },
+        {
+          "type": "text",
+          "id": "size",
+          "label": "Size",
+          "default": "50ml"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Override Price Display",
+          "info": "Leave blank to use product price"
+        },
+        {
+          "type": "color",
+          "id": "color",
+          "label": "Dewy Pop Background Color",
+          "default": "#E8A0A0"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Floating Label Text Color",
+          "default": "#5C2020"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Top Right Badge Text",
+          "default": "New"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sakora Featured Collection",
+      "blocks": [
+        {
+          "type": "product_card",
+          "settings": {
+            "name": "Petal Melt",
+            "subtitle": "Barrier Moisturiser",
+            "type": "Triple Ceramide + Peptide",
+            "desc": "Your skin's daily reset. Rich ceramides that rebuild, smooth, and hold everything together — softly.",
+            "ingredients": "Ceramide NP · AP · EOP · Matrixyl 3000 · Niacinamide",
+            "size": "50ml",
+            "price": "PKR 1,800",
+            "color": "#E8A0A0",
+            "text_color": "#5C2020",
+            "badge": "New"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "name": "Sol Veil",
+            "subtitle": "Broad Spectrum Sunscreen",
+            "type": "Matte SPF 50 PA++++",
+            "desc": "The last step your skin was waiting for. Invisible, matte, and powerful enough to face the Lahore sun.",
+            "ingredients": "6-Filter Protection · Zinc PCA · Niacinamide",
+            "size": "50ml",
+            "price": "PKR 2,200",
+            "color": "#E8B84B",
+            "text_color": "#4A2E00",
+            "badge": "New"
+          }
+        },
+        {
+          "type": "product_card",
+          "settings": {
+            "name": "Dawn Drops",
+            "subtitle": "Glow Serum",
+            "type": "5-Active Brightening",
+            "desc": "Nature's brightest actives in one drop. Fade marks, even tone, reveal the skin that was always there.",
+            "ingredients": "Alpha Arbutin 2% · EAA Vitamin C · Tranexamic Acid · Niacinamide · Licorice",
+            "size": "30ml",
+            "price": "PKR 2,500",
+            "color": "#1D9E75",
+            "text_color": "#0D3828",
+            "badge": "New"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
