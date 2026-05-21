@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "sakora_hero": {
@@ -6,34 +15,40 @@
         "petal_melt_strip": {
           "type": "product_strip",
           "settings": {
+            "product": "",
             "title": "Petal Melt",
             "subtitle": "Triple Ceramide + Peptide Barrier Moisturiser",
             "size": "50ml",
             "price": "PKR 1,800",
-            "bg_color": "#E8A0A0",
-            "text_color": "#5C2020"
+            "link": "",
+            "bg_color": "#e8a0a0",
+            "text_color": "#5c2020"
           }
         },
         "sol_veil_strip": {
           "type": "product_strip",
           "settings": {
+            "product": "",
             "title": "Sol Veil",
             "subtitle": "Matte SPF 50 PA++++ Broad Spectrum Sunscreen",
             "size": "50ml",
             "price": "PKR 2,200",
-            "bg_color": "#E8B84B",
-            "text_color": "#4A2E00"
+            "link": "",
+            "bg_color": "#e8b84b",
+            "text_color": "#4a2e00"
           }
         },
         "dawn_drops_strip": {
           "type": "product_strip",
           "settings": {
+            "product": "",
             "title": "Dawn Drops",
             "subtitle": "5-Active Brightening Glow Serum",
             "size": "30ml",
             "price": "PKR 2,500",
-            "bg_color": "#1D9E75",
-            "text_color": "#0D3828"
+            "link": "",
+            "bg_color": "#1d9e75",
+            "text_color": "#0d3828"
           }
         }
       },
@@ -43,11 +58,15 @@
         "dawn_drops_strip"
       ],
       "settings": {
+        "hero_image": "shopify://shop_images/Hero-Sakora.webp",
+        "overlay_opacity": 70,
         "eyebrow": "Skin rituals, reimagined",
         "title": "Nature's <em>best kept</em> secrets.",
         "text": "Three products. Each one obsessed with one thing: making your skin feel exactly like it's supposed to.",
         "primary_button_label": "Shop the Collection",
+        "primary_button_link": "",
         "secondary_button_label": "Our Story →",
+        "secondary_button_link": "",
         "stat1_val": "100%",
         "stat1_label": "No Parabens",
         "stat2_val": "PA++++",
@@ -58,7 +77,9 @@
     },
     "sakora_marquee_ticker": {
       "type": "sakora-marquee-ticker",
-      "settings": {}
+      "settings": {
+        "speed": 30
+      }
     },
     "sakora_homepage_collection": {
       "type": "sakora-homepage-collection",
@@ -66,6 +87,7 @@
         "petal_melt_card": {
           "type": "product_card",
           "settings": {
+            "product": "",
             "name": "Petal Melt",
             "subtitle": "Barrier Moisturiser",
             "type": "Triple Ceramide + Peptide",
@@ -73,14 +95,15 @@
             "ingredients": "Ceramide NP · AP · EOP · Matrixyl 3000 · Niacinamide",
             "size": "50ml",
             "price": "PKR 1,800",
-            "color": "#E8A0A0",
-            "text_color": "#5C2020",
+            "color": "#e8a0a0",
+            "text_color": "#5c2020",
             "badge": "New"
           }
         },
         "sol_veil_card": {
           "type": "product_card",
           "settings": {
+            "product": "",
             "name": "Sol Veil",
             "subtitle": "Broad Spectrum Sunscreen",
             "type": "Matte SPF 50 PA++++",
@@ -88,14 +111,15 @@
             "ingredients": "6-Filter Protection · Zinc PCA · Niacinamide",
             "size": "50ml",
             "price": "PKR 2,200",
-            "color": "#E8B84B",
-            "text_color": "#4A2E00",
+            "color": "#e8b84b",
+            "text_color": "#4a2e00",
             "badge": "New"
           }
         },
         "dawn_drops_card": {
           "type": "product_card",
           "settings": {
+            "product": "",
             "name": "Dawn Drops",
             "subtitle": "Glow Serum",
             "type": "5-Active Brightening",
@@ -103,8 +127,8 @@
             "ingredients": "Alpha Arbutin 2% · EAA Vitamin C · Tranexamic Acid · Niacinamide · Licorice",
             "size": "30ml",
             "price": "PKR 2,500",
-            "color": "#1D9E75",
-            "text_color": "#0D3828",
+            "color": "#1d9e75",
+            "text_color": "#0d3828",
             "badge": "New"
           }
         }
@@ -121,15 +145,30 @@
     },
     "sakora_philosophy_split": {
       "type": "sakora-philosophy-split",
-      "settings": {}
+      "settings": {
+        "eyebrow": "Our Philosophy",
+        "title": "Skin that thrives, <em>not just survives.</em>",
+        "text1": "Sakora was built from a simple frustration: why does skincare have to be complicated? Your routine should feel like a ritual — not a science experiment.",
+        "text2": "Three products. No fluff. Just what your skin actually needs — formulated for South Asian skin, built for real life.",
+        "btn_label": "Read Our Story →",
+        "btn_link": ""
+      }
     },
     "sakora_routine": {
       "type": "sakora-routine",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The Routine",
+        "title": "Three steps. <em>Every day.</em>"
+      }
     },
     "sakora_newsletter": {
       "type": "sakora-newsletter",
-      "settings": {}
+      "settings": {
+        "eyebrow": "The Sakora Circle",
+        "title": "Good skin is a journey. <em>Let's walk it together.</em>",
+        "text": "Skin tips, launch alerts, and early access — straight to your inbox.",
+        "footer": "No spam. Unsubscribe anytime. Promise."
+      }
     }
   },
   "order": [
