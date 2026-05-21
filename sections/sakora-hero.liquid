@@ -10,17 +10,52 @@
     }
   }
   .sakora-hero__content {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 4rem 2rem;
     animation: fadeUp 0.8s ease both;
     background-color: var(--sakora-cream);
+    overflow: hidden;
   }
   @media screen and (min-width: 750px) {
     .sakora-hero__content {
       padding: 5rem 4rem 5rem 3rem;
     }
+  }
+  .sakora-hero__bg-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .sakora-hero__bg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(250, 250, 245, calc(var(--overlay-op) + 0.15)) 0%,
+      rgba(250, 250, 245, var(--overlay-op)) 60%,
+      rgba(250, 250, 245, calc(var(--overlay-op) - 0.2)) 100%
+    );
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 2;
+    pointer-events: none;
+  }
+  /* Ensure hero content overlays on top of background visual */
+  .sakora-hero__eyebrow,
+  .sakora-hero__title,
+  .sakora-hero__text,
+  .sakora-hero__buttons,
+  .sakora-hero__stats {
+    position: relative;
+    z-index: 3;
   }
   .sakora-hero__eyebrow {
     font-family: var(--font-body-family);
@@ -167,7 +202,18 @@
 {%- endstyle -%}
 
 <section class="sakora-hero">
-  <div class="sakora-hero__content">
+  <div class="sakora-hero__content{% if section.settings.hero_image != blank %} sakora-hero__content--has-bg{% endif %}">
+    {%- if section.settings.hero_image != blank -%}
+      {{ section.settings.hero_image | image_url: width: 1500 | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        preload: true,
+        class: 'sakora-hero__bg-img',
+        widths: '375, 550, 750, 1100, 1500',
+        alt: section.settings.hero_image.alt | default: 'American Pakistani model displaying glowing dewy skin'
+      }}
+      <div class="sakora-hero__bg-overlay" style="--overlay-op: {{ section.settings.overlay_opacity | divided_by: 100.0 }}"></div>
+    {%- endif -%}
     <p class="sakora-hero__eyebrow">{{ section.settings.eyebrow }}</p>
     <h1 class="sakora-hero__title">
       {{ section.settings.title }}
@@ -241,6 +287,23 @@
 {
   "name": "Sakora Split Hero",
   "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero Background Image",
+      "info": "Upload an editorial image (e.g. American-Pakistani beauty model) to override the solid cream canvas."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "%",
+      "label": "Dewy Gradient Overlay Opacity",
+      "info": "Adjust the warm dewy mask opacity to ensure maximum typography readability over custom graphics.",
+      "default": 60
+    },
     {
       "type": "text",
       "id": "eyebrow",

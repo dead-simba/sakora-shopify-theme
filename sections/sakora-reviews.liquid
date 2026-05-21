@@ -1,0 +1,552 @@
+{%- liquid
+  assign handle = product.handle | downcase
+  
+  assign is_moisturizer = false
+  assign is_sunscreen = false
+  assign is_serum = false
+
+  if handle contains 'petal' or handle contains 'moisturizer' or handle contains 'reset' or handle contains 'moisturiser'
+    assign is_moisturizer = true
+  elsif handle contains 'veil' or handle contains 'sunscreen' or handle contains 'daylite' or handle contains 'spf'
+    assign is_sunscreen = true
+  else
+    assign is_serum = true
+  endif
+-%}
+
+{%- style -%}
+  .sakora-reviews {
+    background-color: var(--sakora-cream);
+    padding: 6rem 2rem;
+    border-bottom: 0.5px solid #E0DCD4;
+  }
+  .sakora-reviews__wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .sakora-reviews__heading-pre {
+    text-align: center;
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 0 1rem;
+  }
+  .sakora-reviews__heading {
+    text-align: center;
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.6rem, 3.5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--sakora-charcoal);
+    margin: 0 0 4rem;
+  }
+  .sakora-reviews__heading em {
+    font-style: italic;
+    color: var(--sakora-emerald);
+  }
+  
+  /* Summary Card */
+  .sakora-reviews__summary-card {
+    background-color: rgba(232, 160, 160, 0.1); /* Dewy pink tint */
+    border-radius: 24px;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem;
+    border: 0.5px solid rgba(232, 160, 160, 0.25);
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-reviews__summary-card {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+      padding: 3rem 4rem;
+    }
+  }
+  .sakora-reviews__summary-stars {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+  }
+  .sakora-reviews__summary-score {
+    font-family: var(--font-heading-family);
+    font-size: 3.6rem;
+    font-weight: 500;
+    color: var(--sakora-charcoal);
+    line-height: 1;
+    margin-right: 1.5rem;
+  }
+  .sakora-reviews__summary-meta {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    color: #6B6358;
+  }
+  .sakora-reviews__recommend-text {
+    font-family: var(--font-heading-family);
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--sakora-emerald);
+    margin-top: 1rem;
+  }
+  @media screen and (min-width: 750px) {
+    .sakora-reviews__recommend-text {
+      margin-top: 0;
+      text-align: right;
+    }
+  }
+  
+  /* Reviews List */
+  .sakora-reviews__list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .sakora-reviews__item {
+    border-bottom: 0.5px solid #E0DCD4;
+    padding-bottom: 3rem;
+  }
+  .sakora-reviews__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  .sakora-reviews__item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.2rem;
+  }
+  .sakora-reviews__item-stars {
+    display: flex;
+    gap: 0.2rem;
+    color: #E8A0A0; /* Dewy Pink stars */
+  }
+  .sakora-reviews__item-date {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    color: var(--sakora-dust);
+  }
+  .sakora-reviews__user-info {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 1.2rem;
+  }
+  .sakora-reviews__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--sakora-stone);
+    color: var(--sakora-charcoal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  .sakora-reviews__username {
+    font-family: var(--font-body-family);
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: var(--sakora-charcoal);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .sakora-reviews__verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1rem;
+    color: var(--sakora-emerald);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .sakora-reviews__item-text {
+    font-family: var(--font-body-family);
+    font-size: 1.35rem;
+    line-height: 1.7;
+    color: #4A453E;
+  }
+  
+  /* Star SVG styles */
+  .sakora-star {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+  }
+  .sakora-star--large {
+    width: 24px;
+    height: 24px;
+  }
+{%- endstyle -%}
+
+<section class="sakora-reviews">
+  <div class="sakora-reviews__wrapper">
+    <p class="sakora-reviews__heading-pre">Social Proof</p>
+    <h2 class="sakora-reviews__heading">From <em>real</em> skin.</h2>
+    
+    <!-- Rating summary card -->
+    <div class="sakora-reviews__summary-card">
+      <div style="display: flex; align-items: center;">
+        <span class="sakora-reviews__summary-score">4.9</span>
+        <div>
+          <div class="sakora-reviews__summary-stars" style="color: #E8A0A0;">
+            {%- for i in (1..5) -%}
+              <svg class="sakora-star sakora-star--large" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+            {%- endfor -%}
+          </div>
+          <div class="sakora-reviews__summary-meta">Based on 148 verified customer reviews</div>
+        </div>
+      </div>
+      <div class="sakora-reviews__recommend-text">
+        98% of users recommend this skin ritual
+      </div>
+    </div>
+    
+    <!-- Reviews list -->
+    <div class="sakora-reviews__list">
+      {%- if is_moisturizer -%}
+        <!-- MOISTURIZER REVIEWS -->
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/06/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 160, 160, 0.2);">UM</div>
+            <div class="sakora-reviews__username">
+              UMER MEHMOOD
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            Honestly, I can actually feel the difference. The results are amazing and I'm saying this genuinely. I've tried a lot of skincare products before but these are seriously so good. Even my acne scars are getting better and my skin has a really nice glow now! Both the serum and moisturizer are really good I'm really liking them.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/01/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 184, 75, 0.2);">Z</div>
+            <div class="sakora-reviews__username">
+              Zoya
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            I really like the formulation of ur products specially sunscreen nd moisturizer serum. the texture of the products are really nice specially according to summers.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/01/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(29, 158, 117, 0.2);">M</div>
+            <div class="sakora-reviews__username">
+              mahnoor
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            I use the Sunscreen regularly, but I've only used the moisturizer three or four times so far. It doesn't pill at all. I always use all three products together and I've found them to be very effective. It even works perfectly under makeup without pilling or leaving a white cast it's really impressive.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">03/30/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 160, 160, 0.2);">R</div>
+            <div class="sakora-reviews__username">
+              Rubab Maqsood
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            Mujhay ye moisturizer itna Pasand Aya h ke me bta nhi skty. Meri dry skin hai or sensitive b or mjhy perfect suit kia h makeup se phle b yhi use krty best h.
+          </p>
+        </div>
+
+      {%- elsif is_sunscreen -%}
+        <!-- SUNSCREEN REVIEWS -->
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/27/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 184, 75, 0.2);">AS</div>
+            <div class="sakora-reviews__username">
+              Amir Shah
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            Very nice product. Highly recommended for daily wear under direct sunlight!
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/07/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 184, 75, 0.2);">HT</div>
+            <div class="sakora-reviews__username">
+              HUZAIFA TEK
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            <strong>Product Review: SPF 50+</strong><br>
+            Agar aap eik aisa sunscreen dhoond rahay han jo bilkul "Brand New" experience day aur skin per heavy na ho, to Luma Labs ki yeh sunscreen topper hai!<br><br>
+            <strong>Why I Love It:</strong><br>
+            1. <em>Velvet Matte Finish</em>: Iska texture bilkul makhmali jaisa hai. Lagane ke baad mehsus hi nahi hota.<br>
+            2. <em>Zero White Cast</em>: Yeh sabse bada relief hai.<br>
+            3. <em>Total Defense</em>: Yeh sirf dhoop (UVA/UVB) se hi nahi bachati, balkay blue light aur pollution se bhi shield karti hai.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/02/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(29, 158, 117, 0.2);">N</div>
+            <div class="sakora-reviews__username">
+              Nasir
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            I love the texture. Very soft and absorbs so quickly. Keeps my skin looking completely matte.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/01/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 160, 160, 0.2);">M</div>
+            <div class="sakora-reviews__username">
+              mahnoor
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            I use the Sunscreen regularly, but I've only used the moisturizer three or four times so far. It doesn't pill at all. I always use all three products together and I've found them to be very effective. It even works perfectly under makeup without pilling or leaving a white cast it's really impressive.
+          </p>
+        </div>
+
+      {%- else -%}
+        <!-- SERUM REVIEWS -->
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/27/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(29, 158, 117, 0.2);">A</div>
+            <div class="sakora-reviews__username">
+              Ayan
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            Love the product. Worth buying. Fades active red acne marks very quickly.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/27/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 160, 160, 0.2);">S</div>
+            <div class="sakora-reviews__username">
+              Sana
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            Honestly did not expect it to work this fast. Right after Eid my skin just.. gave up. Pigmentation flaring, texture off, nothing was helping. A friend told me to try Glowve's Soft Reset. I was skeptical ngl. But within days I could literally see the difference. And what got me more was how the team actually guided me through it. Like they genuinely cared. Still can't believe how much it changed things.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/24/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 184, 75, 0.2);">NB</div>
+            <div class="sakora-reviews__username">
+              Noor Baig
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            Best ever moisturiser i use daily the results are super amazing. My skin barrier feels completely protected.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/20/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(29, 158, 117, 0.2);">GB</div>
+            <div class="sakora-reviews__username">
+              Ghazala Bukhari
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            It is a great serum as I carefully chose the product by ingredients. I felt great softness & brightness after using it twice. But my skin inflamed probably by using other actives in the form of cleansers n moisturizer... so I'm suggested my purchase to discontinue everything else and just focus on this clean formula.
+          </p>
+        </div>
+
+        <div class="sakora-reviews__item">
+          <div class="sakora-reviews__item-header">
+            <div class="sakora-reviews__item-stars">
+              {%- for i in (1..5) -%}
+                <svg class="sakora-star" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+              {%- endfor -%}
+            </div>
+            <div class="sakora-reviews__item-date">04/10/2026</div>
+          </div>
+          <div class="sakora-reviews__user-info">
+            <div class="sakora-reviews__avatar" style="background-color: rgba(232, 160, 160, 0.2);">A</div>
+            <div class="sakora-reviews__username">
+              Ayesha
+              <span class="sakora-reviews__verified-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                Verified Buyer
+              </span>
+            </div>
+          </div>
+          <p class="sakora-reviews__item-text">
+            I have used the serum for almost 15 days now. It is totally perfect. My skin's brightness has improved, and along with that, my dark spots/marks have faded significantly. Highly recommended!
+          </p>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sakora Reviews Board",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Sakora Reviews Board"
+    }
+  ]
+}
+{% endschema %}

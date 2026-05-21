@@ -227,6 +227,252 @@
                     </div>
                   </details>
                 </div>
+              {%- when 'bundle_selector' -%}
+                <div class="sakora-bundle-selector" {{ block.shopify_attributes }}>
+                  {%- if block.settings.heading != blank -%}
+                    <h3 class="sakora-bundle-selector__title">{{ block.settings.heading }}</h3>
+                  {%- endif -%}
+                  
+                  {%- assign variant = product.selected_or_first_available_variant -%}
+                  {%- assign base_price = variant.price -%}
+                  
+                  <div class="sakora-bundle-selector__cards">
+                    <!-- CARD 1: 1 Bottle -->
+                    <div class="sakora-bundle-card js-bundle-card" data-quantity="1">
+                      <div class="sakora-bundle-card__radio-wrapper">
+                        <span class="sakora-bundle-card__radio"></span>
+                        <div class="sakora-bundle-card__details">
+                          <span class="sakora-bundle-card__name">1 Bottle</span>
+                          <span class="sakora-bundle-card__meta">Standard Protocol</span>
+                        </div>
+                      </div>
+                      <div class="sakora-bundle-card__pricing">
+                        <span class="sakora-bundle-card__price-total">{{ base_price | money }}</span>
+                        <span class="sakora-bundle-card__price-each">Standard Value</span>
+                      </div>
+                    </div>
+
+                    <!-- CARD 2: 2 Bottles -->
+                    <div class="sakora-bundle-card js-bundle-card active" data-quantity="2">
+                      <div class="sakora-bundle-card__badge sakora-bundle-card__badge--popular">Recommended</div>
+                      <div class="sakora-bundle-card__radio-wrapper">
+                        <span class="sakora-bundle-card__radio"></span>
+                        <div class="sakora-bundle-card__details">
+                          <span class="sakora-bundle-card__name">2 Bottles</span>
+                          <span class="sakora-bundle-card__meta">Complete Protocol</span>
+                        </div>
+                      </div>
+                      <div class="sakora-bundle-card__pricing">
+                        <div class="sakora-bundle-card__price-row">
+                          <span class="sakora-bundle-card__price-old">{{ base_price | times: 2 | money }}</span>
+                          <span class="sakora-bundle-card__price-total">{{ base_price | times: 1.8 | money }}</span>
+                        </div>
+                        <span class="sakora-bundle-card__price-each">{{ base_price | times: 0.9 | money }} each · <strong style="color: var(--sakora-emerald); font-weight: 500;">Save 10% + Free Delivery</strong></span>
+                      </div>
+                    </div>
+
+                    <!-- CARD 3: 3 Bottles -->
+                    <div class="sakora-bundle-card js-bundle-card" data-quantity="3">
+                      <div class="sakora-bundle-card__badge sakora-bundle-card__badge--best">Best Value</div>
+                      <div class="sakora-bundle-card__radio-wrapper">
+                        <span class="sakora-bundle-card__radio"></span>
+                        <div class="sakora-bundle-card__details">
+                          <span class="sakora-bundle-card__name">3 Bottles</span>
+                          <span class="sakora-bundle-card__meta">Ultimate Skin Renewal</span>
+                        </div>
+                      </div>
+                      <div class="sakora-bundle-card__pricing">
+                        <div class="sakora-bundle-card__price-row">
+                          <span class="sakora-bundle-card__price-old">{{ base_price | times: 3 | money }}</span>
+                          <span class="sakora-bundle-card__price-total">{{ base_price | times: 2.4 | money }}</span>
+                        </div>
+                        <span class="sakora-bundle-card__price-each">{{ base_price | times: 0.8 | money }} each · <strong style="color: var(--sakora-emerald); font-weight: 500;">Save 20% + Free Delivery</strong></span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <input type="hidden" name="quantity" id="Sakora-Bundle-Quantity-{{ section.id }}" value="2" form="{{ product_form_id }}">
+                  
+                  <style>
+                    .sakora-bundle-selector {
+                      margin: 2.5rem 0;
+                      font-family: var(--font-body-family);
+                    }
+                    .sakora-bundle-selector__title {
+                      font-family: var(--font-heading-family);
+                      font-size: 1.6rem;
+                      font-weight: 500;
+                      color: var(--sakora-charcoal);
+                      margin: 0 0 1.5rem;
+                      letter-spacing: 0.02em;
+                      text-transform: uppercase;
+                    }
+                    .sakora-bundle-selector__cards {
+                      display: flex;
+                      flex-direction: column;
+                      gap: 1.5rem;
+                    }
+                    .sakora-bundle-card {
+                      position: relative;
+                      border: 1px solid rgba(122, 114, 104, 0.2);
+                      background-color: rgba(255, 255, 255, 0.45);
+                      backdrop-filter: blur(8px);
+                      -webkit-backdrop-filter: blur(8px);
+                      border-radius: 16px;
+                      padding: 1.6rem 2rem;
+                      display: flex;
+                      align-items: center;
+                      justify-content: space-between;
+                      cursor: pointer;
+                      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+                      user-select: none;
+                    }
+                    .sakora-bundle-card:hover {
+                      border-color: rgba(232, 160, 160, 0.5);
+                      background-color: rgba(253, 246, 246, 0.5);
+                      transform: translateY(-1px);
+                    }
+                    .sakora-bundle-card.active {
+                      border-color: #E8A0A0; /* Dewy Pink Accent */
+                      background-color: rgba(253, 246, 246, 0.8);
+                      box-shadow: 0 4px 20px rgba(232, 160, 160, 0.12);
+                    }
+                    .sakora-bundle-card__radio-wrapper {
+                      display: flex;
+                      align-items: center;
+                      gap: 1.5rem;
+                    }
+                    .sakora-bundle-card__radio {
+                      width: 20px;
+                      height: 20px;
+                      border-radius: 50%;
+                      border: 1.5px solid rgba(122, 114, 104, 0.4);
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      background-color: #fff;
+                      flex-shrink: 0;
+                      transition: all 0.2s ease;
+                    }
+                    .sakora-bundle-card.active .sakora-bundle-card__radio {
+                      border-color: #E8A0A0;
+                    }
+                    .sakora-bundle-card.active .sakora-bundle-card__radio::after {
+                      content: '';
+                      width: 10px;
+                      height: 10px;
+                      border-radius: 50%;
+                      background-color: #E8A0A0;
+                      display: block;
+                    }
+                    .sakora-bundle-card__details {
+                      display: flex;
+                      flex-direction: column;
+                    }
+                    .sakora-bundle-card__name {
+                      font-size: 1.45rem;
+                      font-weight: 500;
+                      color: var(--sakora-charcoal);
+                    }
+                    .sakora-bundle-card__meta {
+                      font-size: 1.15rem;
+                      color: var(--sakora-dust);
+                      margin-top: 0.1rem;
+                    }
+                    .sakora-bundle-card__pricing {
+                      text-align: right;
+                      display: flex;
+                      flex-direction: column;
+                      align-items: flex-end;
+                    }
+                    .sakora-bundle-card__price-row {
+                      display: flex;
+                      align-items: baseline;
+                      gap: 0.8rem;
+                    }
+                    .sakora-bundle-card__price-old {
+                      font-size: 1.25rem;
+                      text-decoration: line-through;
+                      color: var(--sakora-dust);
+                      opacity: 0.7;
+                    }
+                    .sakora-bundle-card__price-total {
+                      font-size: 1.55rem;
+                      font-weight: 500;
+                      color: var(--sakora-charcoal);
+                    }
+                    .sakora-bundle-card__price-each {
+                      font-size: 1.15rem;
+                      color: var(--sakora-dust);
+                      margin-top: 0.2rem;
+                    }
+                    .sakora-bundle-card__badge {
+                      position: absolute;
+                      top: -10px;
+                      right: 20px;
+                      padding: 0.3rem 1rem;
+                      font-size: 1rem;
+                      text-transform: uppercase;
+                      letter-spacing: 0.05em;
+                      border-radius: 20px;
+                      font-weight: 500;
+                      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+                    }
+                    .sakora-bundle-card__badge--popular {
+                      background-color: #E8A0A0;
+                      color: #fff;
+                    }
+                    .sakora-bundle-card__badge--best {
+                      background-color: var(--sakora-emerald);
+                      color: #fff;
+                    }
+                  </style>
+                  
+                  <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                      const container = document.getElementById('Quantity-Form-{{ section.id }}') || document.querySelector('.product-info-container');
+                      const cards = document.querySelectorAll('#Quantity-Form-{{ section.id }} .js-bundle-card, .sakora-bundle-selector .js-bundle-card');
+                      const quantityInput = document.getElementById('Sakora-Bundle-Quantity-{{ section.id }}');
+                      
+                      // Also sync with standard quantity selector input if it exists
+                      const standardQuantityInput = document.querySelector('input[name="quantity"]:not([id^="Sakora-Bundle-Quantity"])');
+
+                      cards.forEach(card => {
+                        card.addEventListener('click', function() {
+                          cards.forEach(c => c.classList.remove('active'));
+                          this.classList.add('active');
+                          const qty = this.getAttribute('data-quantity');
+                          if (quantityInput) {
+                            quantityInput.value = qty;
+                            // dispatch change event to notify Shopify theme scripts
+                            quantityInput.dispatchEvent(new Event('change', { bubbles: true }));
+                          }
+                          if (standardQuantityInput) {
+                            standardQuantityInput.value = qty;
+                            standardQuantityInput.dispatchEvent(new Event('change', { bubbles: true }));
+                          }
+                        });
+                      });
+
+                      // Sync backwards if standard input changes
+                      if (standardQuantityInput) {
+                        standardQuantityInput.addEventListener('change', function() {
+                          const val = Math.min(Math.max(parseInt(this.value) || 1, 1), 3);
+                          cards.forEach(c => {
+                            if (c.getAttribute('data-quantity') == val) {
+                              c.classList.add('active');
+                            } else {
+                              c.classList.remove('active');
+                            }
+                          });
+                          if (quantityInput) {
+                            quantityInput.value = val;
+                          }
+                        });
+                      }
+                    });
+                  </script>
+                </div>
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -862,6 +1108,19 @@
       "type": "quantity_selector",
       "name": "t:sections.main-product.blocks.quantity_selector.name",
       "limit": 1
+    },
+    {
+      "type": "bundle_selector",
+      "name": "Sakora Bundle Selector",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Select Protocol & Save",
+          "label": "Heading"
+        }
+      ]
     },
     {
       "type": "variant_picker",

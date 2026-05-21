@@ -1,0 +1,350 @@
+{%- liquid
+  assign handle = product.handle | downcase
+  
+  assign is_moisturizer = false
+  assign is_sunscreen = false
+  assign is_serum = false
+
+  if handle contains 'petal' or handle contains 'moisturizer' or handle contains 'reset' or handle contains 'moisturiser'
+    assign is_moisturizer = true
+  elsif handle contains 'veil' or handle contains 'sunscreen' or handle contains 'daylite' or handle contains 'spf'
+    assign is_sunscreen = true
+  else
+    assign is_serum = true
+  endif
+-%}
+
+{%- style -%}
+  .sakora-timeline-science {
+    background-color: var(--sakora-cream);
+    padding: 6rem 2rem;
+    border-bottom: 0.5px solid #E0DCD4;
+  }
+  .sakora-ts__grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 5rem;
+  }
+  @media screen and (min-width: 990px) {
+    .sakora-ts__grid {
+      grid-template-columns: 1fr 1.1fr;
+      gap: 6rem;
+    }
+  }
+  
+  /* Timeline styling */
+  .sakora-ts__heading-pre {
+    font-family: var(--font-body-family);
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 0 1rem;
+  }
+  .sakora-ts__heading {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2.6rem, 3.5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--sakora-charcoal);
+    margin: 0 0 1.5rem;
+  }
+  .sakora-ts__heading em {
+    font-style: italic;
+    color: var(--sakora-emerald);
+  }
+  .sakora-ts__subtext {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    line-height: 1.7;
+    color: #7A7268;
+    margin-bottom: 3.5rem;
+  }
+  
+  .sakora-timeline {
+    position: relative;
+    padding-left: 2.5rem;
+    border-left: 1px solid #E6E1D8;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+  .sakora-timeline__step {
+    position: relative;
+  }
+  .sakora-timeline__dot {
+    position: absolute;
+    left: calc(-2.5rem - 7px);
+    top: 0.4rem;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 2px solid var(--sakora-cream);
+    box-shadow: 0 0 0 1px #E6E1D8;
+  }
+  .sakora-timeline__step:hover .sakora-timeline__dot {
+    transform: scale(1.15);
+  }
+  .sakora-timeline__label {
+    font-family: var(--font-body-family);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin-bottom: 0.5rem;
+  }
+  .sakora-timeline__title {
+    font-family: var(--font-heading-family);
+    font-size: 1.7rem;
+    font-weight: 500;
+    color: var(--sakora-charcoal);
+    margin: 0 0 0.8rem;
+  }
+  .sakora-timeline__desc {
+    font-family: var(--font-body-family);
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #6B6358;
+  }
+  
+  .sakora-tip-box {
+    margin-top: 3.5rem;
+    padding: 2.2rem;
+    border-radius: 20px;
+    background-color: var(--sakora-stone);
+    font-family: var(--font-body-family);
+    font-size: 1.2rem;
+    line-height: 1.65;
+    color: #6B6358;
+    display: flex;
+    gap: 1.2rem;
+    align-items: flex-start;
+  }
+  .sakora-tip-box svg {
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  
+  /* Science / Actives section */
+  .sakora-science__card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .sakora-science__card {
+    padding: 3rem 2.5rem;
+    border-radius: 24px;
+    transition: transform 0.3s ease;
+  }
+  .sakora-science__card:hover {
+    transform: translateY(-4px);
+  }
+  .sakora-science__card-num {
+    font-family: var(--font-heading-family);
+    font-size: 1.6rem;
+    font-style: italic;
+    opacity: 0.55;
+    margin-bottom: 1.5rem;
+  }
+  .sakora-science__card-title {
+    font-family: var(--font-heading-family);
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 0 0 1rem;
+  }
+  .sakora-science__card-desc {
+    font-family: var(--font-body-family);
+    font-size: 1.3rem;
+    line-height: 1.65;
+    opacity: 0.85;
+  }
+{%- endstyle -%}
+
+<section class="sakora-timeline-science">
+  <div class="sakora-ts__grid">
+    
+    <!-- LEFT COLUMN: What to actually expect -->
+    <div class="sakora-ts__left">
+      <p class="sakora-ts__heading-pre">Real Expectations</p>
+      <h2 class="sakora-ts__heading">What to <em>actually</em> expect.</h2>
+      <p class="sakora-ts__subtext">No overnight miracles promised. This is skin science working in weeks, not days.</p>
+      
+      <div class="sakora-timeline">
+        {%- if is_moisturizer -%}
+          <!-- MOISTURIZER TIMELINE -->
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8A0A0;"></div>
+            <div class="sakora-timeline__label">Day 1</div>
+            <h3 class="sakora-timeline__title">Immediate comfort</h3>
+            <p class="sakora-timeline__desc">Skin feels calmer and less tight within hours. Ceramides start integrating to seal cracked lipid layers from day one.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8A0A0;"></div>
+            <div class="sakora-timeline__label">Weeks 1 - 2</div>
+            <h3 class="sakora-timeline__title">Hydration holds longer</h3>
+            <p class="sakora-timeline__desc">No dry, tight feeling by 3 PM. Redness reduces and skin barrier reacts less to hard water washes and temperature shifts.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8A0A0;"></div>
+            <div class="sakora-timeline__label">Weeks 4 - 8</div>
+            <h3 class="sakora-timeline__title">Barrier independence</h3>
+            <p class="sakora-timeline__desc">Skin is noticeably resilient. Overall sensitivity drops significantly, and active ingredients like Niacinamide stimulate internal production.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8A0A0;"></div>
+            <div class="sakora-timeline__label">Weeks 8 - 12</div>
+            <h3 class="sakora-timeline__title">Structural change</h3>
+            <p class="sakora-timeline__desc">Wrinkle depth is visibly reduced as Matrixyl 3000™ completes its clinical matrix rebuild window. Skin feels firm, plump, and healthy.</p>
+          </div>
+        {%- elsif is_sunscreen -%}
+          <!-- SUNSCREEN TIMELINE -->
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8B84B;"></div>
+            <div class="sakora-timeline__label">Day 1</div>
+            <h3 class="sakora-timeline__title">No white cast</h3>
+            <p class="sakora-timeline__desc">Applies invisibly on South Asian skin tones. The smooth, velvet matte finish sets within 2 minutes. Fits perfectly under makeup.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8B84B;"></div>
+            <div class="sakora-timeline__label">Weeks 1 - 2</div>
+            <h3 class="sakora-timeline__title">Oil control you'll notice</h3>
+            <p class="sakora-timeline__desc">Zinc PCA and Niacinamide start regulating sebum. Skin stays matte until evening instead of being shiny and greasy by noon.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8B84B;"></div>
+            <div class="sakora-timeline__label">Weeks 2 - 6</div>
+            <h3 class="sakora-timeline__title">PIH stops forming</h3>
+            <p class="sakora-timeline__desc">Old acne marks fade without new ones forming. Active UV filters prevent the sun from triggering the post-inflammatory cascade.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: #E8B84B;"></div>
+            <div class="sakora-timeline__label">Month 2+</div>
+            <h3 class="sakora-timeline__title">Long-term protection</h3>
+            <p class="sakora-timeline__desc">Skin tone stays even and radiant. Preventing UV-induced aging keeps your dermal barrier resilient for years to come.</p>
+          </div>
+        {%- else -%}
+          <!-- SERUM TIMELINE -->
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: var(--sakora-emerald);"></div>
+            <div class="sakora-timeline__label">Weeks 1 - 2</div>
+            <h3 class="sakora-timeline__title">Smoother texture</h3>
+            <p class="sakora-timeline__desc">Skin feels noticeably smoother. Tone starts to even. Some report a subtle glow as hydration and Niacinamide kick in first.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: var(--sakora-emerald);"></div>
+            <div class="sakora-timeline__label">Weeks 2 - 6</div>
+            <h3 class="sakora-timeline__title">Brightening begins</h3>
+            <p class="sakora-timeline__desc">Stubborn spots fade at the edges and skin tone looks visibly more uniform. Your friends will notice the radiant shift before you do.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: var(--sakora-emerald);"></div>
+            <div class="sakora-timeline__label">Weeks 6 - 12</div>
+            <h3 class="sakora-timeline__title">Dark spots fading</h3>
+            <p class="sakora-timeline__desc">Recent breakout marks are significantly lighter. Stubborn older spots start responding. This is where the biggest shift occurs.</p>
+          </div>
+          <div class="sakora-timeline__step">
+            <div class="sakora-timeline__dot" style="background-color: var(--sakora-emerald);"></div>
+            <div class="sakora-timeline__label">Weeks 12 - 16</div>
+            <h3 class="sakora-timeline__title">Deep pigmentation</h3>
+            <p class="sakora-timeline__desc">Melasma and long-standing spots are visibly reduced. South Asian skin needs this full window - but results hold with continued use.</p>
+          </div>
+        {%- endif -%}
+      </div>
+      
+      <!-- Dewy Tip Box -->
+      <div class="sakora-tip-box">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 16v-4M12 8h.01" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span>
+          {%- if is_moisturizer -%}
+            <strong>Tip for Pakistani winters:</strong> Islamabad and upper Punjab can see humidity drop below 35% in January-February. Add an extra pump at night during these months to support skin barrier recovery.
+          {%- elsif is_sunscreen -%}
+            <strong>How much to apply?</strong> The SPF rating is tested at 2mg/cm². Applying less effectively halves your SPF to 25. Two full pumps for face + neck is correct, not excessive.
+          {%- else -%}
+            <strong>Daily SPF is mandatory!</strong> UV exposure actively undoes your brightening progress. The serum works hardest and fastest when a strong SPF has your back during the day.
+          {%- endif -%}
+        </span>
+      </div>
+    </div>
+    
+    <!-- RIGHT COLUMN: Biochemical mechanisms -->
+    <div class="sakora-ts__right">
+      <p class="sakora-ts__heading-pre">Biochemical Mechanisms</p>
+      <h2 class="sakora-ts__heading">See the <em>science</em> in action.</h2>
+      <p class="sakora-ts__subtext">We formulate at the cellular level. Here is exactly how actives work at their structures to heal and strengthen your skin.</p>
+      
+      <div class="sakora-science__card-grid">
+        {%- if is_moisturizer -%}
+          <!-- MOISTURIZER SCIENCE CARDS -->
+          <div class="sakora-science__card" style="background-color: rgba(232, 160, 160, 0.18); color: #5C2020;">
+            <div class="sakora-science__card-num">Actives Complex 01</div>
+            <h3 class="sakora-science__card-title" style="color: #5C2020;">Triple Ceramide Complex</h3>
+            <p class="sakora-science__card-desc">Features a 3:1:1 golden ratio of Ceramides, Cholesterol, and Fatty Acids. These golden lipid molecules physically integrate to seal cracked lipid layers and lock in moisture.</p>
+          </div>
+          <div class="sakora-science__card" style="background-color: rgba(232, 160, 160, 0.18); color: #5C2020;">
+            <div class="sakora-science__card-num">Actives Complex 02</div>
+            <h3 class="sakora-science__card-title" style="color: #5C2020;">Niacinamide 4%</h3>
+            <p class="sakora-science__card-desc">Upregulates your skin's natural internal ceramide synthesis, boosting cellular energy, calming inflammation, and ensuring long-lasting defense against hard water.</p>
+          </div>
+          <div class="sakora-science__card" style="background-color: rgba(232, 160, 160, 0.18); color: #5C2020;">
+            <div class="sakora-science__card-num">Actives Complex 03</div>
+            <h3 class="sakora-science__card-title" style="color: #5C2020;">Matrixyl 3000™</h3>
+            <p class="sakora-science__card-desc">A premium peptide messenger that signals the dermal matrix to rebuild structural collagen scaffolding, reinforcing elasticity and healing deep skin micro-damage.</p>
+          </div>
+        {%- elsif is_sunscreen -%}
+          <!-- SUNSCREEN SCIENCE CARDS -->
+          <div class="sakora-science__card" style="background-color: rgba(232, 184, 75, 0.16); color: #4A2E00;">
+            <div class="sakora-science__card-num">Actives Complex 01</div>
+            <h3 class="sakora-science__card-title" style="color: #4A2E00;">6-Filter UV/HEV System</h3>
+            <p class="sakora-science__card-desc">A sophisticated blend of six modern filters that ensures zero UV gaps from 280nm to 400nm. Specially designed to protect against Pakistan's intense summer UV index of 12.</p>
+          </div>
+          <div class="sakora-science__card" style="background-color: rgba(232, 184, 75, 0.16); color: #4A2E00;">
+            <div class="sakora-science__card-num">Actives Complex 02</div>
+            <h3 class="sakora-science__card-title" style="color: #4A2E00;">Zinc PCA</h3>
+            <p class="sakora-science__card-desc">Actively regulates sebum production at the pore level, ensuring a non-greasy, velvety matte finish that lasts over 8 hours even in humid summers.</p>
+          </div>
+          <div class="sakora-science__card" style="background-color: rgba(232, 184, 75, 0.16); color: #4A2E00;">
+            <div class="sakora-science__card-num">Actives Complex 03</div>
+            <h3 class="sakora-science__card-title" style="color: #4A2E00;">Antioxidant Complex</h3>
+            <p class="sakora-science__card-desc">Neutralizes cellular oxidative stress and free radicals triggered by pollution and blue light, preventing post-inflammatory hyperpigmentation at the source.</p>
+          </div>
+        {%- else -%}
+          <!-- SERUM SCIENCE CARDS -->
+          <div class="sakora-science__card" style="background-color: rgba(29, 158, 117, 0.12); color: #0D3828;">
+            <div class="sakora-science__card-num">Actives Complex 01</div>
+            <h3 class="sakora-science__card-title" style="color: #0D3828;">Alpha Arbutin 2%</h3>
+            <p class="sakora-science__card-desc">A safe, hydroquinone-free enzyme inhibitor that actively binds to tyrosinase to block excess pigment conversion and erase stubborn post-acne dark marks.</p>
+          </div>
+          <div class="sakora-science__card" style="background-color: rgba(29, 158, 117, 0.12); color: #0D3828;">
+            <div class="sakora-science__card-num">Actives Complex 02</div>
+            <h3 class="sakora-science__card-title" style="color: #0D3828;">Tranexamic Acid</h3>
+            <p class="sakora-science__card-desc">An outstanding active that interrupts the post-inflammatory cell messaging cascade, preventing dark spots and melasma from forming in South Asian skin types.</p>
+          </div>
+          <div class="sakora-science__card" style="background-color: rgba(29, 158, 117, 0.12); color: #0D3828;">
+            <div class="sakora-science__card-num">Actives Complex 03</div>
+            <h3 class="sakora-science__card-title" style="color: #0D3828;">Ethyl Ascorbic Acid</h3>
+            <p class="sakora-science__card-desc">A highly stable Vitamin C derivative that neutralizes free radicals, boosts natural collagen, and acts as an ultimate brightening cofactor for a healthy glow.</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sakora Timeline & Science",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Sakora Timeline & Science"
+    }
+  ]
+}
+{% endschema %}
