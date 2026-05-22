@@ -388,6 +388,41 @@
           {%- when 'product_strip' -%}
             {%- liquid
               assign product = block.settings.product
+              
+              # Resolve product handle string if it wasn't automatically parsed as a Product object
+              if product == blank or product.url == blank
+                if block.settings.product != blank
+                  assign resolved_product = all_products[block.settings.product]
+                  if resolved_product != blank
+                    assign product = resolved_product
+                  endif
+                endif
+              endif
+              
+              assign title = block.settings.title | default: product.title
+              
+              # Fallback product matching when block.settings.product is empty
+              if product == blank or product.url == blank
+                assign title_lower = title | downcase
+                if title_lower contains 'petal' or title_lower contains 'moisturiser' or title_lower contains 'moisturizer'
+                  assign product = all_products['petal-melt']
+                  if product == blank or product.url == blank
+                    assign product = all_products['soft-reset-moisturizer']
+                  endif
+                elsif title_lower contains 'sol' or title_lower contains 'sunscreen' or title_lower contains 'veil'
+                  assign product = all_products['sol-veil']
+                  if product == blank or product.url == blank
+                    assign product = all_products['daylite-spf-50-sunscreen']
+                  endif
+                elsif title_lower contains 'dawn' or title_lower contains 'drops' or title_lower contains 'serum'
+                  assign product = all_products['dawn-drops']
+                  if product == blank or product.url == blank
+                    assign product = all_products['fade-theory']
+                  endif
+                endif
+              endif
+              
+              # Re-assign variables using resolved/fallback product object
               assign title = block.settings.title | default: product.title
               assign subtitle = block.settings.subtitle
               assign bg_color = block.settings.bg_color
