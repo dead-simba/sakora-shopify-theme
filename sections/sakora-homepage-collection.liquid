@@ -53,6 +53,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
   }
   .sakora-collection__card:hover {
     box-shadow: 0 8px 32px rgba(28,28,26,0.08);
@@ -218,6 +219,24 @@
     background-color: var(--sakora-charcoal) !important;
     color: var(--sakora-cream) !important;
   }
+  .sakora-collection__card-link-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+  }
+  .sakora-product-form {
+    position: relative;
+    z-index: 4;
+    width: 100%;
+    margin-top: auto;
+  }
+  .sakora-collection__card-btn-placeholder {
+    position: relative;
+    z-index: 4;
+  }
 {%- endstyle -%}
 
 <section class="sakora-collection">
@@ -255,6 +274,9 @@
             assign form_id = 'product-form-' | append: block.id
           -%}
           <div class="sakora-collection__card" {{ block.shopify_attributes }}>
+            {%- if product != blank -%}
+              <a href="{{ product.url }}" class="sakora-collection__card-link-overlay" aria-label="{{ name | escape }}"></a>
+            {%- endif -%}
             <div class="sakora-collection__card-img-wrapper" style="background-color: {{ color }};">
               {%- assign card_image = block.settings.image | default: product.featured_image -%}
               {%- if card_image != blank -%}
@@ -304,7 +326,7 @@
                   </button>
                 {%- endform -%}
               {%- else -%}
-                <button type="button" class="sakora-collection__card-btn sakora-btn" style="background-color: {{ color }}; color: {{ text_color }};">
+                <button type="button" class="sakora-collection__card-btn sakora-btn sakora-collection__card-btn-placeholder" style="background-color: {{ color }}; color: {{ text_color }};">
                   Add to Cart
                 </button>
               {%- endif -%}
