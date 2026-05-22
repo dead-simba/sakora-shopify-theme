@@ -1,0 +1,492 @@
+{%- liquid
+  assign handle = product.handle | downcase
+  assign accent_color = '#1D9E75'
+  assign text_color = '#0D3828'
+  if handle contains 'petal' or handle contains 'moisturizer' or handle contains 'reset'
+    assign accent_color = '#E8A0A0'
+    assign text_color = '#5C2020'
+  elsif handle contains 'veil' or handle contains 'sunscreen' or handle contains 'daylite' or handle contains 'sol'
+    assign accent_color = '#E8B84B'
+    assign text_color = '#4A2E00'
+  elsif handle contains 'drops' or handle contains 'serum' or handle contains 'fade' or handle contains 'dawn'
+    assign accent_color = '#1D9E75'
+    assign text_color = '#0D3828'
+  endif
+-%}
+
+<section class="sakora-ba-section" style="--product-accent: {{ accent_color }}; --product-accent-text: {{ text_color }};">
+  <div class="sakora-ba-inner">
+
+    {%- if section.settings.label != blank or section.settings.title != blank -%}
+      <div class="sakora-ba-head">
+        {%- if section.settings.label != blank -%}
+          <div class="sakora-section-label">{{ section.settings.label }}</div>
+        {%- endif -%}
+        {%- if section.settings.title != blank -%}
+          <h2 class="sakora-ba-title">{{ section.settings.title }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="sakora-ba-subtitle">{{ section.settings.subtitle }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="sakora-ba-row" style="--card-count: {{ section.blocks.size }};">
+
+        {%- for block in section.blocks -%}
+          {%- if block.settings.before_image != blank and block.settings.after_image != blank -%}
+            <div class="sakora-ba-card" {{ block.shopify_attributes }}>
+
+              <div class="sakora-ba-slider" data-ba-slider>
+                <div class="sakora-ba-img sakora-ba-img--after">
+                  <img
+                    src="{{ block.settings.after_image | image_url: width: 600 }}"
+                    alt="{{ block.settings.after_image.alt | default: 'After' | escape }}"
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                  >
+                </div>
+
+                <div class="sakora-ba-img sakora-ba-img--before" data-ba-before>
+                  <img
+                    src="{{ block.settings.before_image | image_url: width: 600 }}"
+                    alt="{{ block.settings.before_image.alt | default: 'Before' | escape }}"
+                    width="600"
+                    height="400"
+                    loading="lazy"
+                  >
+                </div>
+
+                <div class="sakora-ba-handle" data-ba-handle aria-hidden="true">
+                  <div class="sakora-ba-handle-line"></div>
+                  <div class="sakora-ba-handle-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                      <path d="M5 8L1 5M1 5L5 2M1 5H15M11 8L15 5M15 5L11 2M15 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+
+                <input
+                  class="sakora-ba-range"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="50"
+                  aria-label="Drag to compare before and after"
+                  data-ba-range
+                >
+
+                <span class="sakora-ba-label sakora-ba-label--before">Before</span>
+                <span class="sakora-ba-label sakora-ba-label--after">After</span>
+              </div>
+
+              <div class="sakora-ba-caption">
+                {%- if block.settings.reviewer_name != blank -%}
+                  <span class="sakora-ba-name">{{ block.settings.reviewer_name }}</span>
+                {%- endif -%}
+                <div class="sakora-ba-meta">
+                  {%- if block.settings.timeframe != blank -%}
+                    <span class="sakora-ba-timeframe">{{ block.settings.timeframe }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.skin_type != blank -%}
+                    <span class="sakora-ba-dot" aria-hidden="true">·</span>
+                    <span class="sakora-ba-skin">{{ block.settings.skin_type }}</span>
+                  {%- endif -%}
+                </div>
+              </div>
+
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.disclaimer != blank -%}
+      <p class="sakora-ba-disclaimer">{{ section.settings.disclaimer }}</p>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  (function () {
+    function initBASlider(slider) {
+      var range     = slider.querySelector('[data-ba-range]');
+      var before    = slider.querySelector('[data-ba-before]');
+      var handle    = slider.querySelector('[data-ba-handle]');
+      var handleBtn = slider.querySelector('.sakora-ba-handle-btn');
+      if (!before) return;
+
+      function update(val) {
+        val = Math.max(0, Math.min(100, val));
+        before.style.clipPath = 'inset(0 ' + (100 - val) + '% 0 0)';
+        if (handle) handle.style.left = val + '%';
+        if (range) range.value = val;
+      }
+
+      if (range) {
+        update(+range.value);
+        range.addEventListener('input', function () { update(+this.value); });
+      } else {
+        update(50);
+      }
+
+      if (handleBtn) {
+        handleBtn.addEventListener('pointerdown', function (e) {
+          if (e.button !== 0 && e.pointerType === 'mouse') return;
+          e.preventDefault();
+          e.stopPropagation();
+
+          slider.setPointerCapture(e.pointerId);
+
+          function onMove(ev) {
+            var rect = slider.getBoundingClientRect();
+            update(((ev.clientX - rect.left) / rect.width) * 100);
+          }
+          function onUp() {
+            slider.removeEventListener('pointermove', onMove);
+            slider.removeEventListener('pointerup', onUp);
+            slider.removeEventListener('pointercancel', onUp);
+          }
+          slider.addEventListener('pointermove', onMove);
+          slider.addEventListener('pointerup', onUp);
+          slider.addEventListener('pointercancel', onUp);
+        });
+      }
+    }
+
+    function initAll() {
+      document.querySelectorAll('[data-ba-slider]').forEach(initBASlider);
+    }
+
+    document.readyState === 'loading'
+      ? document.addEventListener('DOMContentLoaded', initAll)
+      : initAll();
+  })();
+</script>
+
+{% stylesheet %}
+  .sakora-ba-section {
+    background: #FAFAF5; /* Primary Canvas (Cream) */
+    padding: 72px 0;
+    border-top: 1px solid #E8E2D5;
+    border-bottom: 1px solid #E8E2D5;
+  }
+
+  .sakora-ba-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  .sakora-ba-head {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .sakora-ba-head .sakora-section-label {
+    font-family: var(--font-body-family), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--product-accent-text, #1D9E75);
+    margin-bottom: 12px;
+  }
+
+  .sakora-ba-title {
+    font-family: var(--font-heading-family), 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 400;
+    color: #1C1C1A; /* Charcoal */
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin: 0 0 12px;
+  }
+
+  .sakora-ba-subtitle {
+    font-family: var(--font-body-family), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #B0A898; /* Dust */
+    margin: 0 auto;
+    max-width: 480px;
+    line-height: 1.65;
+  }
+
+  .sakora-ba-row {
+    display: grid;
+    grid-template-columns: repeat(var(--card-count, 1), minmax(0, 360px));
+    justify-content: center;
+    gap: 30px;
+    align-items: start;
+  }
+
+  .sakora-ba-card {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .sakora-ba-slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px; /* Organic curve requirement */
+    aspect-ratio: 4 / 5;
+    background: #F3EFE8; /* Stone */
+    user-select: none;
+    cursor: col-resize;
+    border: 1px solid #E8E2D5;
+  }
+
+  .sakora-ba-img {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .sakora-ba-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .sakora-ba-img--before {
+    clip-path: inset(0 50% 0 0);
+    z-index: 1;
+  }
+
+  .sakora-ba-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sakora-ba-handle-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .sakora-ba-handle-btn {
+    position: relative;
+    z-index: 4;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%; /* Pill/circle profiles */
+    background: var(--product-accent, #1D9E75);
+    color: var(--product-accent-text, #ffffff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.15s ease;
+    pointer-events: auto;
+    cursor: col-resize;
+  }
+
+  .sakora-ba-slider:active .sakora-ba-handle-btn {
+    transform: scale(1.1);
+  }
+
+  .sakora-ba-range {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: col-resize;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  .sakora-ba-label {
+    position: absolute;
+    bottom: 16px;
+    z-index: 2;
+    font-family: var(--font-body-family), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.95);
+    padding: 6px 12px;
+    background: rgba(28, 28, 26, 0.4);
+    border-radius: 100px;
+    pointer-events: none;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .sakora-ba-label--before { left: 16px; }
+  .sakora-ba-label--after  { right: 16px; }
+
+  .sakora-ba-caption { padding: 0 4px; }
+
+  .sakora-ba-name {
+    font-family: var(--font-heading-family), 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1C1C1A; /* Charcoal */
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .sakora-ba-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .sakora-ba-timeframe {
+    font-family: var(--font-body-family), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--product-accent-text, #1D9E75);
+  }
+
+  .sakora-ba-dot { font-size: 10px; color: #B0A898; }
+
+  .sakora-ba-skin {
+    font-family: var(--font-body-family), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #B0A898; /* Dust */
+  }
+
+  .sakora-ba-disclaimer {
+    font-family: var(--font-body-family), 'Helvetica Neue', Arial, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #B0A898; /* Dust */
+    text-align: center;
+    margin: 40px 0 0;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 768px) {
+    .sakora-ba-section { padding: 52px 0; }
+    .sakora-ba-inner { padding: 0 20px; }
+    .sakora-ba-title { font-size: 28px; }
+    .sakora-ba-head { margin-bottom: 32px; }
+
+    .sakora-ba-row {
+      grid-template-columns: repeat(var(--card-count, 1), min(80vw, 300px));
+      justify-content: start;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      padding-bottom: 12px;
+      gap: 20px;
+    }
+
+    .sakora-ba-row::-webkit-scrollbar { display: none; }
+    .sakora-ba-card { scroll-snap-align: start; }
+    .sakora-ba-range { display: none; }
+    .sakora-ba-handle-btn { width: 44px; height: 44px; touch-action: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Before & After",
+  "tag": "section",
+  "class": "sakora-before-after-wrapper",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Section label",
+      "default": "Real results"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "The proof."
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading",
+      "default": "Unedited. Real customers. Consistent use."
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "Individual results may vary. Images are unretouched."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "before_after",
+      "name": "Before & After pair",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "before_image",
+          "label": "Before image"
+        },
+        {
+          "type": "image_picker",
+          "id": "after_image",
+          "label": "After image"
+        },
+        {
+          "type": "text",
+          "id": "reviewer_name",
+          "label": "Reviewer name",
+          "default": "Nida A. · Lahore"
+        },
+        {
+          "type": "text",
+          "id": "timeframe",
+          "label": "Timeframe",
+          "default": "Week 8"
+        },
+        {
+          "type": "text",
+          "id": "skin_type",
+          "label": "Skin type / tone",
+          "default": "Fitzpatrick IV · Acne-prone"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Before & After",
+      "blocks": [
+        { "type": "before_after" }
+      ]
+    }
+  ]
+}
+{% endschema %}

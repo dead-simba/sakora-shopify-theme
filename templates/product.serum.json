@@ -1,0 +1,495 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "vendor": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "title": {
+          "type": "title"
+        },
+        "caption": {
+          "type": "text",
+          "settings": {
+            "text": "{{ product.metafields.descriptors.subtitle.value }}",
+            "text_style": "subtitle"
+          }
+        },
+        "price": {
+          "type": "price"
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button"
+          }
+        },
+        "quantity_selector": {
+          "type": "quantity_selector"
+        },
+        "bundle_selector": {
+          "type": "bundle_selector",
+          "settings": {
+            "heading": "Select Protocol & Save"
+          }
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "description": {
+          "type": "description"
+        },
+        "share": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "vendor",
+        "title",
+        "caption",
+        "price",
+        "variant_picker",
+        "bundle_selector",
+        "buy_buttons",
+        "description",
+        "share"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "gallery_layout": "stacked",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 12
+      }
+    },
+    "sakora-ugc-strip": {
+      "type": "sakora-ugc-strip",
+      "settings": {
+        "eyebrow": "Real results",
+        "heading": "From real skin",
+        "padding_top": 60,
+        "padding_bottom": 60
+      },
+      "blocks": {
+        "video_1": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656982/Soft_Reset_-_UGC_2_Final_V3-Compressed_nldbxi.mp4",
+            "page_handles": "dawn-drops, fade-theory"
+          }
+        },
+        "video_2": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_3": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778657296/UGC-1-FInal-V2-Compressed_rildza.mp4",
+            "page_handles": "dawn-drops, fade-theory"
+          }
+        },
+        "video_4": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_5": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_6": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656811/UGC_3_-_Final_-_V2-Compressed_epf6qo.mp4",
+            "page_handles": "dawn-drops, fade-theory"
+          }
+        },
+        "video_7": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
+            "page_handles": ""
+          }
+        },
+        "video_8": {
+          "type": "video",
+          "settings": {
+            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
+            "page_handles": ""
+          }
+        }
+      },
+      "block_order": [
+        "video_1",
+        "video_2",
+        "video_3",
+        "video_4",
+        "video_5",
+        "video_6",
+        "video_7",
+        "video_8"
+      ]
+    },
+    "sakora-pdp-before-after": {
+      "type": "sakora-pdp-before-after",
+      "settings": {
+        "label": "Real results",
+        "title": "The proof.",
+        "subtitle": "Unedited. Real customers. Consistent use.",
+        "disclaimer": "Individual results may vary. Images are unretouched."
+      },
+      "blocks": {
+        "ba_1": {
+          "type": "before_after",
+          "settings": {
+            "before_image": "shopify://shop_images/Malesma_-_Before.webp",
+            "after_image": "shopify://shop_images/Malesma_-_After.webp",
+            "reviewer_name": "",
+            "timeframe": "7 Weeks of use with right routine",
+            "skin_type": ""
+          }
+        },
+        "ba_2": {
+          "type": "before_after",
+          "settings": {
+            "before_image": "shopify://shop_images/Post_Acne_Marks_-_Before.webp",
+            "after_image": "shopify://shop_images/Post_Acne_Marks_-_After.webp",
+            "reviewer_name": "",
+            "timeframe": "6 Weeks of use with right routine",
+            "skin_type": ""
+          }
+        }
+      },
+      "block_order": [
+        "ba_1",
+        "ba_2"
+      ]
+    },
+    "sakora-reviews": {
+      "type": "sakora-reviews",
+      "settings": {}
+    },
+    "sakora-pdp-accordions": {
+      "type": "sakora-pdp-accordions",
+      "settings": {},
+      "blocks": {
+        "inci": {
+          "type": "inci",
+          "settings": {
+            "title": "All Ingredients",
+            "open": true,
+            "subtitle": "16 ingredients. Every one listed in order of concentration — highest first. Actives highlighted.",
+            "clean_badge_1": "Signature Scent",
+            "clean_badge_2": "Paraben-free",
+            "clean_badge_3": "Sulphate-free",
+            "clean_badge_4": "Mineral oil-free",
+            "clean_badge_5": "Cruelty-free",
+            "clean_badge_6": "Made in Pakistan",
+            "content": "<p>Aqua, Niacinamide, <strong>Alpha-Arbutin</strong>, <strong>3-O-Ethyl Ascorbic Acid</strong>, T<strong>ranexamic Acid</strong>, Propanediol, Glycerin, Sodium Hyaluronate, Glycyrrhiza Glabra (Licorice) Root Extract, Allantoin, Panthenol, Phenoxyethanol, Ethylhexylglycerin, Citric Acid, Sodium Hydroxide, Fragrance.</p>"
+          }
+        },
+        "pathways": {
+          "type": "pathways",
+          "settings": {
+            "title": "Five pathways. One serum.",
+            "open": false,
+            "subtitle": "Your skin has five separate ways to make dark spots. Most serums block one. This formula blocks all five — simultaneously.",
+            "pw_1_num": "Pathway 01",
+            "pw_1_title": "Tyrosinase enzyme",
+            "pw_1_trig": "Triggered by UV exposure and inflammation",
+            "pw_1_ing": "Alpha Arbutin 2%",
+            "pw_1_mech": "Locks the melanin-production enzyme before it converts tyrosine to pigment",
+            "pw_2_num": "Pathway 02",
+            "pw_2_title": "Melanosome transfer",
+            "pw_2_trig": "Pigment moving from melanocytes to skin surface",
+            "pw_2_ing": "Niacinamide 5%",
+            "pw_2_mech": "Physically blocks the protein that ferries pigment up to keratinocytes",
+            "pw_3_num": "Pathway 03",
+            "pw_3_title": "Plasmin signalling",
+            "pw_3_trig": "Post-inflammatory cascade after a breakout",
+            "pw_3_ing": "Tranexamic Acid",
+            "pw_3_mech": "Cuts the plasmin→melanin chain — root cause of PIH on Fitzpatrick IV–VI skin",
+            "pw_4_num": "Pathway 04",
+            "pw_4_title": "MITF gene expression",
+            "pw_4_ing": "Ethyl Ascorbic Acid + Licorice",
+            "pw_4_mech": "Suppresses MITF transcription — turns off the instruction to produce more melanin",
+            "pw_5_num": "Pathway 05",
+            "pw_5_title": "Oxidative stress",
+            "pw_5_trig": "Free radicals from UV and Lahore pollution",
+            "pw_5_ing": "Ethyl Ascorbic Acid",
+            "pw_5_mech": "Neutralises ROS before they can trigger the melanin cascade",
+            "stat_num": "92%",
+            "stat_label": "of participants noticed brighter skin within 4 weeks — alpha-arbutin + niacinamide combination study"
+          }
+        },
+        "ingredients": {
+          "type": "ingredients",
+          "settings": {
+            "title": "What's inside — and why.",
+            "open": false,
+            "subtitle": "No filler. No marketing ingredients. Every active in here has a job, a dose, and a reason.",
+            "ing_1_name": "Alpha-Arbutin 2%",
+            "ing_1_badge": "Tyrosinase Inhibitor",
+            "ing_1_benefit": "Stops melanin at the enzyme — the root cause of every dark spot.",
+            "ing_1_image": "shopify://shop_images/FT_Ing_AlphaArbutin.webp",
+            "ing_2_name": "Ethyl Ascorbic Acid",
+            "ing_2_badge": "Stable Vitamin C",
+            "ing_2_benefit": "Fades marks already there. Shields from new ones forming.",
+            "ing_2_image": "shopify://shop_images/FT_Ing_EthylAscorbicAcid.webp",
+            "ing_3_name": "Tranexamic Acid",
+            "ing_3_badge": "PIH Specialist",
+            "ing_3_benefit": "Cuts the breakout→pigment inflammation chain. Works on Fitzpatrick IV–VI.",
+            "ing_3_image": "shopify://shop_images/FT_Ing_TranexamicAcid.webp",
+            "ing_4_name": "Niacinamide 5%",
+            "ing_4_badge": "Multi-Tasker",
+            "ing_4_benefit": "Blocks pigment transfer. Controls oil. Builds barrier. All at once.",
+            "ing_4_image": "shopify://shop_images/FT_Ing_Niacinamide.webp",
+            "ing_5_name": "Glycyrrhiza Glabra",
+            "ing_5_badge": "Gentle Brightener",
+            "ing_5_benefit": "Licorice root. Natural melanin inhibitor — also calms the inflammation that triggers PIH.",
+            "ing_5_image": "shopify://shop_images/FT_Ing_Glabra.webp",
+            "ing_6_name": "Sodium Hyaluronate",
+            "ing_6_badge": "Humectant",
+            "ing_6_benefit": "Pulls moisture into skin. Keeps it hydrated so actives can penetrate properly.",
+            "ing_6_image": "shopify://shop_images/FT_Ing_SodiumHyaluronate.webp"
+          }
+        },
+        "how_to_use": {
+          "type": "how_to_use",
+          "settings": {
+            "title": "Takes 60 seconds. Changes everything.",
+            "open": false,
+            "subtitle": "The order matters. Here's exactly where this fits in your morning and night.",
+            "am_1_label": "Cleanser",
+            "am_1_icon": "🫧",
+            "am_1_note": "Wash, pat dry. 30 seconds before anything else.",
+            "am_1_current": false,
+            "am_1_spf": false,
+            "am_2_label": "Alpha Arbutin Serum",
+            "am_2_icon": "✨",
+            "am_2_note": "2–3 drops. Press — don't rub. Wait 30 sec.",
+            "am_2_current": true,
+            "am_2_spf": false,
+            "am_3_label": "Moisturiser",
+            "am_3_icon": "💧",
+            "am_3_note": "Barrier Renew locks the serum in.",
+            "am_3_current": false,
+            "am_3_spf": false,
+            "am_4_label": "SPF — always",
+            "am_4_icon": "☀️",
+            "am_4_note": "Without SPF, UV creates new spots every day. Non-negotiable.",
+            "am_4_current": false,
+            "am_4_spf": true,
+            "pm_1_label": "Double Cleanse",
+            "pm_1_icon": "🫧",
+            "pm_1_note": "Oil cleanser to remove SPF. Water cleanser after.",
+            "pm_1_current": false,
+            "pm_2_label": "Alpha Arbutin Serum",
+            "pm_2_icon": "✨",
+            "pm_2_note": "Night gets the most uninterrupted repair time. Same 2–3 drops.",
+            "pm_2_current": true,
+            "pm_3_label": "Moisturiser",
+            "pm_3_icon": "💧",
+            "pm_3_note": "Barrier Renew for overnight repair.",
+            "pm_3_current": false,
+            "tip": "💡 **First two weeks:** Use every other night if your skin is sensitive. Niacinamide at 5% is gentle, but new actives need a short adjustment window. If there's no reaction after 14 days, move to daily AM + PM."
+          }
+        },
+        "timeline": {
+          "type": "timeline",
+          "settings": {
+            "title": "What to actually expect.",
+            "open": true,
+            "subtitle": "No overnight miracles promised. This is what skin science looks like in weeks, not days.",
+            "tl_1_period": "Week 1–2",
+            "tl_1_title": "Smoother texture",
+            "tl_1_body": "Skin feels noticeably smoother. Tone starts to even. Some report a subtle glow — hydration and niacinamide kicking in first.",
+            "tl_2_period": "Week 2–4",
+            "tl_2_title": "Brightening begins",
+            "tl_2_body": "Active spots fade at the edges. Skin tone visibly more even. Friends often notice before you do.",
+            "tl_3_period": "Week 4–8",
+            "tl_3_title": "Dark spots fading",
+            "tl_3_body": "Recent breakout marks significantly lighter. PIH from older spots starts responding. Most people see the biggest visible shift here.",
+            "tl_4_period": "Week 8–12",
+            "tl_4_title": "Deep pigmentation",
+            "tl_4_body": "Melasma and long-standing PIH visibly reduced. Fitzpatrick IV–VI skin needs this full window — but results hold with continued use.",
+            "tip": "⚠️ **Daily SPF is mandatory.** UV exposure undoes brightening progress. The serum works hardest when SPF has your back during the day."
+          }
+        }
+      },
+      "block_order": [
+        "inci",
+        "pathways",
+        "ingredients",
+        "how_to_use",
+        "timeline"
+      ]
+    },
+    "sakora-pdp-clinical": {
+      "type": "sakora-pdp-clinical",
+      "settings": {
+        "label": "Biochemical mechanisms",
+        "title": "See the science in action.",
+        "subtitle": "We approach pigmentation at the cellular level. Here is exactly how the actives in Fade Theory interact with your skin's structures to block melanin.",
+        "note": "🧪 3D microscopic visualizations representing the documented biochemical pathways of Alpha Arbutin, Tranexamic Acid, and Vitamin C."
+      },
+      "blocks": {
+        "c_1": {
+          "type": "clinical_card",
+          "settings": {
+            "image": "shopify://shop_images/Serum_-_Alpha_Arbutin.webp",
+            "bg_gradient": "linear-gradient(135deg,#F5DDD0,#EEC8B5)",
+            "title": "Alpha-Arbutin 2% · Enzyme Inhibition",
+            "detail": "Actively binding to tyrosinase to block pigment conversion."
+          }
+        },
+        "c_2": {
+          "type": "clinical_card",
+          "settings": {
+            "image": "shopify://shop_images/Serum_-_Tranexamic_Acid.webp",
+            "bg_gradient": "linear-gradient(135deg,#EAD5C4,#D4B5A0)",
+            "title": "Tranexamic Acid · Plasmin Blockade",
+            "detail": "Interrupting the post-inflammatory cascade before dark spots form."
+          }
+        },
+        "c_3": {
+          "type": "clinical_card",
+          "settings": {
+            "image": "shopify://shop_images/Serum_-_Vitamin_C_Stability.webp",
+            "bg_gradient": "linear-gradient(135deg,#DDD0CC,#C8B0A8)",
+            "title": "Ethyl Ascorbic Acid · ROS Defense",
+            "detail": "Neutralizing oxidative stress and free radicals from UV exposure."
+          }
+        }
+      },
+      "block_order": [
+        "c_1",
+        "c_2",
+        "c_3"
+      ]
+    },
+    "sakora-pdp-upsell": {
+      "type": "sakora-pdp-upsell",
+      "settings": {
+        "label": "Complete the routine",
+        "title": "This serum is only half the story.",
+        "subtitle": "Dark spots come back daily when SPF isn't in the picture. These two make your serum 3× more effective.",
+        "product_1": "petal-melt",
+        "product_1_tag": "Step 2 · Moisturiser",
+        "product_1_why": "Soft Reset locks in the serum actives and provides the barrier repair needed to stop future inflammation.",
+        "product_2": "sol-veil",
+        "product_2_tag": "Step 3 · SPF 50+",
+        "product_2_why": "Without daily SPF, UV exposure immediately undoes any brightening progress. Non-negotiable.",
+        "bundle_title": "Save with the full protocol",
+        "bundle_desc": "All 3 products — serum, moisturiser, and SPF — bundled at a better price.",
+        "bundle_price": "PKR 4,440",
+        "bundle_original": "PKR 5,550",
+        "bundle_product": "complete-glow-bundle",
+        "bundle_url": "/products/glowve-bundle"
+      }
+    },
+    "sakora-pdp-faq": {
+      "type": "sakora-pdp-faq",
+      "settings": {
+        "label": "Quick answers",
+        "title": "Got questions?"
+      },
+      "blocks": {
+        "faq_1": {
+          "type": "item",
+          "settings": {
+            "question": "Can I use this if I have sensitive skin?",
+            "answer": "<p>Yes — but start every other night for two weeks. Alpha Arbutin at 2% is generally well-tolerated. If you experience persistent redness or stinging, stop and consult a dermatologist. Even with our signature scent, everyone's skin is different.</p>"
+          }
+        },
+        "faq_2": {
+          "type": "item",
+          "settings": {
+            "question": "Does this actually work on melasma?",
+            "answer": "<p>Alpha Arbutin + Tranexamic Acid is one of the most clinically studied combinations for melasma. Takes 8–12 weeks for significant change and requires consistent daily SPF for results to hold. Many customers have shared their melasma results — they're genuinely impressive.</p>"
+          }
+        },
+        "faq_3": {
+          "type": "item",
+          "settings": {
+            "question": "Can I layer this with Vitamin C from another brand?",
+            "answer": "<p>This serum already contains Ethyl Ascorbic Acid — a stable Vit C. Adding more from another product can cause sensitivity. Use this as your single Vit C source. Message us on WhatsApp if you need help building the right layering order for your routine.</p>"
+          }
+        },
+        "faq_4": {
+          "type": "item",
+          "settings": {
+            "question": "What order does it go in my routine?",
+            "answer": "<p>On clean dry skin before moisturiser. AM: Cleanser → Serum → Moisturiser → SPF. PM: Double Cleanse → Serum → Moisturiser. Wait 30 seconds between serum and moisturiser.</p>"
+          }
+        },
+        "faq_5": {
+          "type": "item",
+          "settings": {
+            "question": "Is cash on delivery available?",
+            "answer": "<p>Yes! COD available across all major cities — Karachi, Lahore, Islamabad, Rawalpindi, Faisalabad, Multan, Hyderabad, Peshawar, Quetta, Sialkot, Gujranwala, and more. No advance payment. Pay when it arrives at your door.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "faq_1",
+        "faq_2",
+        "faq_3",
+        "faq_4",
+        "faq_5"
+      ]
+    },
+    "related-products": {
+      "type": "related-products",
+      "settings": {
+        "heading": "You may also like",
+        "heading_size": "h2",
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "columns_mobile": "2",
+        "padding_top": 36,
+        "padding_bottom": 28
+      }
+    }
+  },
+  "order": [
+    "main",
+    "sakora-ugc-strip",
+    "sakora-pdp-before-after",
+    "sakora-reviews",
+    "sakora-pdp-accordions",
+    "sakora-pdp-clinical",
+    "sakora-pdp-upsell",
+    "sakora-pdp-faq",
+    "related-products"
+  ]
+}

@@ -1,0 +1,425 @@
+{%- liquid
+  assign handle = product.handle | downcase
+  assign accent_color = 'var(--sakora-emerald)'
+  assign text_color = '#ffffff'
+  if handle contains 'petal' or handle contains 'moisturizer' or handle contains 'reset'
+    assign accent_color = 'var(--petal-bg)'
+    assign text_color = 'var(--petal-text)'
+  elsif handle contains 'veil' or handle contains 'sunscreen' or handle contains 'daylite' or handle contains 'sol'
+    assign accent_color = 'var(--sol-bg)'
+    assign text_color = 'var(--sol-text)'
+  elsif handle contains 'drops' or handle contains 'serum' or handle contains 'fade' or handle contains 'dawn'
+    assign accent_color = 'var(--dawn-bg)'
+    assign text_color = 'var(--dawn-text)'
+  endif
+-%}
+
+<section class="sakora-pdp-upsell" style="--product-accent: {{ accent_color }}; --product-accent-text: {{ text_color }};">
+  <div class="sakora-pdp-inner">
+
+    <div class="sakora-pdp-section-head">
+      {%- if section.settings.label != blank -%}
+        <div class="sakora-section-label">{{ section.settings.label }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="sakora-pdp-section-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subtitle != blank -%}
+        <p class="sakora-upsell-sub">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="sakora-upsell-grid">
+
+      {%- for i in (1..2) -%}
+        {%- if i == 1 -%}
+          {%- assign upsell_product = all_products[section.settings.product_1] -%}
+          {%- assign upsell_tag  = section.settings.product_1_tag -%}
+          {%- assign upsell_why  = section.settings.product_1_why -%}
+        {%- else -%}
+          {%- assign upsell_product = all_products[section.settings.product_2] -%}
+          {%- assign upsell_tag  = section.settings.product_2_tag -%}
+          {%- assign upsell_why  = section.settings.product_2_why -%}
+        {%- endif -%}
+
+        {%- if upsell_product != empty -%}
+          <a href="{{ upsell_product.url }}" class="sakora-upsell-card">
+            <div class="sakora-upsell-card-img">
+              {%- if upsell_product.featured_image -%}
+                <img
+                  src="{{ upsell_product.featured_image | image_url: width: 300 }}"
+                  alt="{{ upsell_product.featured_image.alt | default: upsell_product.title | escape }}"
+                  width="150" height="150"
+                  loading="lazy"
+                >
+              {%- endif -%}
+            </div>
+            <div class="sakora-upsell-card-body">
+              {%- if upsell_tag != blank -%}
+                <div class="sakora-upsell-card-tag">{{ upsell_tag }}</div>
+              {%- endif -%}
+              <div class="sakora-upsell-card-name">{{ upsell_product.title }}</div>
+              {%- if upsell_why != blank -%}
+                <div class="sakora-upsell-card-why">{{ upsell_why }}</div>
+              {%- endif -%}
+              <div class="sakora-upsell-card-price">{{ upsell_product.price | money }}</div>
+            </div>
+            <div class="sakora-upsell-card-arrow">
+              {% render 'sakora-icon', icon: 'arrow-right', size: 16 %}
+            </div>
+          </a>
+        {%- endif -%}
+      {%- endfor -%}
+
+    </div>
+
+    {%- comment -%} Bundle box {%- endcomment -%}
+    {%- if section.settings.bundle_title != blank -%}
+      <div class="sakora-upsell-bundle">
+        <div class="sakora-upsell-bundle-left">
+          <div class="sakora-upsell-bundle-title">{{ section.settings.bundle_title }}</div>
+          {%- if section.settings.bundle_desc != blank -%}
+            <div class="sakora-upsell-bundle-desc">{{ section.settings.bundle_desc }}</div>
+          {%- endif -%}
+          <div class="sakora-upsell-bundle-pricing">
+            <span class="sakora-upsell-bundle-price">{{ section.settings.bundle_price }}</span>
+            {%- if section.settings.bundle_original != blank -%}
+              <span class="sakora-upsell-bundle-orig">{{ section.settings.bundle_original }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+        {%- if section.settings.bundle_product != blank -%}
+          {%- assign bundle_prod_target = all_products[section.settings.bundle_product] -%}
+          {%- assign bundle_variant_id = bundle_prod_target.first_available_variant.id -%}
+          {%- if bundle_variant_id != blank -%}
+            <button
+              class="sakora-btn-primary sakora-upsell-bundle-btn"
+              data-variant-id="{{ bundle_variant_id }}"
+              onclick="sakoraAddToCart(event, {{ bundle_variant_id }})"
+            >
+              <span>Shop the Bundle</span>
+              {% render 'sakora-icon', icon: 'arrow-right', size: 14 %}
+            </button>
+          {%- endif -%}
+        {%- elsif section.settings.bundle_url != blank -%}
+          <a href="{{ section.settings.bundle_url }}" class="sakora-btn-primary sakora-upsell-bundle-btn">
+            <span>Shop the Bundle</span>
+            {% render 'sakora-icon', icon: 'arrow-right', size: 14 %}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  if (typeof window.sakoraAddToCart !== 'function') {
+    window.sakoraAddToCart = async function(event, variantId) {
+      event.preventDefault();
+      event.stopPropagation();
+      const btn = event.currentTarget;
+      if (btn.classList.contains('sakora-loading')) return;
+      btn.classList.add('sakora-loading');
+      const originalHtml = btn.innerHTML;
+      btn.textContent = 'Adding...';
+
+      try {
+        const response = await fetch(window.Shopify.routes.root + 'cart/add.js', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id: variantId, quantity: 1 })
+        });
+        
+        if (response.ok) {
+          btn.textContent = '✓ Added';
+          
+          // Try to update Dawn's cart count bubble
+          const cartResponse = await fetch(window.Shopify.routes.root + 'cart.js');
+          const cartData = await cartResponse.json();
+          
+          // Update cart bubble counts in DOM
+          document.querySelectorAll('.cart-count-bubble').forEach(bubble => {
+            bubble.classList.remove('hidden');
+            const span = bubble.querySelector('span:not(.visually-hidden)');
+            if (span) {
+              span.textContent = cartData.item_count;
+            }
+          });
+          
+          // Dispatch dynamic update events for other components (e.g. Dawn cart drawer)
+          document.dispatchEvent(new CustomEvent('cart:updated', { detail: cartData }));
+          
+          setTimeout(() => {
+            btn.innerHTML = originalHtml;
+            btn.classList.remove('sakora-loading');
+          }, 1800);
+        } else {
+          btn.textContent = 'Error';
+          setTimeout(() => { 
+            btn.innerHTML = originalHtml; 
+            btn.classList.remove('sakora-loading');
+          }, 1800);
+        }
+      } catch (err) {
+        btn.textContent = 'Error';
+        setTimeout(() => { 
+          btn.innerHTML = originalHtml; 
+          btn.classList.remove('sakora-loading');
+        }, 1800);
+      }
+    };
+  }
+</script>
+
+{% stylesheet %}
+  .sakora-pdp-upsell {
+    background-color: var(--sakora-charcoal); /* Charcoal Dark Container */
+    padding: 8rem 0;
+  }
+  .sakora-pdp-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .sakora-pdp-section-head {
+    margin-bottom: 4rem;
+  }
+
+  .sakora-section-label {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin-bottom: 1rem;
+  }
+
+  .sakora-pdp-section-title {
+    font-family: var(--font-heading-family), serif;
+    font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .sakora-upsell-sub {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 1.2rem 0 0 0;
+  }
+
+  /* Product cards */
+  .sakora-upsell-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 4rem;
+  }
+
+  .sakora-upsell-card {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px; /* Organic Curves */
+    padding: 2.4rem;
+    text-decoration: none;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    position: relative;
+  }
+  .sakora-upsell-card:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .sakora-upsell-card-img {
+    width: 8rem;
+    height: 8rem;
+    flex-shrink: 0;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .sakora-upsell-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .sakora-upsell-card-body {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .sakora-upsell-card-tag {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--product-accent);
+  }
+
+  .sakora-upsell-card-name {
+    font-family: var(--font-heading-family), serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #ffffff;
+    line-height: 1.3;
+  }
+
+  .sakora-upsell-card-why {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.4;
+  }
+
+  .sakora-upsell-card-price {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    margin-top: 0.2rem;
+  }
+
+  .sakora-upsell-card-arrow {
+    color: rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+  .sakora-upsell-card:hover .sakora-upsell-card-arrow {
+    color: #ffffff;
+    transform: translateX(4px);
+  }
+
+  /* Bundle box */
+  .sakora-upsell-bundle {
+    background: rgba(232, 160, 160, 0.05);
+    border: 1px solid rgba(232, 160, 160, 0.15);
+    border-radius: 24px; /* Organic curves */
+    padding: 3.2rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3.2rem;
+    flex-wrap: wrap;
+  }
+
+  .sakora-upsell-bundle-left {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .sakora-upsell-bundle-title {
+    font-family: var(--font-heading-family), serif;
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+  }
+
+  .sakora-upsell-bundle-desc {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.5;
+    margin-bottom: 1.6rem;
+  }
+
+  .sakora-upsell-bundle-pricing {
+    display: flex;
+    align-items: baseline;
+    gap: 1.2rem;
+  }
+
+  .sakora-upsell-bundle-price {
+    font-family: var(--font-heading-family), serif;
+    font-size: 3rem;
+    font-weight: 400;
+    color: #ffffff;
+  }
+
+  .sakora-upsell-bundle-orig {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.35);
+    text-decoration: line-through;
+  }
+
+  .sakora-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: var(--product-accent);
+    color: var(--product-accent-text);
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 1.6rem 3.6rem;
+    border: none;
+    border-radius: 50px; /* Pill profile */
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    text-decoration: none;
+  }
+  .sakora-btn-primary:hover {
+    transform: scale(1.02);
+    opacity: 0.95;
+  }
+  .sakora-btn-primary.sakora-loading {
+    opacity: 0.7;
+    cursor: wait;
+  }
+
+  @media (max-width: 768px) {
+    .sakora-pdp-upsell { padding: 6rem 0; }
+    .sakora-upsell-grid { grid-template-columns: 1fr; }
+    .sakora-upsell-bundle { flex-direction: column; align-items: flex-start; padding: 2.8rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sakora PDP Upsell",
+  "tag": "section",
+  "class": "sakora-pdp-upsell-wrapper",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section label", "default": "Complete the Routine" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Works better together." },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "header", "content": "Product 1" },
+    { "type": "product", "id": "product_1", "label": "Product" },
+    { "type": "text", "id": "product_1_tag", "label": "Tag label", "info": "E.g. Step 1 · Serum" },
+    { "type": "text", "id": "product_1_why", "label": "Why it pairs well" },
+    { "type": "header", "content": "Product 2" },
+    { "type": "product", "id": "product_2", "label": "Product" },
+    { "type": "text", "id": "product_2_tag", "label": "Tag label" },
+    { "type": "text", "id": "product_2_why", "label": "Why it pairs well" },
+    { "type": "header", "content": "Bundle Box" },
+    { "type": "text", "id": "bundle_title", "label": "Bundle title", "default": "Save with the full protocol" },
+    { "type": "textarea", "id": "bundle_desc", "label": "Bundle description" },
+    { "type": "text", "id": "bundle_price", "label": "Bundle price", "default": "PKR 3,999" },
+    { "type": "text", "id": "bundle_original", "label": "Original price", "default": "PKR 4,999" },
+    { "type": "product", "id": "bundle_product", "label": "Bundle Product" },
+    { "type": "url", "id": "bundle_url", "label": "Bundle link (fallback)" }
+  ],
+  "presets": [
+    { "name": "Sakora PDP Upsell" }
+  ]
+}
+{% endschema %}

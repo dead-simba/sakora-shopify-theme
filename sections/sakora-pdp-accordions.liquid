@@ -1,0 +1,1123 @@
+{%- liquid
+  assign handle = product.handle | downcase
+  assign accent_color = '#1D9E75'
+  assign text_color = '#0D3828'
+  if handle contains 'petal' or handle contains 'moisturizer' or handle contains 'reset'
+    assign accent_color = '#E8A0A0'
+    assign text_color = '#5C2020'
+  elsif handle contains 'veil' or handle contains 'sunscreen' or handle contains 'daylite' or handle contains 'sol'
+    assign accent_color = '#E8B84B'
+    assign text_color = '#4A2E00'
+  elsif handle contains 'drops' or handle contains 'serum' or handle contains 'fade' or handle contains 'dawn'
+    assign accent_color = '#1D9E75'
+    assign text_color = '#0D3828'
+  endif
+-%}
+
+<div class="sakora-acc-wrap" style="--product-accent: {{ accent_color }}; --product-accent-text: {{ text_color }};">
+  <div class="sakora-acc-list">
+
+    {%- for block in section.blocks -%}
+      <details class="sakora-acc-item" id="sakora-acc-{{ block.id }}" {{ block.shopify_attributes }}{% if block.settings.open %} open{% endif %}>
+        <summary class="sakora-acc-summary">
+          <span class="sakora-acc-label">{{ block.settings.title }}</span>
+          <svg class="sakora-acc-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </summary>
+
+        <div class="sakora-acc-panel">
+
+          {%- case block.type -%}
+
+            {%- when 'pathways' -%}
+              <div class="acc-pdp-science acc-pdp-pathways">
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="sakora-section-sub" style="margin-bottom:24px; color: rgba(255,255,255,0.75);">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+                <div class="pathway-cards">
+                  {%- for i in (1..5) -%}
+                    {%- assign num_k = 'pw_' | append: i | append: '_num' -%}
+                    {%- assign title_k = 'pw_' | append: i | append: '_title' -%}
+                    {%- assign trig_k = 'pw_' | append: i | append: '_trig' -%}
+                    {%- assign ing_k = 'pw_' | append: i | append: '_ing' -%}
+                    {%- assign mech_k = 'pw_' | append: i | append: '_mech' -%}
+                    {%- if block.settings[num_k] != blank -%}
+                      <div class="pathway-card">
+                        <div class="pathway-num-pill">{{ block.settings[num_k] }}</div>
+                        <div class="pathway-name-big">{{ block.settings[title_k] }}</div>
+                        <div class="pathway-trigger-text">{{ block.settings[trig_k] }}</div>
+                        <div class="pathway-divider"><div class="pathway-divider-line"></div><div class="pathway-divider-text">blocked by</div><div class="pathway-divider-line"></div></div>
+                        <div class="pathway-ing-label">{{ block.settings[ing_k] }}</div>
+                        <div class="pathway-mech-text">{{ block.settings[mech_k] }}</div>
+                      </div>
+                    {%- endif -%}
+                  {%- endfor -%}
+                </div>
+                {%- if block.settings.stat_num != blank -%}
+                <div class="science-bottom-stat">
+                  <div class="science-stat-num">{{ block.settings.stat_num }}</div>
+                  <div class="science-stat-label">{{ block.settings.stat_label }}</div>
+                </div>
+                {%- endif -%}
+              </div>
+
+            {%- when 'science' -%}
+              <div class="acc-pdp-science">
+                <div class="barrier-diagram">
+                  <div class="barrier-col left">
+                    <div class="barrier-col-label">↓ Exogenous Repair</div>
+                    {%- for i in (1..3) -%}
+                      {%- assign ex_k = 'exo_' | append: i -%}
+                      {%- if block.settings[ex_k] != blank -%}
+                      <div class="barrier-step">
+                        <div class="barrier-step-num">{{ i }}</div>
+                        <div class="barrier-step-text">{{ block.settings[ex_k] }}</div>
+                      </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                    <div style="margin-top:20px;background:rgba(232,160,160,0.15);border-radius:24px;padding:16px;">
+                      <div style="font-family:var(--font-body-family), sans-serif;font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:6px;text-transform:uppercase;">RESULT</div>
+                      <div style="font-size:13px;color:rgba(255,255,255,0.85);">{{ block.settings.exo_result }}</div>
+                    </div>
+                  </div>
+
+                  <div class="barrier-arrow">⇄</div>
+
+                  <div class="barrier-col right">
+                    <div class="barrier-col-label">↑ Endogenous Boost</div>
+                    {%- for i in (1..3) -%}
+                      {%- assign end_k = 'endo_' | append: i -%}
+                      {%- if block.settings[end_k] != blank -%}
+                      <div class="barrier-step">
+                        <div class="barrier-step-num">{{ i }}</div>
+                        <div class="barrier-step-text">{{ block.settings[end_k] }}</div>
+                      </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                    <div style="margin-top:20px;background:rgba(232,160,160,0.15);border-radius:24px;padding:16px;">
+                      <div style="font-family:var(--font-body-family), sans-serif;font-size:11px;letter-spacing:0.1em;color:rgba(255,255,255,0.6);margin-bottom:6px;text-transform:uppercase;">RESULT</div>
+                      <div style="font-size:13px;color:rgba(255,255,255,0.85);">{{ block.settings.endo_result }}</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div style="background:rgba(232,160,160,0.1);border:1px solid rgba(232,160,160,0.25);border-radius:24px;padding:28px;margin-top:32px;text-align:center;">
+                  <div style="font-family:var(--font-heading-family), serif;font-size:26px;color:#fff;font-style:italic;line-height:1.4;">"{{ block.settings.quote }}"</div>
+                  <div style="font-size:14px;color:rgba(255,255,255,0.55);margin-top:10px;font-family:var(--font-body-family), sans-serif;letter-spacing:0.05em;">{{ block.settings.quote_sub }}</div>
+                </div>
+
+                <div class="science-stat">
+                  <div class="science-stat-num">{{ block.settings.stat_num }}</div>
+                  <div class="science-stat-label">{{ block.settings.stat_label }}</div>
+                  <div class="science-stat-source">{{ block.settings.stat_source }}</div>
+                </div>
+              </div>
+
+            {%- when 'uv_spectrum' -%}
+              <div class="acc-pdp-science">
+                {%- if block.settings.subtitle != blank -%}
+                  <p class="sakora-section-sub" style="margin-bottom:24px; color:rgba(255,255,255,0.75);">{{ block.settings.subtitle }}</p>
+                {%- endif -%}
+
+                <div class="uv-spectrum">
+                  <div class="uv-labels">
+                    <span>UVB (280nm)</span>
+                    <span>UVA2 (320nm)</span>
+                    <span>UVA1 (400nm)</span>
+                  </div>
+                  <div class="uv-bar-container">
+                    <div class="uv-bar"></div>
+                  </div>
+                  <div class="uv-markers">
+                    {%- for i in (1..6) -%}
+                      {%- assign nm_k = 'uv_' | append: i | append: '_nm' -%}
+                      {%- assign name_k = 'uv_' | append: i | append: '_name' -%}
+                      {%- assign desc_k = 'uv_' | append: i | append: '_desc' -%}
+                      {%- if block.settings[name_k] != blank -%}
+                        <div class="uv-marker">
+                          <div class="uv-marker-nm">{{ block.settings[nm_k] }}</div>
+                          <div class="uv-marker-name">{{ block.settings[name_k] }}</div>
+                          <div class="uv-marker-desc">{{ block.settings[desc_k] }}</div>
+                        </div>
+                      {%- endif -%}
+                    {%- endfor -%}
+                  </div>
+                  {%- if block.settings.quote != blank -%}
+                  <div class="uv-conclusion">
+                    <div class="uv-conclusion-main">"{{ block.settings.quote }}"</div>
+                    <div class="uv-conclusion-sub">{{ block.settings.quote_sub }}</div>
+                  </div>
+                  {%- endif -%}
+                </div>
+
+                {%- if block.settings.pk_uv_num != blank -%}
+                <div class="pk-uv-box">
+                  <div>
+                    <div class="pk-uv-num">{{ block.settings.pk_uv_num }}</div>
+                    <div style="font-family:var(--font-body-family), sans-serif;font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px;letter-spacing:0.1em;text-transform:uppercase;">{{ block.settings.pk_uv_label | default: 'PAKISTAN SUMMER UV INDEX' }}</div>
+                  </div>
+                  <div class="pk-uv-text">
+                    {{ block.settings.pk_uv_text }}
+                  </div>
+                </div>
+                {%- endif -%}
+
+                {%- if block.settings.pa_rating != blank -%}
+                <div class="pa-badge-section">
+                  <div class="pa-badge">
+                    <div class="pa-badge-rating">{{ block.settings.pa_rating }}</div>
+                    <div class="pa-badge-label">{{ block.settings.pa_label | default: 'UVA PROTECTION RATING' }}</div>
+                  </div>
+                  <div class="pa-explain">
+                    {{ block.settings.pa_explain }}
+                  </div>
+                </div>
+                {%- endif -%}
+              </div>
+
+            {%- when 'ingredients' -%}
+              {%- if block.settings.subtitle != blank -%}
+                <p class="sakora-section-sub" style="margin-bottom:24px;">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+              <div class="ing-scroll-track">
+                {%- for i in (1..6) -%}
+                  {%- assign n_key   = 'ing_' | append: i | append: '_name' -%}
+                  {%- assign b_key   = 'ing_' | append: i | append: '_benefit' -%}
+                  {%- assign bdg_key = 'ing_' | append: i | append: '_badge' -%}
+                  {%- assign img_key = 'ing_' | append: i | append: '_image' -%}
+                  {%- if block.settings[n_key] != blank -%}
+                    <div class="ing-card">
+                      <div class="ing-card-img">
+                        {%- if block.settings[img_key] != blank -%}
+                          {{ block.settings[img_key] | image_url: width: 300 | image_tag: loading: 'lazy', alt: block.settings[n_key] }}
+                        {%- else -%}
+                          <div style="background:#F3EFE8;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#B0A898;">Image</div>
+                        {%- endif -%}
+                      </div>
+                      <div class="ing-card-body">
+                        {%- if block.settings[bdg_key] != blank -%}<span class="ing-badge">{{ block.settings[bdg_key] }}</span>{%- endif -%}
+                        <div class="ing-name-mono">{{ block.settings[n_key] }}</div>
+                        <p class="ing-benefit">{{ block.settings[b_key] }}</p>
+                      </div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              <p style="font-size:12px;color:#B0A898;margin-top:8px;">← Scroll to see all actives</p>
+
+            {%- when 'how_to_use' -%}
+              {%- if block.settings.subtitle != blank -%}
+                <p class="sakora-section-sub" style="margin-bottom:24px;">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+              <div class="htu-tabs">
+                <button type="button" class="htu-tab active" onclick="switchSakoraRoutineTab(this, 'am', '{{ block.id }}')">☀️ Morning</button>
+                <button type="button" class="htu-tab" onclick="switchSakoraRoutineTab(this, 'pm', '{{ block.id }}')">🌙 Evening</button>
+              </div>
+
+              <!-- AM Steps -->
+              <div class="htu-steps active" id="htu-tab-am-{{ block.id }}">
+                {%- assign am_count = 0 -%}
+                {%- for i in (1..4) -%}
+                  {%- assign l_key = 'am_' | append: i | append: '_label' -%}
+                  {%- assign ic_key = 'am_' | append: i | append: '_icon' -%}
+                  {%- assign n_key = 'am_' | append: i | append: '_note' -%}
+                  {%- assign cur_key = 'am_' | append: i | append: '_current' -%}
+                  {%- assign spf_key = 'am_' | append: i | append: '_spf' -%}
+                  {%- if block.settings[l_key] != blank -%}
+                    {%- assign am_count = am_count | plus: 1 -%}
+                    {%- if am_count > 1 -%}<div class="step-connector">→</div>{%- endif -%}
+                    <div class="step-card {% if block.settings[cur_key] %}current{% endif %}">
+                      <div class="step-icon-wrap" {% if block.settings[spf_key] %}style="background:#FFFBF2;"{% endif %}>
+                        <span>{{ block.settings[ic_key] }}</span>
+                        <span class="step-num-badge" {% if block.settings[spf_key] %}style="background:var(--product-accent, #E8B84B);color:var(--product-accent-text, #4A2E00);"{% endif %}>{{ am_count }}</span>
+                      </div>
+                      {%- if block.settings[cur_key] -%}<div class="step-current-tag">This product</div>{%- endif -%}
+                      <div class="step-label" {% if block.settings[spf_key] %}style="color:var(--product-accent-text, #4A2E00);"{% endif %}>{{ block.settings[l_key] }}</div>
+                      <div class="step-note">{{ block.settings[n_key] }}</div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+
+              <!-- PM Steps -->
+              <div class="htu-steps" id="htu-tab-pm-{{ block.id }}">
+                {%- assign pm_count = 0 -%}
+                {%- for i in (1..4) -%}
+                  {%- assign l_key = 'pm_' | append: i | append: '_label' -%}
+                  {%- assign ic_key = 'pm_' | append: i | append: '_icon' -%}
+                  {%- assign n_key = 'pm_' | append: i | append: '_note' -%}
+                  {%- assign cur_key = 'pm_' | append: i | append: '_current' -%}
+                  {%- if block.settings[l_key] != blank -%}
+                    {%- assign pm_count = pm_count | plus: 1 -%}
+                    {%- if pm_count > 1 -%}<div class="step-connector">→</div>{%- endif -%}
+                    <div class="step-card {% if block.settings[cur_key] %}current{% endif %}">
+                      <div class="step-icon-wrap">
+                        <span>{{ block.settings[ic_key] }}</span>
+                        <span class="step-num-badge">{{ pm_count }}</span>
+                      </div>
+                      {%- if block.settings[cur_key] -%}<div class="step-current-tag">This product</div>{%- endif -%}
+                      <div class="step-label">{{ block.settings[l_key] }}</div>
+                      <div class="step-note">{{ block.settings[n_key] }}</div>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              
+              {%- if block.settings.tip != blank -%}
+                <div class="htu-tip">{{ block.settings.tip }}</div>
+              {%- endif -%}
+
+            {%- when 'timeline' -%}
+              {%- if block.settings.subtitle != blank -%}
+                <p class="sakora-section-sub" style="margin-bottom:24px;">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+              <div class="tl-cards">
+                {%- for i in (1..4) -%}
+                  {%- assign p_key = 'tl_' | append: i | append: '_period' -%}
+                  {%- assign t_key = 'tl_' | append: i | append: '_title' -%}
+                  {%- assign b_key = 'tl_' | append: i | append: '_body' -%}
+                  {%- if block.settings[p_key] != blank -%}
+                    <div class="tl-card">
+                      <div class="tl-week">{{ block.settings[p_key] }}</div>
+                      <div class="tl-title">{{ block.settings[t_key] }}</div>
+                      <p class="tl-body">{{ block.settings[b_key] }}</p>
+                    </div>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- if block.settings.tip != blank -%}
+                <div class="tl-note">💡 <span>{{ block.settings.tip }}</span></div>
+              {%- endif -%}
+
+            {%- when 'inci' -%}
+              {%- if block.settings.subtitle != blank -%}
+                <p class="sakora-section-sub" style="margin-bottom:24px;">{{ block.settings.subtitle }}</p>
+              {%- endif -%}
+              <div class="inci-clean-badges">
+                {%- for i in (1..6) -%}
+                  {%- assign bg = 'clean_badge_' | append: i -%}
+                  {%- if block.settings[bg] != blank -%}
+                    <span class="inci-clean-badge">✓ {{ block.settings[bg] }}</span>
+                  {%- endif -%}
+                {%- endfor -%}
+              </div>
+              {%- if block.settings.content != blank -%}
+                <div class="inci-content">
+                  {{ block.settings.content }}
+                </div>
+              {%- endif -%}
+
+          {%- endcase -%}
+        </div>
+      </details>
+    {%- endfor -%}
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.sakora-acc-item').forEach(function(det) {
+    det.addEventListener('toggle', function() {
+      det.querySelector('.sakora-acc-chevron').style.transform = det.open ? 'rotate(180deg)' : '';
+    });
+    if (det.open) {
+      det.querySelector('.sakora-acc-chevron').style.transform = 'rotate(180deg)';
+    }
+  });
+
+  function switchSakoraRoutineTab(btn, tab, blockId) {
+    var parent = btn.closest('.sakora-acc-panel');
+    parent.querySelectorAll('.htu-tab').forEach(t => t.classList.remove('active'));
+    parent.querySelectorAll('.htu-steps').forEach(t => t.classList.remove('active'));
+    
+    btn.classList.add('active');
+    document.getElementById('htu-tab-' + tab + '-' + blockId).classList.add('active');
+  }
+</script>
+
+{% stylesheet %}
+  /* Wrapper */
+  .sakora-acc-wrap {
+    background: #FAFAF5; /* Cream */
+    padding: 0 0 72px;
+    margin-top: 40px;
+  }
+  .sakora-acc-list {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* Accordion row */
+  .sakora-acc-item {
+    border-bottom: 1px solid #E8E2D5;
+    background: #FFFFFF;
+    border: 1px solid #E8E2D5;
+    border-radius: 24px; /* Organic curves */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(28,28,26,0.02);
+    overflow: hidden;
+  }
+
+  .sakora-acc-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 32px;
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    gap: 16px;
+  }
+  .sakora-acc-summary::-webkit-details-marker { display: none; }
+
+  .sakora-acc-label {
+    font-family: var(--font-heading-family), 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: #1C1C1A; /* Charcoal */
+    line-height: 1.3;
+  }
+
+  .sakora-acc-chevron {
+    flex-shrink: 0;
+    color: #1C1C1A;
+    transition: transform 0.25s ease;
+  }
+
+  /* Panel */
+  .sakora-acc-panel {
+    padding: 0 32px 40px 32px;
+  }
+
+  .sakora-section-sub {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 15px;
+    color: #B0A898; /* Dust */
+    line-height: 1.65;
+    max-width: 720px;
+  }
+
+  /* Pathways */
+  .acc-pdp-pathways { padding-top: 32px; }
+  .pathway-cards {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+  .pathway-cards::-webkit-scrollbar { display: none; }
+  
+  .pathway-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 24px; /* Organic curves */
+    padding: 28px 20px;
+    transition: background 0.2s;
+    min-width: 240px;
+    flex: 1;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+  .pathway-card:hover { background: rgba(255,255,255,0.08); }
+  
+  .pathway-num-pill {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--product-accent-text, #1D9E75);
+    background: rgba(255,255,255,0.15);
+    border-radius: 50px; /* Pill profile */
+    padding: 6px 12px;
+    display: inline-block;
+    margin-bottom: 20px;
+  }
+  
+  .pathway-name-big {
+    font-family: var(--font-heading-family), serif;
+    font-size: 22px;
+    color: #ffffff;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+  
+  .pathway-trigger-text {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 24px;
+    line-height: 1.5;
+  }
+  
+  .pathway-divider {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  
+  .pathway-divider-line {
+    flex: 1;
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+  
+  .pathway-divider-text {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--product-accent-text, #1D9E75);
+  }
+  
+  .pathway-ing-label {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 14px;
+    color: var(--product-accent-text, #1D9E75);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  
+  .pathway-mech-text {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.65;
+  }
+  
+  .science-bottom-stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 32px;
+    text-align: center;
+  }
+
+  @media(min-width: 1024px) {
+    .pathway-cards { display: grid; grid-template-columns: repeat(5, 1fr); overflow-x: visible; gap: 16px; }
+    .pathway-card { min-width: auto; }
+  }
+
+  /* Science Barrier */
+  .acc-pdp-science {
+    background: #1C1C1A; /* Charcoal dark section wrapper */
+    border-radius: 24px; /* Organic curves */
+    padding: 40px;
+    overflow: hidden;
+  }
+  .barrier-diagram { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; align-items: stretch; }
+  .barrier-col { padding: 32px; }
+  .barrier-col.left { background: rgba(255,255,255,0.02); border-radius: 24px 0 0 24px; border: 1px solid rgba(255,255,255,0.08); }
+  .barrier-col.right { background: rgba(255,255,255,0.02); border-radius: 0 24px 24px 0; border: 1px solid rgba(255,255,255,0.08); border-left: none; }
+  .barrier-col-label { font-family: var(--font-body-family), sans-serif; font-size: 12px; font-weight: 500; color: var(--product-accent, #1D9E75); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
+  .barrier-arrow { display: flex; align-items: center; justify-content: center; width: 60px; color: var(--product-accent, #1D9E75); font-size: 32px; flex-shrink: 0; }
+  .barrier-step { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 20px; }
+  .barrier-step-num { width: 28px; height: 28px; border-radius: 50%; background: var(--product-accent, #1D9E75); color: var(--product-accent-text, #ffffff); font-size: 13px; font-weight: 600; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .barrier-step-text { font-family: var(--font-body-family), sans-serif; font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.5; }
+  .barrier-step-text strong { color: var(--product-accent, #1D9E75); font-weight: 500; }
+  
+  .science-stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 32px;
+    margin-top: 32px;
+    text-align: center;
+  }
+  .science-stat-num { font-family: var(--font-heading-family), serif; font-size: 64px; font-weight: 300; color: var(--product-accent, #1D9E75); line-height: 1; margin-bottom: 12px; }
+  .science-stat-label { font-family: var(--font-body-family), sans-serif; font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.4; }
+  .science-stat-source { font-family: var(--font-body-family), sans-serif; font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+  /* UV Spectrum */
+  .uv-spectrum { margin-top: 24px; }
+  .uv-bar-container { position: relative; margin: 36px 0; }
+  .uv-bar { height: 40px; border-radius: 24px; background: linear-gradient(to right, #4A90E2 0%, #7B68EE 30%, #E8A0A0 55%, #E8B84B 80%, #1D9E75 100%); display: flex; align-items: center; position: relative; }
+  .uv-labels { display: flex; justify-content: space-between; font-family: var(--font-body-family), sans-serif; font-size: 11px; color: rgba(255,255,255,0.5); margin-bottom: 8px; letter-spacing: 0.05em; }
+  
+  .uv-markers {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 12px;
+  }
+  .uv-markers::-webkit-scrollbar { display: none; }
+  
+  .uv-marker {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 20px;
+    text-align: center;
+    min-width: 160px;
+    flex: 1;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+  }
+  .uv-marker-nm { font-family: var(--font-body-family), sans-serif; font-size: 11px; font-weight: 500; color: var(--product-accent, #E8B84B); margin-bottom: 6px; }
+  .uv-marker-name { font-family: var(--font-body-family), sans-serif; font-size: 13px; color: #fff; margin-bottom: 8px; font-weight: 500; min-height: 36px; }
+  .uv-marker-desc { font-family: var(--font-body-family), sans-serif; font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.4; }
+  
+  .uv-conclusion {
+    margin-top: 32px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 28px;
+    text-align: center;
+  }
+  .uv-conclusion-main { font-family: var(--font-heading-family), serif; font-size: 22px; color: #fff; font-style: italic; }
+  .uv-conclusion-sub { font-family: var(--font-body-family), sans-serif; font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 8px; }
+  
+  .pk-uv-box {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 24px;
+    padding: 24px;
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .pk-uv-num { font-family: var(--font-heading-family), serif; font-size: 56px; font-weight: 300; color: var(--product-accent, #E8B84B); line-height: 1; }
+  .pk-uv-text { font-family: var(--font-body-family), sans-serif; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; }
+  .pk-uv-text strong { color: var(--product-accent, #E8B84B); font-weight: 500; }
+  
+  .pa-badge-section { margin-top: 32px; display: flex; gap: 24px; flex-direction: column; }
+  .pa-badge { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; padding: 24px; text-align: center; }
+  .pa-badge-rating { font-family: var(--font-heading-family), serif; font-size: 36px; color: var(--product-accent, #E8B84B); font-weight: 300; line-height: 1; }
+  .pa-badge-label { font-family: var(--font-body-family), sans-serif; font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 8px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .pa-explain { font-family: var(--font-body-family), sans-serif; font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.7; }
+  .pa-explain strong { color: #fff; font-weight: 500; }
+
+  @media(min-width: 1024px) {
+    .uv-markers { display: grid; grid-template-columns: repeat(6, 1fr); overflow-x: visible; gap: 12px; }
+    .uv-marker { min-width: auto; }
+    .pk-uv-box { flex-direction: row; align-items: center; gap: 40px; padding: 32px; }
+    .pk-uv-num { font-size: 80px; }
+    .pk-uv-text { font-size: 15px; }
+    .pa-badge-section { flex-direction: row; align-items: center; }
+    .pa-badge { padding: 24px 40px; }
+    .pa-badge-rating { font-size: 52px; }
+  }
+
+  /* Ingredients cards scroll */
+  .ing-scroll-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .ing-scroll-track::-webkit-scrollbar { display: none; }
+  
+  .ing-card {
+    background: #FFFFFF;
+    border-radius: 24px; /* Organic curves */
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    min-width: 240px;
+    max-width: 240px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    border: 1px solid #E8E2D5;
+  }
+  .ing-card:hover { transform: translateY(-4px); box-shadow: 0 12px 28px rgba(28,28,26,0.06); }
+  .ing-card-img { aspect-ratio: 1 / 1; overflow: hidden; background: #F3EFE8; }
+  .ing-card-img img { width: 100%; height: 100%; object-fit: cover; }
+  .ing-card-body { padding: 20px; }
+  
+  .ing-badge {
+    display: inline-block;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 10px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 50px; /* Pill profile */
+    background: #F3EFE8; /* Stone */
+    color: #1C1C1A; /* Charcoal */
+    margin-bottom: 12px;
+  }
+  
+  .ing-name-mono {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 15px;
+    color: var(--product-accent-text, #1D9E75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .ing-benefit {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 13px;
+    color: #B0A898; /* Dust */
+    line-height: 1.55;
+  }
+
+  /* Routine Tabs */
+  .htu-tabs {
+    display: flex;
+    border: 1.5px solid #E8E2D5;
+    border-radius: 50px; /* Pill profile */
+    overflow: hidden;
+    width: fit-content;
+    margin-bottom: 32px;
+    background: #FFFFFF;
+  }
+  
+  .htu-tab {
+    padding: 10px 28px;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: #B0A898; /* Dust */
+    transition: all 0.2s;
+    border-radius: 50px;
+  }
+  
+  .htu-tab.active {
+    background: #1C1C1A; /* Charcoal */
+    color: #FFFFFF;
+  }
+  
+  .htu-steps { display: none; }
+  .htu-steps.active { display: flex; align-items: flex-start; gap: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .step-card { flex: 1; min-width: 140px; text-align: center; position: relative; padding: 0 12px 8px; }
+  .step-connector { display: flex; align-items: center; justify-content: center; padding-top: 32px; color: #E8E2D5; font-size: 24px; flex-shrink: 0; }
+  
+  .step-icon-wrap {
+    width: 68px;
+    height: 68px;
+    border-radius: 50%;
+    background: #F3EFE8; /* Stone */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin: 0 auto 16px;
+    transition: all 0.2s;
+    position: relative;
+  }
+  .step-card.current .step-icon-wrap {
+    background: var(--product-accent, #1D9E75);
+    color: var(--product-accent-text, #ffffff);
+    box-shadow: 0 0 0 6px rgba(29, 158, 117, 0.15);
+  }
+  
+  .step-num-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 22px;
+    height: 22px;
+    background: #1C1C1A;
+    color: white;
+    border-radius: 50%;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .step-card.current .step-num-badge { background: var(--product-accent-text, #0D3828); }
+  
+  .step-label { font-family: var(--font-body-family), sans-serif; font-weight: 500; font-size: 14px; color: #1C1C1A; margin-bottom: 6px; }
+  .step-card.current .step-label { color: var(--product-accent-text, #0D3828); }
+  .step-note { font-family: var(--font-body-family), sans-serif; font-size: 12px; color: #B0A898; line-height: 1.5; }
+  
+  .step-current-tag {
+    display: inline-block;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    background: var(--product-accent, #1D9E75);
+    color: var(--product-accent-text, #ffffff);
+    border-radius: 50px;
+    padding: 3px 10px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  
+  .htu-tip {
+    background: #FFFFFF;
+    border-radius: 24px;
+    padding: 24px 32px;
+    margin-top: 32px;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 14px;
+    color: #1C1C1A;
+    line-height: 1.7;
+    border: 1px solid #E8E2D5;
+  }
+  .htu-tip b, .htu-tip strong { color: var(--product-accent-text, #0D3828); font-weight: 500; }
+
+  /* Timeline */
+  .tl-cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  
+  .tl-card {
+    background: #FFFFFF;
+    border-radius: 24px; /* Organic curves */
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #E8E2D5;
+  }
+  .tl-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--product-accent, #1D9E75);
+  }
+  
+  .tl-week {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--product-accent-text, #1D9E75);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  
+  .tl-title {
+    font-family: var(--font-heading-family), serif;
+    font-size: 19px;
+    color: #1C1C1A;
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  
+  .tl-body {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 13px;
+    color: #B0A898; /* Dust */
+    line-height: 1.65;
+  }
+  
+  .tl-note {
+    background: #F3EFE8; /* Stone */
+    border-radius: 24px;
+    padding: 20px 28px;
+    margin-top: 32px;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 14px;
+    color: #1C1C1A;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border: 1px solid #E8E2D5;
+  }
+
+  /* INCI */
+  .inci-clean-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+  
+  .inci-clean-badge {
+    background: #FFFFFF;
+    border: 1.5px solid #E8E2D5;
+    border-radius: 50px; /* Pill profile */
+    padding: 8px 18px;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #1C1C1A;
+    letter-spacing: 0.02em;
+  }
+  
+  .inci-content {
+    padding: 32px;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 13px;
+    color: #B0A898; /* Dust */
+    line-height: 2.2;
+    border: 1.5px solid #E8E2D5;
+    border-radius: 24px;
+    background: #FFFFFF;
+  }
+  .inci-content strong, .inci-content b { color: var(--product-accent-text, #1D9E75); font-weight: 500; }
+
+  /* Responsive fixes */
+  @media(max-width:900px){
+    .barrier-diagram { grid-template-columns: 1fr; grid-template-rows: auto auto auto; }
+    .barrier-col.left { border-radius: 24px 24px 0 0; }
+    .barrier-col.right { border-radius: 0 0 24px 24px; border-left: 1px solid rgba(255,255,255,0.08); border-top: none; }
+    .barrier-arrow { transform: rotate(90deg); height: 40px; width: 100%; }
+    .tl-cards { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width:480px){
+    .tl-cards { grid-template-columns: 1fr; }
+    .sakora-acc-summary { padding: 20px 24px; }
+    .sakora-acc-panel { padding: 0 24px 32px 24px; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "PDP Accordions",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "pathways",
+      "name": "Science Pathways",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "Five pathways. One serum." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Your skin has five separate ways to make dark spots. Most serums block one. This formula blocks all five." },
+        { "type": "header", "content": "Pathway 1" },
+        { "type": "text", "id": "pw_1_num", "label": "Number/Badge", "default": "Pathway 01" },
+        { "type": "text", "id": "pw_1_title", "label": "Title", "default": "Tyrosinase enzyme" },
+        { "type": "text", "id": "pw_1_trig", "label": "Trigger", "default": "Triggered by UV exposure" },
+        { "type": "text", "id": "pw_1_ing", "label": "Blocked By", "default": "Alpha Arbutin 2%" },
+        { "type": "textarea", "id": "pw_1_mech", "label": "Mechanism", "default": "Locks the melanin-production enzyme." },
+        { "type": "header", "content": "Pathway 2" },
+        { "type": "text", "id": "pw_2_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_2_title", "label": "Title" },
+        { "type": "text", "id": "pw_2_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_2_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_2_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Pathway 3" },
+        { "type": "text", "id": "pw_3_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_3_title", "label": "Title" },
+        { "type": "text", "id": "pw_3_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_3_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_3_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Pathway 4" },
+        { "type": "text", "id": "pw_4_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_4_title", "label": "Title" },
+        { "type": "text", "id": "pw_4_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_4_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_4_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Pathway 5" },
+        { "type": "text", "id": "pw_5_num", "label": "Number/Badge" },
+        { "type": "text", "id": "pw_5_title", "label": "Title" },
+        { "type": "text", "id": "pw_5_trig", "label": "Trigger" },
+        { "type": "text", "id": "pw_5_ing", "label": "Blocked By" },
+        { "type": "textarea", "id": "pw_5_mech", "label": "Mechanism" },
+        { "type": "header", "content": "Bottom Stat" },
+        { "type": "text", "id": "stat_num", "label": "Stat Number", "default": "92%" },
+        { "type": "text", "id": "stat_label", "label": "Stat Label", "default": "of participants noticed brighter skin within 4 weeks" }
+      ]
+    },
+    {
+      "type": "uv_spectrum",
+      "name": "UV Spectrum Science",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "No gaps. Every UV wavelength covered." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Most SPFs cover UVB well and UVA poorly." },
+        { "type": "header", "content": "Filter 1" },
+        { "type": "text", "id": "uv_1_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_1_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_1_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 2" },
+        { "type": "text", "id": "uv_2_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_2_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_2_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 3" },
+        { "type": "text", "id": "uv_3_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_3_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_3_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 4" },
+        { "type": "text", "id": "uv_4_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_4_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_4_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 5" },
+        { "type": "text", "id": "uv_5_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_5_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_5_desc", "label": "Description" },
+        { "type": "header", "content": "Filter 6" },
+        { "type": "text", "id": "uv_6_nm", "label": "Wavelength range" },
+        { "type": "text", "id": "uv_6_name", "label": "Filter name" },
+        { "type": "textarea", "id": "uv_6_desc", "label": "Description" },
+        { "type": "header", "content": "Conclusion Box" },
+        { "type": "text", "id": "quote", "label": "Quote" },
+        { "type": "text", "id": "quote_sub", "label": "Quote subtitle" },
+        { "type": "header", "content": "PK UV Context" },
+        { "type": "text", "id": "pk_uv_num", "label": "Number (e.g. 10-12)" },
+        { "type": "text", "id": "pk_uv_label", "label": "Label", "default": "PAKISTAN SUMMER UV INDEX" },
+        { "type": "richtext", "id": "pk_uv_text", "label": "Text details" },
+        { "type": "header", "content": "PA Rating" },
+        { "type": "text", "id": "pa_rating", "label": "Rating (e.g. PA++++)" },
+        { "type": "text", "id": "pa_label", "label": "Label", "default": "UVA PROTECTION RATING" },
+        { "type": "richtext", "id": "pa_explain", "label": "Explanation text" }
+      ]
+    },
+    {
+      "type": "science",
+      "name": "Science Diagram",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "Barrier repair from two directions." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": true },
+        { "type": "header", "content": "Exogenous (Left)" },
+        { "type": "textarea", "id": "exo_1", "label": "Step 1", "default": "<p><strong>Triple Ceramides</strong> applied directly</p>" },
+        { "type": "textarea", "id": "exo_2", "label": "Step 2", "default": "<p>Integrates into lipid bilayer</p>" },
+        { "type": "textarea", "id": "exo_3", "label": "Step 3", "default": "<p>Barrier physically rebuilt</p>" },
+        { "type": "textarea", "id": "exo_result", "label": "Result", "default": "Skin feels immediately softer" },
+        { "type": "header", "content": "Endogenous (Right)" },
+        { "type": "textarea", "id": "endo_1", "label": "Step 1", "default": "<p><strong>Niacinamide 5%</strong> penetrates</p>" },
+        { "type": "textarea", "id": "endo_2", "label": "Step 2", "default": "<p>Upregulates ceramide synthase</p>" },
+        { "type": "textarea", "id": "endo_3", "label": "Step 3", "default": "<p>Natural ceramide production begins</p>" },
+        { "type": "textarea", "id": "endo_result", "label": "Result", "default": "Skin becomes independently stronger" },
+        { "type": "header", "content": "Stat Box" },
+        { "type": "text", "id": "quote", "label": "Quote", "default": "Your skin barrier — rebuilt from both directions." },
+        { "type": "text", "id": "quote_sub", "label": "Quote Sub", "default": "Most moisturisers do one. This does both." },
+        { "type": "text", "id": "stat_num", "label": "Stat", "default": "45%" },
+        { "type": "text", "id": "stat_label", "label": "Label", "default": "reduction in deep wrinkle area" },
+        { "type": "text", "id": "stat_source", "label": "Source", "default": "Sederma Inc. Clinical Study" }
+      ]
+    },
+    {
+      "type": "ingredients",
+      "name": "Ingredients Cards",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "What's inside — and why." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "No filler. No marketing ingredients. Every active in here has a job, a dose, and a reason." },
+        { "type": "header", "content": "Ingredient 1" },
+        { "type": "text", "id": "ing_1_name", "label": "Name", "default": "Triple Ceramide Complex" },
+        { "type": "text", "id": "ing_1_badge", "label": "Badge", "default": "Barrier Builder" },
+        { "type": "textarea", "id": "ing_1_benefit", "label": "Benefit", "default": "Integrates directly into your barrier." },
+        { "type": "image_picker", "id": "ing_1_image", "label": "Image" },
+        { "type": "header", "content": "Ingredient 2" },
+        { "type": "text", "id": "ing_2_name", "label": "Name" },
+        { "type": "text", "id": "ing_2_badge", "label": "Badge" },
+        { "type": "textarea", "id": "ing_2_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_2_image", "label": "Image" },
+        { "type": "header", "content": "Ingredient 3" },
+        { "type": "text", "id": "ing_3_name", "label": "Name" },
+        { "type": "text", "id": "ing_3_badge", "label": "Badge" },
+        { "type": "textarea", "id": "ing_3_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_3_image", "label": "Image" },
+        { "type": "header", "content": "Ingredient 4" },
+        { "type": "text", "id": "ing_4_name", "label": "Name" },
+        { "type": "text", "id": "ing_4_badge", "label": "Badge" },
+        { "type": "textarea", "id": "ing_4_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_4_image", "label": "Image" },
+        { "type": "header", "content": "Ingredient 5" },
+        { "type": "text", "id": "ing_5_name", "label": "Name" },
+        { "type": "text", "id": "ing_5_badge", "label": "Badge" },
+        { "type": "textarea", "id": "ing_5_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_5_image", "label": "Image" },
+        { "type": "header", "content": "Ingredient 6" },
+        { "type": "text", "id": "ing_6_name", "label": "Name" },
+        { "type": "text", "id": "ing_6_badge", "label": "Badge" },
+        { "type": "textarea", "id": "ing_6_benefit", "label": "Benefit" },
+        { "type": "image_picker", "id": "ing_6_image", "label": "Image" }
+      ]
+    },
+    {
+      "type": "how_to_use",
+      "name": "How to Use Tabs",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "Takes 30 seconds. Works for 24 hours." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Moisturiser goes on after serum, before SPF." },
+        { "type": "header", "content": "AM Steps" },
+        { "type": "text", "id": "am_1_label", "label": "AM 1 Label", "default": "Cleanser" },
+        { "type": "text", "id": "am_1_icon", "label": "AM 1 Icon", "default": "🫧" },
+        { "type": "textarea", "id": "am_1_note", "label": "AM 1 Note" },
+        { "type": "checkbox", "id": "am_1_current", "label": "Highlight as Current?", "default": false },
+        { "type": "checkbox", "id": "am_1_spf", "label": "Highlight as SPF?", "default": false },
+        { "type": "text", "id": "am_2_label", "label": "AM 2 Label", "default": "Serum" },
+        { "type": "text", "id": "am_2_icon", "label": "AM 2 Icon", "default": "✨" },
+        { "type": "textarea", "id": "am_2_note", "label": "AM 2 Note" },
+        { "type": "checkbox", "id": "am_2_current", "label": "Highlight", "default": false },
+        { "type": "checkbox", "id": "am_2_spf", "label": "Highlight SPF", "default": false },
+        { "type": "text", "id": "am_3_label", "label": "AM 3 Label", "default": "Moisturizer" },
+        { "type": "text", "id": "am_3_icon", "label": "AM 3 Icon", "default": "💧" },
+        { "type": "textarea", "id": "am_3_note", "label": "AM 3 Note" },
+        { "type": "checkbox", "id": "am_3_current", "label": "Highlight", "default": true },
+        { "type": "checkbox", "id": "am_3_spf", "label": "Highlight SPF", "default": false },
+        { "type": "text", "id": "am_4_label", "label": "AM 4 Label", "default": "SPF" },
+        { "type": "text", "id": "am_4_icon", "label": "AM 4 Icon", "default": "☀️" },
+        { "type": "textarea", "id": "am_4_note", "label": "AM 4 Note" },
+        { "type": "checkbox", "id": "am_4_current", "label": "Highlight", "default": false },
+        { "type": "checkbox", "id": "am_4_spf", "label": "Highlight SPF", "default": true },
+        { "type": "header", "content": "PM Steps" },
+        { "type": "text", "id": "pm_1_label", "label": "PM 1 Label", "default": "Double Cleanse" },
+        { "type": "text", "id": "pm_1_icon", "label": "PM 1 Icon", "default": "🫧" },
+        { "type": "textarea", "id": "pm_1_note", "label": "PM 1 Note" },
+        { "type": "checkbox", "id": "pm_1_current", "label": "Highlight", "default": false },
+        { "type": "text", "id": "pm_2_label", "label": "PM 2 Label", "default": "Serum" },
+        { "type": "text", "id": "pm_2_icon", "label": "PM 2 Icon", "default": "✨" },
+        { "type": "textarea", "id": "pm_2_note", "label": "PM 2 Note" },
+        { "type": "checkbox", "id": "pm_2_current", "label": "Highlight", "default": false },
+        { "type": "text", "id": "pm_3_label", "label": "PM 3 Label", "default": "Moisturizer" },
+        { "type": "text", "id": "pm_3_icon", "label": "PM 3 Icon", "default": "💧" },
+        { "type": "textarea", "id": "pm_3_note", "label": "PM 3 Note" },
+        { "type": "checkbox", "id": "pm_3_current", "label": "Highlight", "default": true },
+        { "type": "header", "content": "Bottom Tip" },
+        { "type": "textarea", "id": "tip", "label": "Pro Tip" }
+      ]
+    },
+    {
+      "type": "timeline",
+      "name": "Timeline",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "What to actually expect." },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "No overnight miracles." },
+        { "type": "text", "id": "tl_1_period", "label": "Period 1", "default": "Day 1–3" },
+        { "type": "text", "id": "tl_1_title", "label": "Title 1", "default": "Immediate comfort" },
+        { "type": "textarea", "id": "tl_1_body", "label": "Body 1" },
+        { "type": "text", "id": "tl_2_period", "label": "Period 2", "default": "Week 1–2" },
+        { "type": "text", "id": "tl_2_title", "label": "Title 2", "default": "Hydration holds longer" },
+        { "type": "textarea", "id": "tl_2_body", "label": "Body 2" },
+        { "type": "text", "id": "tl_3_period", "label": "Period 3", "default": "Week 4–8" },
+        { "type": "text", "id": "tl_3_title", "label": "Title 3", "default": "Barrier independence" },
+        { "type": "textarea", "id": "tl_3_body", "label": "Body 3" },
+        { "type": "text", "id": "tl_4_period", "label": "Period 4", "default": "Week 8–12" },
+        { "type": "text", "id": "tl_4_title", "label": "Title 4", "default": "Structural change" },
+        { "type": "textarea", "id": "tl_4_body", "label": "Body 4" },
+        { "type": "textarea", "id": "tip", "label": "Tip callout" }
+      ]
+    },
+    {
+      "type": "inci",
+      "name": "Full Ingredients List",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Accordion label", "default": "Full Ingredients List" },
+        { "type": "checkbox", "id": "open", "label": "Open by default", "default": false },
+        { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Every ingredient listed in order." },
+        { "type": "text", "id": "clean_badge_1", "label": "Badge 1", "default": "Signature Scent" },
+        { "type": "text", "id": "clean_badge_2", "label": "Badge 2", "default": "Paraben-free" },
+        { "type": "text", "id": "clean_badge_3", "label": "Badge 3", "default": "Sulphate-free" },
+        { "type": "text", "id": "clean_badge_4", "label": "Badge 4", "default": "Mineral oil-free" },
+        { "type": "text", "id": "clean_badge_5", "label": "Badge 5", "default": "Cruelty-free" },
+        { "type": "text", "id": "clean_badge_6", "label": "Badge 6", "default": "Made in Pakistan" },
+        { "type": "richtext", "id": "content", "label": "INCI list (bold the actives)" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "PDP Accordions",
+      "blocks": [
+        { "type": "pathways" },
+        { "type": "science" },
+        { "type": "ingredients" },
+        { "type": "how_to_use" },
+        { "type": "timeline" },
+        { "type": "inci" }
+      ]
+    }
+  ]
+}
+{% endschema %}

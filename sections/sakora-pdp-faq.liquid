@@ -1,0 +1,187 @@
+<section class="sakora-pdp-faq">
+  <div class="sakora-pdp-inner sakora-pdp-faq-inner">
+
+    <div class="sakora-pdp-section-head">
+      {%- if section.settings.label != blank -%}
+        <div class="sakora-section-label">{{ section.settings.label }}</div>
+      {%- endif -%}
+      {%- if section.settings.title != blank -%}
+        <h2 class="sakora-pdp-section-title">{{ section.settings.title }}</h2>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="sakora-faq-list">
+        {%- for block in section.blocks -%}
+          <div class="sakora-faq-item" {{ block.shopify_attributes }}>
+            <button
+              class="sakora-faq-q"
+              aria-expanded="false"
+              onclick="var item=this.closest('.sakora-faq-item'); var open=this.getAttribute('aria-expanded')==='true'; item.classList.toggle('open',!open); this.setAttribute('aria-expanded',String(!open));"
+            >
+              <span>{{ block.settings.question }}</span>
+              <svg class="sakora-faq-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="sakora-faq-a" hidden>
+              <div class="sakora-faq-a-inner">{{ block.settings.answer }}</div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</section>
+
+<script>
+  // Progressive enhancement — remove hidden and use CSS height animation
+  (function () {
+    document.querySelectorAll('.sakora-faq-a').forEach(function (el) {
+      el.removeAttribute('hidden');
+    });
+  })();
+</script>
+
+{% stylesheet %}
+  .sakora-pdp-faq {
+    background-color: var(--sakora-stone); /* Stone Backdrop neutral breakdown */
+    padding: 8rem 0;
+    border-top: 1px solid #E8E2D5;
+    border-bottom: 1px solid #E8E2D5;
+  }
+
+  .sakora-pdp-faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .sakora-pdp-faq .sakora-pdp-section-head {
+    margin-bottom: 4rem;
+    text-align: center;
+  }
+
+  .sakora-pdp-faq .sakora-section-label {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin-bottom: 1rem;
+  }
+
+  .sakora-pdp-faq .sakora-pdp-section-title {
+    font-family: var(--font-heading-family), serif;
+    font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+    font-weight: 400;
+    color: var(--sakora-charcoal);
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .sakora-faq-list {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #E8E2D5;
+  }
+
+  .sakora-faq-item {
+    border-bottom: 1px solid #E8E2D5;
+  }
+
+  .sakora-faq-q {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 2.4rem 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--sakora-charcoal);
+    text-align: left;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+  }
+  .sakora-faq-q:hover { 
+    color: var(--sakora-emerald); 
+  }
+  .sakora-faq-item.open .sakora-faq-q { 
+    color: var(--sakora-emerald); 
+  }
+
+  .sakora-faq-icon {
+    flex-shrink: 0;
+    color: var(--sakora-dust);
+    transition: transform 0.25s ease, color 0.25s ease;
+  }
+  .sakora-faq-item.open .sakora-faq-icon { 
+    transform: rotate(180deg); 
+    color: var(--sakora-emerald);
+  }
+
+  .sakora-faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .sakora-faq-item.open .sakora-faq-a {
+    max-height: 800px;
+  }
+
+  .sakora-faq-a-inner {
+    font-family: var(--font-body-family), sans-serif;
+    font-size: 1.45rem;
+    color: #555047;
+    line-height: 1.7;
+    padding-bottom: 2.4rem;
+  }
+  .sakora-faq-a-inner p {
+    margin: 0;
+  }
+  .sakora-faq-a-inner p + p {
+    margin-top: 1.2rem;
+  }
+  .sakora-faq-a-inner strong { 
+    color: var(--sakora-charcoal); 
+    font-weight: 600;
+  }
+  .sakora-faq-a-inner a { 
+    color: var(--sakora-emerald); 
+    text-decoration: underline; 
+  }
+
+  @media (max-width: 768px) {
+    .sakora-pdp-faq { padding: 6rem 0; }
+    .sakora-faq-q { font-size: 1.45rem; padding: 2rem 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Sakora PDP FAQ",
+  "tag": "section",
+  "class": "sakora-pdp-faq-wrapper",
+  "settings": [
+    { "type": "text", "id": "label", "label": "Section label", "default": "FAQ" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Questions answered." }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Can I use this with retinol?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Yes — but introduce them on alternate nights until your skin adjusts.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Sakora PDP FAQ" }
+  ]
+}
+{% endschema %}

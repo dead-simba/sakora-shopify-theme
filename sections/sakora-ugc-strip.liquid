@@ -1,0 +1,456 @@
+{%- liquid
+  assign current_handle = product.handle | default: ''
+  assign visible_count = 0
+  for block in section.blocks
+    if block.settings.video_url == blank
+      continue
+    endif
+    if block.settings.page_handles != blank
+      assign handles_list = block.settings.page_handles | split: ','
+      assign block_visible = false
+      for h in handles_list
+        assign h_trimmed = h | strip
+        if current_handle == h_trimmed
+          assign block_visible = true
+        endif
+      endfor
+    else
+      assign block_visible = true
+    endif
+    if block_visible
+      assign visible_count = visible_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if visible_count > 0 -%}
+
+<style>
+  .sakora-ugc-strip {
+    padding: {{ section.settings.padding_top }}px 0 {{ section.settings.padding_bottom }}px;
+    background-color: var(--sakora-cream);
+  }
+  .sakora-ugc-strip-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .sakora-ugc-strip-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3.2rem;
+    gap: 1.6rem;
+  }
+  .sakora-ugc-strip-eyebrow {
+    font-family: var(--font-body-family), sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sakora-dust);
+    margin: 0 0 0.8rem 0;
+  }
+  .sakora-ugc-strip-heading {
+    font-family: var(--font-heading-family), serif;
+    font-weight: 400;
+    font-size: clamp(2.4rem, 3.5vw, 3.8rem);
+    letter-spacing: -0.01em;
+    color: var(--sakora-charcoal);
+    margin: 0;
+    line-height: 1.2;
+  }
+  .sakora-ugc-strip-nav {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+  .sakora-ugc-nav-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid #E8E2D5;
+    background: #FFFFFF;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--sakora-charcoal);
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+    padding: 0;
+  }
+  .sakora-ugc-nav-btn:hover { 
+    border-color: var(--sakora-charcoal); 
+    background: var(--sakora-charcoal); 
+    color: #FFFFFF; 
+  }
+  .sakora-ugc-nav-btn svg { 
+    width: 18px; 
+    height: 18px; 
+  }
+
+  .sakora-ugc-track {
+    display: flex;
+    gap: 1.6rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    padding-bottom: 1.2rem;
+  }
+  .sakora-ugc-track::-webkit-scrollbar { display: none; }
+
+  .sakora-ugc-card {
+    flex-shrink: 0;
+    width: 200px;
+    aspect-ratio: 9 / 16;
+    border-radius: 24px; /* Organic curves */
+    overflow: hidden;
+    scroll-snap-align: start;
+    position: relative;
+    background: var(--sakora-stone);
+    cursor: pointer;
+    transition: transform 0.25s ease;
+  }
+  .sakora-ugc-card:hover {
+    transform: translateY(-2px);
+  }
+  .sakora-ugc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    border: 1px solid rgba(28,28,26,0.08);
+    pointer-events: none;
+    z-index: 2;
+  }
+  /* Tap-to-play overlay hint */
+  .sakora-ugc-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0);
+    transition: background 0.25s ease;
+    z-index: 1;
+    border-radius: 24px;
+  }
+  .sakora-ugc-card:hover::before { background: rgba(0,0,0,0.12); }
+
+  .sakora-ugc-card video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Skeleton shimmer while video loads */
+  .sakora-ugc-card.is-loading video { opacity: 0; }
+  .sakora-ugc-card.is-loading::after {
+    background: linear-gradient(90deg, #F5F3ED 25%, #EBE8E0 50%, #F5F3ED 75%);
+    background-size: 200% 100%;
+    animation: sakora-ugc-shimmer 1.4s ease infinite;
+  }
+  @keyframes sakora-ugc-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Full-screen modal */
+  .sakora-ugc-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    align-items: center;
+    justify-content: center;
+    background: rgba(28, 28, 26, 0.96); /* Charcoal high opacity */
+  }
+  .sakora-ugc-modal.is-open { display: flex; }
+  .sakora-ugc-modal-video {
+    max-height: 85vh;
+    max-width: 90vw;
+    width: auto;
+    height: auto;
+    aspect-ratio: 9 / 16;
+    border-radius: 24px; /* Organic curves */
+    display: block;
+    background: #000;
+  }
+  .sakora-ugc-modal-close {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(8px);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    transition: background 0.25s ease;
+    padding: 0;
+    z-index: 1;
+  }
+  .sakora-ugc-modal-close:hover { background: rgba(255,255,255,0.28); }
+  .sakora-ugc-modal-close svg { width: 20px; height: 20px; }
+
+  @media screen and (max-width: 768px) {
+    .sakora-ugc-strip-inner { padding: 0 20px; }
+    .sakora-ugc-strip-heading { font-size: 2.2rem; }
+    .sakora-ugc-card { width: 156px; }
+    .sakora-ugc-strip-nav { display: none; }
+  }
+</style>
+
+<section class="sakora-ugc-strip" id="SakoraUgcStrip-{{ section.id }}">
+  <div class="sakora-ugc-strip-inner">
+    <div class="sakora-ugc-strip-header">
+      <div>
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="sakora-ugc-strip-eyebrow">{{ section.settings.eyebrow }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2 class="sakora-ugc-strip-heading">{{ section.settings.heading }}</h2>
+        {%- endif -%}
+      </div>
+      <div class="sakora-ugc-strip-nav">
+        <button class="sakora-ugc-nav-btn" id="SakoraUgcPrev-{{ section.id }}" aria-label="Previous">
+          {% render 'sakora-icon', icon: 'chevron-right', size: 18, class: 'chevron-left-rotate' %}
+        </button>
+        <button class="sakora-ugc-nav-btn" id="SakoraUgcNext-{{ section.id }}" aria-label="Next">
+          {% render 'sakora-icon', icon: 'chevron-right', size: 18 %}
+        </button>
+      </div>
+    </div>
+
+    <div class="sakora-ugc-track" id="SakoraUgcTrack-{{ section.id }}">
+      {%- for block in section.blocks -%}
+        {%- if block.settings.video_url == blank -%}{%- continue -%}{%- endif -%}
+        {%- liquid
+          if block.settings.page_handles != blank
+            assign handles_list = block.settings.page_handles | split: ','
+            assign block_visible = false
+            for h in handles_list
+              assign h_trimmed = h | strip
+              if current_handle == h_trimmed
+                assign block_visible = true
+              endif
+            endfor
+          else
+            assign block_visible = true
+          endif
+          assign preview_url = block.settings.video_url | replace: '/upload/', '/upload/q_70,w_600/'
+        -%}
+        {%- if block_visible -%}
+          <div
+            class="sakora-ugc-card is-loading"
+            data-preview="{{ preview_url | escape }}"
+            data-full="{{ block.settings.video_url | escape }}"
+            {{ block.shopify_attributes }}
+          >
+            <video muted loop playsinline preload="none"></video>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+<!-- Shared modal — one per section -->
+<div class="sakora-ugc-modal" id="SakoraUgcModal-{{ section.id }}" role="dialog" aria-modal="true" aria-label="UGC video">
+  <button class="sakora-ugc-modal-close" id="SakoraUgcModalClose-{{ section.id }}" aria-label="Close">
+    {% render 'sakora-icon', icon: 'close', size: 20 %}
+  </button>
+  <video
+    class="sakora-ugc-modal-video"
+    id="SakoraUgcModalVideo-{{ section.id }}"
+    playsinline
+    controls
+    preload="none"
+  ></video>
+</div>
+
+<script>
+(function () {
+  var sid = {{ section.id | json }};
+  var track     = document.getElementById('SakoraUgcTrack-' + sid);
+  var modal     = document.getElementById('SakoraUgcModal-' + sid);
+  var modalVid  = document.getElementById('SakoraUgcModalVideo-' + sid);
+  var modalClose= document.getElementById('SakoraUgcModalClose-' + sid);
+  var prevBtn   = document.getElementById('SakoraUgcPrev-' + sid);
+  var nextBtn   = document.getElementById('SakoraUgcNext-' + sid);
+  if (!track || !modal || !modalVid) return;
+
+  var cards = Array.from(track.querySelectorAll('.sakora-ugc-card'));
+
+  // Rotate prev chevron 180deg
+  var leftChevron = document.querySelector('#SakoraUgcPrev-' + sid + ' .chevron-left-rotate');
+  if (leftChevron) {
+    leftChevron.style.transform = 'rotate(180deg)';
+  }
+
+  // ── Lazy load + autoplay preview via IntersectionObserver ──
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      var card = entry.target;
+      var vid  = card.querySelector('video');
+      if (!vid) return;
+
+      if (entry.isIntersecting) {
+        // Load preview src on first sight
+        if (!vid.src && card.dataset.preview) {
+          vid.src = card.dataset.preview;
+          vid.load();
+          vid.addEventListener('canplay', function onCanPlay() {
+            card.classList.remove('is-loading');
+            vid.removeEventListener('canplay', onCanPlay);
+          }, { once: true });
+        }
+        vid.play().catch(function () {});
+      } else {
+        vid.pause();
+      }
+    });
+  }, { threshold: 0.3, rootMargin: '100px' });
+
+  cards.forEach(function (card) { io.observe(card); });
+
+  // ── 5-second preview loop ──
+  cards.forEach(function (card) {
+    var vid = card.querySelector('video');
+    if (!vid) return;
+    vid.addEventListener('timeupdate', function () {
+      if (vid.duration && vid.currentTime >= Math.min(5, vid.duration - 0.05)) {
+        vid.currentTime = 0;
+      }
+    });
+  });
+
+  // ── Tap card → open modal ──
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () {
+      var fullUrl = card.dataset.full;
+      if (!fullUrl) return;
+      // Pause all preview cards
+      cards.forEach(function (c) {
+        var v = c.querySelector('video');
+        if (v) v.pause();
+      });
+      modalVid.src = fullUrl;
+      modalVid.currentTime = 0;
+      modalVid.muted = false;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      modalVid.play().catch(function () {});
+    });
+  });
+
+  // ── Close modal ──
+  function closeModal() {
+    modalVid.pause();
+    modalVid.src = '';
+    modal.classList.remove('is-open');
+    document.body.style.overflow = '';
+    // Resume preview cards in view
+    cards.forEach(function (card) {
+      var vid = card.querySelector('video');
+      if (!vid || !vid.src) return;
+      var rect = card.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        vid.play().catch(function () {});
+      }
+    });
+  }
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+  });
+
+  // ── Nav arrows ──
+  function scrollBy(dir) {
+    var cardW = cards.length ? cards[0].offsetWidth + 16 : 300;
+    track.scrollBy({ left: dir * cardW * 2, behavior: 'smooth' });
+  }
+  if (prevBtn) prevBtn.addEventListener('click', function () { scrollBy(-1); });
+  if (nextBtn) nextBtn.addEventListener('click', function () { scrollBy(1); });
+})();
+</script>
+
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Sakora UGC Video Strip",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Real results"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "From real skin"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 60,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "video",
+      "name": "UGC Video",
+      "settings": [
+        {
+          "type": "text",
+          "id": "video_url",
+          "label": "Cloudinary video URL",
+          "info": "Paste the direct .mp4 URL from Cloudinary. e.g. https://res.cloudinary.com/yourcloud/video/upload/v123/clip.mp4"
+        },
+        {
+          "type": "text",
+          "id": "page_handles",
+          "label": "Restrict to product handles (optional)",
+          "info": "Comma-separated handles, e.g. fade-theory, soft-reset. Leave blank to show on all pages."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Sakora UGC Video Strip"
+    }
+  ]
+}
+{% endschema %}

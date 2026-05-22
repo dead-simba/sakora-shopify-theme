@@ -3,14 +3,11 @@
   
   assign is_moisturizer = false
   assign is_sunscreen = false
-  assign is_serum = false
 
   if handle contains 'petal' or handle contains 'moisturizer' or handle contains 'reset' or handle contains 'moisturiser'
     assign is_moisturizer = true
   elsif handle contains 'veil' or handle contains 'sunscreen' or handle contains 'daylite' or handle contains 'spf'
     assign is_sunscreen = true
-  else
-    assign is_serum = true
   endif
 -%}
 
