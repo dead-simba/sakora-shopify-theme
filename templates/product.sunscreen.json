@@ -37,12 +37,9 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "button",
+            "swatch_shape": "circle"
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
         },
         "bundle_selector": {
           "type": "bundle_selector",
@@ -81,91 +78,18 @@
       ],
       "settings": {
         "enable_sticky_info": true,
+        "color_scheme": "",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "media_fit": "contain",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
-      }
-    },
-    "sakora-ugc-strip": {
-      "type": "sakora-ugc-strip",
-      "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656982/Soft_Reset_-_UGC_2_Final_V3-Compressed_nldbxi.mp4",
-            "page_handles": "sol-veil, daylite-spf-50-sunscreen"
-          }
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778657296/UGC-1-FInal-V2-Compressed_rildza.mp4",
-            "page_handles": "sol-veil, daylite-spf-50-sunscreen"
-          }
-        },
-        "video_4": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_5": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_6": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656811/UGC_3_-_Final_-_V2-Compressed_epf6qo.mp4",
-            "page_handles": "sol-veil, daylite-spf-50-sunscreen"
-          }
-        },
-        "video_7": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_8": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
-            "page_handles": ""
-          }
-        }
-      },
-      "block_order": [
-        "video_1",
-        "video_2",
-        "video_3",
-        "video_4",
-        "video_5",
-        "video_6",
-        "video_7",
-        "video_8"
-      ],
-      "settings": {
-        "eyebrow": "Real results",
-        "heading": "From real skin",
-        "padding_top": 60,
-        "padding_bottom": 60
       }
     },
     "sakora-reviews": {
@@ -233,27 +157,21 @@
             "ing_1_name": "Tinosorb M™",
             "ing_1_badge": "Broad Spectrum Anchor",
             "ing_1_benefit": "Absorbs UVB and UVA1 simultaneously. Keeps Avobenzone from degrading in sunlight.",
-            "ing_1_image": "shopify://shop_images/DL_Ing_Tinosorb_M.webp",
             "ing_2_name": "Mexoryl SX™ + Avobenzone",
             "ing_2_badge": "UVA Specialist",
             "ing_2_benefit": "Complete UVA2 + UVA1 coverage. The deep UV that causes PIH — blocked.",
-            "ing_2_image": "shopify://shop_images/DL_Ing_Mexoryl_SX.webp",
             "ing_3_name": "Zinc PCA + Niacinamide",
             "ing_3_badge": "Matte + Pore",
             "ing_3_benefit": "Regulates sebum at the source. Stays matte past 3pm. Not a cosmetic trick.",
-            "ing_3_image": "shopify://shop_images/DL_Ing_Zinc_PCA.webp",
             "ing_4_name": "Aquaxyl™",
             "ing_4_badge": "Barrier-Hydrator",
             "ing_4_benefit": "Regulates moisture channels actively. No tight or dry feeling under SPF.",
-            "ing_4_image": "shopify://shop_images/DL_Ing_Aquaxyl.webp",
             "ing_5_name": "Blueberry Extract",
             "ing_5_badge": "Antioxidant Defense",
             "ing_5_benefit": "Neutralises the UV that makes it through the filters. SPF + antioxidants together.",
-            "ing_5_image": "shopify://shop_images/DL_Ing__Blueberry_Extract.webp",
             "ing_6_name": "Capsicum Annuum",
             "ing_6_badge": "UV Defense Booster",
-            "ing_6_benefit": "Carotenoid-rich antioxidant backup. Reduces post-UV redness and inflammation.",
-            "ing_6_image": "shopify://shop_images/DL_Ing_Capsicum_Annuum.webp"
+            "ing_6_benefit": "Carotenoid-rich antioxidant backup. Reduces post-UV redness and inflammation."
           }
         },
         "how_to_use": {
@@ -327,49 +245,6 @@
         "timeline"
       ],
       "settings": {}
-    },
-    "sakora-pdp-clinical": {
-      "type": "sakora-pdp-clinical",
-      "blocks": {
-        "c_1": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/SPF_-_Six_Layer_Protection.webp",
-            "bg_gradient": "linear-gradient(135deg,#FFF0D8,#FFE0B8)",
-            "title": "6-Filter UV System · Complete Spectrum Defense",
-            "detail": "Zero UV coverage gaps from 280nm to 400nm · PA++++ confirmed"
-          }
-        },
-        "c_2": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/Zinc_PCA_Sebum_Control.webp",
-            "bg_gradient": "linear-gradient(135deg,#FFEAC0,#FFD898)",
-            "title": "Zinc PCA · Sebum Regulation",
-            "detail": "Actively regulating sebum production for a matte finish maintained 8h+"
-          }
-        },
-        "c_3": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/SPF_-_Antioxidant_Complex.webp",
-            "bg_gradient": "linear-gradient(135deg,#FFD8B0,#FFC898)",
-            "title": "Antioxidant Complex · Free Radical Defense",
-            "detail": "Neutralizing oxidative stress and preventing PIH formation at the source"
-          }
-        }
-      },
-      "block_order": [
-        "c_1",
-        "c_2",
-        "c_3"
-      ],
-      "settings": {
-        "label": "Biochemical mechanisms",
-        "title": "See the science in action.",
-        "subtitle": "We approach UV protection at the cellular level. Here is exactly how the actives in Daylite interact with your skin's structures to protect and repair.",
-        "note": "🧪 3D microscopic visualizations representing the documented biochemical pathways of our 6-Filter System, Zinc PCA, and Antioxidant Complex."
-      }
     },
     "sakora-pdp-upsell": {
       "type": "sakora-pdp-upsell",
@@ -447,10 +322,12 @@
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
+        "products_to_show": 4,
         "columns_desktop": 4,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
@@ -461,10 +338,8 @@
   },
   "order": [
     "main",
-    "sakora-ugc-strip",
     "sakora-reviews",
     "sakora-pdp-accordions",
-    "sakora-pdp-clinical",
     "sakora-pdp-upsell",
     "sakora-pdp-faq",
     "related-products"
