@@ -66,13 +66,27 @@
     align-items: center;
     justify-content: center;
   }
+  .sakora-collection__card-product-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .sakora-collection__card:hover .sakora-collection__card-product-img {
+    transform: scale(1.06);
+  }
   .sakora-collection__card-inner {
+    position: relative;
+    z-index: 2;
     transition: transform 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5rem;
-    z-index: 2;
   }
   .sakora-collection__card:hover .sakora-collection__card-inner {
     transform: scale(1.04);
@@ -226,7 +240,15 @@
             assign desc = block.settings.desc | default: product.description | strip_html | truncatewords: 25
             assign ingredients = block.settings.ingredients
             assign size = block.settings.size
-            assign price = block.settings.price | default: product.price | money_without_trailing_zeros
+            
+            if block.settings.price != blank
+              assign price = block.settings.price
+            elsif product != blank
+              assign price = product.price | money_without_trailing_zeros
+            else
+              assign price = ""
+            endif
+            
             assign color = block.settings.color
             assign text_color = block.settings.text_color
             assign badge = block.settings.badge
@@ -234,6 +256,17 @@
           -%}
           <div class="sakora-collection__card" {{ block.shopify_attributes }}>
             <div class="sakora-collection__card-img-wrapper" style="background-color: {{ color }};">
+              {%- assign card_image = block.settings.image | default: product.featured_image -%}
+              {%- if card_image != blank -%}
+                <img
+                  src="{{ card_image | image_url: width: 600 }}"
+                  alt="{{ name | escape }}"
+                  loading="lazy"
+                  class="sakora-collection__card-product-img"
+                  width="{{ card_image.width }}"
+                  height="{{ card_image.height }}"
+                >
+              {%- endif -%}
               <div class="sakora-collection__card-inner">
                 <div class="sakora-collection__label-sheet">
                   <div class="sakora-collection__label-brand" style="color: {{ text_color }};">sakora</div>
@@ -361,6 +394,12 @@
           "type": "product",
           "id": "product",
           "label": "Choose Product"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Product Image Overlay",
+          "info": "Upload a product image (preferably transparent PNG) to overlay. Falls back to Shopify product featured image."
         },
         {
           "type": "text",
