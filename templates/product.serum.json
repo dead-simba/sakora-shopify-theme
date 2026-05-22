@@ -37,12 +37,9 @@
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "button",
+            "swatch_shape": "circle"
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector",
-          "settings": {}
         },
         "bundle_selector": {
           "type": "bundle_selector",
@@ -81,126 +78,18 @@
       ],
       "settings": {
         "enable_sticky_info": true,
+        "color_scheme": "",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "media_fit": "contain",
         "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
-      }
-    },
-    "sakora-ugc-strip": {
-      "type": "sakora-ugc-strip",
-      "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656982/Soft_Reset_-_UGC_2_Final_V3-Compressed_nldbxi.mp4",
-            "page_handles": "dawn-drops, fade-theory"
-          }
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778657296/UGC-1-FInal-V2-Compressed_rildza.mp4",
-            "page_handles": "dawn-drops, fade-theory"
-          }
-        },
-        "video_4": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_5": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_6": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656811/UGC_3_-_Final_-_V2-Compressed_epf6qo.mp4",
-            "page_handles": "dawn-drops, fade-theory"
-          }
-        },
-        "video_7": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_8": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
-            "page_handles": ""
-          }
-        }
-      },
-      "block_order": [
-        "video_1",
-        "video_2",
-        "video_3",
-        "video_4",
-        "video_5",
-        "video_6",
-        "video_7",
-        "video_8"
-      ],
-      "settings": {
-        "eyebrow": "Real results",
-        "heading": "From real skin",
-        "padding_top": 60,
-        "padding_bottom": 60
-      }
-    },
-    "sakora-pdp-before-after": {
-      "type": "sakora-pdp-before-after",
-      "blocks": {
-        "ba_1": {
-          "type": "before_after",
-          "settings": {
-            "before_image": "shopify://shop_images/Malesma_-_Before.webp",
-            "after_image": "shopify://shop_images/Malesma_-_After.webp",
-            "reviewer_name": "",
-            "timeframe": "7 Weeks of use with right routine",
-            "skin_type": ""
-          }
-        },
-        "ba_2": {
-          "type": "before_after",
-          "settings": {
-            "before_image": "shopify://shop_images/Post_Acne_Marks_-_Before.webp",
-            "after_image": "shopify://shop_images/Post_Acne_Marks_-_After.webp",
-            "reviewer_name": "",
-            "timeframe": "6 Weeks of use with right routine",
-            "skin_type": ""
-          }
-        }
-      },
-      "block_order": [
-        "ba_1",
-        "ba_2"
-      ],
-      "settings": {
-        "label": "Real results",
-        "title": "The proof.",
-        "subtitle": "Unedited. Real customers. Consistent use.",
-        "disclaimer": "Individual results may vary. Images are unretouched."
       }
     },
     "sakora-reviews": {
@@ -248,6 +137,7 @@
             "pw_3_mech": "Cuts the plasmin→melanin chain — root cause of PIH on Fitzpatrick IV–VI skin",
             "pw_4_num": "Pathway 04",
             "pw_4_title": "MITF gene expression",
+            "pw_4_trig": "",
             "pw_4_ing": "Ethyl Ascorbic Acid + Licorice",
             "pw_4_mech": "Suppresses MITF transcription — turns off the instruction to produce more melanin",
             "pw_5_num": "Pathway 05",
@@ -268,27 +158,21 @@
             "ing_1_name": "Alpha-Arbutin 2%",
             "ing_1_badge": "Tyrosinase Inhibitor",
             "ing_1_benefit": "Stops melanin at the enzyme — the root cause of every dark spot.",
-            "ing_1_image": "shopify://shop_images/FT_Ing_AlphaArbutin.webp",
             "ing_2_name": "Ethyl Ascorbic Acid",
             "ing_2_badge": "Stable Vitamin C",
             "ing_2_benefit": "Fades marks already there. Shields from new ones forming.",
-            "ing_2_image": "shopify://shop_images/FT_Ing_EthylAscorbicAcid.webp",
             "ing_3_name": "Tranexamic Acid",
             "ing_3_badge": "PIH Specialist",
             "ing_3_benefit": "Cuts the breakout→pigment inflammation chain. Works on Fitzpatrick IV–VI.",
-            "ing_3_image": "shopify://shop_images/FT_Ing_TranexamicAcid.webp",
             "ing_4_name": "Niacinamide 5%",
             "ing_4_badge": "Multi-Tasker",
             "ing_4_benefit": "Blocks pigment transfer. Controls oil. Builds barrier. All at once.",
-            "ing_4_image": "shopify://shop_images/FT_Ing_Niacinamide.webp",
             "ing_5_name": "Glycyrrhiza Glabra",
             "ing_5_badge": "Gentle Brightener",
             "ing_5_benefit": "Licorice root. Natural melanin inhibitor — also calms the inflammation that triggers PIH.",
-            "ing_5_image": "shopify://shop_images/FT_Ing_Glabra.webp",
             "ing_6_name": "Sodium Hyaluronate",
             "ing_6_badge": "Humectant",
-            "ing_6_benefit": "Pulls moisture into skin. Keeps it hydrated so actives can penetrate properly.",
-            "ing_6_image": "shopify://shop_images/FT_Ing_SodiumHyaluronate.webp"
+            "ing_6_benefit": "Pulls moisture into skin. Keeps it hydrated so actives can penetrate properly."
           }
         },
         "how_to_use": {
@@ -362,49 +246,6 @@
         "timeline"
       ],
       "settings": {}
-    },
-    "sakora-pdp-clinical": {
-      "type": "sakora-pdp-clinical",
-      "blocks": {
-        "c_1": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/Serum_-_Alpha_Arbutin.webp",
-            "bg_gradient": "linear-gradient(135deg,#F5DDD0,#EEC8B5)",
-            "title": "Alpha-Arbutin 2% · Enzyme Inhibition",
-            "detail": "Actively binding to tyrosinase to block pigment conversion."
-          }
-        },
-        "c_2": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/Serum_-_Tranexamic_Acid.webp",
-            "bg_gradient": "linear-gradient(135deg,#EAD5C4,#D4B5A0)",
-            "title": "Tranexamic Acid · Plasmin Blockade",
-            "detail": "Interrupting the post-inflammatory cascade before dark spots form."
-          }
-        },
-        "c_3": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/Serum_-_Vitamin_C_Stability.webp",
-            "bg_gradient": "linear-gradient(135deg,#DDD0CC,#C8B0A8)",
-            "title": "Ethyl Ascorbic Acid · ROS Defense",
-            "detail": "Neutralizing oxidative stress and free radicals from UV exposure."
-          }
-        }
-      },
-      "block_order": [
-        "c_1",
-        "c_2",
-        "c_3"
-      ],
-      "settings": {
-        "label": "Biochemical mechanisms",
-        "title": "See the science in action.",
-        "subtitle": "We approach pigmentation at the cellular level. Here is exactly how the actives in Fade Theory interact with your skin's structures to block melanin.",
-        "note": "🧪 3D microscopic visualizations representing the documented biochemical pathways of Alpha Arbutin, Tranexamic Acid, and Vitamin C."
-      }
     },
     "sakora-pdp-upsell": {
       "type": "sakora-pdp-upsell",
@@ -482,10 +323,12 @@
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
+        "products_to_show": 4,
         "columns_desktop": 4,
         "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
@@ -496,11 +339,8 @@
   },
   "order": [
     "main",
-    "sakora-ugc-strip",
-    "sakora-pdp-before-after",
     "sakora-reviews",
     "sakora-pdp-accordions",
-    "sakora-pdp-clinical",
     "sakora-pdp-upsell",
     "sakora-pdp-faq",
     "related-products"
