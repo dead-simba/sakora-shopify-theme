@@ -423,6 +423,28 @@
         }
       });
     });
+
+    // Make the entire card clickable, redirecting to the product URL unless the button/form is clicked
+    document.querySelectorAll('.sakora-collection__card').forEach(card => {
+      card.addEventListener('click', (e) => {
+        // Prevent redirect if the user clicked the Add to Cart form, button, or placeholders
+        if (e.target.closest('.sakora-product-form') || e.target.closest('.sakora-collection__card-btn') || e.target.closest('.sakora-collection__card-btn-placeholder')) {
+          return;
+        }
+        
+        const overlayLink = card.querySelector('.sakora-collection__card-link-overlay');
+        if (overlayLink) {
+          const url = overlayLink.getAttribute('href');
+          if (url) {
+            if (e.metaKey || e.ctrlKey) {
+              window.open(url, '_blank');
+            } else {
+              window.location.href = url;
+            }
+          }
+        }
+      });
+    });
   });
 </script>
 
