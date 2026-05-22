@@ -89,7 +89,7 @@
         "petal_melt_card": {
           "type": "product_card",
           "settings": {
-            "product": "",
+            "product": "petal-melt",
             "name": "Petal Melt",
             "subtitle": "Barrier Moisturiser",
             "type": "Triple Ceramide + Peptide",
@@ -105,7 +105,7 @@
         "sol_veil_card": {
           "type": "product_card",
           "settings": {
-            "product": "",
+            "product": "sol-veil",
             "name": "Sol Veil",
             "subtitle": "Broad Spectrum Sunscreen",
             "type": "Matte SPF 50 PA++++",
@@ -121,7 +121,7 @@
         "dawn_drops_card": {
           "type": "product_card",
           "settings": {
-            "product": "",
+            "product": "dawn-drops",
             "name": "Dawn Drops",
             "subtitle": "Glow Serum",
             "type": "5-Active Brightening",
