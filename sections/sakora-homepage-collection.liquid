@@ -267,15 +267,17 @@
                   height="{{ card_image.height }}"
                 >
               {%- endif -%}
-              <div class="sakora-collection__card-inner">
-                <div class="sakora-collection__label-sheet">
-                  <div class="sakora-collection__label-brand" style="color: {{ text_color }};">sakora</div>
-                  <div class="sakora-collection__label-title" style="color: {{ text_color }};">{{ name }}</div>
-                  <div class="sakora-collection__label-subtitle" style="color: {{ text_color }};">{{ subtitle }}</div>
-                  <div class="sakora-collection__label-divider" style="background-color: {{ color }};"></div>
-                  <div class="sakora-collection__label-size" style="color: {{ text_color }};">{{ size }}</div>
+              {%- if card_image == blank -%}
+                <div class="sakora-collection__card-inner">
+                  <div class="sakora-collection__label-sheet">
+                    <div class="sakora-collection__label-brand" style="color: {{ text_color }};">sakora</div>
+                    <div class="sakora-collection__label-title" style="color: {{ text_color }};">{{ name }}</div>
+                    <div class="sakora-collection__label-subtitle" style="color: {{ text_color }};">{{ subtitle }}</div>
+                    <div class="sakora-collection__label-divider" style="background-color: {{ color }};"></div>
+                    <div class="sakora-collection__label-size" style="color: {{ text_color }};">{{ size }}</div>
+                  </div>
                 </div>
-              </div>
+              {%- endif -%}
               {%- if badge != blank -%}
                 <div class="sakora-collection__badge">
                   <span class="sakora-collection__badge-text" style="color: {{ text_color }};">{{ badge }}</span>
