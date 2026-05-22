@@ -158,6 +158,43 @@
     },
     "sakora_routine": {
       "type": "sakora-routine",
+      "blocks": {
+        "step_01": {
+          "type": "step",
+          "settings": {
+            "step_num": "01",
+            "product": "Petal Melt",
+            "title": "Repair",
+            "detail": "Start with your barrier. Apply morning and evening on clean, damp skin.",
+            "color": "#e8a0a0"
+          }
+        },
+        "step_02": {
+          "type": "step",
+          "settings": {
+            "step_num": "02",
+            "product": "Dawn Drops",
+            "title": "Brighten",
+            "detail": "3–5 drops, press gently into skin. Wait 30 seconds. Let the actives work.",
+            "color": "#1d9e75"
+          }
+        },
+        "step_03": {
+          "type": "step",
+          "settings": {
+            "step_num": "03",
+            "product": "Sol Veil",
+            "title": "Protect",
+            "detail": "Two finger-lengths, every morning — the last step of your AM routine.",
+            "color": "#e8b84b"
+          }
+        }
+      },
+      "block_order": [
+        "step_01",
+        "step_02",
+        "step_03"
+      ],
       "settings": {
         "eyebrow": "The Routine",
         "title": "Three steps. <em>Every day.</em>"
