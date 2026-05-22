@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -11,7 +20,8 @@
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "caption": {
           "type": "text",
@@ -21,16 +31,15 @@
           }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
           "settings": {
-            "picker_type": "button"
+            "picker_type": "button",
+            "swatch_shape": "circle"
           }
-        },
-        "quantity_selector": {
-          "type": "quantity_selector"
         },
         "bundle_selector": {
           "type": "bundle_selector",
@@ -46,7 +55,8 @@
           }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "share": {
           "type": "share",
@@ -68,127 +78,19 @@
       ],
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "stacked",
+        "color_scheme": "",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
+        "media_position": "left",
+        "image_zoom": "lightbox",
         "hide_variants": true,
         "enable_video_looping": false,
         "padding_top": 36,
         "padding_bottom": 12
       }
-    },
-    "sakora-ugc-strip": {
-      "type": "sakora-ugc-strip",
-      "settings": {
-        "eyebrow": "Real results",
-        "heading": "From real skin",
-        "padding_top": 60,
-        "padding_bottom": 60
-      },
-      "blocks": {
-        "video_1": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656982/Soft_Reset_-_UGC_2_Final_V3-Compressed_nldbxi.mp4",
-            "page_handles": "soft-reset, petal-melt"
-          }
-        },
-        "video_2": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656414/Skin_Tight_lg_rhi_hai_ra66tt.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_3": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778657296/UGC-1-FInal-V2-Compressed_rildza.mp4",
-            "page_handles": "soft-reset, petal-melt"
-          }
-        },
-        "video_4": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656433/Packaging_damage_ni_hui_y1brlw.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_5": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656441/2-step_skincare_routine_erxeef.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_6": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656811/UGC_3_-_Final_-_V2-Compressed_epf6qo.mp4",
-            "page_handles": "soft-reset, petal-melt"
-          }
-        },
-        "video_7": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656445/Trip_pe_jana_tha_uko3nc.mp4",
-            "page_handles": ""
-          }
-        },
-        "video_8": {
-          "type": "video",
-          "settings": {
-            "video_url": "https://res.cloudinary.com/dwoeo4skk/video/upload/v1778656450/Jiya_raairc.mp4",
-            "page_handles": ""
-          }
-        }
-      },
-      "block_order": [
-        "video_1",
-        "video_2",
-        "video_3",
-        "video_4",
-        "video_5",
-        "video_6",
-        "video_7",
-        "video_8"
-      ]
-    },
-    "sakora-pdp-before-after": {
-      "type": "sakora-pdp-before-after",
-      "settings": {
-        "label": "Real results",
-        "title": "The proof.",
-        "subtitle": "Unedited. Real customers. Consistent use.",
-        "disclaimer": "Individual results may vary. Images are unretouched."
-      },
-      "blocks": {
-        "ba_1": {
-          "type": "before_after",
-          "settings": {
-            "before_image": "shopify://shop_images/Barrier_1_-_Before.webp",
-            "after_image": "shopify://shop_images/Barrier_1_-_After.webp",
-            "reviewer_name": "",
-            "timeframe": "4 Weeks of use with correct routine",
-            "skin_type": ""
-          }
-        },
-        "ba_2": {
-          "type": "before_after",
-          "settings": {
-            "before_image": "shopify://shop_images/Barrier_2_-_Before.webp",
-            "after_image": "shopify://shop_images/Barrier_2_-_After.webp",
-            "reviewer_name": "",
-            "timeframe": "1 Week of consistent use",
-            "skin_type": ""
-          }
-        }
-      },
-      "block_order": [
-        "ba_1",
-        "ba_2"
-      ]
     },
     "sakora-reviews": {
       "type": "sakora-reviews",
@@ -196,7 +98,6 @@
     },
     "sakora-pdp-accordions": {
       "type": "sakora-pdp-accordions",
-      "settings": {},
       "blocks": {
         "inci": {
           "type": "inci",
@@ -242,27 +143,21 @@
             "ing_1_name": "Triple Ceramide Complex",
             "ing_1_badge": "Ceramide NP / AP / EOP",
             "ing_1_benefit": "Replicates your skin's natural lipid profile to immediately reinforce and rebuild the outer barrier. No single ceramide type is enough, patching it with one leaves gaps.",
-            "ing_1_image": "shopify://shop_images/BR_Ing_Ceramide.webp",
             "ing_2_name": "Niacinamide",
             "ing_2_badge": "Multi-Tasker 5%",
             "ing_2_benefit": "Vitamin B3. Builds natural ceramides for barrier support, reduces oil production, and calms redness. Used at the clinically relevant 5% dose.",
-            "ing_2_image": "shopify://shop_images/BR_Ing_Niacinamide.webp",
             "ing_3_name": "Panthenol",
             "ing_3_badge": "Soothing B5",
             "ing_3_benefit": "Provitamin B5 converts into pantothenic acid in your skin, accelerates cell renewal, and reduces redness. Helps skin adapt without irritation.",
-            "ing_3_image": "shopify://shop_images/BR_Ing_Panthenol.webp",
             "ing_4_name": "Sodium Hyaluronate",
             "ing_4_badge": "Humectant",
             "ing_4_benefit": "Holds up to 1,000× its weight in water, drawing moisture from the air into your skin. The deeper-penetrating salt form of hyaluronic acid.",
-            "ing_4_image": "shopify://shop_images/BR_Ing_Hyaluronic.webp",
             "ing_5_name": "Allantoin",
             "ing_5_badge": "Skin Soother",
             "ing_5_benefit": "Derived from comfrey. Softens and soothes — helps skin tolerate actives and recover faster. The unsung hero in barrier formulas.",
-            "ing_5_image": "shopify://shop_images/BR_Ing_Allantoin.webp",
             "ing_6_name": "Olivem 1000",
             "ing_6_badge": "Natural Emulsifier",
-            "ing_6_benefit": "Derived from olive oil. Naturally compatible with skin lipids to create a cream texture that absorbs smoothly without a film or heaviness.",
-            "ing_6_image": "shopify://shop_images/BR_Ing_Olivem.webp"
+            "ing_6_benefit": "Derived from olive oil. Naturally compatible with skin lipids to create a cream texture that absorbs smoothly without a film or heaviness."
           }
         },
         "how_to_use": {
@@ -302,7 +197,8 @@
             "pm_3_label": "Moisturizer",
             "pm_3_icon": "💧",
             "pm_3_note": "",
-            "pm_3_current": true
+            "pm_3_current": true,
+            "tip": ""
           }
         },
         "timeline": {
@@ -333,50 +229,8 @@
         "ingredients",
         "how_to_use",
         "timeline"
-      ]
-    },
-    "sakora-pdp-clinical": {
-      "type": "sakora-pdp-clinical",
-      "settings": {
-        "label": "Biochemical mechanisms",
-        "title": "See the science in action.",
-        "subtitle": "We rebuild the barrier at a cellular level. Here is exactly how the actives in Soft Reset interact with your skin's structures to seal and strengthen.",
-        "note": "🧪 3D microscopic visualizations representing the documented biochemical pathways of Triple Ceramides, Niacinamide, and Matrixyl 3000™."
-      },
-      "blocks": {
-        "c_1": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/BR_-_Triple_Ceramide_Complex.webp",
-            "bg_gradient": "linear-gradient(135deg,#EDE0F5,#D8C8EC)",
-            "title": "Triple Ceramide Complex · Structural Integration",
-            "detail": "Golden lipid molecules physically integrating to seal cracked lipid layers."
-          }
-        },
-        "c_2": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/BR_-_Niacinamide_5.webp",
-            "bg_gradient": "linear-gradient(135deg,#DDD5EE,#C8BCE0)",
-            "title": "Niacinamide 5% · Cellular Energy",
-            "detail": "Upregulating natural ceramide synthase to calm inflammation."
-          }
-        },
-        "c_3": {
-          "type": "clinical_card",
-          "settings": {
-            "image": "shopify://shop_images/BR_-_Matrixyl_3000_Sederma.webp",
-            "bg_gradient": "linear-gradient(135deg,#CDBFE0,#B8A8D0)",
-            "title": "Matrixyl 3000™ · Collagen Support",
-            "detail": "Signaling the dermal matrix to rebuild structural scaffolding."
-          }
-        }
-      },
-      "block_order": [
-        "c_1",
-        "c_2",
-        "c_3"
-      ]
+      ],
+      "settings": {}
     },
     "sakora-pdp-upsell": {
       "type": "sakora-pdp-upsell",
@@ -400,10 +254,6 @@
     },
     "sakora-pdp-faq": {
       "type": "sakora-pdp-faq",
-      "settings": {
-        "label": "FAQ",
-        "title": "Questions answered."
-      },
       "blocks": {
         "faq_1": {
           "type": "item",
@@ -455,20 +305,26 @@
         "faq_4",
         "faq_5",
         "faq_6"
-      ]
+      ],
+      "settings": {
+        "label": "FAQ",
+        "title": "Questions answered."
+      }
     },
     "related-products": {
       "type": "related-products",
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
+        "products_to_show": 4,
         "columns_desktop": 4,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
+        "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 28
       }
@@ -476,11 +332,8 @@
   },
   "order": [
     "main",
-    "sakora-ugc-strip",
-    "sakora-pdp-before-after",
     "sakora-reviews",
     "sakora-pdp-accordions",
-    "sakora-pdp-clinical",
     "sakora-pdp-upsell",
     "sakora-pdp-faq",
     "related-products"

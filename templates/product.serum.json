@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "main": {
@@ -11,7 +20,8 @@
           }
         },
         "title": {
-          "type": "title"
+          "type": "title",
+          "settings": {}
         },
         "caption": {
           "type": "text",
@@ -21,7 +31,8 @@
           }
         },
         "price": {
-          "type": "price"
+          "type": "price",
+          "settings": {}
         },
         "variant_picker": {
           "type": "variant_picker",
@@ -30,7 +41,8 @@
           }
         },
         "quantity_selector": {
-          "type": "quantity_selector"
+          "type": "quantity_selector",
+          "settings": {}
         },
         "bundle_selector": {
           "type": "bundle_selector",
@@ -46,7 +58,8 @@
           }
         },
         "description": {
-          "type": "description"
+          "type": "description",
+          "settings": {}
         },
         "share": {
           "type": "share",
@@ -68,9 +81,9 @@
       ],
       "settings": {
         "enable_sticky_info": true,
-        "gallery_layout": "stacked",
         "media_size": "large",
         "constrain_to_viewport": true,
+        "gallery_layout": "stacked",
         "mobile_thumbnails": "hide",
         "hide_variants": true,
         "enable_video_looping": false,
@@ -80,12 +93,6 @@
     },
     "sakora-ugc-strip": {
       "type": "sakora-ugc-strip",
-      "settings": {
-        "eyebrow": "Real results",
-        "heading": "From real skin",
-        "padding_top": 60,
-        "padding_bottom": 60
-      },
       "blocks": {
         "video_1": {
           "type": "video",
@@ -153,16 +160,16 @@
         "video_6",
         "video_7",
         "video_8"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Real results",
+        "heading": "From real skin",
+        "padding_top": 60,
+        "padding_bottom": 60
+      }
     },
     "sakora-pdp-before-after": {
       "type": "sakora-pdp-before-after",
-      "settings": {
-        "label": "Real results",
-        "title": "The proof.",
-        "subtitle": "Unedited. Real customers. Consistent use.",
-        "disclaimer": "Individual results may vary. Images are unretouched."
-      },
       "blocks": {
         "ba_1": {
           "type": "before_after",
@@ -188,7 +195,13 @@
       "block_order": [
         "ba_1",
         "ba_2"
-      ]
+      ],
+      "settings": {
+        "label": "Real results",
+        "title": "The proof.",
+        "subtitle": "Unedited. Real customers. Consistent use.",
+        "disclaimer": "Individual results may vary. Images are unretouched."
+      }
     },
     "sakora-reviews": {
       "type": "sakora-reviews",
@@ -196,7 +209,6 @@
     },
     "sakora-pdp-accordions": {
       "type": "sakora-pdp-accordions",
-      "settings": {},
       "blocks": {
         "inci": {
           "type": "inci",
@@ -348,16 +360,11 @@
         "ingredients",
         "how_to_use",
         "timeline"
-      ]
+      ],
+      "settings": {}
     },
     "sakora-pdp-clinical": {
       "type": "sakora-pdp-clinical",
-      "settings": {
-        "label": "Biochemical mechanisms",
-        "title": "See the science in action.",
-        "subtitle": "We approach pigmentation at the cellular level. Here is exactly how the actives in Fade Theory interact with your skin's structures to block melanin.",
-        "note": "🧪 3D microscopic visualizations representing the documented biochemical pathways of Alpha Arbutin, Tranexamic Acid, and Vitamin C."
-      },
       "blocks": {
         "c_1": {
           "type": "clinical_card",
@@ -391,7 +398,13 @@
         "c_1",
         "c_2",
         "c_3"
-      ]
+      ],
+      "settings": {
+        "label": "Biochemical mechanisms",
+        "title": "See the science in action.",
+        "subtitle": "We approach pigmentation at the cellular level. Here is exactly how the actives in Fade Theory interact with your skin's structures to block melanin.",
+        "note": "🧪 3D microscopic visualizations representing the documented biochemical pathways of Alpha Arbutin, Tranexamic Acid, and Vitamin C."
+      }
     },
     "sakora-pdp-upsell": {
       "type": "sakora-pdp-upsell",
@@ -415,10 +428,6 @@
     },
     "sakora-pdp-faq": {
       "type": "sakora-pdp-faq",
-      "settings": {
-        "label": "Quick answers",
-        "title": "Got questions?"
-      },
       "blocks": {
         "faq_1": {
           "type": "item",
@@ -462,7 +471,11 @@
         "faq_3",
         "faq_4",
         "faq_5"
-      ]
+      ],
+      "settings": {
+        "label": "Quick answers",
+        "title": "Got questions?"
+      }
     },
     "related-products": {
       "type": "related-products",
@@ -470,12 +483,12 @@
         "heading": "You may also like",
         "heading_size": "h2",
         "columns_desktop": 4,
+        "columns_mobile": "2",
         "color_scheme": "scheme-1",
         "image_ratio": "square",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
-        "columns_mobile": "2",
         "padding_top": 36,
         "padding_bottom": 28
       }
